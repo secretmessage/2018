@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-433897-4', 'auto');
+ga('send', 'pageview');
+</script>
+<TITLE>About Techmeme</TITLE>
+<META NAME="description" CONTENT="About Techmeme's mission, origins, and team." />
+<META NAME="application-name" content="Techmeme" />
+<LINK REL="alternate" TYPE="application/rss+xml" TITLE="RSS" HREF="https://www.techmeme.com/feed.xml" />
+<LINK REL="SHORTCUT ICON" HREF="https://techmeme.com/img/favicon.ico" />
+<link rel="image_src" href="https://www.techmeme.com/m/config/tech/iicon.gif" />
+<link rel="apple-touch-icon" href="https://www.techmeme.com/m/config/tech/iicon.gif" />
+<META HTTP-EQUIV="Expires" CONTENT="now">
+<SCRIPT TYPE="text/javascript">
+<!--
+var nwcbe;
+function rnwcb() {
+var where;
+if (nwcbe.checked)
+where = "_blank";
+else
+where = "_self";
+var jump_prefix = location.href.substring(0, location.href.length - location.hash.length) + '#';
+for (var i=0; i<=(document.links.length-1); i++) {
+var href = document.links[i].href;
+if ((href.indexOf("javascript:") != 0) && (href.indexOf(jump_prefix) != 0) && (!(/^https?:\/\/([a-z]+\.)?techmeme\.com\//.test(href)) || /^https?:\/\/([a-z]+\.)?techmeme\.com\/goto/.test(href))) {
+document.links[i].target = where;
+}
+}
+}
+var ckd;
+function set_ckd() {
+var dd = document.domain;
+if (dd) {
+var da = dd.split('.');
+var rd=da[da.length-2]+'.'+da[da.length-1];
+ckd='; domain=.'+rd;
+}
+}
+function createCookie(name,value) {
+document.cookie = name+"="+value+"; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/"+ckd;
+}
+function eraseCookie(name) {
+document.cookie = name+"=; expires=Thu, 01-Jan-70 00:00:01 GMT; path=/"+ckd;
+}
+function svprefs() {
+var cookie_val = '';
+if (nwcbe.checked) {
+cookie_val += 'new_window';
+}
+if (cookie_val == '') {
+eraseCookie('myprefs');
+} else {
+createCookie('myprefs', cookie_val);
+}
+}
+function readCookie(name) {
+var nameEQ = name + "=";
+var ca = document.cookie.split(';');
+for(var i=0;i < ca.length;i++) {
+var c = ca[i];
+while (c.charAt(0)==' ') c = c.substring(1,c.length);
+if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+}
+return null;
+}
+function rdprefs() {
+var cookie_val = readCookie('myprefs');
+nwcbe.checked = false;
+if (cookie_val) {
+var va = cookie_val.split('+');
+for(var i=0;i < va.length;i++) {
+var val = va[i];
+if (val == 'new_window') {
+nwcbe.checked = true;
+}
+}
+}
+}
+function xnwcb() { rnwcb(); svprefs(); }
+function getBgColor(e) {
+if (e.currentStyle)
+return e.currentStyle.backgroundColor;
+if (window.getComputedStyle) {
+var eStyle=window.getComputedStyle(e,'');
+if (eStyle)
+return eStyle.getPropertyValue('background-color');
+}
+return '#ffffff';
+}
+function hacky_grayscale (c) {
+if (c.substr(0, 4) === 'rgb(') {
+return c.substr(4).split(',',1)[0];
+} else if (c.substr(0,1) === '#') {
+return parseInt(c.substr(1,2), 16);
+}
+return 255;
+}
+var h_t;
+var h_e;
+var hoc;
+var hog;
+var hor;
+function h(id,phase) {
+if (id) {
+unh();
+h_e = document.getElementById(id);
+hoc = getBgColor(h_e);
+hog = hacky_grayscale(hoc);
+hor = 'rgb('+hog+','+hog+',';
+h(0,1);
+} else if (phase < 6) {
+h_e.style.backgroundColor=hor+(hog-phase*16)+')';
+h_t = setTimeout('h(0,'+(phase+1)+')',100);
+} else if (phase < 12) {
+h_e.style.backgroundColor=hor+(hog-6*16+(phase-6)*16)+')';
+var tms = 100;
+if (phase == 6) { tms = 1000; }
+h_t = setTimeout('h(0,'+(phase+1)+')',tms);
+} else if (phase == 12) {
+h_e.style.backgroundColor = hoc;
+h_t=null;
+}
+}
+function unh(id,phase) {
+if (h_t != null) {
+clearTimeout(h_t);
+h_e.style.backgroundColor = hoc;
+}
+}
+function sd(id,d) {
+var e = document.getElementById(id);
+e.style.display = d;
+}
+function td(id) {
+var e = document.getElementById(id);
+if (e.style.display == 'none') {
+e.style.display = 'block';
+} else {
+e.style.display = 'none';
+}
+}
+function xdates(ko,nh) {
+var tde = document.getElementById('thisdate');
+var dbe = document.getElementById('dateform');
+if (ko || (dbe.style.display == 'none')) {
+if (!nh) { h('datebox'); }
+tde.style.display = 'none';
+dbe.style.display = 'block';
+} else {
+unh();
+tde.style.display = 'block';
+dbe.style.display = 'none';
+}
+}
+function iPadiPhone() {
+return navigator.userAgent.match(/iPad|iPhone/i);
+}
+function replaceShareHandlers() {
+function handler(cn,p,ii) {
+return function(e) {
+if (!e) var e = window.event;
+overitem(cn,p,ii,e);
+};
+}
+var elements = document.getElementsByClassName('itc1');
+for (var i=0; i<elements.length; i++) {
+if (elements[i].getElementsByClassName('rsp').length == 0) { // we're not in a sponsor post
+id = elements[i].getElementsByClassName('item')[0].getAttribute('ID').split('i');
+elements[i].onmouseover = handler(id[0], true, id[1]);
+elements[i].onmouseout = handler(id[0], false, id[1]);
+}
+}
+}
+function overitem(cn, p, ii, e) {
+if (e && (e.target.tagName == "A") && iPadiPhone())
+return;
+var dxe = document.getElementById(cn + 'dx' + ii);
+if (dxe) {
+if (p) {
+var de = document.getElementById(cn + 'd' + ii);
+dxe.style.height=de.offsetHeight+'px';
+dxe.style.display = 'block';
+} else {
+dxe.style.display = 'none';
+}
+}
+var scniii = 's' + cn + 'i' + ii;
+if (p) {
+shareOn(scniii);
+} else {
+shareOff(scniii);
+}
+}
+function tgd(cnum, p, inum) {
+var setd, setp;
+if (p) { setp = 'block'; setd = 'none'; }
+else { setp = 'none'; setd = 'block'; }
+var i, ei;
+if (inum) {
+i=inum; ei=inum;
+} else {
+i=1; ei=-1;
+document.getElementById(cnum+'dxr').style.display = setd;
+document.getElementById(cnum+'pxr').style.display = setp;
+}
+while (true) {
+var ie = document.getElementById(cnum+'i'+i);
+if (ie == null) { break; }
+var pe = document.getElementById(cnum+'p'+i);
+if (pe) {
+var de = document.getElementById(cnum+'d'+i);
+pe.style.display = setp;
+de.style.display = setd;
+if (p) {
+document.getElementById(cnum+'px'+i).style.height = pe.offsetHeight+'px';
+} else {
+if (inum) {
+document.getElementById(cnum+'dx'+i).style.height = de.offsetHeight+'px';
+} else {
+document.getElementById(cnum+'dx'+i).style.display = 'none';
+}
+}
+}
+if (i == ei) { break; }
+i++;
+}
+if (!p && !inum) {
+document.getElementById(cnum+'i'+1).scrollIntoView();
+}
+}
+var pgrdad='(none)';
+var m2_ead='180405/h1210';
+var curr_yy=18;
+var min_mod=5;
+var lb_ead='180405';
+
+var m1_sad_d='September 12, 2005';
+var m1_sad='050912/h0000';
+var m2_sad=m1_sad;
+var arrt='https://www.techmeme.com/';
+function godate(d) {
+d = d.replace(/a\.?m/i, ' am');
+d = d.replace(/p\.?m/i, ' pm');
+var pa=new Array(/^jan/i,/^feb/i,/^mar/i,/^apr/i,/^may/i,/^jun/i,/^jul/i,/^aug/i,/^sep/i,/^oct/i,/^nov/i,/^dec/i);
+var fa = d.split(/[^a-zA-Z0-9]+/g);
+for(var i=0;i<12;i++) {
+if (fa[0].match(pa[i])) {
+var ip1 = i+1;
+fa[0] = ip1+'';
+}
+}
+var em='Sorry, no archives exist prior to '+m1_sad_d;
+var tpyy;
+if (fa.length==2) {
+fa[2] = curr_yy+'';
+tpyy=((100+curr_yy-1)+'').substring(1,3);
+}
+if (fa[2] > 1900) {
+if (fa[2] < 2001) {
+alert(em);
+return;
+}
+fa[2] = fa[2].substring(2,4);
+} else if (fa[2] > 80) {
+alert(em);
+return;
+}
+var h,m;
+if (fa[3]=='0' || fa[3]=='00' || (fa[0]>=1 && fa[3]<=23)) {
+h=parseInt(fa[3],10);
+m=parseInt(fa[4],10);
+if (!m) { m=0; }
+} else {
+h=20;
+m=0;
+}
+m=m-m%min_mod;
+if ((fa[4]=='pm'||fa[5]=='pm') && h<12) {
+h+=12;
+} else if ((fa[4]=='am'||fa[5]=='am') && h==12) {
+h=0;
+}
+fa[3]=h+'';
+fa[4]=m+'';
+if (
+(fa[0]>=1 && fa[0]<=12) &&
+(fa[1]>=1 && fa[1]<=31) &&
+(fa[2]>=1 && fa[2]<=curr_yy) &&
+(fa[4]>=0 && fa[4]<=59)
+) {
+for(var i=0;i<fa.length;i++) {
+var f=fa[i];
+if (f.length < 2) {
+fa[i]='0'+f;
+}
+}
+var m2_ad=fa[2]+fa[0]+fa[1]+'/h'+fa[3]+fa[4];
+var m1_ad;
+if ((m2_ad > m2_ead) && tpyy) {
+m2_ad=tpyy+m2_ad.substr(2,m2_ad.length);
+m1_ad=tpyy;
+} else {
+m1_ad=fa[2];
+}
+m1_ad=m1_ad+'/'+fa[0]+'/'+fa[1]+'/';
+if (m2_ad > m2_ead) {
+alert("Sorry, no page exists yet for that date");
+} else if (m2_ad < m1_sad) {
+alert(em);
+} else if (m2_ad < m2_sad) {
+location = arrt+m1_ad;
+} else {
+location = arrt+m2_ad;
+}
+} else {
+alert('Please use this format:  '+pgrdad);
+}
+}
+var arrt='https://www.techmeme.com/';
+var nowrd='(none)';
+var lb_sad_d='September 30, 2007';
+var lb_sad='070930';
+function lbgodate(d) {
+d = d.replace(/a\.?m/i, ' am');
+d = d.replace(/p\.?m/i, ' pm');
+var pa=new Array(/^jan/i,/^feb/i,/^mar/i,/^apr/i,/^may/i,/^jun/i,/^jul/i,/^aug/i,/^sep/i,/^oct/i,/^nov/i,/^dec/i);
+var fa = d.split(/[^a-zA-Z0-9]+/g);
+for(var i=0;i<12;i++) {
+if (fa[0].match(pa[i])) {
+var ip1 = i+1;
+fa[0] = ip1+'';
+}
+}
+var em='Sorry, no leaderboards exist prior to '+lb_sad_d;
+var tpyy;
+if (fa.length==2) {
+fa[2] = curr_yy+'';
+tpyy=((100+curr_yy-1)+'').substring(1,3);
+}
+if (fa[2] > 1900) {
+if (fa[2] < 2001) {
+alert(em);
+return;
+}
+fa[2] = fa[2].substring(2,4);
+} else if (fa[2] > 80) {
+alert(em);
+return;
+}
+if ((fa[0]>=1 && fa[0]<=12) &&
+(fa[1]>=1 && fa[1]<=31) &&
+(fa[2]>=1 && fa[2]<=curr_yy)
+) {
+for(var i=0;i<fa.length;i++) {
+var f=fa[i];
+if (f.length < 2) {
+fa[i]='0'+f;
+}
+}
+var lb_ad=fa[2]+fa[0]+fa[1];
+if ((lb_ad > lb_ead) && tpyy) {
+lb_ad=tpyy+lb_ad.substr(2,lb_ad.length);
+}
+if (lb_ad > lb_ead) {
+alert("Sorry, no leaderboards exist yet for that date");
+} else if (lb_ad < lb_sad) {
+alert(em);
+} else {
+location = arrt+lb_ad+'/lb';
+}
+} else {
+alert('Please use this format:  '+nowrd);
+}
+}
+function tlbrows(id) {
+var bhe=document.getElementById(id+'_hide_button');
+var bse=document.getElementById(id+'_show_button');
+var set_rows;
+if (bhe.style.display == 'none') {
+set_rows='';
+bse.style.display='none';
+} else {
+set_rows='none';
+bse.style.display='';
+}
+bhe.style.display=set_rows;
+var t=document.getElementById(id);
+var oRows = t.getElementsByTagName('tr');
+var iRowCount = oRows.length;
+var i;
+for(i=11;i<iRowCount;i++) {
+t.rows[i].style.display=set_rows;
+}
+if (set_rows == 'none') {
+document.getElementById('a'+id).scrollIntoView();
+}
+}
+function hhash() {
+var a=location.hash;
+if (a) {
+var i;
+if (a.substring(1,2) === 'a') {
+i=a.substring(2,a.length);
+} else {
+i=a.substring(1);
+}
+var je = document.getElementById(i);
+if (je) {
+je.scrollIntoView();
+h(i);
+}
+}
+}
+var TdTD = 400;
+var TnTB = 700;
+var TwTSE = 200;
+var TnOE = 3;
+var TwTBE = 0;
+var TwTCD = 150;
+var TsTS = '/do/lc';
+var TeTD = Number.MAX_VALUE;
+var TgETD = false;
+var TdE = new Array();
+var TE = function() {
+this.Tx = false;
+this.Ts = 0;
+this.Td = 0;
+this.toString = function() {
+return this.Ts + " " + this.Td;
+}
+}
+TE.Tc = function (a,b) {
+return a.Td - b.Td
+}
+var TcE_ = null;
+function TgXMLHR() {
+var Tx = false;
+if (window.XMLHttpRequest) {
+Tx = new XMLHttpRequest();
+} else {
+try
+{
+Tx = new ActiveXObject("Msxml2.XMLHTTP");
+}
+catch (ev)
+{
+try
+{
+Tx = new ActiveXObject("Microsoft.XMLHTTP");
+}
+catch (ev)
+{
+Tx = false;
+}
+}
+}
+return Tx;
+}
+function TeD() {
+TcE_ = new TE();
+TcE_.Tx = TgXMLHR();
+if (TcE_.Tx) {
+TcE_.Tx.open('POST', TsTS+'?tm=true', true);
+TcE_.Tx.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+TcE_.Tx.onreadystatechange = TeC;
+TcE_.Ts = new Date().getTime();
+TcE_.Tx.send(null);
+}
+}
+function TeC() {
+if (TcE_.Tx.readyState == 4 && TcE_.Tx.status == 200) {
+TcE_.Td = new Date().getTime() -  TcE_.Ts;
+TdE.push(TcE_);
+if (TdE.length < TnOE)
+setTimeout("TeD()", TwTBE);
+else
+TcED();
+}
+}
+function TcED() {
+TdE.sort(TE.Tc);
+TeTD = TdE[Math.floor(TnOE/2)].Td + TwTCD;
+TgETD= true;
+}
+function Tt(link) {
+if (isSafari() && TgETD && TeTD <= TdTD)
+{
+var TtD = TeTD;
+var Tx = TgXMLHR();
+if (Tx) {
+Tx.open('POST', TsTS+'?tm=false&href='+encodeURIComponent(link.href)+'&data='+TtD_(TtD),false);
+Tx.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+Tx.send(null);
+}
+}
+else if (!(TgETD && (TeTD >= TnTB)))
+{
+var TtD;
+if (!TgETD || (TgETD && (TeTD > TdTD)))
+TtD = TdTD;
+else
+TtD = TeTD;
+var Tx = TgXMLHR();
+if (Tx) {
+Tx.open('POST', TsTS+'?tm=false&href='+encodeURIComponent(link.href)+'&data='+TtD_(TtD),true);
+Tx.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+Tx.send(null);
+var TcT = new Date();
+TeT = TcT.getTime() + TtD;
+while (TcT.getTime() < TeT)
+TcT = new Date();
+if (Tx.readyState != 4)
+Tx.abort();
+}
+}
+}
+function isSafari() {
+return ((navigator.appCodeName + navigator.appName + navigator.appVersion).search(/safari/i) != -1);
+}
+function TtD_(TtD) {
+var data =
+pgrdad + " " +
+TdTD + " " +
+TnTB + " " +
+TwTSE + " " +
+TnOE + " " +
+TwTBE + " " +
+TwTCD + " " +
+TeTD + " " +
+TgETD + " " +
+"(" + TdE + ") " +
+isSafari() + " " +
+TtD;
+return data;
+}
+function TiLTT() {
+var jump_prefix = location.href.substring(0, location.href.length - location.hash.length) + '#';
+for (var i=0; i<=(document.links.length-1); i++) {
+var href = document.links[i].href;
+if ((href.indexOf("javascript:") != 0) && (href.indexOf(jump_prefix) != 0))
+document.links[i].onclick = function(){Tt(this)};
+}
+}
+function shareOff(itemId) {
+document.getElementById(itemId).style.display = 'none';
+}
+function shareOn(itemId) {
+var shareLine = document.getElementById(itemId);
+if (!shareLine.getAttribute('init')) {
+shareLine.innerHTML = getShareLineHtml(shareLine);
+shareLine.setAttribute('init','true');
+}
+shareLine.style.display = 'block';
+}
+function getShareLineHtml(shareLine) {
+var permalink = pmlToPermalink(shareLine.getAttribute('pml'));
+var tweetId = shareLine.getAttribute('twid');
+return getPmlHtml(permalink) + getShareHtml(permalink) + getRtHtml(tweetId);
+}
+function pmlToPermalink(pml) {
+var pmlParts = pml.split('p');
+return 'https://www.techmeme.com/' + pmlParts[0] + '/p' + pmlParts[1] + '#a' + pml;
+}
+function getPmlHtml(permalink) {
+var target = nwcbe.checked? '_blank' : '_self';
+return '<span class="shrpml" title="Permalink">' +
+'<a href="' + permalink + '" target="' + target + '"><span class="shrpmlimg">&nbsp;</span></a>' +
+'</span>';
+}
+function getLikeHtml(permalink) {
+return '<span class="shrfb">' +
+'<iframe src="//www.facebook.com/plugins/like.php?href=' + encodeURIComponent(permalink) + '&amp;send=false&amp;layout=button_count&amp;width=48&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=22&amp;appId=105601372888971&amp;locale=en_US" scrolling="no" frameborder="0" class="shrfbifr" allowTransparency="true"></iframe>' +
+'</span>';
+}
+function getShareHtml(permalink) {
+return '<span class="shrfb">' +
+'<iframe src="https://www.facebook.com/plugins/share_button.php?href=' + encodeURIComponent(permalink) +
+'&amp;layout=button&amp;size=small&amp;mobile_iframe=false&amp;appId=105601372888971&amp;width=59&amp;height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="false"></iframe>' +
+'</span>';
+}
+function getRtHtml(tweetId) {
+if (!tweetId || tweetId =='')
+return '';
+else
+return '<span title="Retweet" class="shrrt">' +
+'<a href="https://twitter.com/intent/retweet?tweet_id=' + tweetId + '&related=mediagazer"><span class="shrrtimg">&nbsp;</span></a>' +
+'</span>';
+}
+var NTptpssd = 40*1000;
+var NTpsl = 3*60*1000 + 30*1000;
+var NTppds = 30*1000;
+var NTrtdpsa = 15*60*1000;
+var NTpssr = 40*1000;
+var NTvn = document.title;
+function NTgxhro() {
+if (window.XMLHttpRequest) {
+return new XMLHttpRequest();
+} else if(window.ActiveXObject) {
+return new ActiveXObject("Microsoft.XMLHTTP");
+}
+}
+var NTlft;
+var NTnpc = 0;
+var NTnpcial = false;
+var NTnpcs = false;
+var NTpsst;
+var NTdps = false;
+var NTnpcr = NTgxhro();
+var NTnpcrt;
+var NTnpcrti =  10*1000;
+function NTsnpcps() {
+NTpsst = (new Date()).getTime();
+NTfnpc();
+}
+function NTfnpc() {
+NTnpcr.open("GET","/feedsmanager/ps?t=" + baseFeedTime, true);
+NTnpcr.onreadystatechange = NThnpcrsc;
+NTnpcr.send(null);
+NTnpcrt = setTimeout(NTnpcrt_, NTnpcrti);
+}
+function NThnpcrsc() {
+if (NTnpcr.readyState == 4) {
+clearTimeout(NTnpcrt);
+if (NTnpcr.status == 200) {
+try {
+var NTr = eval("(" + NTnpcr.responseText + ")");
+if (!NTr.error && NTr.time > NTlft) {
+NTlft = NTr.time;
+if (NTr.at_least) {
+if (NTr.count == 0 && NTnpc == 0) {
+NTdps = false;
+NTsnnpcf(true);
+} else {
+NTnpc = NTr.count > NTnpc? NTr.count : NTnpc;
+NTnpcial = true;
+NTunpc();
+return;
+}
+} else {
+NTnpc = NTr.count;
+NTunpc();
+NTdps = false;
+NTsnnpcf(true);
+}
+} else {
+NTsnnpcf(false);
+}
+} catch (e) {
+NTsnnpcf(false);
+}
+} else {
+NTsnnpcf(false);
+}
+}
+}
+function NTsnnpcf(NTfnps) {
+var now = new Date();
+if (now.getTime() - NTlft > NTrtdpsa && !NTdps)
+NTdps = true;
+if (NTfnps
+|| NTdps
+|| (now.getTime() + NTppds - NTpsst) > NTpsl)
+setTimeout(NTsnpcps, NTnpssi());
+else
+setTimeout(NTfnpc, NTppds);
+}
+function NTnpssi() {
+var now = new Date();
+var NTnpt = (now.getMinutes() % 5)*60000 + now.getSeconds()*1000 + now.getMilliseconds();
+var rand = Math.floor(Math.random()*NTpssr);
+var NTtl = (NTnpt < NTptpssd ? NTptpssd : 300000 + NTptpssd) - NTnpt + rand;
+return NTtl;
+}
+function NTunpc() {
+document.getElementById('newpostscounter').innerHTML =
+NTnpc + (NTnpcial? '+':'') + ' new item' + (NTnpc > 1 || NTnpcial ? 's' : '');
+if (!NTnpcs && NTnpc > 0) {
+var col = document.getElementById('countercol');
+var ticker = document.getElementById('newpostscounter');
+var holder = document.getElementById('countercolspaceholder');
+var spacer = document.getElementById('counterspacer');
+if (navigator.appName == 'Microsoft Internet Explorer')
+ticker.style.display = 'block';
+else {
+col.style.position = 'absolute';
+ticker.style.display = 'block';
+holder.style.display = 'block';
+if (spacer)
+spacer.style.display = 'block';
+holder.style.height=(col.offsetHeight - ticker.offsetHeight - ticker.offsetTop) + 'px';
+function NTfcd () {
+holder.style.display = 'none';
+col.className = 'notransitions';
+col.style.top = '0';
+col.style.position = 'relative';
+}
+col.addEventListener('transitionend',NTfcd,false);
+col.addEventListener('oTransitionEnd',NTfcd,false);
+col.addEventListener('webkitTransitionEnd', NTfcd, false);
+setTimeout(function() {
+holder.className='spaceholdertransitions';
+col.className='countercoltransitions';
+col.style.top=(ticker.offsetHeight + ticker.offsetTop + (spacer? spacer.offsetHeight : 0)) +'px';
+holder.style.height=(col.offsetHeight + (spacer? spacer.offsetHeight : 0)) +'px';
+},1000);
+}
+NTnpcs = true;
+}
+if (NTnpc > 0)
+document.title = '(' + NTnpc + (NTnpcial? '+':'') + ') ' + NTvn;
+}
+function NTnpcrt_() {
+if (NTnpcr.readyState != 0) {
+NTnpcr.onreadystatechange = null;
+NTnpcr.abort();
+NTsnnpcf(false);
+}
+}
+function NTinpcp() {
+NTlft = baseFeedTime;
+var now = new Date();
+if (now.getTime() - NTlft > NTrtdpsa)
+NTdps = true;
+var NTnpt = (now.getMinutes() % 5)*60000 + now.getSeconds()*1000 + now.getMilliseconds();
+var NTbfd = new Date(baseFeedTime);
+var NTnp;
+if (now.getTime() - NTnpt == baseFeedTime - NTbfd.getSeconds()*1000 - NTbfd.getMilliseconds()) {
+NTnp = 300000 + NTptpssd - NTnpt + Math.floor(Math.random()*NTpssr);
+setTimeout(NTsnpcps, NTnp);
+} else if (NTnpt < NTptpssd || NTnpt > NTptpssd + NTpsl) {
+NTnp = NTnpssi();
+setTimeout(NTsnpcps, NTnp);
+} else {
+NTpsst = now.getTime() - NTnpt + NTptpssd;
+NTnp = Math.floor(Math.random()*NTpssr);
+setTimeout(NTfnpc, NTnp);
+}
+}
+function NTiD3fpor() {
+//var pattern = /https?:\/\/(www\.)?localhost/i;
+var pattern = /https?:\/\/(www\.)?techmeme\.com($|\/$|\/#|\/river)/i;
+return pattern.test(location.href);
+}
+function NTiD3t() {
+if (NTiD3fpor())
+NTit();
+}
+function NTit() {
+setTimeout(function() {
+NTinpcp();
+}, 0);
+}
+function cmplu() {
+var a=location.hash;
+if (!a) {
+var lh=location.href;
+lh = lh.replace(/\?.*$/, '');
+if (lh.search(/\/[0-9][0-9][0-9][0-9][0-9][0-9]\/p[0-9]*$/) != -1) {
+var pa = lh.split('/');
+var di = pa.length - 2;
+var na = lh + '#a' + pa[di] + pa[di+1];
+window.location.replace(na);
+}
+}
+}
+function init_all() {
+cmplu();
+nwcbe = document.getElementById('nwcb');
+set_ckd();
+rdprefs();
+rnwcb();
+hhash();
+TiLTT();
+setTimeout("TeD()", TwTSE);
+NTiD3t();
+}
+// -->
+</SCRIPT>
+<STYLE TYPE="text/css" MEDIA="all">
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {display:block}
+body {line-height:1}
+ol, ul {list-style:none}
+blockquote, q {quotes:none}
+blockquote:before, blockquote:after,
+q:before, q:after {content:'';content:none}
+table {border-collapse:collapse;border-spacing:0}
+input, select, textarea{font:inherit;}
+body {font-family:Optima, "Microsoft Sans Serif", sans-serif}
+.ii strong {font-family:Optima, "Trebuchet MS", sans-serif;}
+.drhed {font-family:Optima, "Trebuchet MS", sans-serif;}
+cite {font-family:Optima, "Trebuchet MS", sans-serif;}
+.nfdl {font-family:Optima, "Trebuchet MS", sans-serif;}
+.navbar {font-family:Optima, "Century Gothic", sans-serif;}
+.prenavbar {font-family:Optima, "Century Gothic", sans-serif;}
+H2 {font-family:Optima, "Century Gothic", sans-serif;}
+H3 {font-family:Optima, "Century Gothic", sans-serif;}
+H3 .def {font-weight:normal;font-size:0.8em;padding-left:0.4em;}
+b {font-weight:bold}
+body {margin:0 auto 0 auto;max-width:84em;min-width:61em;font-size:0.89em;line-height:120%;background:#fff}
+.pagecont {margin-bottom:2.5em;}
+A:link {text-decoration:none;}
+A:visited {text-decoration:none;}
+.ed A {position:relative;z-index:10;}
+.ed A:hover {z-index:1}
+CITE {position:relative;z-index:10;}
+.item .di A {font-size:1.1em}
+.item .di CITE A {font-size:1.00em}
+.item .di CITE {font-size:1.00em}
+.item CITE {font-size:1em}
+CITE {font-size:0.93em}
+.ed STRONG A:link {color:#004860;}
+.ed STRONG A:visited {color:#a04860;}
+.ed A:link {color:#002848;}
+.ed A:visited {color:#902050;}
+.ed A:hover {text-decoration:underline;background:#d0e8f4}
+.ed CITE {font-weight:bold;font-style:normal;}
+.ed CITE {color:#686860;}
+.ed CITE A:link {color:#686860;}
+.ed CITE A:visited {color:#686860;}
+.cnvl {text-align:center;}
+.ed .cnvl A:visited {color:#002848;}
+H2 {font-weight:bold;color:#455;font-size:1.4em;padding:0.7em 0 0.6em;}
+H3 {font-weight:bold;color:#455;font-size:1.25em;padding:0.7em 0 0.2em;}
+#topcol1 H2 {padding-left:1.45em;}
+#botcol1 H2 {padding-left:1.45em;}
+#botcol2 H2 {padding-left:1.45em;}
+.drhed {color:#306830;font-weight:bold;padding-right:0.3em;}
+.moreat {background:#efd;padding:0 0.2em;border-bottom:solid 1px #ded;white-space:nowrap}
+.new {margin-left:1em;background:#a56;color:#fff;padding:1px 3px 0 4px;font-weight:bold;font-size:0.8em;position:relative;top:-0.2em;border-top:solid 1px #ecc;border-bottom:solid 1px #945;letter-spacing:1px}
+.bls {margin-left:-0.1em}
+.bls A {padding-left:0.1em}
+.bls A {padding-right:0.1em}
+.ago {color:#444;font-size:0.9em;padding-top:0.8em;}
+#topcol3 A.nfdl {font-weight:bold;margin-right:1em;line-height:1.2em}
+#topcol3 A.nfdl {color:#004860;}
+#topcol3 A.nfdl:visited {color:#a04860;}
+#topcol3 .fromsis A {margin:0;}
+.fromsis {padding:4em 0}
+#topcol2 H2 {padding-bottom:0.9em}
+#topcol3 H2 {padding-bottom:0.5em;}
+#topcol3 .fromsis H2 {padding-bottom:1.1em;}
+#topcol3 a.f {color:#555}
+#topcol3 a.f:hover {color:#555}
+#topcol3 .ii {padding-top:0.5em}
+p {padding-bottom:0.7em;}
+p A {font-weight:bold;}
+strong {font-weight:bold;font-size:1.2em;line-height:1.15em}
+.L1 {font-size:1.3em;}
+.L2 {font-size:1.4em;}
+.L3 {font-size:1.5em;letter-spacing:-0.01em;}
+.L4 {font-size:1.7em;letter-spacing:-0.02em;}
+.L5 {font-size:1.9em;letter-spacing:-0.03em;}
+.item {padding-top:0.3em;padding-bottom:1.0em;clear:both;}
+#topcol3 .item {padding:0.8em 0;}
+.clus {padding-bottom:0.5em;}
+.item {border-bottom:solid 1px #ccc;}
+.item:after {content:"";display:block;height:0;clear:both;}
+.dbpt {padding-top:0.4em;}
+.dbptb {padding:0.4em 0 0.4em;}
+.di {margin-left:1em;text-indent:-1em;padding-left:1em}
+.last {border:none;}
+.relitems {margin-bottom:1em;}
+.itc1 {padding-left:2em;}
+.relitems .itc1 {padding-left:4em;}
+.prenavbar {margin-left:2em;}
+.navbar {margin-left:2em;}
+.pagecont {margin-right:2em;}
+.itc2 {margin-left:-1em;padding-left:1em;margin-right:-1em;padding-right:1em;}
+.ill {float:right;padding:0.1em 0 0.5em 0.5em;}
+#topcol1 {float:left;width:50%;margin-top:1em;padding-right:1%;}
+#topcol23 {float:left;width:47.4%;margin-left:1.5%;}
+#topcol2 {float:left;width:66%;margin-top:1em;}
+#sponsorposts {padding:0 1em 1em;background:#f4f4f4;}
+#topcol3 {float:right;width:32%;margin-top:1em;margin-left:1.9%;}
+#botcol1 {float:left;width:46.9%;padding-right:1%;margin-bottom:2em;margin-top:1em;}
+#botcol2 {float:left;width:46.9%;padding-left:1%;margin-bottom:2em;margin-top:1em;}
+.quartercol {float:left;width:24.9%;}
+.abotcols {clear:both;width:97.5%;border-bottom:solid 2px #e8e8e8;margin-left:2.5%;padding-top:1em;margin-bottom:1em}
+.rsp {background:#f4f4f4;margin:-0.45em;padding:0.45em}
+.rsp .item {border:none}
+.itc1 .rsp {margin-bottom:0.5em;}
+.rsp .ii {padding-top:0.5em}
+.rspd {color:#777;font-weight:bold;font-size:0.9em;text-align:right;text-transform:uppercase;}
+.topline {border-bottom:solid 1px #ccc;margin-top:0.2em;line-height:1.6em}
+.topllinks {margin-top:0em;}
+.topllinks A {padding-right:1.2em;}
+.toprlinks {float:right;margin-top:0em;}
+.toprlinks A {padding-left:1.2em;}
+.fico {float:right;padding:2px 0 0 4px}
+.toplbut {float:left;padding-right:1.2em;margin-top:-1px}
+.toprbut {float:right;padding-left:1.2em;width:60px;height:30px;text-align:right;}
+.toplelt {float:left;}
+.toprelt {float:right;}
+.prenavbar A {font-size:0.85em;color:#777;}
+.prenavbar .logobox A {padding-left:0}
+.prenavbar A:link {color:#777;}
+.prenavbar A:visited {color:#777;}
+.prenavbar A:hover {text-decoration:underline;color:#000;}
+.topline img {position:relative;top:1px}
+.topline input {position:relative;left:0.9em}
+.navbar {background:#174a61;text-transform:uppercase;clear:both;line-height:1.5em;font-size:0.85em;}
+.navbar img {position:relative;top:2px}
+.navtabs span.iamhere A {background:#578aa1;color:#fff;}
+.navtabs span.iamhere A:visited {color:#fff}
+.navtabs A {padding:0.12em 0.7em;}
+.navtabs A:link {color:#ddd;}
+.navtabs A:visited {color:#ddd;}
+.navtabs A:hover {background:#578aa1;color:#fff;}
+.sisnav {float:right;}
+.sisnav A:link {color:#ddd;}
+.sisnav A:visited {color:#ddd;}
+.sisnav A:hover {color:#fff;}
+.logotab {width:100%;}
+.logotab td {vertical-align:middle}
+.logotab td {width:33%}
+td.logobox {padding:0.7em 0}
+td.datebox {text-align:center;color:#444}
+td.datebox A {padding-left:0.5em;font-weight:bold}
+td.searchbox {text-align:right}
+.dtbi {color:#555;line-height:1.3em;}
+#dateform input {width:14.5em;border:1px solid #ccc;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px}
+.sbti {width:10.5em;border:1px solid #ccc;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px}
+#hiring {margin:5em 0;padding:0.6em 0 0.6em 0.6em;border:solid 1px #ccc;border-bottom:solid 1px #ccc;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px}
+#hiring .cnvl {padding-top:1em;}
+.cosp A:link {color:#000;}
+.cosp A:visited {color:#000;}
+.cosp A:hover {color:#000;}
+.cosp A {padding:1px}
+.cosp img {position:relative;top:2px;width:16px}
+.cosp span {font-weight:bold;}
+.cosp {padding-top:0.3em;padding-bottom:0.3em}
+.cosp {text-indent:-1.6em;padding-left:1.6em;}
+.dxd {position:absolute;margin-left:-1.6em}
+.dxd table {height:100%}
+.dxd {border:solid 1px #ccc;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;background:#f4f4f4}
+.dxd:hover {border-color:#78a}
+.dxcol {padding:7px;background:url(https://www.techmeme.com/img/arrd.png) no-repeat center}
+.dxcol.up {background:url(https://www.techmeme.com/img/arru.png) no-repeat center}
+.exm {margin-top:1em;}
+.ed .exm a {border:solid 1px #ccc;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;background:#f4f4f4;color:#777;padding:0.1em 0.3em;text-decoration:none;}
+.ed .exm a:hover {border-color:#78a}
+#sponsorposts .item {border:none;}
+#river_timeline {float:left;width:67%;margin:1em 1.9% 1em 0;}
+#river_timeline td {font-size:1.1em}
+#river_timeline CITE {font-size:0.9em}
+#river_timeline tr > td:first-child {font-size:1.0em}
+#river_timeline tr > td:first-child {width:6em;text-align:right}
+#river_timeline tr > td:first-child + td {padding-left:1.5em;text-indent:-1em}
+#river_timeline td {padding-bottom:0.5em;}
+#river_timeline H2 {padding:1.5em 0 1em}
+#river_sponsors_hiring #hiring {margin-top:2em;}
+#river_sponsors_hiring {float:right;width:31%;margin-top:1em}
+#river_sponsors_hiring H2 {padding-top:1.5em}
+#river_sponsors_hiring #hiring H2 {padding-top:0.7em}
+#lb_maincol {float:left;width:64%;margin:1em 1.9% 1em 0;}
+#lb_rightcol {float:right;width:34%;margin-top:1em}
+#lb_rightcol #hiring {margin-top:2em;}
+#lb_rightcol #sponsorposts {margin-top:2em;}
+.lbtable {padding:1.5em 1em 1em 0}
+.lbtable td {padding:0.2em 0.5em 0.1em;border-left:1px #aaa dotted;border-top:1px #aaa dotted}
+.lbtable tr > td:first-child {border-left:none}
+.lbtable tr > td:first-child {text-align:center}
+.lbh td {border-top:none}
+.lbtable tr > td:first-child + td {width:12em}
+.lbh {font-weight:bold;color:#455;font-size:1.08em;}
+#sponsorposts .ii {padding-top:0.5em}
+.shrtbl {width:100%}
+.shrtbl tr > td:first-child {vertical-align:middle}
+.shrtbl tr > td:first-child + td {text-align:right;white-space:nowrap;min-width:124px;vertical-align:middle;padding-bottom:2px}
+.shrtbl tr > td:first-child + td a {text-decoration:none !important}
+.shrtbl td {height:26px}
+.shrpml {float:right;width:32px}
+.shrpmlimg {background:white url('https://www.techmeme.com/img/shr.png') no-repeat 0 0;width:28px;height:20px;float:right}
+.shrpmlimg:hover {background:url('https://www.techmeme.com/img/shr.png') no-repeat 0 -20px !important}
+.shrfb {float:right;width:64px}
+.shrrt {float:right;width:37px}
+.shrrtimg {background:white url('https://www.techmeme.com/img/shr.png') no-repeat -28px 0;width:37px;height:20px;float:right}
+.shrrtimg:hover {background:white url('https://www.techmeme.com/img/shr.png') no-repeat -28px -20px !important}
+#newpostscounter {display:none;z-index:0;color:#679;border:solid 1px #ccc;text-align:center;padding:0.4em;margin-right:1px;font-size:0.9em;font-weight:normal;background:-webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e4e4e4));background:-moz-linear-gradient(top, #f4f4f4, #e4e4e4);background-image:-o-linear-gradient(rgb(244,244,244),rgb(228,228,228));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#e4e4e4')}
+#newpostscounter:hover {border-color:#679;cursor:pointer}
+#topcol3 {position:relative !important}
+#countercolspaceholder {display:none}
+.spaceholdertransitions {-webkit-transition:height 0.4s ease;-moz-transition-property:height;-moz-transition-duration:0.4s;-o-transition-property:height;-o-transition-duration:0.4s}
+#countercol {z-index:10;position:relative;background-color:white;top:0}
+.countercoltransitions {-webkit-transition:top 0.4s ease;-moz-transition-property:top;-moz-transition-duration:0.4s;-o-transition-property:top;-o-transition-duration:0.4s}
+.notransitions {-webkit-transition-duration:0s !important;-moz-transition-duration:0s !important;-o-transition-duration:0s !important}
+</STYLE>
+<NOSCRIPT>
+<STYLE TYPE="text/css" MEDIA="all">
+.ifjs {display:none}
+</STYLE>
+</NOSCRIPT>
+</HEAD>
+<BODY ONLOAD="init_all();">
+<div class="pagecont">
+<DIV CLASS="prenavbar">
+<DIV CLASS="topline">
+<DIV CLASS="toprlinks">
+<div class="toprbut"><a href="https://twitter.com/techmeme" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+<div class="toprbut">
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FTechmeme&width=51&layout=button&action=like&size=small&show_faces=false&share=false&height=65&appId=105601372888971" width="51" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+</div>
+<span class="ifjs toplelt"><INPUT TYPE="checkbox" ID="nwcb" ONCLICK="xnwcb();"><A HREF="javascript:nwcbe.checked=!nwcbe.checked;xnwcb();">Open Links In New Tab</A></span>
+<A CLASS="fico toprelt" HREF="https://www.techmeme.com/feed.xml"><IMG SRC="https://techmeme.com/img/feed_icon.png"></A>
+</DIV>
+<DIV CLASS="topllinks">
+<A HREF="/m" TITLE="Techmeme for smartphones">Mobile</A>
+</DIV>
+</DIV>
+<table class="logotab"><tr><td class="logobox">
+<A HREF="/"><IMG SRC="https://techmeme.com/img/techmeme135.png" HEIGHT=45 ALT="Techmeme"></A>
+</td><td id="datebox" class="datebox"></td><td class="searchbox">
+<form name="input" action="/search/query" method="get">
+<input class="sbti" type="text" name="q">
+<input type="submit" value="Search">
+<span style="display:none"><input type="checkbox" name="wm" value="false" checked="checked"></span>
+</form>
+</td></tr></table>
+</DIV>
+<DIV CLASS="navbar">
+<DIV CLASS="navtabs">
+<DIV CLASS="sisnav">
+<A HREF="https://www.mediagazer.com/"><IMG SRC="https://www.techmeme.com/img/mg16.png"> Mediagazer</A>
+<A HREF="https://www.memeorandum.com/"><IMG SRC="https://www.techmeme.com/img/mo16.png"> memeorandum</A>
+<A HREF="https://www.wesmirch.com/"><IMG SRC="https://www.techmeme.com/img/ws16.png"> WeSmirch</A>
+</DIV>
+<A HREF="/" TITLE="Techmeme main page">Home</A>
+<A HREF="/river" TITLE="Techmeme in pure reverse chronological order">River</A>
+<A HREF="/lb" TITLE="Techmeme's top authors and sources">Leaderboards</A>
+<SPAN CLASS="iamhere"><A HREF="/about" TITLE="Our mission, origins, and team">About</A></SPAN>
+<A HREF="https://news.techmeme.com/" TITLE="News updates about this site">Site News</A>
+<A HREF="/sponsor" TITLE="Information on sponsoring Techmeme">Sponsor</A>
+<A HREF="/events" TITLE="Full list of tech events">Events</A>
+</DIV>
+</DIV>
+<DIV CLASS="ed">
+<DIV ID="itc1">
+
+<STYLE TYPE="text/css" MEDIA="all">
+.maincol {float:left;width:52%;margin:1em 2.9% 1em 0;}
+.rightcol {float:right;width:45%;align:right;margin-bottom:1em}
+li {list-style-type: circle;margin-left:2em}
+P {padding:0.5em 0 0}
+.ed .maincol A:link {color:#006090;}
+.ed .maincol A:visited {color:#906090;}
+.ed .maincol A {font-weight:bold}
+.ed .maincol {line-height:1.3em;}
+</STYLE>
+<DIV CLASS="maincol">
+<DIV CLASS="itc1">
+
+<H2>About Techmeme</H2>
+In 2018, knowing what's changing in technology is required
+to understand the cultural currents and business events
+reshaping the world.
+If you've been watching the tech industry evolve,
+it won't surprise you that social networks enable political revolutions,
+brand new companies can acquire millions of customers in months,
+or the world's most valuable company built
+that wealth on products that didn't exist five years ago.
+<P>
+Techmeme is the foremost source for tracking these changes.
+By presenting a summary of the day's essential reports and
+analysis on a single page,
+Techmeme has become the technology news site of record
+for people both within and beyond the industry.
+</P>
+<H3>Curation</H3>
+Techmeme accomplishes this the only way possible:
+by linking to stories from all around the web.
+Spotlighting the writings of reporters, commentators,
+and industry players from across the media and industry landscape
+provides the only effective means of offering a comprehensive view.
+And by doing this well, we spare readers the impossible
+task of monitoring an abundance of news sites, tweets, and status updates.
+<H3>Origins</H3>
+Techmeme was founded in 2005 by Gabe Rivera as an automated 
+news curation service, like Google News, but focused
+on the leading edge of technology. Starting in 2008, we
+<A HREF="http://news.techmeme.com/081203/automated">introduced human editors</A>
+to complete the editorial process, and have now assembled
+the team presented on the right.
+Our experience leads us to believe that
+a thoughtful combination of both algorithmic
+and human editing offers the best means for curating
+in a space as broad as technology.
+Today, Techmeme remains independent,
+bootstrapped, and privately held,
+a point of differentiation in an increasingly
+complicated tech media landscape.
+<H3>Advertising</H3>
+Two unique opportunities exist for companies
+seeking to promote their products or jobs on Techmeme. More information is
+<A HREF="https://www.techmeme.com/sponsor">available here</A>.
+Techmeme has never featured traditional banner ads.
+<H3>Sister Sites</H3>
+We have applied our automated process to other news domains.
+<A HREF="http://mediagazer.com/">Mediagazer</A> covers media industry news and is edited by a 
+<A HREF="http://news.mediagazer.com/2011/11/03/meet-mediagazers-new-human-editors/">team of three</A>.
+Two other Techmeme sister sites run on a fully automated process:
+<A HREF="http://memeorandum.com/">memeorandum</A>, which tracks political news and current events,
+and <A HREF="http://wesmirch.com/">WeSmirch</A>, which aggregates celebrity news.
+<H3>For publishers</H3>
+Techmeme discovers news sites through a process similar
+to that used to select individual stories: it analyzes links and mentions across the web.
+If you're creating enough buzz in technology circles, we'll find you.
+For more on what we look for, read 
+<A HREF="http://news.techmeme.com/111031/techmeme-revealed">this post</A>.
+<SCRIPT TYPE="text/javascript">
+<!--
+var ea='s@t';ea='uestionsorcomment'+ea+'echmeme.com';ea='q'+ea;
+document.write('<H3>Contact</H3>Send questions or comments (no mailing lists or press releases please) to <A HREF="mai'+'lto:'+ea+'">'+ea+'</A>');
+//-->
+</SCRIPT>
+</DIV>
+
+</DIV><!--itc1-->
+<DIV CLASS="rightcol">
+<STYLE TYPE="text/css" MEDIA="all">
+.staff img {max-width:95%;max-height:110px;filter: grayscale(100%);border-radius: 25%;}
+.staff td {width:33%;text-align:center}
+.staff cite {display:block;padding:0.1em 0 0.2em}
+.staff td.hrow {padding:0.8em 5% 0.2em;text-align:left}
+.staff td {padding:0.4em 0}
+.staff img {border:solid #ccc 1px}
+.staff td A:hover {background:transparent}
+.staff table {width:100%}
+.staff .alumni h3 {display:inline}
+.staff .alumni cite {display:inline}
+</STYLE>
+<div class="staff">
+<table>
+<tr><td class="hrow" colspan=3>
+<H2>Techmeme and Mediagazer Editors</H2>
+</td></tr>
+<tr>
+<td>
+<a href="http://twitter.com/madlid"><img src="https://www.techmeme.com/img/team/lid.jpg">
+<cite>Lidija Davis</cite></a>
+<div><a href="https://twitter.com/madlid" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a>
+</div>
+</td>
+<td>
+<a href="http://twitter.com/ScepticGeek"><img src="https://www.techmeme.com/img/team/mahendra.jpg">
+<cite>Mahendra Palsule</cite></a>
+<div><a href="https://twitter.com/ScepticGeek" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/david_connell"><img src="https://www.techmeme.com/img/team/david.jpg">
+<cite>David Connell</cite></a>
+<div><a href="https://twitter.com/david_connell" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://twitter.com/lyramckee"><img src="https://www.techmeme.com/img/team/lyra.jpg">
+<cite>Lyra McKee</cite></a>
+<div><a href="https://twitter.com/lyramckee" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/gitagovinda"><img src="https://www.techmeme.com/img/team/patricia.jpg">
+<cite>Patricia Sauthoff</cite></a>
+<a href="https://twitter.com/gitagovinda" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/Staska"><img src="https://www.techmeme.com/img/team/staska.jpg">
+<cite>Stasys Bielinis</cite></a>
+<div><a href="https://twitter.com/Staska" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://twitter.com/underoak"><img src="https://www.techmeme.com/img/team/andria.jpg">
+<cite>Andria Krewson</cite></a>
+<a href="https://twitter.com/underoak" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/spencerdailey"><img src="https://www.techmeme.com/img/team/spencer.jpg">
+<cite>Spencer Dailey</cite></a>
+<div><a href="https://twitter.com/spencerdailey" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/srikardr"><img src="https://www.techmeme.com/img/team/srikar.jpg">
+<cite>Srikar Dhanakoti</cite></a>
+<div><a href="https://twitter.com/srikardr" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://twitter.com/maxslaterrobins"><img src="https://www.techmeme.com/img/team/max.jpg">
+<cite>Max Slater-Robins</cite></a>
+<div><a href="https://twitter.com/maxslaterrobins" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/smundak"><img src="https://www.techmeme.com/img/team/katya.jpg">
+<cite>Katya Smundak</cite></a>
+<div><a href="https://twitter.com/smundak" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/jaypeters"><img src="https://www.techmeme.com/img/team/jay.jpg">
+<cite>Jay Peters</cite></a>
+<div><a href="https://twitter.com/jaypeters" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://twitter.com/adarshmatham"><img src="https://www.techmeme.com/img/team/adarsh.jpg">
+<cite>Adarsh Matham</cite></a>
+<div><a href="https://twitter.com/adarshmatham" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr><td class="hrow" colspan=3>
+<H2>Techmeme Dev and Administration</H2>
+</td></tr>
+<tr>
+<td>
+<a href="http://twitter.com/gaberivera"><img src="https://www.techmeme.com/img/team/gabe.jpg">
+<cite>Gabe Rivera</cite></a>
+<div><a href="https://twitter.com/gaberivera" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+<a href="http://twitter.com/omerhorvitz"><img src="https://www.techmeme.com/img/team/omer.jpg">
+<cite>Omer Horvitz</cite></a>
+<div><a href="https://twitter.com/omerhorvitz" class="twitter-follow-button" data-show-count="false" data-width="59px" data-show-count="false" data-show-screen-name="false"></a></div>
+</td>
+<td>
+</td>
+</td>
+</tr>
+<tr><td class="hrow" colspan=3>
+<div class="alumni"><H3>Alumni:</H3> <a href="https://twitter.com/megan"><cite>Megan McCarthy</cite></A>,
+<a href="https://twitter.com/richdemuro"><cite>Rich DeMuro</cite></a>,
+<a href="https://twitter.com/hello_its_andre"><cite>Andre Garrigo</cite></a>,
+<a href="http://twitter.com/heatherulich"><cite>Heather Ulich</cite></a>,
+<a href="https://twitter.com/jarrodc"><cite>Jarrod Cugley</cite></a>,
+<a href="http://twitter.com/prodanstatev"><cite>Prodan Statev</cite></a>,
+<a href="http://twitter.com/salimhafid"><cite>Salim Hafid</cite></a>,
+<a href="http://twitter.com/aahaworth"><cite>Adam Haworth</cite></a>,
+<a href="http://twitter.com/matthewkassel"><cite>Matthew Kassel</cite></a>,
+<a href="http://twitter.com/matthew_og"><cite>Matthew Osborn-Grosso</cite></a>,
+and <a href="http://twitter.com/MTG_lichking"><cite>Eric Ma</cite></a>.</div>
+</td></tr>
+</table>
+</div>
+</DIV><!--rightcol-->
+</DIV>
+</DIV>
+<DIV CLASS="navbar">
+<DIV CLASS="navtabs">
+<DIV CLASS="sisnav">
+<A HREF="https://www.mediagazer.com/"><IMG SRC="https://www.techmeme.com/img/mg16.png"> Mediagazer</A>
+<A HREF="https://www.memeorandum.com/"><IMG SRC="https://www.techmeme.com/img/mo16.png"> memeorandum</A>
+<A HREF="https://www.wesmirch.com/"><IMG SRC="https://www.techmeme.com/img/ws16.png"> WeSmirch</A>
+</DIV>
+<A HREF="/" TITLE="Techmeme main page">Home</A>
+<A HREF="/river" TITLE="Techmeme in pure reverse chronological order">River</A>
+<A HREF="/lb" TITLE="Techmeme's top authors and publications">Leaderboards</A>
+<SPAN CLASS="iamhere"><A HREF="/about" TITLE="More about Techmeme">About</A></SPAN>
+<A HREF="https://news.techmeme.com/" TITLE="Notices about this site from Techmeme's team">Site News</A>
+<A HREF="/sponsor" TITLE="Information on sponsoring Techmeme">Sponsor</A>
+</DIV>
+</DIV>
+</div>
+</BODY>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</HTML>
+

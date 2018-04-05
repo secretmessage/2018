@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:art19="https://art19.com/xmlns/rss-extensions/1.0" version="2.0">
+  <channel>
+    <title>Techmeme Ride Home</title>
+    <description>
+      <![CDATA[<p>What happened today in Tech? Find out every day from Techmeme.com, Silicon Valley's most-read news source. 15 minutes and you're up to date.</p>]]>
+    </description>
+    <managingEditor>brian@techmeme.com (Amalgamated Internets)</managingEditor>
+    <copyright>© Amalgamated Internets, LLC</copyright>
+    
+    <link>https://www.techmeme.com/</link>
+    <itunes:owner>
+      <itunes:name>Amalgamated Internets</itunes:name>
+      <itunes:email>brian@techmeme.com</itunes:email>
+    </itunes:owner>
+    <itunes:author>Techmeme</itunes:author>
+    <itunes:summary>
+      <![CDATA[<p>What happened today in Tech? Find out every day from Techmeme.com, Silicon Valley's most-read news source. 15 minutes and you're up to date.</p>]]>
+    </itunes:summary>
+    <language>en</language>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Technology">
+      <itunes:category text="Tech News" />
+    </itunes:category>
+    <itunes:keywords>technology,news</itunes:keywords>
+    <itunes:type>episodic</itunes:type>
+    <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+    <image>
+      <url>https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg</url>
+      <link>https://www.techmeme.com/</link>
+      <title>Techmeme Ride Home</title>
+    </image>
+    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/TechmemeRideHome" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="techmemeridehome" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+      <title>Wednesday, Apr. 4, 2018 - The YouTube Shooting Incident</title>
+      <description>
+        <![CDATA[<p><strong><em>Everything we know about yesterday’s shooting incident at YouTube, rumors of iphones with curved glass, Zuckerberg’s going to testify to congress, Apple poaches Google’s AI chief, and a smart piece about social media overload.</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p><br></p><p>Stories from: @markgurman and @BenedictEvans</p><p>Links:</p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-04-04/apple-is-said-to-work-on-touchless-control-curved-iphone-screen" target="_blank">Apple Working on Touchless Control and Curved iPhone Screen</a> (Bloomberg)</li><li><a href="https://www.ben-evans.com/benedictevans/2018/4/2/the-death-of-the-newsfeed" target="_blank">The death of the newsfeed</a> (Benedict Evans)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Wednesday, Apr. 4, 2018 - The YouTube Shooting Incident</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Everything we know about yesterday’s shooting incident at YouTube, rumors of iphones with curved glass, Zuckerberg’s going to testify to congress, Apple poaches Google’s AI chief, and a smart piece about social media overload.
+
+Sponsor: Betterment. Visit www.betterment.com/RideHome
+
+
+
+
+Stories from: @markgurman and @BenedictEvans
+
+Links:Apple Working on Touchless Control and Curved iPhone Screen (Bloomberg)The death of the newsfeed (Benedict Evans)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Everything we know about yesterday’s shooting incident at YouTube, rumors of iphones with curved glass, Zuckerberg’s going to testify to congress, Apple poaches Google’s AI chief, and a smart piece about social media overload.</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p><br></p><p>Stories from: @markgurman and @BenedictEvans</p><p>Links:</p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-04-04/apple-is-said-to-work-on-touchless-control-curved-iphone-screen" target="_blank">Apple Working on Touchless Control and Curved iPhone Screen</a> (Bloomberg)</li><li><a href="https://www.ben-evans.com/benedictevans/2018/4/2/the-death-of-the-newsfeed" target="_blank">The death of the newsfeed</a> (Benedict Evans)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/yunNs5Rj9-9UWJ4VOtmS8fVSOye0GBsjfmDXNTyeNxk</guid>
+      <pubDate>Wed, 04 Apr 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/eba63083-3bad-4643-83e1-2f80c2150d5d</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:20:25</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/eba63083-3bad-4643-83e1-2f80c2150d5d.mp3" type="audio/mpeg" length="19603957" />
+    </item>
+    <item>
+      <title>Tuesday, Apr. 3, 2018 - Spotify's Stock Debut</title>
+      <description>
+        <![CDATA[<p><strong><em>Spotify debuts on the stock market, but it needs to depend less on record labels, Trump seems serious about Amazon, your favorite messaging app is changing, Panera has a data leak and Swedes turn against a cash-free future.</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p>Links:</p><ul><li><a href="https://www.recode.net/2018/4/3/17191390/spotify-plan-big-music-labels-platform-marketplace-ipo" target="_blank">Spotify relies on the big labels for most of its music. It thinks that will change.</a> (Recode)</li><li><a href="https://www.vanityfair.com/news/2018/04/trump-war-with-amazon-and-the-washington-post-is-personal" target="_blank">“Trump is Like, ‘How Can I F--k With Him?’”: Trump’s War With Amazon (And the Washington Post) is Personal</a> (Vanity Fair)</li><li><a href="https://newrepublic.com/article/147740/no-sympathy-amazon" target="_blank">No Sympathy for Amazon </a>(The New Republic)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Tuesday, Apr. 3, 2018 - Spotify's Stock Debut</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Spotify debuts on the stock market, but it needs to depend less on record labels, Trump seems serious about Amazon, your favorite messaging app is changing, Panera has a data leak and Swedes turn against a cash-free future.
+
+Sponsor: Betterment. Visit www.betterment.com/RideHome
+
+Links:Spotify relies on the big labels for most of its music. It thinks that will change. (Recode)“Trump is Like, ‘How Can I F--k With Him?’”: Trump’s War With Amazon (And the Washington Post) is Personal (Vanity Fair)No Sympathy for Amazon (The New Republic)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Spotify debuts on the stock market, but it needs to depend less on record labels, Trump seems serious about Amazon, your favorite messaging app is changing, Panera has a data leak and Swedes turn against a cash-free future.</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p>Links:</p><ul><li><a href="https://www.recode.net/2018/4/3/17191390/spotify-plan-big-music-labels-platform-marketplace-ipo" target="_blank">Spotify relies on the big labels for most of its music. It thinks that will change.</a> (Recode)</li><li><a href="https://www.vanityfair.com/news/2018/04/trump-war-with-amazon-and-the-washington-post-is-personal" target="_blank">“Trump is Like, ‘How Can I F--k With Him?’”: Trump’s War With Amazon (And the Washington Post) is Personal</a> (Vanity Fair)</li><li><a href="https://newrepublic.com/article/147740/no-sympathy-amazon" target="_blank">No Sympathy for Amazon </a>(The New Republic)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/oBylbS1gw4zbiyC5lbvOiO-D88zNPyxQHds3XuQa-Lk</guid>
+      <pubDate>Tue, 03 Apr 2018 21:15:29 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/0d5e855c-fbd9-4e46-995c-802ba6a2aa66</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:19:10</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/0d5e855c-fbd9-4e46-995c-802ba6a2aa66.mp3" type="audio/mpeg" length="18412773" />
+    </item>
+    <item>
+      <title>Monday, April 2, 2018 - Apple to Drop Intel?</title>
+      <description>
+        <![CDATA[<p><strong><em>Is Apple replacing Intel’s chips? Is Grindr leaking users’ HIV status? Cloudflare wants to protect your browsing privacy, Zuckerberg gives a longer interview, Macron talks AI, a profile of Amazon’s headquarters search and how many tv viewers are going over the top?</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p><br></p><p>Links:</p><ul><li><a href="https://itunes.apple.com/us/podcast/mark-zuckerberg-on-facebooks-hardest-year-what-comes/id1081584611?i=1000407992581&amp;mt=2" target="_blank">Zuckerberg interview with Ezra Klein</a> (The Ezra Klein Show)</li><li><a href="https://www.wired.com/story/emmanuel-macron-talks-to-wired-about-frances-ai-strategy" target="_blank">EMMANUEL MACRON TALKS TO WIRED ABOUT FRANCE'S AI STRATEGY</a> (Wired)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Monday, April 2, 2018 - Apple to Drop Intel?</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Is Apple replacing Intel’s chips? Is Grindr leaking users’ HIV status? Cloudflare wants to protect your browsing privacy, Zuckerberg gives a longer interview, Macron talks AI, a profile of Amazon’s headquarters search and how many tv viewers are going over the top?
+
+Sponsor: Betterment. Visit www.betterment.com/RideHome
+
+
+
+
+Links:Zuckerberg interview with Ezra Klein (The Ezra Klein Show)EMMANUEL MACRON TALKS TO WIRED ABOUT FRANCE'S AI STRATEGY (Wired)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Is Apple replacing Intel’s chips? Is Grindr leaking users’ HIV status? Cloudflare wants to protect your browsing privacy, Zuckerberg gives a longer interview, Macron talks AI, a profile of Amazon’s headquarters search and how many tv viewers are going over the top?</em></strong></p><p><strong>Sponsor: Betterment. Visit </strong><a href="https://www.betterment.com/?utm_campaign=TechmemeRideHome2018&amp;utm_medium=podcast&amp;utm_source=Techmeme&amp;offer_campaign_id=7d92707a-e90d-4572-8301-54c04199da0e" target="_blank"><strong>www.betterment.com/RideHome</strong></a></p><p><br></p><p>Links:</p><ul><li><a href="https://itunes.apple.com/us/podcast/mark-zuckerberg-on-facebooks-hardest-year-what-comes/id1081584611?i=1000407992581&amp;mt=2" target="_blank">Zuckerberg interview with Ezra Klein</a> (The Ezra Klein Show)</li><li><a href="https://www.wired.com/story/emmanuel-macron-talks-to-wired-about-frances-ai-strategy" target="_blank">EMMANUEL MACRON TALKS TO WIRED ABOUT FRANCE'S AI STRATEGY</a> (Wired)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/ROpsBzDNeIeKMl0yRuAzKwueW734pq0zySlELQFOW2I</guid>
+      <pubDate>Mon, 02 Apr 2018 20:56:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/a00d628d-5219-42f6-ac09-dcd7942531a9</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:19:38</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/a00d628d-5219-42f6-ac09-dcd7942531a9.mp3" type="audio/mpeg" length="18857064" />
+    </item>
+    <item>
+      <title>Friday, Mar. 30, 2018 - The Facebook Memo Controversy</title>
+      <description>
+        <![CDATA[<p><strong><em>An internal Facebook memo causes controversy, Under Armour was hacked, SpaceX gets FCC approval for satellite internet, utility companies dream of electric <s>sheep</s> cars, and the weekend long read suggestions.&nbsp;</em></strong></p><p>Stories from: @om, @sheelahk and @CaseyNewton</p><p>Long Reads:</p><ul><li><a href="https://www.newyorker.com/magazine/2018/04/09/at-uber-a-new-ceo-shifts-gears?currentPage=all" target="_blank">At Uber, a New C.E.O. Shifts Gears</a> (New Yorker)</li><li><a href="https://www.theverge.com/2018/3/30/17179328/microsoft-windows-reorganization-future-2018" target="_blank">Microsoft is ready for a world beyond Windows</a> (The Verge)</li><li><a href="https://om.co/2018/03/28/the-curious-case-of-the-belkin-buy/" target="_blank">The Curious Case of the Belkin Buy</a> (Om.co)</li><li><a href="https://www.cnet.com/news/mozilla-open-source-firefox-move-helped-rewrite-tech-rules-anniversary/" target="_blank">Mozilla's radical open-source move helped rewrite rules of tech</a> (CNET)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Friday, Mar. 30, 2018 - The Facebook Memo Controversy</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>An internal Facebook memo causes controversy, Under Armour was hacked, SpaceX gets FCC approval for satellite internet, utility companies dream of electric sheep cars, and the weekend long read suggestions. 
+
+Stories from: @om, @sheelahk and @CaseyNewton
+
+Long Reads:At Uber, a New C.E.O. Shifts Gears (New Yorker)Microsoft is ready for a world beyond Windows (The Verge)The Curious Case of the Belkin Buy (Om.co)Mozilla's radical open-source move helped rewrite rules of tech (CNET)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>An internal Facebook memo causes controversy, Under Armour was hacked, SpaceX gets FCC approval for satellite internet, utility companies dream of electric <s>sheep</s> cars, and the weekend long read suggestions.&nbsp;</em></strong></p><p>Stories from: @om, @sheelahk and @CaseyNewton</p><p>Long Reads:</p><ul><li><a href="https://www.newyorker.com/magazine/2018/04/09/at-uber-a-new-ceo-shifts-gears?currentPage=all" target="_blank">At Uber, a New C.E.O. Shifts Gears</a> (New Yorker)</li><li><a href="https://www.theverge.com/2018/3/30/17179328/microsoft-windows-reorganization-future-2018" target="_blank">Microsoft is ready for a world beyond Windows</a> (The Verge)</li><li><a href="https://om.co/2018/03/28/the-curious-case-of-the-belkin-buy/" target="_blank">The Curious Case of the Belkin Buy</a> (Om.co)</li><li><a href="https://www.cnet.com/news/mozilla-open-source-firefox-move-helped-rewrite-tech-rules-anniversary/" target="_blank">Mozilla's radical open-source move helped rewrite rules of tech</a> (CNET)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/-GdMb9UaX3VzuTRjx4NUmp-k0WbOyMPupz0xqibhHdo</guid>
+      <pubDate>Fri, 30 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/60d90043-09ff-442b-8400-3f2cc0fb9b49</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:16:11</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/60d90043-09ff-442b-8400-3f2cc0fb9b49.mp3" type="audio/mpeg" length="15551425" />
+    </item>
+    <item>
+      <title>Thursday, Mar. 29, 2018 - The Big Microsoft Re-Org</title>
+      <description>
+        <![CDATA[<p><strong><em>A big re-org at Microsoft, Facebook cuts out third party ad data, iOS 11.3 is out, Trump tweets his “concerns” about Amazon, Atlanta is digitally held hostage and Ripple donates to charity.</em></strong></p><p>Tweets from:&nbsp;@tomwarren, @caro_milanesi</p><p>Stories from: @atbwebb</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Thursday, Mar. 29, 2018 - The Big Microsoft Re-Org</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>A big re-org at Microsoft, Facebook cuts out third party ad data, iOS 11.3 is out, Trump tweets his “concerns” about Amazon, Atlanta is digitally held hostage and Ripple donates to charity.
+
+Tweets from: @tomwarren, @caro_milanesi
+
+Stories from: @atbwebb
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>A big re-org at Microsoft, Facebook cuts out third party ad data, iOS 11.3 is out, Trump tweets his “concerns” about Amazon, Atlanta is digitally held hostage and Ripple donates to charity.</em></strong></p><p>Tweets from:&nbsp;@tomwarren, @caro_milanesi</p><p>Stories from: @atbwebb</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/CGU6mgnWkEuYXvQNIcYHsJfEdd80eYxRPgzDMxWFocQ</guid>
+      <pubDate>Thu, 29 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/7766758e-350b-4ce4-b6e9-8042eee513a2</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:17:21</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/7766758e-350b-4ce4-b6e9-8042eee513a2.mp3" type="audio/mpeg" length="16669048" />
+    </item>
+    <item>
+      <title>Wednesday, Mar. 28, 2018 - Facebook Privacy Shortcuts</title>
+      <description>
+        <![CDATA[<p><strong><em>Facebook introduces Privacy Shortcuts, Trump is “obsessed” with Amazon, Waze launches local ads, Shyp shuts down, video streaming will get faster and there’s more music now than ever!&nbsp;</em></strong></p><p>Stories from:</p><p>@harrymccracken, @NeilShahWSJ</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Wednesday, Mar. 28, 2018 - Facebook Privacy Shortcuts</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Facebook introduces Privacy Shortcuts, Trump is “obsessed” with Amazon, Waze launches local ads, Shyp shuts down, video streaming will get faster and there’s more music now than ever! 
+
+Stories from:
+
+@harrymccracken, @NeilShahWSJ
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Facebook introduces Privacy Shortcuts, Trump is “obsessed” with Amazon, Waze launches local ads, Shyp shuts down, video streaming will get faster and there’s more music now than ever!&nbsp;</em></strong></p><p>Stories from:</p><p>@harrymccracken, @NeilShahWSJ</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/ymjL1bUbGi3AZUFu33azI_MZenxAOnFBdIRLZ0FvdoU</guid>
+      <pubDate>Wed, 28 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/d95bd779-0f78-43da-87ef-47de41db83a7</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:15:10</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/d95bd779-0f78-43da-87ef-47de41db83a7.mp3" type="audio/mpeg" length="14576326" />
+    </item>
+    <item>
+      <title>Tuesday, Mar. 27, 2018 - Apple's New iPad</title>
+      <description>
+        <![CDATA[<p><strong><em>Apple's new iPad, Arizona bans Uber test cars, Zuckerberg won't talk to Parliament but might talk to Congress, Foxconn buys Belkin, Apple goes to Hollywood, and will the streaming explosion revive piracy?</em></strong></p><p><br></p><p>Stories from: @koblin, @KarlBode</p><ul><li>Link: <a href="https://www.nytimes.com/2018/03/25/business/media/apple-hollywood-streaming.html" target="_blank">Apple Goes to Hollywood. Will Its Story Have a Happy Ending?</a> (New York Times)</li><li>Link: <a href="https://www.techdirt.com/articles/20180316/13175939436/rise-streaming-video-exclusives-could-annoy-consumers-driving-them-back-to-piracy.shtml" target="_blank">The Rise In Streaming Video Exclusives Could Annoy Consumers, Driving Them Back To Piracy</a> (TechDirt)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Tuesday, Mar. 27, 2018 - Apple's New iPad</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Apple's new iPad, Arizona bans Uber test cars, Zuckerberg won't talk to Parliament but might talk to Congress, Foxconn buys Belkin, Apple goes to Hollywood, and will the streaming explosion revive piracy?
+
+
+
+
+Stories from: @koblin, @KarlBodeLink: Apple Goes to Hollywood. Will Its Story Have a Happy Ending? (New York Times)Link: The Rise In Streaming Video Exclusives Could Annoy Consumers, Driving Them Back To Piracy (TechDirt)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Apple's new iPad, Arizona bans Uber test cars, Zuckerberg won't talk to Parliament but might talk to Congress, Foxconn buys Belkin, Apple goes to Hollywood, and will the streaming explosion revive piracy?</em></strong></p><p><br></p><p>Stories from: @koblin, @KarlBode</p><ul><li>Link: <a href="https://www.nytimes.com/2018/03/25/business/media/apple-hollywood-streaming.html" target="_blank">Apple Goes to Hollywood. Will Its Story Have a Happy Ending?</a> (New York Times)</li><li>Link: <a href="https://www.techdirt.com/articles/20180316/13175939436/rise-streaming-video-exclusives-could-annoy-consumers-driving-them-back-to-piracy.shtml" target="_blank">The Rise In Streaming Video Exclusives Could Annoy Consumers, Driving Them Back To Piracy</a> (TechDirt)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/x93GfcncPwrZx-eI6fu1FuJp2Gw4GZsoQ_u0E5K0fKk</guid>
+      <pubDate>Tue, 27 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/1920ab57-3be0-46b2-90ab-79fd1e1ad47e</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:17:05</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/1920ab57-3be0-46b2-90ab-79fd1e1ad47e.mp3" type="audio/mpeg" length="16415764" />
+    </item>
+    <item>
+      <title>Monday, Mar. 26, 2018 - The First Chrome OS Tablets</title>
+      <description>
+        <![CDATA[<p><strong><em>The first Chrome OS tablet, Uber exits Southeast Asia, Tim Cook thinks Facebook should be regulated, The Fitbit Versa smartwatch, and a billion dollar ATM hacker gang is taken down.</em></strong></p><p>Stories from: @thepacketrat, @VranicaWSJ</p><p>Tweets from: @alexhern</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Monday, Mar. 26, 2018 - The First Chrome OS Tablets</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>The first Chrome OS tablet, Uber exits Southeast Asia, Tim Cook thinks Facebook should be regulated, The Fitbit Versa smartwatch, and a billion dollar ATM hacker gang is taken down.
+
+Stories from: @thepacketrat, @VranicaWSJ
+
+Tweets from: @alexhern
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>The first Chrome OS tablet, Uber exits Southeast Asia, Tim Cook thinks Facebook should be regulated, The Fitbit Versa smartwatch, and a billion dollar ATM hacker gang is taken down.</em></strong></p><p>Stories from: @thepacketrat, @VranicaWSJ</p><p>Tweets from: @alexhern</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/FaANsvBq4HTtiJ24Qq0EKi_AbATtZc3mCUWijvArGSQ</guid>
+      <pubDate>Mon, 26 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/5c871d54-bf9f-4163-8f4b-8c6aadf6e36c</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:53</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/5c871d54-bf9f-4163-8f4b-8c6aadf6e36c.mp3" type="audio/mpeg" length="14292114" />
+    </item>
+    <item>
+      <title>Friday, Mar. 23, 2018 - The Dropbox IPO</title>
+      <description>
+        <![CDATA[<p><strong><em>Low-cost iPads are coming, Dropbox IPOs, touchscreen issues with Galaxy S9s, Craigslist pulls all personal ads, and the weekend long-read suggestions.</em></strong></p><p>Long-reads links:</p><ul><li><a href="http://www.wired.co.uk/article/ikea-place-augmented-reality-app-space-10" target="_blank">How IKEA's future-living lab created an augmented reality hit</a> (WiredUk)</li><li><a href="https://www.theatlantic.com/technology/archive/2018/03/my-cow-game-extracted-your-facebook-data/556214/" target="_blank">My Cow Game Extracted Your Facebook Data</a> (The Atlantic)</li><li><a href="https://www.fastcompany.com/40544277/the-glory-that-was-yahoo" target="_blank">The Glory that Was Yahoo</a> (Fast Company)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Friday, Mar. 23, 2018 - The Dropbox IPO</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Low-cost iPads are coming, Dropbox IPOs, touchscreen issues with Galaxy S9s, Craigslist pulls all personal ads, and the weekend long-read suggestions.
+
+Long-reads links:How IKEA's future-living lab created an augmented reality hit (WiredUk)My Cow Game Extracted Your Facebook Data (The Atlantic)The Glory that Was Yahoo (Fast Company)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Low-cost iPads are coming, Dropbox IPOs, touchscreen issues with Galaxy S9s, Craigslist pulls all personal ads, and the weekend long-read suggestions.</em></strong></p><p>Long-reads links:</p><ul><li><a href="http://www.wired.co.uk/article/ikea-place-augmented-reality-app-space-10" target="_blank">How IKEA's future-living lab created an augmented reality hit</a> (WiredUk)</li><li><a href="https://www.theatlantic.com/technology/archive/2018/03/my-cow-game-extracted-your-facebook-data/556214/" target="_blank">My Cow Game Extracted Your Facebook Data</a> (The Atlantic)</li><li><a href="https://www.fastcompany.com/40544277/the-glory-that-was-yahoo" target="_blank">The Glory that Was Yahoo</a> (Fast Company)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/z5BxQ7cHE6FyCcE_sHvKIagNBzyQDkliSdGOV-0tgw0</guid>
+      <pubDate>Fri, 23 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/e2783545-6918-4124-ba95-28021fe725ca</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:30</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/e2783545-6918-4124-ba95-28021fe725ca.mp3" type="audio/mpeg" length="13924310" />
+    </item>
+    <item>
+      <title>Thursday, Mar. 22, 2018 - The Zuckerberg Interviews</title>
+      <description>
+        <![CDATA[<p><strong><em>Zuckerberg's interviews analyzed, Instagram updates the feed, IBM accused of age discrimination, early Oculus Go reviews and a wi-fi wine bottle bites the dust.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Thursday, Mar. 22, 2018 - The Zuckerberg Interviews</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Zuckerberg's interviews analyzed, Instagram updates the feed, IBM accused of age discrimination, early Oculus Go reviews and a wi-fi wine bottle bites the dust.
+
+
+
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Zuckerberg's interviews analyzed, Instagram updates the feed, IBM accused of age discrimination, early Oculus Go reviews and a wi-fi wine bottle bites the dust.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/7bAhl9uMxcPyhvOd7cLBUrWqTvfQmgomfFNjCVggkLw</guid>
+      <pubDate>Thu, 22 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/d0fff1ba-4ef0-49ff-9e5b-ca17bedec4f7</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:50</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/d0fff1ba-4ef0-49ff-9e5b-ca17bedec4f7.mp3" type="audio/mpeg" length="14243631" />
+    </item>
+    <item>
+      <title>Wednesday, Mar. 21, 2018 - Zuckerberg Responds</title>
+      <description>
+        <![CDATA[<p><strong><em>Zuckerberg speaks out about the Cambridge Analytica scandal, Siri will read your hidden messages, Travis Kalanick's new gig,&nbsp;Facebook Messenger's new features, YouTube's increased ad load, Google gobbles Lytro, and everyone wants to work at a tech company.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Wednesday, Mar. 21, 2018 - Zuckerberg Responds</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Zuckerberg speaks out about the Cambridge Analytica scandal, Siri will read your hidden messages, Travis Kalanick's new gig, Facebook Messenger's new features, YouTube's increased ad load, Google gobbles Lytro, and everyone wants to work at a tech company.
+
+
+
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Zuckerberg speaks out about the Cambridge Analytica scandal, Siri will read your hidden messages, Travis Kalanick's new gig,&nbsp;Facebook Messenger's new features, YouTube's increased ad load, Google gobbles Lytro, and everyone wants to work at a tech company.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/Ra-8u0CzCtldSsOpt05GqtLGyk8Yea2dx9spvWFOei4</guid>
+      <pubDate>Wed, 21 Mar 2018 20:52:42 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/157a0274-0ecd-4200-9cae-abcbd8e71e6f</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:30</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/157a0274-0ecd-4200-9cae-abcbd8e71e6f.mp3" type="audio/mpeg" length="13934341" />
+    </item>
+    <item>
+      <title>Tuesday, Mar. 20, 2018 - Google Wants to Save Journalism</title>
+      <description>
+        <![CDATA[<p><strong><em>Google wants to support journalism, more on the Facebook/Cambridge Analytica saga, more on the self-driving car fatality, YouTube rolls out a “go live” feature, and scandal rocks the world of HQ Trivia. </em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Tuesday, Mar. 20, 2018 - Google Wants to Save Journalism</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Google wants to support journalism, more on the Facebook/Cambridge Analytica saga, more on the self-driving car fatality, YouTube rolls out a “go live” feature, and scandal rocks the world of HQ Trivia. 
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Google wants to support journalism, more on the Facebook/Cambridge Analytica saga, more on the self-driving car fatality, YouTube rolls out a “go live” feature, and scandal rocks the world of HQ Trivia. </em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/XrSlZpzWwjB_sJc3nayH37i3sNsqYQ-jrxnIDHO23KM</guid>
+      <pubDate>Tue, 20 Mar 2018 21:11:33 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/6e55ce75-a15d-4240-a606-d3e42d30393b</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:15:39</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/6e55ce75-a15d-4240-a606-d3e42d30393b.mp3" type="audio/mpeg" length="15028140" />
+    </item>
+    <item>
+      <title>Monday, Mar. 19, 2018 - The Facebook Bombshell Fallout</title>
+      <description>
+        <![CDATA[<p><strong><em>The fallout from the Facebook/Cambridge Analytica story summarized, Facebook launches a Patreon, a self-driving car kills a pedestrian and Apple might be making its own screens.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Monday, Mar. 19, 2018 - The Facebook Bombshell Fallout</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>The fallout from the Facebook/Cambridge Analytica story summarized, Facebook launches a Patreon, a self-driving car kills a pedestrian and Apple might be making its own screens.
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>The fallout from the Facebook/Cambridge Analytica story summarized, Facebook launches a Patreon, a self-driving car kills a pedestrian and Apple might be making its own screens.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/BV2OqR8kurx8BIH_m7qMFPCQkm0h_Q586ham6Z8GFq4</guid>
+      <pubDate>Mon, 19 Mar 2018 20:50:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/33faa6cc-5c28-46cc-80da-811677b59cde</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:19:00</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/33faa6cc-5c28-46cc-80da-811677b59cde.mp3" type="audio/mpeg" length="18254367" />
+    </item>
+    <item>
+      <title>Friday, Mar. 16, 2018 - Apple Takes a Field Trip</title>
+      <description>
+        <![CDATA[<p><strong><em>Apple takes a field trip, a small town bans bitcoin, Rihanna doesn't accept Snapchat's apology, Adobe transforms itself, and Lyft tests subscriptions.</em></strong></p><p><br></p><p>Stories from, @DMOberhaus and @oliviasolon; tweet-analysis from @ow</p><p>Weekend long-read suggestions:</p><ul><li><a href="https://www.theguardian.com/technology/2018/mar/16/silicon-valley-internal-work-spying-surveillance-leakers" target="_blank">'They'll squash you like a bug': how Silicon Valley keeps a lid on leakers</a> (The Guardian)</li><li><a href="https://www.technologyreview.com/s/610459/when-an-ai-finally-kills-someone-who-will-be-responsible/" target="_blank">When an AI finally kills someone, who will be responsible?</a> (MIT Technology Review)</li><li><a href="https://www.theatlantic.com/technology/archive/2018/03/mapping-apps-and-the-price-of-anarchy/555551/" target="_blank">The Perfect Selfishness of Mapping Apps</a> (The Atlantic)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Friday, Mar. 16, 2018 - Apple Takes a Field Trip</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Apple takes a field trip, a small town bans bitcoin, Rihanna doesn't accept Snapchat's apology, Adobe transforms itself, and Lyft tests subscriptions.
+
+
+
+
+Stories from, @DMOberhaus and @oliviasolon; tweet-analysis from @ow
+
+Weekend long-read suggestions:'They'll squash you like a bug': how Silicon Valley keeps a lid on leakers (The Guardian)When an AI finally kills someone, who will be responsible? (MIT Technology Review)The Perfect Selfishness of Mapping Apps (The Atlantic)
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Apple takes a field trip, a small town bans bitcoin, Rihanna doesn't accept Snapchat's apology, Adobe transforms itself, and Lyft tests subscriptions.</em></strong></p><p><br></p><p>Stories from, @DMOberhaus and @oliviasolon; tweet-analysis from @ow</p><p>Weekend long-read suggestions:</p><ul><li><a href="https://www.theguardian.com/technology/2018/mar/16/silicon-valley-internal-work-spying-surveillance-leakers" target="_blank">'They'll squash you like a bug': how Silicon Valley keeps a lid on leakers</a> (The Guardian)</li><li><a href="https://www.technologyreview.com/s/610459/when-an-ai-finally-kills-someone-who-will-be-responsible/" target="_blank">When an AI finally kills someone, who will be responsible?</a> (MIT Technology Review)</li><li><a href="https://www.theatlantic.com/technology/archive/2018/03/mapping-apps-and-the-price-of-anarchy/555551/" target="_blank">The Perfect Selfishness of Mapping Apps</a> (The Atlantic)</li></ul><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/PGyFEAq279s1VVfyB9uKImXZ-OJTNr-krlbzDOPQxvk</guid>
+      <pubDate>Fri, 16 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/e86d8cf8-9f87-4349-a080-680edbe0dfef</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:16:00</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/e86d8cf8-9f87-4349-a080-680edbe0dfef.mp3" type="audio/mpeg" length="15361253" />
+    </item>
+    <item>
+      <title>Thursday, Mar. 15, 2018 - How Amazon Conquers</title>
+      <description>
+        <![CDATA[<p><strong><em>Apple's troubles with Siri, Amazon's had an amazing last three years, but it didn't kill Toys "R" Us, Nest launches a video doorbell, Google answers with no search results, and Drake crashes Twitch.</em></strong></p><p>Stories from @ShiraOvide&nbsp;and @rustybrick and tweet analysis from @taralach</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Thursday, Mar. 15, 2018 - How Amazon Conquers</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Apple's troubles with Siri, Amazon's had an amazing last three years, but it didn't kill Toys "R" Us, Nest launches a video doorbell, Google answers with no search results, and Drake crashes Twitch.
+
+Stories from @ShiraOvide and @rustybrick and tweet analysis from @taralach
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Apple's troubles with Siri, Amazon's had an amazing last three years, but it didn't kill Toys "R" Us, Nest launches a video doorbell, Google answers with no search results, and Drake crashes Twitch.</em></strong></p><p>Stories from @ShiraOvide&nbsp;and @rustybrick and tweet analysis from @taralach</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/hEUiraV1lpxduRzfGYj_CE4iCibio-nkyj0Zl3hlBvg</guid>
+      <pubDate>Thu, 15 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/68c94512-8a2e-49e6-a0fc-21369247e2d9</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:17:47</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/68c94512-8a2e-49e6-a0fc-21369247e2d9.mp3" type="audio/mpeg" length="17073214" />
+    </item>
+    <item>
+      <title>Wednesday, Mar. 14, 2018 - Theranos Charged with Fraud</title>
+      <description>
+        <![CDATA[<p><strong><em>Theranos Charged with Fraud, Google bans crypto ads, YouTube fights conspiracy theories, a startup that wants to kill you, Google Maps for games, and Twitter comes after Snap.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Wednesday, Mar. 14, 2018 - Theranos Charged with Fraud</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Theranos Charged with Fraud, Google bans crypto ads, YouTube fights conspiracy theories, a startup that wants to kill you, Google Maps for games, and Twitter comes after Snap.
+
+
+
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Theranos Charged with Fraud, Google bans crypto ads, YouTube fights conspiracy theories, a startup that wants to kill you, Google Maps for games, and Twitter comes after Snap.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/RxtAsYCaCB1dydmBnPML07nZgO5RZ4bVLp9u-uXCbts</guid>
+      <pubDate>Wed, 14 Mar 2018 20:57:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/7565e7a2-2b41-410c-8e7f-49107a3ad08d</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:16:04</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/7565e7a2-2b41-410c-8e7f-49107a3ad08d.mp3" type="audio/mpeg" length="15432306" />
+    </item>
+    <item>
+      <title>Tuesday, Mar. 13, 2018 - Trump trumps Broadcom</title>
+      <description>
+        <![CDATA[<p><strong><em>Trump trumps Broadcom, Larry Page and flying taxis, alleged flaws in AMD chips, Spotify playlist payola, checking in with Lyft, ranking tech brands and WWDC dates are announced.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Tuesday, Mar. 13, 2018 - Trump trumps Broadcom</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Trump trumps Broadcom, Larry Page and flying taxis, alleged flaws in AMD chips, Spotify playlist payola, checking in with Lyft, ranking tech brands and WWDC dates are announced.
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Trump trumps Broadcom, Larry Page and flying taxis, alleged flaws in AMD chips, Spotify playlist payola, checking in with Lyft, ranking tech brands and WWDC dates are announced.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/Pu_z5T2uKnnetSARO4gqnli0_j1xIB6nze60UjZWrC0</guid>
+      <pubDate>Tue, 13 Mar 2018 20:58:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/aa54c36b-06ae-4685-8150-2c8781aab871</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:16:20</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/aa54c36b-06ae-4685-8150-2c8781aab871.mp3" type="audio/mpeg" length="15693949" />
+    </item>
+    <item>
+      <title>Monday, Mar. 12, 2018 - Apple Buys Texture</title>
+      <description>
+        <![CDATA[<p><strong><em>Apple acquires Texture, details on the Dropbox IPO, drone deliveries might be coming soon, Twitter attacks tweetdecking, more on the Broadcom/Qualcomm story, and an interesting story out of the bitcoin world. Here's what happened today in tech.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Monday, Mar. 12, 2018 - Apple Buys Texture</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Apple acquires Texture, details on the Dropbox IPO, drone deliveries might be coming soon, Twitter attacks tweetdecking, more on the Broadcom/Qualcomm story, and an interesting story out of the bitcoin world. Here's what happened today in tech.
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Apple acquires Texture, details on the Dropbox IPO, drone deliveries might be coming soon, Twitter attacks tweetdecking, more on the Broadcom/Qualcomm story, and an interesting story out of the bitcoin world. Here's what happened today in tech.</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/gveGD3EDGI_KXILWrM3Lrz6R0qoJRL1mROXfMbYDhlg</guid>
+      <pubDate>Mon, 12 Mar 2018 21:00:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/ba9274b6-c779-4a9f-99f2-6d10a243a1c8</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:15:03</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/ba9274b6-c779-4a9f-99f2-6d10a243a1c8.mp3" type="audio/mpeg" length="14457626" />
+    </item>
+    <item>
+      <title>Friday, Mar. 9, 2018 - Obama to Netflix</title>
+      <description>
+        <![CDATA[<p><strong><em>Waymo joins the self-driving truck party, Twitter wants you to go verify yourself, Snap wants to break even, Facebook streams Major League Baseball, some weekend long-reads, and why that Obama going to Netflix story is a tech story.</em></strong></p><p>The long-reads recommendations:</p><p><a href="https://www.bloomberg.com/news/features/2018-03-09/bitcoin-is-ridiculous-blockchain-is-dangerous-paul-ford" target="_blank">Bitcoin Is Ridiculous. Blockchain Is Dangerous</a> (Bloomberg BusinessWeek)</p><p><a href="https://www.theverge.com/2018/3/6/17044344/know-your-meme-10-year-anniversary-brad-kim-interview" target="_blank">The Story of The Internet, As Told By Know Your Meme</a> (TheVerge)</p><p><a href="https://www.politico.com/magazine/story/2018/03/09/bitcoin-mining-energy-prices-smalltown-feature-217230" target="_blank">This Is What Happens When Bitcoin Miners Take Over Your Town</a> (Politico)</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Friday, Mar. 9, 2018 - Obama to Netflix</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Waymo joins the self-driving truck party, Twitter wants you to go verify yourself, Snap wants to break even, Facebook streams Major League Baseball, some weekend long-reads, and why that Obama going to Netflix story is a tech story.
+
+The long-reads recommendations:
+
+Bitcoin Is Ridiculous. Blockchain Is Dangerous (Bloomberg BusinessWeek)
+
+The Story of The Internet, As Told By Know Your Meme (TheVerge)
+
+This Is What Happens When Bitcoin Miners Take Over Your Town (Politico)
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Waymo joins the self-driving truck party, Twitter wants you to go verify yourself, Snap wants to break even, Facebook streams Major League Baseball, some weekend long-reads, and why that Obama going to Netflix story is a tech story.</em></strong></p><p>The long-reads recommendations:</p><p><a href="https://www.bloomberg.com/news/features/2018-03-09/bitcoin-is-ridiculous-blockchain-is-dangerous-paul-ford" target="_blank">Bitcoin Is Ridiculous. Blockchain Is Dangerous</a> (Bloomberg BusinessWeek)</p><p><a href="https://www.theverge.com/2018/3/6/17044344/know-your-meme-10-year-anniversary-brad-kim-interview" target="_blank">The Story of The Internet, As Told By Know Your Meme</a> (TheVerge)</p><p><a href="https://www.politico.com/magazine/story/2018/03/09/bitcoin-mining-energy-prices-smalltown-feature-217230" target="_blank">This Is What Happens When Bitcoin Miners Take Over Your Town</a> (Politico)</p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/zLSo7wW0_ci3V6q_2Y7NaFy4qUtMRlmRp29T2eMxfBM</guid>
+      <pubDate>Fri, 09 Mar 2018 21:19:00 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/cf1c491f-d48f-4a9e-8eb3-1f7cf33683fe</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:55</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/cf1c491f-d48f-4a9e-8eb3-1f7cf33683fe.mp3" type="audio/mpeg" length="14331402" />
+    </item>
+    <item>
+      <title>Thursday, Mar. 8, 2018 - Galaxy S9 Reviews</title>
+      <description>
+        <![CDATA[<p><strong><em>Galaxy S9 reviews, Travis Kalanick's new fund, Google wants to AMP the web, most Netflix is watched on TVs, a Star Wars TV show, and yesterday's Alexa laughter led to a lot of Twitter jokes.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Thursday, Mar. 8, 2018 - Galaxy S9 Reviews</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Galaxy S9 reviews, Travis Kalanick's new fund, Google wants to AMP the web, most Netflix is watched on TVs, a Star Wars TV show, and yesterday's Alexa laughter led to a lot of Twitter jokes.
+
+
+
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Galaxy S9 reviews, Travis Kalanick's new fund, Google wants to AMP the web, most Netflix is watched on TVs, a Star Wars TV show, and yesterday's Alexa laughter led to a lot of Twitter jokes.</em></strong></p><p><br></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/F2G-vzg7qq4pCi945trfS4EOV9HoUCMcGoKy3Qn6Xd8</guid>
+      <pubDate>Thu, 08 Mar 2018 21:49:09 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/8a0488a0-c163-490a-a6d7-000502397d07</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:17:34</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/8a0488a0-c163-490a-a6d7-000502397d07.mp3" type="audio/mpeg" length="16864653" />
+    </item>
+    <item>
+      <title>Wednesday, Mar. 7, 2018 - Android P Released To Developers</title>
+      <description>
+        <![CDATA[<p><strong><em>Android P is released to developers, Blackberry sues Facebook, sources speak of possible Snap layoffs, an interesting Peter Thiel interview, and actually, much more....&nbsp;</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </description>
+      <itunes:title>Wednesday, Mar. 7, 2018 - Android P Released To Developers</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Android P is released to developers, Blackberry sues Facebook, sources speak of possible Snap layoffs, an interesting Peter Thiel interview, and actually, much more.... 
+
+
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Android P is released to developers, Blackberry sues Facebook, sources speak of possible Snap layoffs, an interesting Peter Thiel interview, and actually, much more....&nbsp;</em></strong></p><p><br></p><p>Credits:</p><p>Produced by @brianmcc and the @techmeme staff</p><p>Music by @jpschwinghamer</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/Vvuk6UH78T_NMmo6dsdIwQhqeCil77t6Fl7PJvUc7zE</guid>
+      <pubDate>Wed, 07 Mar 2018 22:12:55 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/f319a0bc-7bff-42d8-a0ad-bb0d3462e17b</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:20:32</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/f319a0bc-7bff-42d8-a0ad-bb0d3462e17b.mp3" type="audio/mpeg" length="19712626" />
+    </item>
+    <item>
+      <title>Tuesday, Mar. 6, 2018 - Google Ads AI to Drones?</title>
+      <description>
+        <![CDATA[<p><strong><em>Google adds AI to drones, Uber trucks start hauling cargo, reading the Uber tea leaves, Washington State brings back net neutrality, Bumble bans guns, and Dyson cuts the cord. Literally.</em></strong></p><p><a href="https://www.techmeme.com/180306/p13#a180306p13" target="_blank">Google says it provides TensorFlow APIs to US Dept of Defense to help interpret drone footage, is working on policies and safeguards for use of machine learning&nbsp;</a></p><ul><li><a href="https://gizmodo.com/google-is-helping-the-pentagon-build-ai-for-drones-1823464533" target="_blank">Gizmodo</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180306/p15#a180306p15" target="_blank">Uber begins using its self-driving trucks for some long haul cargo trips in Arizona as part of Uber Freight service, leaving the last stretch to human drivers&nbsp;</a></p><ul><li><a href="https://www.theverge.com/2018/3/6/17081626/uber-self-driving-trucks-delivering-cargo-arizona" target="_blank">The Verge</a></li><li><a href="https://www.nytimes.com/2018/03/06/technology/uber-self-driving-trucks.html" target="_blank">New York Times</a></li><li><a href="https://www.youtube.com/watch?v=FqwtibdHSZM&amp;feature=youtu.be" target="_blank">YouTube</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180306/p20#a180306p20" target="_blank">Source: Uber has burned $10.7B total so far, making its losses worse than tech giants when they had same market cap; revenue lags firms with similar market cap</a></p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-03-06/uber-spent-10-7-billion-in-nine-years-does-it-have-enough-to-show-for-it" target="_blank">Bloomberg</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p28#a180305p28" target="_blank">Washington becomes first state to enact its own net neutrality protections as its bill is signed into law; 25+ states have introduced net neutrality bills</a></p><ul><li><a href="https://www.geekwire.com/2018/official-washington-governor-signs-landmark-net-neutrality-bill-law/" target="_blank">Geekwire</a></li><li><a href="https://mashable.com/2018/03/05/tech-companies-sue-fcc-net-neutrality-foursquare-etsy-kickstarter/#lofZXfByBOqV" target="_blank">Mashable</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p33#a180305p33" target="_blank">Bumble updates policy to ban firearm images and will use ~5K moderators to remove gun-related content, won't censor images appearing in users' Instagram feeds</a></p><ul><li><a href="https://www.nytimes.com/2018/03/05/business/bumble-dating-app-gun-images.html" target="_blank">New York Times</a></li><li><a href="https://techcrunch.com/2018/03/05/bumble-is-banning-guns-from-profile-pictures/" target="_blank">TechCrunch</a></li><li><a href="https://twitter.com/jrsalzman/status/970897840305131520" target="_blank">@jrsalzman</a></li></ul><p><br></p><p>Dyson says it's done making corded vacuums</p><ul><li><a href="https://www.cnet.com/news/dyson-says-its-done-making-corded-vacuums/#ftag=COS-05-10aaa0j" target="_blank">CNET</a></li></ul><p><br></p><p><em>Credits:</em></p><p><em>Produced by @brianmcc and the @techmeme staff</em></p><p><em>Music by @jpschwinghamer</em></p>]]>
+      </description>
+      <itunes:title>Tuesday, Mar. 6, 2018 - Google Ads AI to Drones?</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Google adds AI to drones, Uber trucks start hauling cargo, reading the Uber tea leaves, Washington State brings back net neutrality, Bumble bans guns, and Dyson cuts the cord. Literally.
+
+Google says it provides TensorFlow APIs to US Dept of Defense to help interpret drone footage, is working on policies and safeguards for use of machine learning Gizmodo
+
+
+Uber begins using its self-driving trucks for some long haul cargo trips in Arizona as part of Uber Freight service, leaving the last stretch to human drivers The VergeNew York TimesYouTube
+
+
+Source: Uber has burned $10.7B total so far, making its losses worse than tech giants when they had same market cap; revenue lags firms with similar market capBloomberg
+
+
+Washington becomes first state to enact its own net neutrality protections as its bill is signed into law; 25+ states have introduced net neutrality billsGeekwireMashable
+
+
+Bumble updates policy to ban firearm images and will use ~5K moderators to remove gun-related content, won't censor images appearing in users' Instagram feedsNew York TimesTechCrunch@jrsalzman
+
+
+Dyson says it's done making corded vacuumsCNET
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Google adds AI to drones, Uber trucks start hauling cargo, reading the Uber tea leaves, Washington State brings back net neutrality, Bumble bans guns, and Dyson cuts the cord. Literally.</em></strong></p><p><a href="https://www.techmeme.com/180306/p13#a180306p13" target="_blank">Google says it provides TensorFlow APIs to US Dept of Defense to help interpret drone footage, is working on policies and safeguards for use of machine learning&nbsp;</a></p><ul><li><a href="https://gizmodo.com/google-is-helping-the-pentagon-build-ai-for-drones-1823464533" target="_blank">Gizmodo</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180306/p15#a180306p15" target="_blank">Uber begins using its self-driving trucks for some long haul cargo trips in Arizona as part of Uber Freight service, leaving the last stretch to human drivers&nbsp;</a></p><ul><li><a href="https://www.theverge.com/2018/3/6/17081626/uber-self-driving-trucks-delivering-cargo-arizona" target="_blank">The Verge</a></li><li><a href="https://www.nytimes.com/2018/03/06/technology/uber-self-driving-trucks.html" target="_blank">New York Times</a></li><li><a href="https://www.youtube.com/watch?v=FqwtibdHSZM&amp;feature=youtu.be" target="_blank">YouTube</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180306/p20#a180306p20" target="_blank">Source: Uber has burned $10.7B total so far, making its losses worse than tech giants when they had same market cap; revenue lags firms with similar market cap</a></p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-03-06/uber-spent-10-7-billion-in-nine-years-does-it-have-enough-to-show-for-it" target="_blank">Bloomberg</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p28#a180305p28" target="_blank">Washington becomes first state to enact its own net neutrality protections as its bill is signed into law; 25+ states have introduced net neutrality bills</a></p><ul><li><a href="https://www.geekwire.com/2018/official-washington-governor-signs-landmark-net-neutrality-bill-law/" target="_blank">Geekwire</a></li><li><a href="https://mashable.com/2018/03/05/tech-companies-sue-fcc-net-neutrality-foursquare-etsy-kickstarter/#lofZXfByBOqV" target="_blank">Mashable</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p33#a180305p33" target="_blank">Bumble updates policy to ban firearm images and will use ~5K moderators to remove gun-related content, won't censor images appearing in users' Instagram feeds</a></p><ul><li><a href="https://www.nytimes.com/2018/03/05/business/bumble-dating-app-gun-images.html" target="_blank">New York Times</a></li><li><a href="https://techcrunch.com/2018/03/05/bumble-is-banning-guns-from-profile-pictures/" target="_blank">TechCrunch</a></li><li><a href="https://twitter.com/jrsalzman/status/970897840305131520" target="_blank">@jrsalzman</a></li></ul><p><br></p><p>Dyson says it's done making corded vacuums</p><ul><li><a href="https://www.cnet.com/news/dyson-says-its-done-making-corded-vacuums/#ftag=COS-05-10aaa0j" target="_blank">CNET</a></li></ul><p><br></p><p><em>Credits:</em></p><p><em>Produced by @brianmcc and the @techmeme staff</em></p><p><em>Music by @jpschwinghamer</em></p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/jhJ3pclr0Gp3IWpLRNALYQBehZ95BevMnlEvAzJ-YPQ</guid>
+      <pubDate>Tue, 06 Mar 2018 21:59:05 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/76e2b3bc-4477-4bee-bb1e-eed82761d2d0</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:14:48</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/76e2b3bc-4477-4bee-bb1e-eed82761d2d0.mp3" type="audio/mpeg" length="14218135" />
+    </item>
+    <item>
+      <title>Monday, Mar. 5, 2018 - Amazon Checking Accounts</title>
+      <description>
+        <![CDATA[<p><strong><em>Amazon checking accounts, Apple noise canceling earphones, Google sells Zagat, Facebook posts a cringeworthy user survey, and VCs take a road trip!</em></strong></p><p><br></p><p><a href="https://www.techmeme.com/180305/p7#a180305p7" target="_blank">Sources: Amazon is in talks with big banks including JPMorgan Chase about a checking-account-like product that would appeal to those without bank accounts</a></p><ul><li><a href="https://www.wsj.com/articles/are-you-ready-for-an-amazon-branded-checking-account-1520251200" target="_blank">Wall Street Journal</a></li><li><a href="http://nymag.com/selectall/2018/03/amazon-is-talking-to-banks-to-create-checking-accounts.html" target="_blank">New York Magazine</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p5#a180305p5" target="_blank">Sources: Apple is planning to launch high-end headphones with noise canceling and wireless pairing as early as end of 2018, but has faced development challenges</a></p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-03-05/apple-is-said-to-turn-up-audio-ambition-with-high-end-headphones" target="_blank">Bloomberg</a></li><li><a href="https://9to5mac.com/2018/03/03/more-affordable-13-inch-macbook-air/" target="_blank">9to5Mac</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p12#a180305p12" target="_blank">Google is selling US restaurant review guide Zagat, which it bought for $151M in 2011, to restaurant review company The Infatuation for an undisclosed sum&nbsp;</a></p><ul><li><a href="https://www.nytimes.com/2018/03/05/business/dealbook/zagat-google-infatuation.html" target="_blank">New York Times</a></li><li><a href="https://la.eater.com/2017/8/10/16126172/vespertine-review-instagram-infatuation-story-dark" target="_blank">Eater LA</a></li><li><a href="https://ny.eater.com/2016/3/23/11290082/stop-writing-racist-restaurant-reviews" target="_blank">Eater NY</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p15#a180305p15" target="_blank">Facebook admits it was a mistake to run a survey this weekend that asked users what its policy should be for when adults ask underage girls for sexual images</a>&nbsp;</p><ul><li><a href="https://www.theguardian.com/technology/2018/mar/05/facebook-men-children-sexual-images" target="_blank">The Guardian</a></li><li><a href="https://twitter.com/JonathanHaynes/status/970234868016787456" target="_blank">Jonathan Haynes Tweets</a></li><li><a href="https://techcrunch.com/2018/03/05/facebook-breaking-news/" target="_blank">TechCrunch</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p23#a180305p23" target="_blank">Some VCs say travels outside the Bay Area, including to Midwest, have helped them see downsides of Silicon Valley, as SF faces high levels of outward migration&nbsp;</a></p><ul><li><a href="https://www.nytimes.com/2018/03/04/technology/silicon-valley-midwest.html" target="_blank">New York Times</a></li></ul><p><br></p><p><em>Credits:</em></p><p><em>Produced by @brianmcc and the @techmeme staff</em></p><p><em>Music by @jpschwinghamer</em></p>]]>
+      </description>
+      <itunes:title>Monday, Mar. 5, 2018 - Amazon Checking Accounts</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Amazon checking accounts, Apple noise canceling earphones, Google sells Zagat, Facebook posts a cringeworthy user survey, and VCs take a road trip!
+
+
+
+
+Sources: Amazon is in talks with big banks including JPMorgan Chase about a checking-account-like product that would appeal to those without bank accountsWall Street JournalNew York Magazine
+
+
+Sources: Apple is planning to launch high-end headphones with noise canceling and wireless pairing as early as end of 2018, but has faced development challengesBloomberg9to5Mac
+
+
+Google is selling US restaurant review guide Zagat, which it bought for $151M in 2011, to restaurant review company The Infatuation for an undisclosed sum New York TimesEater LAEater NY
+
+
+Facebook admits it was a mistake to run a survey this weekend that asked users what its policy should be for when adults ask underage girls for sexual images The GuardianJonathan Haynes TweetsTechCrunch
+
+
+Some VCs say travels outside the Bay Area, including to Midwest, have helped them see downsides of Silicon Valley, as SF faces high levels of outward migration New York Times
+
+
+Credits:
+
+Produced by @brianmcc and the @techmeme staff
+
+Music by @jpschwinghamer</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p><strong><em>Amazon checking accounts, Apple noise canceling earphones, Google sells Zagat, Facebook posts a cringeworthy user survey, and VCs take a road trip!</em></strong></p><p><br></p><p><a href="https://www.techmeme.com/180305/p7#a180305p7" target="_blank">Sources: Amazon is in talks with big banks including JPMorgan Chase about a checking-account-like product that would appeal to those without bank accounts</a></p><ul><li><a href="https://www.wsj.com/articles/are-you-ready-for-an-amazon-branded-checking-account-1520251200" target="_blank">Wall Street Journal</a></li><li><a href="http://nymag.com/selectall/2018/03/amazon-is-talking-to-banks-to-create-checking-accounts.html" target="_blank">New York Magazine</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p5#a180305p5" target="_blank">Sources: Apple is planning to launch high-end headphones with noise canceling and wireless pairing as early as end of 2018, but has faced development challenges</a></p><ul><li><a href="https://www.bloomberg.com/news/articles/2018-03-05/apple-is-said-to-turn-up-audio-ambition-with-high-end-headphones" target="_blank">Bloomberg</a></li><li><a href="https://9to5mac.com/2018/03/03/more-affordable-13-inch-macbook-air/" target="_blank">9to5Mac</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p12#a180305p12" target="_blank">Google is selling US restaurant review guide Zagat, which it bought for $151M in 2011, to restaurant review company The Infatuation for an undisclosed sum&nbsp;</a></p><ul><li><a href="https://www.nytimes.com/2018/03/05/business/dealbook/zagat-google-infatuation.html" target="_blank">New York Times</a></li><li><a href="https://la.eater.com/2017/8/10/16126172/vespertine-review-instagram-infatuation-story-dark" target="_blank">Eater LA</a></li><li><a href="https://ny.eater.com/2016/3/23/11290082/stop-writing-racist-restaurant-reviews" target="_blank">Eater NY</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p15#a180305p15" target="_blank">Facebook admits it was a mistake to run a survey this weekend that asked users what its policy should be for when adults ask underage girls for sexual images</a>&nbsp;</p><ul><li><a href="https://www.theguardian.com/technology/2018/mar/05/facebook-men-children-sexual-images" target="_blank">The Guardian</a></li><li><a href="https://twitter.com/JonathanHaynes/status/970234868016787456" target="_blank">Jonathan Haynes Tweets</a></li><li><a href="https://techcrunch.com/2018/03/05/facebook-breaking-news/" target="_blank">TechCrunch</a></li></ul><p><br></p><p><a href="https://www.techmeme.com/180305/p23#a180305p23" target="_blank">Some VCs say travels outside the Bay Area, including to Midwest, have helped them see downsides of Silicon Valley, as SF faces high levels of outward migration&nbsp;</a></p><ul><li><a href="https://www.nytimes.com/2018/03/04/technology/silicon-valley-midwest.html" target="_blank">New York Times</a></li></ul><p><br></p><p><em>Credits:</em></p><p><em>Produced by @brianmcc and the @techmeme staff</em></p><p><em>Music by @jpschwinghamer</em></p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/MEFsTSPkTcIzMdNqHM8_qoFIQuPxI5fFgXg8KKajp4E</guid>
+      <pubDate>Mon, 05 Mar 2018 22:01:40 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/588bde5e-72e7-498c-97b0-720e2a80475f</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>Technology,News</itunes:keywords>
+      <itunes:duration>00:13:54</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/588bde5e-72e7-498c-97b0-720e2a80475f.mp3" type="audio/mpeg" length="13357975" />
+    </item>
+    <item>
+      <title>Introducing the Techmeme Ride Home Podcast</title>
+      <description>
+        <![CDATA[<p>Introducing ourselves, and letting you know what we'll be doing. First episode launches March 6 at 5PM eastern.</p>]]>
+      </description>
+      <itunes:title>Introducing the Techmeme Ride Home Podcast</itunes:title>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:summary>Introducing ourselves, and letting you know what we'll be doing. First episode launches March 6 at 5PM eastern.</itunes:summary>
+      <content:encoded>
+        <![CDATA[<p>Introducing ourselves, and letting you know what we'll be doing. First episode launches March 6 at 5PM eastern.</p>]]>
+      </content:encoded>
+      <guid isPermaLink="false">gid://art19-episode-locator/V0/ZaOuUaft3UCx5jwuCIQIIO20XpJ58bHx_U_UD-sg5Oo</guid>
+      <pubDate>Thu, 01 Mar 2018 20:55:13 -0000</pubDate>
+      <link>https://art19.com/shows/techmeme-ride-home/episodes/ea61f65f-b237-48dd-94aa-0860d254a703</link>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:image href="https://dfkfj8j276wwv.cloudfront.net/images/8e/d5/91/6e/8ed5916e-9eef-4196-850f-ed5893c35d27/7d2b3537fdb594a234e4044281a75100c9a3d6c7b8dff26c5d3d175498b8c3c89a33a17674d9f3ba2ba6c454251b42f25ecd4b74e95ed03a6c1dc7763d3aba11.jpeg" />
+      <itunes:keywords>news,technology</itunes:keywords>
+      <itunes:duration>00:03:25</itunes:duration>
+      <enclosure url="http://rss.art19.com/episodes/ea61f65f-b237-48dd-94aa-0860d254a703.mp3" type="audio/mpeg" length="3282233" />
+    </item>
+  </channel>
+</rss>
