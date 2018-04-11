@@ -1,0 +1,138 @@
+<html>
+<body>
+
+<b>2.</b>
+<ol>
+<li>A UML mode is given below.
+
+<center><img src="airline.jpg"></center>
+
+<li>The CrewMember class could be abstract.
+<li>The following class schemas implement the inverse relations of <i>from</i> and <i>to</i> only.
+<pre>
+  class Flight 
+  { 
+      String flightNum;
+      String departureTime;
+      String arrivalTime;
+      Airport from;
+      Airport to;
+      Set&lt;Airplane&gt; canUse;
+  }
+
+  class Airplane
+  {
+      String IDNum;
+      String modelName;
+      int capacity;
+      int maxFlightTime; // in minutes
+  }
+
+  class Airport
+  {
+      String name;
+      String code;
+      Set&lt;Flight&gt; departureFlights; // the inverse relation of Flight.from
+      Set&lt;Flight&gt; arrivalFlights; // the inverse relation of Flight.to
+  }
+
+  class CrewMember
+  {
+      String IDnum;
+      String name;
+      int age;
+      Set&lt;Flight&gt; assignedTo;
+  }
+
+  class Pilot extends CrewMember
+  {
+      String rank;
+      int experienceInNumberOfYears;
+      Set&lt;Airplane&gt; canOperate;
+  }
+
+  class Attendant extends CrewMember
+  {
+      String position;
+  }
+</pre>
+<li>Each crew member is assigned to at least one flight and at most three flights.
+    Each flight is assigned at least one crew member and at most 10 crew members.
+<li>The multiplicities of 1, 1..3 would require that each flight be assigned exactly
+    one crew member.
+    This is not a valid constraint for most airline companies (an exception would
+    be an airline company specializing in small, one-pilot, Cessna-type airplanes.)
+<li>Incorrect, as there may be multiple flights with the identical departure and arrival times
+    from/to different airports.
+</ol>
+
+<b>4.</b>
+<br>
+2.
+<pre>
+  class Data
+  {  ... }
+
+  class BinTree
+  {
+      Data data;
+      BinTree leftSubtree;
+      BinTree rightSubtree; 
+  }
+</pre>
+
+3. The class schemas below implement all the inverse relations.
+<pre>
+  class TextBlock
+  {
+      String blockType;
+      String blockTitle;
+      int blockNumber;
+      Summary summary;
+      Set&lt;TextContents&gt; textContents;
+      Set&lt;TextBlock&gt; contains;
+      TextBlock isContainedIn; // the inverse relation of "contains"
+  }
+
+  class Summary
+  {   
+      TextBlock summaryOf; // the inverse relation of TextBlock.summary
+      String text;
+  }
+
+  class TextContents
+  {
+      TextBlock textContentsOf; // the inverse relation of TextBlock.textContents
+      String text;
+  }
+</pre>
+
+<b>9.</b>
+<ol>
+<li>Automobiles &ndash; Vans &nbsp;&nbsp; inheritance
+<li>Automobiles &ndash; Engines &nbsp;&nbsp; whole-part
+<li>Newspapers &ndash; Sports Sections &nbsp;&nbsp; whole-part
+<li>Newspapers &ndash; Weekly Newspapers &nbsp;&nbsp; inheritance
+<li>Books &ndash; Mystery Books &nbsp;&nbsp; inheritance
+<li>Books &ndash; Paperback Books &nbsp;&nbsp; inheritance
+<li>Books &ndash; Chapters &nbsp;&nbsp; whole-part
+<li>Computers &ndash; Laptop Computers &nbsp;&nbsp; inheritance
+<li>Computers &ndash; CPUs &nbsp;&nbsp; whole-part
+<li>Highways &ndash; Interstate Highways &nbsp;&nbsp; inheritance
+<li>Highways &ndash; Exits &nbsp;&nbsp; whole-part
+</ol>
+
+<b>11.</b>
+
+<ol>
+<li>Highways – Interchanges. Weak composition. An interchange is a part of two or more highways.
+<li>States – Cities. Should be strong composition in most cases as each city belongs to a unique state and
+    deletion of a state would entail deletion of all its cities.
+    In some applications though, cities might have to be kept in the DB even if their states are deleted &ndash;
+    in this case weak composition is suitable.
+<li>States – State Parks. Analogous to the States-Cities case.
+<li>Roads – Intersections. Weak composition. An intersection is a part of two or more roads.
+<li>Cities – Airports. Analogous to the States-Cities case.
+</ol>
+</body>
+</html>

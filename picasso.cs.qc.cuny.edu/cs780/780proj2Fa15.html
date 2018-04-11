@@ -1,0 +1,140 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 2 Fall 2015
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Fall 2015
+</b>
+
+<hr align="center">
+
+<font face=verdana>
+
+<b>
+PROJECT 2: Establishing Relations in the PC Model
+</b>
+
+<br>
+
+Due: 11/15/15, Sunday, 11 PM
+
+<br><br>
+
+First, critically review your Project 1 model to detect flaws and shortcomings, 
+including the comments made on the grade report, and
+remodel it to eliminate the problems.
+
+In the next stage, establish the following relations.
+
+<ol>
+<li>
+A relation storing which company makes which product.
+<li>
+Relations storing PCs' preinstalled hardware components,
+including components that can be preinstalled as option at the time of purchase.
+<li>
+Relations storing PCs' additional/replacement hardware components that can be installed
+after the purchase.
+<li>
+Relations storing which external (detached) hardware component can be connected to which PC
+(e.g., printer, keyboard, display monitor, mouse).
+<li>
+A plug-in compatibility relation of hardware components storing which component is replaceable by which component.
+<li>
+Relations storing PCs' preinstalled software components,
+including components that can be preinstalled as option at the time of purchase.
+<li>
+Relations storing which software product,
+as additional/replacement component,
+can be installed on (i.e., is supported by)
+which PC and/or OS platform.
+<li>
+Relations storing plug-in application software components.
+For example, a browser can work with a variety of file-viewing/processing software components, 
+including text, document, image/movie, audio files.
+</ol>
+
+You will have to make sound decisions on the choice of association, strong-composition, or
+aggregation relations to model the above relations.
+
+<br><br>
+
+You may have to make adjustments to the inheritance hierarchy and class attributes in the process of
+modeling the above relations.
+This kind of evolutionary remodeling is a natural and even necessary part of design and modeling.
+
+<br><br>
+
+Use the following checkpoints to help improvement and (re-)modeling.
+
+<ul>
+<li>No relation names/multiplicities are missing, and all multiplicities are correct.
+    Provide names/multiplicities for whole-part relations, not just for association relations.
+<li>Inheritance and whole-part relations are not confused.
+    Do not use inheritance for what should be a whole-part relation, and vice versa.
+    The exception is the method of using strong composition to simulate inheritance as described in
+    Course Notes #6.
+<li>Whole-part relations are not used for what should be association relations.
+    Do not use a whole-part relation unless it makes semantic sense to regard one class's objects as
+    parts/components of the other class's objects.
+<li>Aggregation (weak composition) is not used where strong composition should be used, and vice versa.
+<li>Whole-part relations are pointing in the correct direction.
+    Attach black/white diamonds to the whole classes not the part classes.
+<li>An ancestor class's attributes are not redeclared in descendant classes.
+<li>Common attributes are not distributed in subclasses.
+    <i>Elevate</i> common attributes of descendant classes to as high an ancestor class as possible.
+    Create parent/ancestor classes for this purpose when appropriate.
+<li>Make classes <i>abstract</i> if you are certain they will not have any direct objects.
+<li>Document the semantics (meaning) of classes and relations if their names are not self-explanatory.
+<li>In UML class diagrams, do not use an attribute to represent a binary relation.
+    That is, do not represent a relation R: A &rarr; B by an attribute of A containing
+    a string or "ID" value of the related B-object.
+    This may be appropriate in relational tables, but not in OO models.
+</ul>
+
+Superimposing all the relations on the inheritance hierarchy
+would make the diagram clumsy.
+So I strongly recommend creating a separate "relation diagram" containing all the relations and
+their argument classes, without inheritance relations.
+This relation diagram will be shown under the inheritance-hierarchy diagram.
+In this process, use
+Visual Paradigm's copy-and-paste function for making copies of a class box, which will automatically copy
+all its features.
+Also, any change made to one copy of a class will be made to all copies automatically.
+
+<br><br>
+
+
+Finally, write a separate documentation concisely describing:
+
+<ul>
+<li>
+the improvements made on your Project 1 model; and
+<li>
+the relation schemas in your class diagram used to model the eight types of relations listed above.
+Make a numbered list of 1, &hellip;, 8, each listing the relation schemas in
+the format R(C<sub>1</sub>, &hellip;, C<sub>n</sub>).
+
+</ul>
+
+<b>Submission</b>
+
+<br><br>
+
+Email to yukawa.qc@optimum.net your Visual Paradigm project file (the one with .vpp extension) and
+the documentation, using the subject header:
+
+<br><br>
+
+CS 332, Project 2, Your Full Name
+
+<br><br>
+
+The Visual Paradigm file must contain the improved inheritance hierarchy and the relation diagram. 
+
+</body>
+</html>
+

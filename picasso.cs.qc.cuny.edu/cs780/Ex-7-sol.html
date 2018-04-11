@@ -1,0 +1,170 @@
+<html>
+<body>
+
+<title>
+Exercise Set #7 Solutions
+</title>
+
+<b>3</b>.
+<br>
+a.
+This is an example optimal application &ndash; there are other optimal applications.
+<pre>
+    T<sub>1</sub>
+
+    lock(X)
+    r(X)
+    lock(Y)
+    r(Y)
+    X = X+Y
+    w(X)
+    lock(Z)
+    unlock(X)
+    r(Z)
+    unlock(Z)
+    Y=X+Y+Z
+    w(Y)
+    unlock(Y)
+
+    T<sub>2</sub>
+
+    lock(X)
+    r(X)
+    lock(Y)
+    r(Y)
+    Y = X+Y
+    w(Y)
+    lock(Z)
+    unlock(X)
+    unlock(Y)
+    r(Z)
+    Z=X+Z
+    w(Z)
+    unlock(Z)
+</pre>
+
+<b>5</b>.
+<br>
+a.
+<blockquote>
+(10, 20, 30) &rarr; T<sub>1</sub> &rarr; (40, 20, 30) &rarr; T<sub>2</sub> &rarr; (40, 20, 90)
+<br>
+(10, 20, 30) &rarr; T<sub>2</sub> &rarr; (10, 20, 60) &rarr; T<sub>1</sub> &rarr; (70, 20, 60)
+</blockquote>
+
+b.
+The following is one example.
+
+<pre>
+  T<sub>2</sub>                          T<sub>1</sub>                        DB
+  r-lock(X)                                            (X, Y, Z) = (10, 20, 30)
+  r(X)  // X = 10
+  r-lock(Y)
+  r(Y)  // Y = 20
+  unlock(X)
+                             w-lock(X)
+                             r(X)  // X = 10
+                             r-lock(Z)
+                             r(Z)  // Z = 30
+                             unlock(Z)
+                             X = X+Z  // X = 40
+                             w(X)                       X = 40
+                             unlock(X)
+  w-lock(Z)
+  unlock(Y)
+  r(Z)  // Z = 30
+  Z = X+Y+Z  // Z = 60
+  w(Z)                                                  Z = 60
+  unlock(Z)
+                                                        (X, Y, Z) = (40, 20, 60)                                 
+</pre>
+
+c.
+In T<sub>2</sub> switch the order of unlock(X) and w-lock(Z).
+
+<br><br>
+
+<b>6</b>.
+<br>
+a.
+<pre>
+  T<sub>1</sub>
+
+  lock(A);
+  r(A);
+  if ( A >= X )
+  {   A = A - X;
+      w(A);
+      lock(B);
+      r(B);
+      B = B + X;
+      w(B);
+      unlock(B);
+  }
+  unlock(A);
+
+  T<sub>2</sub>
+
+  lock(A);
+  r(A);
+  if ( A >= X )
+  {   lock(B);
+      r(B);
+      A = A - X;
+      B = B + X;
+      w(A);
+      w(B);
+      unlock(B);
+  }
+  unlock(A);
+</pre>
+
+b.
+The same as (a) except that lock(A) and lock(B) are replaced by w-lock(A) and w-lock(B), respectively.
+
+<br><br>
+
+<b>9</b>.
+Insert the blue part as follows:
+
+<pre>
+unlock(A):
+
+if ( lock[A] == write-locked )
+{   if ( queue[A] is empty )
+        lock[A] = unlocked;
+    else
+    {   if ( the transaction at the front of queue[A] requests write access )
+            remove it from queue[A] and resume its execution;
+        else
+        {   remove transactions requesting read access from queue[A] until
+            a transaction requesting write access is found;
+            count[A] = the # of the removed transactions;
+            lock[A] = read-locked;
+            resume the execution of the removed transactions;
+        }
+    }
+}
+else /* lock[A] == read-locked */
+{   count[A] = count[A]-1;
+    <font color=blue>
+    if ( count[A] = 1 and the transaction at the front of queue[A] has read-access to A )
+    {
+        count[A] = 0;
+        lock[A] = write-locked;
+        remove the transaction from queue[A] and resume its execution;  
+    }
+    </font>
+    else if ( count[A] == 0 )
+    {   if ( queue[A] is empty )
+            lock[A] = unlocked;
+        else /* transaction at front of queue[A] must be requesting write access */
+        {   lock[A] = write-locked;
+            remove the transaction from queue[A] and resume its execution;
+        }
+    }
+}
+</pre>
+
+</body>
+</html>

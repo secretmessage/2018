@@ -1,0 +1,210 @@
+<html>
+
+<head><title>Building JDO/ObjectDB database</title></head>
+
+<body>
+
+<font face="arial">
+
+<br>
+
+To build JDO/ObjectDB databases, you need two things:
+
+<ul>
+<li>
+ <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">
+ Java JDK 5.0 or higher</a>.
+ You may instead use any Java development kit compatible with 
+ JDK 5.0 or higher &ndash; make sure it supports
+ generic class types.
+<li>
+ <a href="http://www.objectdb.com/object/db/database/download">ObjectDB</a>.
+ Just unzip the downloaded file to a folder, say c:\Program Files\objectdb.
+ There is no installation wizard and such to run.
+</ul>
+
+ObjectDB is entirely implemented in Java, so you need to set environment variables in the usual way.
+Specifically, make sure that
+
+<ul>
+<li>
+ The <b>path</b> environment variable is set to include the <em>bin</em>
+ folder of the Java JDK.
+ <!--
+ (If you already have an older version of JDK on your computer
+ and have just installed the latest version,
+ we suggest deleting the old version's path name from the path environment variable.)
+ -->
+ You can check the active version number by the command:
+ <br><br>
+
+ java  &minus;version
+ <br><br>
+ It should display the current version number you're using.
+<li>
+ The <b>classpath</b> environment variable is set to include:
+ <br><br>
+ c:\Program Files\objectdb\bin\objectdb.jar
+ <br><br>
+ Here we're assuming you've installed ObjectDB in the folder:
+ c:\Program Files\objectdb.
+ The file <i>objectdb.jar</i> contains implementations of <i>javax.jdo</i> and <i>com.objectdb</i> packages.
+ If you're setting these environment variables from a command window,
+ here is a
+ <a href="environment-jdo.txt">page</a> to help you.
+ If you are an Eclipse user, use your favorite method to add a .<i>jar</i> file to a Java project.
+ <a href="http://www.wikihow.com/Add-JARs-to-Project-Build-Paths-in-Eclipse-%28Java%29">How to add .jar files to project build paths in Eclipse</a>.
+</ul>
+
+<!--
+You can see the values of these environment variables by the commands:
+<blockquote>
+ c:\echo %path%
+ <br>
+ c:\echo %classpath%
+</blockquote>
+-->
+
+Now you're ready to build JDO/ObjectDB databases.
+Building a database takes three steps.
+
+<ol>
+<li>
+ Write Java classes to implement your UML model.
+ All persistent classes must include the annotation:
+ <blockquote>
+ @javax.jdo.annotations.PersistenceCapable
+ </blockquote>
+<li>
+ Compile the classes and produce <em>.class</em> files.
+ These <em>.class</em> files are usual JVM bytecode files you're
+ familiar with. 
+ At this stage,
+ they implement <b>transient classes</b> whose objects
+ created during an execution of a program cease to exist
+ at termination of the execution.
+ Therefore, the <em>.class</em> files with the PersistenceCapable annotation need to be modified to implement
+ persistent classes so that
+ the objects can be stored in a database after program executions.
+ This transformation process from transient class files into
+ persistent class files is called <b>enhancement</b>.
+<li>
+ Execute enhancement by com.objectdb.Enhancer.
+</ol>
+
+Let's go through the above steps using the example college database.
+(We'll use an abridged set of classes due to the 10-class limit of the free version of ObjectDB.)
+
+<ol>
+<li>
+ Here are 10 Java classes implementing a portion of the college
+ database UML model:
+ <a href="demo/Name.java">Name</a>,
+ <a href="demo/Person.java">Person</a>,
+ <a href="demo/Student.java">Student</a>,
+ <a href="demo/Professor.java">Professor</a>,
+ <a href="demo/Office.java">Office</a>,
+ <a href="demo/Department.java">Department</a>,
+ <a href="demo/Course.java">Course</a>, 
+ <a href="demo/CourseSection.java">CourseSection</a>,
+ <a href="demo/Grade.java">Grade</a>,
+ <a href="demo/Take.java">Take</a>,
+
+ The class <a href="demo/Utility.java">Utility</a> contains two useful functions.
+ The class <a href="demo/CreateData.java">CreateData</a> constructs example objects and relation instances.
+ The <i>Utility</i> and <i>CreateData</i> classes will remain transient classes and do not need
+ the PersistenceCapable annotation.
+ Download these to your computer and put them in a new folder,
+ say c:\ODB\College.
+
+<li>
+ Compile the 12 classes, including <i>Utility</i> and <i>CreateData</i>, and produce 12 <em>.class</em> files.
+ The Java compiler will probably issue a warning note like:
+
+ <blockquote> 
+ Note: Some input files use unchecked or unsafe operations.
+ <br>
+ Note: Recompile with -Xlint:unchecked for details.
+ </blockquote>
+
+ This is a warning that runtime check for type casts to Collection types will not be performed for efficiency reason. 
+ You can safely ignore it if you're using type casts correctly.
+
+<li>
+ Enhance the 10 <em>.class</em> files to
+ persistent class files; <i>Utility</i> and <i>CreateData</i> will remain transient. 
+ First, be sure to include the college folder in the classpath.
+ A one-off way of doing this from a command window in Windows is to execute:
+ <br><br>
+
+ set classpath=%classpath%;c:\ODB\College
+
+ <br><br>
+ Enhance the <em>.class</em> files by the command:
+ <br><br>
+ c:\ODB\College&gt;  java &nbsp; com.objectdb.Enhancer &nbsp; c:\ODB\College\*.class
+ <br><br>
+
+ You should get the following response:
+ <pre>
+10 persistable types have been enhanced:
+    Course
+    CourseSection
+    Department
+    Grade
+    Name
+    Office
+    Person
+    Professor
+    Student
+    Take
+2 NON persistable types have been enhanced:
+    CreateData
+    Utility
+ </pre>
+
+ The 10 classes have now become persistent, and you're ready to
+ populate the classes with persistent objects.
+ <br><br>
+ If you get a message different from the above,
+ the 10 files have not been transformed into persistent classes successfully.
+ This likely means one or both of the following:
+ <br><br>
+
+ <ul>
+ <li>
+  You omitted or mistyped the PersistenceCapable annotation.
+ <li>
+  The classpath wasn't set properly.
+ </ul>
+<li>
+ Run <i>CreateData</i>:
+
+ <br><br>
+ c:\ODB\College&gt; java &nbsp; CreateData
+ <br><br>
+
+ This will create the database file <i>test.odb</i> and display the results of the example queries
+ included in <i>CreateData.java</i>.
+ Beware: Running <i>CreateData</i> more than once
+ will keep adding the same duplicate data to <i>test.odb</i>.
+ To prevent this, delete or rename <i>test.odb</i> before rerunning <i>CreateData</i>.
+
+<li>
+ Open ObjectDB Explorer, which is <i>explorer.jar</i> in the <i>bin</i> folder.
+ Load <i>test.odb</i> and explore the database by various viewing features, especially "Tree Window".
+ <a href="http://www.objectdb.com/java/jpa/tool/explorer">Explorer Tutorial</a>.
+
+</ol>
+
+The manual enhancement process by com.objectdb.Enhancer may be omitted in most if not all cases.
+This is because, if manual enhancement is omitted, the ObjectDB runtime system will perform
+automatic on-the-fly enhancement during class-file loading.
+This option, however, slows down execution and does not work in all cases, so manual enhancement is recommended.
+<a href="http://www.objectdb.com/java/jpa/tool/enhancer">JPA/JDO Class Enhancer</a> has more detail
+on this issue.
+
+</font>
+</body>
+</html>
+

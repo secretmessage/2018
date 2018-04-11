@@ -1,0 +1,172 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 3 Fall 2015
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Fall 2015
+</b>
+
+<hr align="center">
+
+<font face="verdana">
+
+<b>
+PROJECT 3: Further Improvement and JDO Schemas
+</b>
+<br>
+<b>Due: 12/04/15, Friday, 11 PM</b>
+
+<br><br>
+
+<font color=red>
+<b>
+Use <a href="http://www.objectdb.com/object/db/database/download">ObjectDB version 2.6.4</a>
+for this and next projects
+(this seems to be the most recent, stable version).
+</b>
+</font>
+
+<br><br>
+
+This project has two parts.
+
+<br><br>
+
+<b>Part 1</b>
+
+<br><br>
+
+Conduct a final critical review and remodel your Project 2 model.
+The comments made in the Project 2 grade report should be taken into account.
+Further insight and critical evaluation of your own should also be
+brought to bear on the improved model.
+Adding more things to your model may not improve it &ndash; it could make the model worse.
+On the other hand, the model would be greatly improved if poor and/or redundant structures are replaced by
+cleaner and more concise structures.
+
+<br><br>
+
+Incorporate <b>bitemporal information</b> on the following two relations in the context of your model:
+<ul>
+<li>
+<i>Preinstallation</i> relation between PCs and hardware components.
+<li>
+<i>Support</i> relation between PCs/operating systems and software applications.
+</ul>
+Both will require the use of relation classes.
+The intended semantics of valid period should be obvious.
+
+<br><br>
+
+<b>Part 2</b>
+
+<br><br>
+
+This part is an exercise in mapping a UML model to JDO class schemas.
+
+<br><br>
+
+Implement the following UML class diagram in JDO.
+This is an abridged PC model
+(due to the fact that the ObjectDB free version supports at most 10 persistent classes).
+The relation plugInCompatible(Memory, Memory) is assumed to be symmetric.
+
+<br><br>
+
+<center><img src="proj3fa15.jpg"></center>
+
+<ul>
+<li>
+The Java classes should use the same class/attribute/relation names used in the UML model.
+<li>
+In this project, it is adequate to use 
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/HashSet.html">HashSet&lt;E&gt;</a>
+uniformly to implement binary relations with multiplicities greater than 1.
+However you might use 
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/TreeSet.html">TreeSet&lt;E&gt;</a>
+or 
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html">LinkedList&lt;E&gt;</a>
+to store elements of E in suitable sorted order.
+Note that TreeSet&lt;E&gt; requires the class E to implement the 
+<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html">Comparable&lt;E&gt;</a>
+or
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html">Comparator&lt;E&gt;</a>
+interface by providing, respectively, the <i>compareTo</i> or <i>compare</i> function.
+For two examples of use of TreeSet&lt;E&gt;, see the CourseSection and Take classes in the
+<a href="courseMaterial.html">college example</a>.
+<li>
+All inverse relations (except for symmetric plugInCompatible) must be implemented by class fields &ndash; choose suitable relation names.
+</ul>
+
+Next, write a Java class named <i>CreateData</i> that includes code to create
+at least one instance of each of the seven relations.
+It will be helpful to create data by means of constructors in relevant classes.
+
+<br><br>
+
+Running the main function of <i>CreateData</i> is to create example data
+in the database file named "PC.odb".
+Recall that a function call <tt>pm.makePersistent(x)</tt> is used to store <tt>x</tt> 
+as persistent object, and this function call is unnecessary if <tt>x</tt> is reachable from
+an existing persistent object due to the persistence-by-reachability rule.
+Note also that all calls to <tt>pm.makePersistent(x)</tt> 
+and all operations modifying the database file must be enclosed by
+<tt>pm.currentTransaction().begin()</tt> and <tt>pm.currentTransaction().commit()</tt>.
+This <a href="demo/CreateData.java">sample code</a> for the college database might be helpful. 
+
+<br><br>
+
+The last phase of the project consists of the following:
+
+<ol>
+<li> 
+<a href = "ODB.html">Compile and enhance</a> the Java classes.
+In this project, place all the classes in one folder,
+the default package.
+Persistent classes must include the annotation <tt>@javax.jdo.annotations.PersistenceCapable</tt>.
+The class <i>CreateData</i> will not be transformed into a persistent class and so
+should not include the annotation.
+
+<li>
+Run the class <i>CreateData</i> to create data in the file "PC.odb".
+You can check the contents of the file by ObjectDB Explorer, which
+should be in the bin folder of ObjectDB, for example C:\Program Files\objectdb\bin.
+</ol>
+
+<b>Submission</b>
+
+<br><br>
+
+The due date is 12/04/15, Friday, 11 PM.
+
+<br><br>
+
+The following materials must be 
+<b>emailed</b> to yukawa.qc@optimum.net
+using the subject header
+<br>
+<em>CS 332, Project 3, Your Full Name</em>:
+
+<ul>
+<li>
+a summary of the improvements made on Project 2
+<li>
+a concise description of the locations and the manner in which the bitemporal information 
+is incorporated into your model
+<li>
+a Visual Paradigm .vpp file containing the Project 3 model
+<li>
+all the Java source classes (those with .java extension) including <i>CreateData.java</i>
+</ul>
+
+You may email the entire material in a .zip or .rar compressed file.
+Before sending your project package, make sure to double check it has all the required materials.  
+
+</font>
+
+</body>
+</html>
+

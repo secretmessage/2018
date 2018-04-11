@@ -1,0 +1,154 @@
+<html>
+<body>
+
+<title>
+Exercise Set #4
+</title>
+
+CS 332/780: Object-Oriented Databases
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #4
+
+<br><br>
+
+<b>1.</b> You are to model the classes <i>CrewMember</i>, <i>Pilot</i>, and <i>Attendant</i> 
+given in Q2 of 
+<a href="../Ex-2.html">Exercise Set #2</a>
+by a composite structure without use of inheritance.
+
+<ol>
+<li>Give a UML diagram that models the three classes by a composite structure. 
+    Include the headers of all necessary delegation functions.
+<li>Implement the model in Java, including
+    the delegation functions in the <i>Pilot</i> and <i>Attendant</i> classes. 
+</ol>
+
+<b>2.</b> Compare true inheritance and the composite-structure method for modeling specialization
+hierarchies of classes (as discussed in Course Notes #6).
+<ol>
+<li>What is an advantage of the composite-structure method over true inheritance?
+<li>What is an advantage of true inheritance over the composite-structure method? 
+</ol>
+
+<b>3.</b> You are to model the classes <i>Item</i>, <i>Book</i>, and <i>CD</i> 
+given in Q3 of 
+<a href="../Ex-2.html">Exercise Set #2</a>
+by a composite structure without use of inheritance. 
+
+<ol>
+<li>Give a UML diagram that models the three classes by a composite structure. 
+    Include the headers of all necessary delegation functions.
+<li>Implement the model in Java, including
+    the delegation functions in the <i>Book</i> and <i>CD</i> classes. 
+</ol>
+
+<b>4.</b>
+The following is an inheritance tree of "gadgets".
+
+<center><img src="gadget.jpg"></center>
+
+<ol>
+<li>
+Remodel the inheritance tree to a composite structure using an abstract role class.
+Include the headers of all necessary delegation functions.
+<li>
+Implement the model in Java, including
+the delegation functions in the abstract role class. 
+</ol>
+
+<b>5.</b>
+Describe a reasonable interpretation of valid time of objects in the following classes in
+the college example:
+Student, Take, Grade, Employee, Employment, Office, Course, CourseSection. 
+
+<br><br>
+
+<b>6.</b>
+Consider this
+<a href="../Ex-3/Ex-3-sol.html">example airline model</a>.
+Describe a reasonable interpretation of valid time of objects in each of the classes.
+
+<br><br>
+
+<b>7.</b>
+Consider the example college model.
+Departments may update the credits, hours, and descriptions of courses they offer
+while keeping their numbers and titles intact. 
+Remodel the <i>Course</i> class to record the bitemporal histories of these three attributes,
+and implement the remodeling in Java.
+
+<!--
+<b>8.</b>
+The <i>TimePeriod</i> class has been used to record histories of class attribute values. 
+In many cases, however, the time periods of an attribute history are contiguous in that 
+the end time of every period (except the most recent one) is equal to the start time of the next period. 
+In this case it is redundant and wasteful of storage space to record both start and end times. 
+Give a model to record a contiguous attribute history without such redundancy.
+-->
+
+<br><br>
+
+<b>8.</b>
+In the example college model only the current chairperson is recorded by
+the relation <i>chairPerson</i>: <i>Department</i> &rarr; <i>Professor</i>.
+Remodel this relation to record the bitemporal history of all chairpersons of
+every department, and implement the remodeling in Java.
+
+<br><br>
+
+<b>9.</b>
+Consider the aggregate model of the Contract(Architect, Company, Building) relation described in
+Course Notes #4.
+Remodel the Contract class to incorporate its bitemporal history, and implement 
+the remodeling in Java.
+
+<br><br>
+
+<b>10.</b>
+In the following model of varsity teams, 
+the roster spots are assumed to be the ones that currently exist, and
+the <i>takenBy</i> relation only records which roster spots are being taken by which students
+at the present time.
+
+<center><img src="roster.jpg"></center>
+
+<br>
+
+However, roster spots may be added and deleted, and each roster spot may be taken
+by different students at different times.
+Remodel the above diagram to incorporate the bitemporal histories of roster spots and the <i>takenBy</i> relation, 
+and implement the remodeling in Java.
+
+<br><br>
+
+<b>11.</b>
+Consider the following scenario of a certain event's history
+(tense is used relatively to the respective transaction times):
+
+<br><br>
+
+transaction time  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   fact and its valid time entered into database
+
+<blockquote>
+06/15/08: &nbsp; The event is scheduled to take place at site s<sub>1</sub> from 07/01/08 to 08/31/08.
+<br>
+06/25/08: &nbsp; The event's time schedule is changed to take place from 07/10/08 to 09/10/08.
+<br>
+08/10/08: &nbsp; The event was moved to site s<sub>2</sub> on 08/01/08; the time schedule remains the same.
+<br>
+09/01/08: &nbsp; The event's time schedule is extended to take place until 10/31/08.
+<br>
+09/15/08: &nbsp; The event is scheduled to move back to site s<sub>1</sub> on 10/01/08; the time schedule remains the same.
+</blockquote>
+
+<ol>
+<li>
+Give a bitemporal space displaying the bitemporal history of the event.
+<li>
+Give an object diagram representing the bitemporal history of the event.
+</ol>
+
+</body>
+</html>

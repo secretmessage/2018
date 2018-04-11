@@ -1,0 +1,122 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 2 Spring 2018
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Spring 2018
+</b>
+
+<br>
+
+<hr align="center">
+<font face=verdana>
+<b>
+PROJECT 2: Establishing Association Relations in Bank Database
+</b>
+<br>
+
+Due: 04/08/18, Sunday, 11 PM
+
+<br><br>
+
+In the first phase of this project,
+critically review your Project 1 model to detect flaws and shortcomings, including the corrections/comments/suggestions made in the grade report. Then remodel it to eliminate the problems.
+
+<br><br>
+
+In the second phase,
+establish basic association relations among class objects modeled in Project 1.
+In particular,
+modeling of banking transactions will take a center stage in this project.
+A banking transaction involves a transfer/exchange of funds among entities, usually between two entities,
+along with other participating objects. Like contracts and tickets, banking transactions are best modeled by relation objects.
+
+<br><br>
+
+Incorporate banking transactions of the following types:
+    
+<ul>
+    <li>
+    cash withdrawals at ATMs and bank teller counters
+    <li>
+    cash deposits at ATMs and bank teller counters
+    <li>
+    electronic deposits/credits like salary deposits, interest credits, etc.
+    <li>
+    transfers between accounts of the same account holder
+    <li>
+    transactions involving paper checks deposited
+    <li>
+    transactions involving electronic checks
+    <li>
+    credit/debit card purchases
+</ul>
+
+Modeling the above transactions is a minimum requirement of this project.
+To boost the project grade, you might also incorporate additional transactions like:
+
+<ul>
+    <li>
+    external transfers between accounts of different account holders, possibly of different banks
+    <li>
+    payments (bill, loan, mortgage, etc.) 
+</ul>
+    
+Create an abstract root class called <i>Transaction</i> and derive subclasses for different types of
+transactions. The root <i>Transaction</i> class should have attributes/relations common to all transactions, like
+the amount of money involved and the transaction time/date.
+Every subclass should properly record the entities and terminals involved in transactions by
+means of suitable relations.
+These entities and terminals are important factors for differentiating subclasses.
+For example, when a paper check you wrote is deposited, the following objects would be involved:
+
+<ul>
+    <li>check itself
+    <li>checking account the check draws against
+    <li>ATM/branch of the bank where the check is deposited
+    <li>bank card used
+    <li>payee account the money is moved to    
+</ul>
+
+When you purchase merchandise by a credit/debit card, the following objects would be involved:
+
+<ul>
+    <li>card used
+    <li>credit/debit card account used
+    <li>merchant
+    <li>terminal used ("point of sale"), e.g., a card scanner at a store or a website of an online shop 
+</ul>
+
+If attribute/relation names are not self-explanatory, 
+concisely describe their intended semantics by English comments in the text documentation area. 
+Your UML tool should provide text documentation areas/boxes for this purpose.
+
+<br><br>
+
+<b>Submission</b>
+<ul>
+<li>
+If you've used Visual Paradigm,
+email to keitaro.yukawa@gmail.com your Visual Paradigm project file (the one with .vpp extension), using
+the subject header:
+<br><br>
+CS 332 (or CS 780), Project 2, Your Full Name(s)
+<br><br>
+<li>
+If you've used some other UML tool, email a legible graphic image of the model and documentation.
+</ul>
+
+Groups of two students should submit only one project, but include both students' names in the email header.
+
+<br><br>
+
+<b>NOTE:</b> 
+Be reminded about the grade differentials and rules if you elect to 
+<a href="grade.html">work in a group of two students</a>. 
+
+</font>
+</body>
+</html>

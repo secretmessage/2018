@@ -1,0 +1,77 @@
+<html>
+<body>
+
+<font face="verdana">
+
+<center>
+<h2>
+Persistent Types Supported in ObjectDB
+</h2>
+</center>
+
+</font>
+
+<font face="verdana" size=-1>
+
+<ul>
+<li>
+primitive types:
+boolean, byte, short, int, long, float, double, char
+<li>
+arrays of elements of persistent types
+<li>
+user-defined persistent classes
+<li>
+from <i>java.lang</i> and <i>java.math</i> packages: the classes in Diagram 1
+
+<li>
+from <i>java.util</i> package: the interfaces and classes in Diagram 2
+</ul>
+
+<center><img src="java.lang.jpg"></center>
+<center><img src="java.util.jpg"></center>
+
+<center>
+<h3>
+Utility Functions in Collection&lt;E&gt; Interface
+</h3>
+
+</center>
+
+In the following the variable <i>x</i> represents the target collection of functions and 
+is assumed to be of type Collection&lt;E&gt;.
+The generic type Collection&lt;?&gt; denotes Collection of elements of any type, which may differ from E.
+ 
+
+<ul>
+<li>boolean  x.contains(Object o) &nbsp;  Tests if o &isin; x. 
+
+<li>boolean  x.containsAll(Collection&lt;?&gt; c) &nbsp;  Tests if c &sube; x. 
+<li>boolean  x.equals(Object o) &nbsp;  Tests if x = o. There are two different interpretations of "equality" of collections. 
+    One method makes "reference comparison", i.e., compares the references to <i>x</i> and <i>o</i>; 
+    the other makes "value comparison", i.e., checks to see if <i>x</i> and <i>o</i> contain the same elements. 
+    The Collection interface itself does not stipulate which method is to be implemented. 
+    However, the Set and List interfaces do stipulate the implementation of value comparison. 
+
+<li>boolean  x.isEmpty( ) &nbsp;  Tests if <i>x</i> is the empty collection. 
+<li>int  x.size( ) &nbsp;  Returns the number of elements in <i>x</i>.
+</ul>
+
+The following functions return true if and only if the target collection <i>x</i> has changed 
+as a result of the function call.
+The <i>bounded generic type</i> Collection&lt;? extends E&gt; denotes Collection of 
+elements of type E or any of E's descendant classes.
+
+<ul> 
+<li>boolean  x.add(E e) &nbsp;  x = x &cup; {e} 
+<li>boolean  x.addAll(Collection&lt;? extends E&gt; c) &nbsp;  x = x &cup; c 
+<li>boolean  x.remove(Object o) &nbsp;  x = x &minus; {o} 
+
+<li>boolean  x.removeAll(Collection&lt;?&gt c) &nbsp;  x = x &minus; c 
+<li>boolean  x.retainAll(Collection&lt;?&gt; c) &nbsp;  x = x &cap; c 
+</ul>
+
+</font>
+
+</body>
+</html>

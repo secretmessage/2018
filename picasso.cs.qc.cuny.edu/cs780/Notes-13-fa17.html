@@ -1,0 +1,1559 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp; Fall 2017
+<br>
+Course Notes #13
+<br>
+Keitaro Yukawa
+<br>
+Department of Computer Science
+<br>
+Queens College, CUNY
+
+<font face="verdana">
+
+<center>
+<h2>
+Transaction Management
+</h2>
+</center>
+
+</font>
+
+<font face="verdana" size=-1>
+
+The <em>transaction manager</em> (TM) is a component of a database system
+with two main tasks:
+
+<ul>
+<li>
+<b>Concurrency Control</b>.
+Many database systems in operation today need to manage concurrent access to
+the database by multiple users.
+For example, a ticket reservation system must deal with multiple agents
+concurrently attempting to reserve tickets for the same concert, airline flight, etc.
+A college registration system must deal with concurrent registration requests
+for the same course.
+Improper management of concurrent operations 
+could cause the database to have incorrect data, which, 
+for example, would result in
+overbooking or underbooking of an airline flight.
+TM must ensure that incorrect data never result from concurrent operations
+while allowing as much concurrency as possible or, at least, a reasonable
+amount of concurrency.
+
+<li>
+<b>Recovery from Failure</b>.
+Update operations on the database could fail because of unforeseen system malfunctions.
+A system failure could occur in the midst of a ticket reservation session or
+an ATM session requesting a withdrawal from a bank account.
+If the effects of the session up to the point of failure are not
+correctly handled, the database could end up with incorrect data
+and the agent that initiated the session could face improper outcomes.
+Examples: the ATM dispenses no money while the bank account gets deducted,
+or no ticket is reserved while the credit card gets charged (as well as
+their reverse effects like the ATM dispensing money but the bank account
+never getting deducted!).  
+
+</ul>
+
+A <em>transaction</em> is a single <em>execution</em> of a code segment that
+performs a well-defined, specific task involving operations on databases.
+Multiple transactions of the same code segment may execute concurrently.
+Transactions must have the following four properties, which came to be called
+the "ACID" properties:
+
+<ul>
+
+<li>
+
+<b>Atomicity</b>.
+
+A transaction either is completely executed to its end or, if it fails 
+
+to complete, has no effect at all as if it had never started.
+
+This implies that if a transaction has had irrevocable effects before a failure,
+
+it must be brought to completion as soon as possible after the failure.
+
+<li>
+
+<b>Consistency</b>.
+
+A transaction maintains the consistency of the database, i.e.,
+
+it never causes the database to have inconsistent data.
+
+<li>
+
+<b>Isolation</b>.
+
+Although transactions may run concurrently, the overall effect of
+
+the transactions is the same as some serial, non-concurrent execution of
+
+them.
+
+<li>
+
+<b>Durability</b>.
+
+Once a transaction has completed, its effect will be stored in the database until future updates.
+
+</ul>
+
+Atomicity has significance for failure recovery.
+
+Whenever a transaction fails during its execution by whatever cause,
+
+like an unforeseen runtime software error or a hardware/network failure,
+
+all the partial effects it has had on the database must be undone,
+
+or else its execution must be resumed and brought to completion.
+
+Consider, for example, an ATM session to withdraw money from a bank account.
+
+If a failure occurs after the deduction of the withdrawn amount from the account
+
+but before the dispensation of the money, the transaction must be rolled back to
+
+undo the account's deduction.
+
+On the other hand, the transaction may be programmed to dispense the money first
+
+and then deduct from the account.
+
+In this case, if a failure occurs after the money dispensation but before
+
+the account's deduction, the transaction must be rolled forward to completion
+
+later because  money dispensation is irrevocable.
+
+Consistency and Isolation are crucial for concurrency control,
+
+and will be made precise by the concept of <em>serializability</em>.
+
+<br><br>
+
+This document deals only with concurrency control.
+Those interested in failure recovery are referred to [1, 2].
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>1. Concurrency Model</b>
+
+</font>
+
+<br><br>
+
+<font face="verdana" size=-1>
+
+We begin with the standard concurrency model for database transactions.
+
+Each transaction runs as an independent thread (i.e., process) with its own local memory.
+
+A transaction's local memory contains data items and data structures
+
+necessary for its independent execution.
+
+Transactions communicate with a shared database by means of read and write operations.
+
+A read operation moves a data item from
+
+the database to the transaction's local memory, while
+
+a write operation moves a data item from the local memory to the database.
+
+Proper synchronization and mutual exclusion of concurrent transactions is
+
+accomplished by controlling their read/write operations on
+
+the shared database.
+
+<br><br>
+
+Transactions may run 
+
+on the single-processor computer that has the database.
+
+Their concurrent execution is accomplished by
+
+splitting each transaction into <em>atomic operations</em>
+
+and interleaving them (much as operating systems manage
+
+concurrent processes on single-processor computers).
+
+Every atomic operation is executed with no interleaving.
+
+Read and write operations of data items are always executed as
+
+atomic operations.
+
+The exact nature of other kinds of atomic operations depends on a particular database system;
+
+typical examples include:
+
+(i) an evaluation of an expression,
+
+(ii) an assignment operation, i.e., moving the value of a register or a memory location to
+
+another location.
+
+Updating a persistent object's field to the value of an expression <i>E</i>
+
+might be split into:
+
+</font>
+
+<p style="page-break-before:always">
+
+<pre>
+read(object);
+evaluate expression E and store the value at a memory location x;
+assign the value at location x to object's field;
+write(object);
+</pre>
+
+<font face=verdana size=-1>
+
+Transactions can also be executed on a multi-processor computer,
+
+each transaction with a dedicated processor.
+
+Transactions may run on multiple computers connected to the database by a network.
+
+On a database system with client-server architecture,
+
+client computers may be physically remote from the server (the database) and
+
+independently execute transactions with reading and writing of database items
+
+performed over the network. In fact, transactions may run in any combination of
+
+the above, e.g., over a network of remote computers, each running multiple
+
+transactions on it.
+
+<br><br>
+
+The standard concurrency-control methods described in this document work
+
+regardless of whether transactions are executed on a single-processor computer by interleaving,
+
+on a multi-processor computer, on multiple computers over a network, or any
+
+combination of them.
+
+The only fundamental assumptions necessary for the concurrency model are:
+
+<ol>
+
+<li>
+Each transaction runs as an independent thread (i.e., process) with its own local memory;
+
+<li>
+Transactions communicate with the shared database by means of read and write operations;
+
+<li>
+Every read or write operation is executed as atomic, isolated unit. 
+
+</ol>
+
+Allowing arbitrary temporal orderings of read/write operations of multiple transactions can
+
+result in inconsistent data in the database.
+
+Consider, for example, this transaction code segment to increment an integer database item A:
+
+<br><br>
+
+read(A); A = A+1; write(A);
+
+<br><br>
+
+We assume that this code has three atomic operations:
+
+read(A), A=A+1, and write(A).
+
+The read(A) operation brings the data item A from the database to a transaction's local memory,
+
+"A=A+1" increments it, and write(A) moves the updated value back to the database.
+
+We also assume A records the total number of seats reserved so far
+
+and the code is executed whenever a new reservation is made.
+
+Suppose that two concurrent transactions T<sub>1</sub> and T<sub>2</sub> on this code
+
+have been executed with the following pattern
+
+(with time flowing from left to right):
+
+</font>
+
+<br><br>
+
+<table border=1 style='border-collapse: collapse;' width=90%>
+
+<tr> 
+
+<td>T<sub>1</sub></td>
+
+<td>read(A)</td>
+
+<td></td>
+
+<td>A=A+1</td>
+
+<td></td>
+
+<td></td>
+
+<td>write(A)</td>
+
+</tr> 
+
+<tr> 
+
+<td>T<sub>2</sub></td>
+
+<td></td>
+
+<td>read(A)</td>
+
+<td></td>
+
+<td>A=A+1</td>
+
+<td>write(A)</td>
+
+<td></td>
+
+</tr> 
+
+<tr> 
+
+<td>A's value in T<sub>1</sub>'s local memory</td>
+
+<td>50</td>
+
+<td>50</td>
+
+<td>51</td>
+
+<td>51</td>
+
+<td>51</td>
+
+<td>51</td>
+
+</tr> 
+
+<tr> 
+
+<td>A's value in T<sub>2</sub>'s local memory</td>
+
+<td></td>
+
+<td>50</td>
+
+<td>50</td>
+
+<td>51</td>
+
+<td>51</td>
+
+<td></td>
+
+</tr> 
+
+<tr> 
+
+<td>A's value in database</td>
+
+<td>50</td>
+
+<td>50</td>
+
+<td>50</td>
+
+<td>50</td>
+
+<td>51</td>
+
+<td>51</td>
+
+</tr> 
+
+</table> 
+
+<br>
+
+<font face="verdana" size=-1>
+
+T<sub>1</sub> and T<sub>2</sub> may be executed
+
+by interleaving on the same single-processor computer that has the database,
+
+or by two different remote computers connected to the database by a network.
+
+Starting from the initial value of A = 50, the database ends up with incorrect
+
+value 51 instead of correct 52.
+
+Clearly this will result in overbooking of seats.
+
+Note that in each transaction, it does not matter exactly at what time between read(A)
+
+and write(A) A = A+1 gets executed since it only changes A's value in respective local memory.
+
+If T<sub>1</sub> and T<sub>2</sub> are running on
+
+two remote computers, each transaction's A = A+1 may be executed at any time 
+
+between its read(A) and write(A) - regardless,
+
+the incorrect result is produced.
+
+It is the temporal ordering of reads/writes that affects correctness of results.
+
+In this simple example, we can intuitively see the source of the problem:
+
+both transactions have been allowed to read the initial value of 50.
+In fact, if <i>n</i> transactions, <i>n</i> &ge; 2, are allowed to read the initial value of 50,
+the final value of A in the database will be 51 instead of correct 50+<i>n</i>,
+since each of the <i>n</i> transactions will increment A to 51 in its local memory
+and write it back in the database.
+
+Therefore, we can see that once a transaction T on this code has read A,
+
+no other transactions on this code should be allowed to read A until
+
+T has written A.
+
+This means that the only correct executions for transactions on this particular code
+
+are serial executions with no concurrency.
+
+This, however, is the consequence of the fact that this code
+
+only involves a simple update of one data item.
+
+In general, transactions involving a number of
+
+operations on multiple data items may allow concurrent executions
+
+that will produce correct results.
+
+<br><br>
+
+Informally, a <em>schedule</em> of transactions refers to a particular
+
+temporal ordering of their read and write operations.
+
+In general, it is too difficult and time consuming for TM to find,
+
+on a case-by-case basis, a schedule that will produce correct results
+
+with an optimal amount of concurrency or at least a reasonable amount of it.
+
+Therefore, TM relies on a certain prescribed <em>scheduling protocol</em>
+
+that is guaranteed to produce correct results, although schedules conforming to
+
+the protocol may not yield optimal concurrency.
+
+We will study three such protocols that utilize "lock" and "unlock" operations
+
+on database items.
+
+Before doing so, however, we need to define precisely what a "schedule" is
+
+and what it means for transactions to produce "correct" results.
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>2. Serial and Serializable Schedules</b>
+
+</font>
+
+<font face=verdana size=-1>
+
+<br><br>
+
+A <em>schedule</em> for a set <i>S</i> of transactions is a linear
+
+ordering of all the read and write operations of the transactions in <i>S</i>,
+
+with the requirement that it preserve the ordering of the read/write operations within each
+
+transaction.
+
+A schedule represents a temporal ordering in which the transactions'
+
+read/write operations would be executed on the database.
+
+Let <i>&sigma;</i> be a schedule for a transaction set <i>S</i>.
+
+For any two read or write operations <i>x</i>, <i>y</i> in <i>&sigma;</i>,
+
+we write <i>x</i> &lt;<sub>&sigma;</sub> <i>y</i> if <i>x</i> precedes <i>y</i> 
+
+in <i>&sigma;</i>, that is, <i>x</i> is executed before <i>y</i> in <i>&sigma;</i>.
+
+A schedule <i>&sigma;</i> for <i>S</i> is called <em>serial</em> if for each transaction <i>T</i> &isin; <i>S</i>
+
+and for any two operations <i>x</i>, <i>y</i> in <i>T</i> with
+
+<i>x</i> &lt;<sub>&sigma;</sub> <i>y</i>,
+
+each operation <i>z</i> such that <i>x</i> &lt;<sub>&sigma;</sub> <i>z</i> &lt;<sub>&sigma;</sub> <i>y</i>
+
+belongs to <i>T</i>.
+
+<br><br>
+
+Example: Consider transactions T<sub>1</sub> containing read/write operations
+a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>,
+T<sub>2</sub> containing b<sub>1</sub>, b<sub>2</sub>,
+T<sub>3</sub> containing c<sub>1</sub>, c<sub>2</sub>, c<sub>3</sub>, c<sub>4</sub>.
+One serial schedule for T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub> is:
+b<sub>1</sub>, b<sub>2</sub>, c<sub>1</sub>, c<sub>2</sub>, c<sub>3</sub>, c<sub>4</sub>,
+a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>.
+One non-serial schedule is:
+a<sub>1</sub>, c<sub>1</sub>, b<sub>1</sub>, c<sub>2</sub>, a<sub>2</sub>, a<sub>3</sub>,
+b<sub>2</sub>, c<sub>3</sub>, c<sub>4</sub>.
+
+<br><br>
+
+Note that the temporal ordering &lt;<sub>&sigma;</sub> is defined by the local time of the computer
+running the database.
+This is a non-trivial point if transactions are executing on remote computers operating, for example,
+in spaceships or on Mars communicating to the database on earth.
+A transaction executing on Mars may send a signal to request read(A) taking 10 minutes to reach
+the database on earth.
+The database processes it and dispatches the value of A to Mars, taking another 10 minutes to reach
+the transaction.
+It is the time that the database on earth processes read(A) that is used to determine &lt;<sub>&sigma;</sub>.
+Likewise for write(A) operations.
+(Electromagnetic signal needs about 4 to 21 minutes for a one-way trip between Mars and the earth
+depending on the varying distances between them.)
+
+<br><br>
+
+<b>The database state resulting from any serial schedule is assumed to be correct</b>.
+
+This makes precise the isolation property described in the introduction.
+
+It is possible for different serial schedules to produce different
+
+database states, but all of them are considered correct.
+
+The results of serial schedules serve as the correctness criterion.
+
+<br><br>
+
+Two schedules are <em>equivalent</em> if they produce the same database state starting from
+any initial database state before execution of the transactions.
+A schedule is <em>serializable</em> if it is equivalent to at least one serial schedule.
+It follows from this definition that any serializable schedule produces
+a correct database state.
+Note that any serial schedule is a serializable schedule.
+Especially important serializable schedules are those that are not serial,
+since they are executed with concurrency and produce correct database states.
+We saw an example of non-serializable schedule of
+"read(A); A=A+1; write(A)" that produced the incorrect database state A = 51.
+
+<br><br>
+
+The serializability of any schedule can be decided by its <i>serializability graph</i>,
+defined as follows.
+
+<br><br>
+
+The read(A) and write(A) operations will be abbreviated to r(A) and w(A).
+Let S be a transaction set { T<sub>1</sub>, &hellip;, T<sub>n</sub> } and &sigma; a schedule for S.
+The <i>serializability graph for</i> S <i>and</i> &sigma;, G<sub>S,&sigma;</sub>, is a directed graph whose node set is S
+and whose edge set is given by the following definition.
+A directed edge T<sub>i</sub> &rarr; T<sub>j</sub>, i &ne; j, exists if for some data item A:
+
+<ol>
+<li>
+T<sub>i</sub> executes r(A) before T<sub>j</sub> executes w(A), i.e., r(A) &lt;<sub>&sigma;</sub> w(A); or
+<li>
+T<sub>i</sub> executes w(A) before T<sub>j</sub> executes r(A), i.e., w(A) &lt;<sub>&sigma;</sub> r(A); or
+<li>
+T<sub>i</sub> executes w(A) before T<sub>j</sub> executes w(A), i.e., w(A) &lt;<sub>&sigma;</sub> w(A).
+</ol>
+
+
+It has been shown that the following hold:
+
+<ol type=a>
+<li>
+&sigma; is a serializable schedule for S iff G<sub>S,&sigma;</sub> has no cycles with respect to 
+the edge relation &rarr;.
+<li>
+If &sigma; is a serializable schedule for S and T<sub>i</sub> &rarr; T<sub>j</sub> in G<sub>S,&sigma;</sub>,
+all read/write operations in T<sub>i</sub> are executed before all read/write operations in T<sub>j</sub>
+in any serial schedule for S equivalent to &sigma;.
+<li>
+If &sigma; is a serializable schedule for S,
+&sigma; is equivalent to any serial schedule for S whose linear ordering is consistent with
+the edge relation &rarr; in G<sub>S,&sigma;</sub>.
+</ol>
+
+If G<sub>S,&sigma;</sub> has no cycles,
+the path relation determined by &rarr;, i.e., the reflexive-transitive closure of &rarr;,
+is a partial ordering.
+Another way of stating (c) is that &sigma; is equivalent to any serial schedule for S whose linear ordering is consistent with this partial ordering.
+
+<br><br>
+
+<b>Example 1</b>
+Consider the following schedule &sigma; for S = {T<sub>1</sub>, T<sub>2</sub>}:
+
+</font>
+<pre>
+    T<sub>1</sub>             T<sub>2</sub>
+
+                  r(X)
+                  r(Y)
+   r(X)
+                  Y = X+Y
+                  w(Y)
+   r(Y)
+   X = X+Y
+   w(X)
+</pre>
+<font face=verdana size=-1>
+
+r(X) in T<sub>2</sub> &lt;<sub>&sigma;</sub> w(X) in T<sub>1</sub> and
+w(Y) in T<sub>2</sub> &lt;<sub>&sigma;</sub> r(Y) in T<sub>1</sub>, and
+there are no other instances of the cases (1), (2), (3).
+Hence G<sub>S,&sigma;</sub> is T<sub>2</sub> &rarr; T<sub>1</sub>, and by (a),
+&sigma; is serializable.
+By (b) and (c),
+&sigma; is equivalent to the serial schedule T<sub>2</sub>; T<sub>1</sub>.
+
+<br><br>
+
+<b>Example 2</b>
+Consider the following schedule &sigma; for S = {T<sub>1</sub>, T<sub>2</sub>}:
+
+</font>
+<pre>
+    T<sub>1</sub>             T<sub>2</sub>
+
+                  r(X)
+                  r(Y)
+   r(X)
+   r(Y)
+                  Y = X+Y
+                  w(Y)
+   X = X+Y
+   w(X)
+</pre>
+<font face=verdana size=-1>
+
+r(X) in T<sub>2</sub> &lt;<sub>&sigma;</sub> w(X) in T<sub>1</sub> and
+r(Y) in T<sub>1</sub> &lt;<sub>&sigma;</sub> w(Y) in T<sub>2</sub>.
+Hence G<sub>S,&sigma;</sub> is the cycle T<sub>1</sub> &rarr; T<sub>2</sub>, T<sub>2</sub> &rarr; T<sub>1</sub>.
+By (a), &sigma; is non-serializable.
+
+<br><br>
+
+<b>Example 3</b>
+Consider the following schedule &sigma; for S = {T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub>}:
+
+</font>
+<pre>
+    T<sub>1</sub>             T<sub>2</sub>             T<sub>3</sub>
+
+                  r(X)
+                                 r(X)
+                  r(Y)
+                                 r(Z)
+   r(X)
+                  Y = X+Y
+                                 Z = X+Z
+                  w(Y)
+   r(Y)
+   X = X+Y
+   w(X)
+                                 w(Z)
+</pre>
+<font face=verdana size=-1>
+
+r(X) in T<sub>2</sub> &lt;<sub>&sigma;</sub> w(X) in T<sub>1</sub>,
+w(Y) in T<sub>2</sub> &lt;<sub>&sigma;</sub> r(Y) in T<sub>1</sub>,
+r(X) in T<sub>3</sub> &lt;<sub>&sigma;</sub> w(X) in T<sub>1</sub>, and
+there are no other instances of the cases (1), (2), (3).
+Hence G<sub>S,&sigma;</sub> is T<sub>2</sub> &rarr; T<sub>1</sub>, T<sub>3</sub> &rarr; T<sub>1</sub>, and by (a),
+&sigma; is serializable.
+By (b) and (c),
+&sigma; is equivalent to each of the serial schedules T<sub>2</sub>; T<sub>3</sub>; T<sub>1</sub> and 
+T<sub>3</sub>; T<sub>2</sub>; T<sub>1</sub>.
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>3. Binary Locking and The Two-Phase Locking Protocol</b>
+
+</font>
+
+<font face=verdana size=-1>
+
+<br><br>
+
+One of the tasks of TM is to execute transactions in some serializable schedule.
+
+We will now study three scheduling methods based on the concept of locking 
+
+that can be used by TM.
+
+The first method is called <em>binary locking</em> and uses "lock" and "unlock"
+
+operations on database items.
+
+The lock and unlock operations take database items as parameters. 
+
+We will use lock(A) and unlock(A) to denote the respective operations
+
+applied to a database item A.
+
+The semantics of these operations is:
+
+<blockquote>
+
+Once a transaction T executes lock(A) and successfully acquires the exclusive right to
+
+access A, any other transaction subsequently attempting to
+
+execute lock(A) will be suspended until T has executed unlock(A).
+
+</blockquote>
+
+In order for transactions to be executed in a serializable schedule,
+
+they will execute lock and unlock operations according to the protocol
+
+consisting of the following five rules:
+
+<ol>
+
+<li>
+
+Each transaction
+
+must execute lock(A) before the earliest execution of read(A) or write(A).
+
+<li>
+
+Each transaction
+
+must execute unlock(A) after the last execution of read(A) or write(A).
+
+<li>
+
+No transaction may execute lock(A) if it has already done so.
+
+<li>
+
+No transaction may execute unlock(A) unless it has already executed lock(A).
+
+<li>
+
+Regardless of database items, all lock operations must precede
+
+the very first unlock operations.
+
+</ol>
+
+It has been proven that if every transaction follows this protocol for every database item it reads or writes,
+the serializability graph of any schedule of any transaction set has no cycles,
+hence guaranteeing serializability.
+
+This protocol is known as the <em>two-phase locking protocol</em>
+
+since the last rule 5 divides every transaction into two phases:
+
+the first phase where only lock operations are executed and
+
+the second phase where only unlock operations are executed.
+
+The two-phase locking protocol is a sufficient condition for ensuring serializability,
+
+but not a necessary condition.
+
+That is, there may be applications of locks/unlocks
+
+that do not conform to the protocol but ensure serializability.
+
+Such applications, however, are difficult to find.
+
+For this reason, TM is designed to
+
+execute appropriate lock and unlock operations in a way that conforms
+
+to the protocol.
+
+If the transaction code is statically compiled,
+
+appropriate lock and unlock operations can be inserted into 
+
+the compiled code in a way conforming to the protocol.
+
+<br><br>
+
+The two-phase protocol does not prevent or avoid deadlocks of transactions.
+
+The problem of deadlocks is a separate issue and can be handled
+
+with methods used for operating systems and distributed systems. 
+
+<br><br>
+
+We will use r(X) and w(X) to denote read(X) and write(X).
+
+<br><br>
+
+Consider the transactions T<sub>1</sub> and T<sub>2</sub>
+
+executing the code segments:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y);
+
+<br><br>
+
+The following is the code of T<sub>1</sub> and T<sub>2</sub> with
+
+lock and unlock operations inserted according to the protocol:
+
+<br><br>
+
+T<sub>1</sub>: lock(X); r(X); lock(Y); r(Y); unlock(Y); X=X+Y; w(X); unlock(X);
+
+<br>
+
+T<sub>2</sub>: lock(X); r(X); lock(Y); unlock(X); r(Y); Y=X+Y; w(Y); unlock(Y);
+
+<br><br>
+
+In T<sub>1</sub>, once Y is read, it will not be subsequently read or written,
+
+so unlock(Y) can be executed immediately after r(Y) because the two locks
+
+precede it.
+
+In T<sub>2</sub>, unlock(X) cannot come immediately after r(X) due to the rule 5;
+it must be executed after lock(Y).
+If fact if unlock(X) is immediately after r(X),
+the following schedule is allowed:
+
+</font>
+<pre>
+    T<sub>1</sub>             T<sub>2</sub>
+
+                  lock(X)
+                  r(X)
+                  unlock(X)
+   lock(X)
+   r(X)
+   lock(Y)
+   r(Y)
+   unlock(Y)
+   X = X+Y
+   w(X)
+   unlock(X)
+                  lock(Y)
+                  r(Y)
+                  Y = X+Y
+                  w(Y)
+                  unlock(Y)
+</pre>
+<font face=verdana size=-1>
+
+r(X) in T<sub>2</sub> &lt;<sub>&sigma;</sub> w(X) in T<sub>1</sub> and
+r(Y) in T<sub>1</sub> &lt;<sub>&sigma;</sub> w(Y) in T<sub>2</sub>.
+Hence the serializability graph is 
+the cycle T<sub>1</sub> &rarr; T<sub>2</sub>, T<sub>2</sub> &rarr; T<sub>1</sub>, and
+the schedule is non-serializable.
+
+<br><br>
+
+An application of lock/unlock operations to a transaction is called <em>optimal</em>
+
+if:
+
+<ol>
+
+<li>
+
+All locks are executed as late as possible without violating the two-phase protocol;
+
+<li>
+
+All unlocks are executed as early as possible without violating the two-phase protocol.
+
+</ol>
+
+An optimal application minimizes the duration of each critical section
+lock(A); &hellip;; unlock(A), hence
+allows a maximal amount of concurrency within
+the constraints of the two-phase protocol.
+
+For "straight line code" containing no conditional statements or
+
+loops, the following algorithm can be used to insert lock and unlock operations
+
+in an optimal way.
+
+<ol>
+
+<li>
+
+For each database item A, locate the earliest occurrence of read(A) or write(A), and insert
+
+lock(A) just before it.
+
+<li>
+
+Locate the last lock operation regardless of database items.
+
+<li>
+
+For each database item A, locate the last occurrence of read(A) or write(A),
+
+and insert unlock(A) just after it or the last lock found in step 2, whichever comes later.
+
+</ol>
+
+More complex algorithms are necessary for transaction code with conditionals or loops.
+
+<br><br>
+
+The lock(A) and unlock(A) operations can be implemented by a binary
+
+variable associated with the database item A, which we denote by
+
+lock[A], and a queue of suspended transactions waiting to lock A,
+
+which we denote by queue[A].
+
+The value of lock[A] will be "locked" or "unlocked" according as A is locked or not.
+
+Both lock[A] and queue[A] are shared by transactions and managed by TM.
+
+</font>
+
+<pre>
+lock(A):
+if ( lock[A] == unlocked ) lock[A] = locked;
+else put this transaction in queue[A] and suspend it;
+
+unlock(A):
+if ( queue[A] is empty ) lock[A] = unlocked;
+else remove the transaction at the front of queue[A] and resume its execution;
+</pre>
+
+<font face="verdana" size=-1>
+
+These algorithms explain, in the context of this implementation, why the rules 3 and 4 of the protocol are necessary.
+
+If a transaction executes lock(A) after it has done so, it will suspend itself
+
+forever since it will never execute unlock(A), that is, the transaction will
+
+deadlock with itself.
+
+If a transaction executes unlock(A) without executing lock(A) beforehand,
+
+it could prematurely unlock A that is being locked by another transaction.
+
+<br><br>
+
+It is crucial that no matter what algorithm is used,
+the lock and unlock operations be implemented and executed as atomic, isolated operations &ndash;
+this is also true for the ternary locking schemes described in the next two sections.
+
+Those familiar with the binary semaphore operations should have noticed
+their similarity to the lock and unlock operations.
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>4. Ternary Locking without Read-to-Write Upgrade</b>
+
+</font>
+
+<font face=verdana size=-1>
+
+<br><br>
+
+While binary locking is simple and easy to use, it has the disadvantage of
+
+not allowing concurrent reading of a database item, which does not 
+
+cause the database to have incorrect states.
+
+Ternary locking allows concurrent reading by using two types of data access rights:
+
+read access and write access, as well as two types of lock operations:
+
+read-lock(A) and write-lock(A).
+
+If a transaction contains read(A) but no write(A), it requests read access to A
+
+by executing read-lock(A); if it contains write(A), 
+
+it requests write access to A by executing write-lock(A).
+
+Write access subsumes read access in that any transaction with
+
+write access to A may execute read(A) as well as write(A).
+
+To implement this mechanism,
+
+three values of lock[A] are used with the following semantics:
+
+<ul>
+
+<li>
+
+Whenever lock[A] = "unlocked", no transaction is currently holding read or write access to A;
+
+read or write access to A may be granted to any transaction.
+
+<li>
+
+Whenever lock[A] = "read-locked", one or more transactions are currently holding read access to A
+
+but no transaction is holding write access to A;
+
+read access to A, but no write access, may be granted to any transaction.
+
+<li>
+
+Whenever lock[A] = "write-locked", exactly one transaction is holding write access to A and no transaction
+
+is holding read access to A;
+
+neither read nor write access to A may be granted to any transaction.
+
+</ul>
+
+</font>
+
+<table border=1 style='border-collapse: collapse;' width=75%>
+
+<tr>
+<th>value of lock[A]</th> 
+<th># of transactions holding read access to A</th>
+<th># of transactions holding write access to A</th>
+<th>may be granted to transaction</th>
+</tr> 
+
+<tr>
+<td align="center">unlocked</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">read and write access</td>
+</tr>
+
+<tr>
+<td align="center">read-locked</td>
+<td align="center">n &ge; 1</td>
+<td align="center">0</td>
+<td align="center">read access</td>
+</tr>
+
+<tr>
+<td align="center">write-locked</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">nothing</td>
+</tr>
+
+</table>
+
+<font face="verdana" size=-1>
+
+<br>
+
+Since the write-lock is completely exclusive,
+we observe that if all transactions only used write-lock operations,
+their effect would be equivalent to binary locks.
+
+<br><br>
+
+The following algorithms implement read-lock(A), write-lock(A), and unlock(A) operations;
+queue[A] denotes the queue of transactions waiting to acquire read or write access
+to A, and count[A] denotes the integer variable to keep track of the number of
+transactions currently holding read access to A.
+
+</font>
+
+<pre>
+read-lock(A):
+
+if ( lock[A] == unlocked ) { lock[A] = read-locked; count[A] = 1; }
+else if ( lock[A] == read-locked ) count[A] = count[A]+1;
+else /* lock[A] == write-locked */
+    put this transaction in queue[A] and suspend it;
+
+write-lock(A):
+
+if ( lock[A] == unlocked ) lock[A] = write-locked;
+else put this transaction in queue[A] and suspend it;
+
+unlock(A):
+
+if ( lock[A] == write-locked )
+{   if ( queue[A] is empty )
+        lock[A] = unlocked;
+    else
+    {   if ( the transaction at the front of queue[A] requests write access )
+            remove it from queue[A] and resume its execution;
+        else
+        {   remove transactions requesting read access from queue[A] until
+            a transaction requesting write access is found;
+            count[A] = the # of the removed transactions;
+            lock[A] = read-locked;
+            resume the execution of the removed transactions;
+        }
+    }
+}
+else /* lock[A] == read-locked */
+{   count[A] = count[A]-1;
+    if ( count[A] == 0 )
+    {   if ( queue[A] is empty )
+            lock[A] = unlocked;
+        else /* transaction at front of queue[A] must be requesting write access */
+        {   lock[A] = write-locked;
+            remove the transaction from queue[A] and resume its execution;
+        }
+    }
+}
+</pre>
+
+<font face="verdana" size=-1>
+
+This implementation has one shortcoming:
+
+if transactions requesting read access to A keep coming one after another in such a way
+
+that count[A] stays greater than 0 for a long time or forever,
+
+transactions requesting write access to A will have to wait for a long time
+
+or forever.
+
+This problem is often called "live lock" or "starvation" of writers.
+
+One way to solve this problem is to modify the algorithm for read-lock(A) so that
+
+once a writer is put on queue[A], transactions attempting read-lock(A) are placed on a queue
+
+until after the writer is granted write access.
+
+This is left as Question 8 in Exercises.
+
+<br><br>
+
+The two-phase protocol for ternary locking consists of the following
+
+seven rules:
+
+<ol>
+
+<li>
+
+Each transaction
+
+must execute read-lock(A) or write-lock(A) before the earliest read(A).
+
+<li>
+
+Each transaction
+
+must execute write-lock(A) before the earliest write(A).
+
+<li>
+
+Each transaction
+
+must unlock(A) after the last read(A) or write(A).
+
+<li>
+
+No transaction may execute read-lock(A) if it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+No transaction may execute write-lock(A) if it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+No transaction may execute unlock(A) unless it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+Regardless of database items, all read-lock and write-lock operations must precede
+
+the very first unlock operations.
+
+</ol>
+
+Again, this protocol guarantees serializable schedules and hence correct database states.
+
+<br><br>
+
+Optimal applications of the three operations can be defined analogously to
+
+those of binary locks/unlocks.
+
+The following algorithm can be used to insert read-lock, write-lock, and unlock operations
+
+into straight line code in an optimal way.
+
+<ol>
+
+<li>
+
+For each database item A, locate the earliest occurrence of read(A) or write(A); insert
+
+read-lock(A) just before it if the transaction contains no write(A), or else insert write-lock(A) 
+
+just before it.
+
+<li>
+
+Locate the last occurrence of read-lock or write-lock regardless of database items.
+
+<li>
+
+For each database item A, locate the last occurrence of read(A) or write(A),
+
+and insert unlock(A) just after it or the last lock found in step 2, whichever comes later.
+
+</ol>
+
+Consider the transactions T<sub>1</sub> and T<sub>2</sub>
+
+executing the code segments:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X); r(Z); Y=X+Y+Z; w(Y);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y); r(Z); Z=X+Z; w(Z);
+
+<br><br>
+
+The following is the code of T<sub>1</sub> and T<sub>2</sub> with
+
+read-lock, write-lock, and unlock operations inserted in an optimal way by the above algorithm:
+
+<br><br>
+
+T<sub>1</sub>:
+
+<br>
+
+w-lock(X); r(X); w-lock(Y); r(Y); X=X+Y; w(X); r-lock(Z); unlock(X); r(Z); unlock(Z); Y=X+Y+Z; w(Y); unlock(Y);
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); w-lock(Y); r(Y); Y=X+Y; w(Y); w-lock(Z); unlock(X); unlock(Y); r(Z); Z=X+Z; w(Z); unlock(Z);
+
+<br><br>
+
+It should be noticed that an optimal application of locks/unlocks is not unique.
+
+The following is a different optimal application for T<sub>2</sub> obtained by the opposite of the above algorithm,
+
+i.e., by first inserting the unlocks as early as possible and then inserting the locks as late as possible:
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); w-lock(Y); w-lock(Z); unlock(X); r(Y); Y=X+Y; w(Y); unlock(Y); r(Z); Z=X+Z; w(Z); unlock(Z);
+
+<br><br>
+
+Here, w-lock(Z) is "pulled ahead" due to the earliest possible execution of unlock(X).
+
+In the previous T<sub>2</sub>, unlock(X) is "pushed back" due to the latest possible execution
+
+of w-lock(Z).
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>5. Ternary Locking with Read-to-Write Upgrade</b>
+
+</font>
+
+<font face=verdana size=-1>
+
+<br><br>
+
+The ternary locking method described in the previous section has two disadvantages:
+
+<ul>
+
+<li>
+
+Consider a transaction that reads data items, performs a long computation with them,
+then writes them back to the database.
+Write-locks on the data items must be executed before the readings although
+the writings are done at the end of the transaction.
+During the long computation phase, it denies the possibility of harmless concurrent readings of the data items 
+done by other transactions that only read the data items.
+
+<li>
+
+The transaction code needs to be inspected to detect if it contains
+a write operation; this is to determine whether read-lock or write-lock is to be used.
+In case the transaction code is statically compiled, the compiler could perform this task;
+it is nevertheless a significant burden on the compiler.
+The detection is impossible in interpretational mode of execution in which transaction
+statements are interpreted one by one without look-ahead analysis of the code.
+This type of interpretational execution occurs when transaction statements are
+entered from the terminal or contained in a "script" for immediate, real-time execution.  
+
+</ul>
+
+These disadvantages are removed by permitting a transaction to upgrade its read access
+
+to a data item A to write access just before the first write(A).
+
+The upgrade is granted only if no other transaction is reading A;
+
+otherwise, the transaction is placed on queue[A].
+
+<br><br>
+
+The rule 5 of the two-phase protocol given in the previous section is relaxed to:
+
+<blockquote>
+
+5. No transaction may execute write-lock(A) if it has already executed it.
+
+(But it may execute write-lock(A) if it has executed read-lock(A) only.)
+
+</blockquote>
+
+The other six rules remain the same.
+
+<br><br>
+ 
+The implementation of read-lock, write-lock, and unlock must be modified suitably.
+
+One way is to modify the algorithm for the write-lock operation as follows
+(while keeping the same algorithms for read-lock and unlock).
+
+</font>
+<pre>
+write-lock(A):
+
+if ( lock[A] == unlocked ) lock[A] = write-locked;
+else if ( this transaction is holding read access to A ) 
+{    
+     if ( count[A] == 1 ) /* only this transaction is reading A */
+     {    count[A] = 0;
+          lock[A] = write-locked;
+     }     
+     else /* count[A] > 1 */
+          put this transaction in queue[A] and suspend it;
+}
+else put this transaction in queue[A] and suspend it;
+</pre>
+<font face=verdana size=-1>
+
+Consider again the two transactions T<sub>1</sub> and T<sub>2</sub>:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X); r(Z); Y=X+Y+Z; w(Y);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y); r(Z); Z=X+Z; w(Z);
+
+<br><br>
+
+By applying read-lock(A) just before the first read(A), write-lock(A) just before 
+
+the first write(A), and unlock(A) as early as possible after the last 
+
+lock operation, we get:
+
+<br><br>
+
+T<sub>1</sub>:
+
+<br>
+
+r-lock(X); r(X); r-lock(Y); r(Y); X=X+Y; w-lock(X), w(X); r-lock(Z); r(Z);
+
+Y=X+Y+Z; w-lock(Y); unlock(X); unlock(Z); w(Y); unlock(Y);
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); r-lock(Y); r(Y); Y=X+Y; w-lock(Y); w(Y); r-lock(Z); r(Z); 
+
+Z=X+Z; w-lock(Z); unlock(X); unlock(Y); w(Z); unlock(Z);
+
+<br><br>
+
+Ternary locking with read-to-write upgrade has its own shortcoming &ndash;
+it is comparatively prone to deadlocks.
+This method allows multiple transactions to read the same initial value of
+a certain database item A concurrently and begin computations with it.
+Suppose now that these transactions attempt to write A's values back in the database.
+Then attempts will be made to upgrade
+transactions' read-locks to write-locks just before writing is done.
+But no upgrade is permitted because the transactions are holding
+read-locks on A, with the result that they will
+be eventually placed in waiting queues, deadlocking one another,
+to prevent non-serializable schedules.
+More generally, suppose <i>n</i> transactions have executed read-lock(A) and acquired read access to A, and later
+<i>m</i> of them attempt to execute write-lock(A), <i>n</i> &ge; 2, <i>n</i> &ge; <i>m</i> &ge; 1.
+Then the above algorithm will deadlock all <i>m</i> transactions one another and place them in queue[A].
+The <i>m</i> transactions are waiting to write lock A but cannot do so as they themselves have read-lock on A.
+The deadlock manager is expected to handle these deadlocked transactions suitably.
+The algorithm for unlock(A) can be modified to salvage the <i>m</i> = 1 case only,
+so that the one self-deadlocked transaction is safely removed from queue[A], upgraded to have write-lock on A,
+and resumes its execution.
+This is left as Question 9 in exercises.
+
+<br><br>
+
+Ternary locking without read-to-write upgrade prevents deadlocks of this sort
+since requests for write-locks are made before the first read operations &ndash;
+it does not allow multiple transactions to read the same
+database item concurrently 
+if one of them has a writing operation on the data item.
+
+<br><br>
+
+In the above example, T<sub>1</sub> and T<sub>2</sub> may start by concurrently reading X and Y by
+acquiring read-locks on them.
+Then w-lock(X) in T<sub>1</sub> and w-lock(Y) in T<sub>2</sub> will deadlock them.
+
+<br><br>
+
+Consider the following transaction code to withdraw $X from bank account A:
+
+</font>
+<pre>
+r-lock(A);
+r(A);
+if ( A &ge; X )
+{
+	A = A &minus; X;
+	w-lock(A);
+	w(A);
+}
+unlock(A);
+</pre>
+<font face=verdana size=-1>
+
+Suppose the balance of A is $10,000.
+You and your spouse, who share account A, might start withdrawing $6,000 almost simultaneously.
+Then the two transactions may acquire read-locks on A and read A = 10000 concurrently.
+Because 10000 &ge; 6000 holds
+each transaction will decrease A's value to 4000 and attempt to execute w-lock(A), which will deadlock
+both transactions to prevent the incorrect value A = 4000 from being written in the database.
+
+<br><br>
+
+The following is the code without read-to-write upgrade:
+
+</font>
+<pre>
+w-lock(A);
+r(A);
+if ( A &ge; X )
+{
+	A = A &minus; X;
+	w(A);
+}
+unlock(A);
+</pre>
+<font face=verdana size=-1>
+
+Since a write-lock must be acquired at the outset,
+you and your spouse will never be allowed to start this transaction code concurrently.
+
+</font>
+
+<br><br>
+
+<font face=verdana>
+
+<b>References</b>
+
+</font>
+
+<br><br>
+
+<font face=verdana size=-1>
+
+[1] P.M. Lewis, A. Bernstein, and M. Kifer.
+<i>Databases and Transaction Processing, An Application-Oriented Approach</i>.
+Addison Wesley, 2002.
+
+<br>
+
+[2] R. Elmarsi and S.B. Navathe.
+<i>Fundamentals of Database Systems, 3rd edition</i>.
+Addison Wesley, 2000.
+
+</font>
+
+</body>
+</html>
+

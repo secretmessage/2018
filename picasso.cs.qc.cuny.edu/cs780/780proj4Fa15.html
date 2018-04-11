@@ -1,0 +1,116 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 4 Fall 2015
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Fall 2015
+</b>
+
+<hr align="center">
+
+<font face="verdana">
+
+PROJECT 4: JDOQL Queries
+<br>
+<b>Due: 12/20/15, Sunday, 11 PM 
+<br>
+No late submission will be accepted.
+This project must be completed individually &ndash; no group work permitted.
+</b>
+
+<br><br>
+
+<font color=red>
+<b>
+Use <a href="http://www.objectdb.com/object/db/database/download">ObjectDB version 2.6.4</a>
+for this project
+(this seems to be the most recent, stable version).
+</b>
+</font>
+
+<p>
+This project deals with the following classes for a laptop database:
+<a href = "proj4Fa15/Product.java">Product</a>,
+<a href = "proj4Fa15/Laptop.java">Laptop</a>,
+<a href = "proj4Fa15/Processor.java">Processor</a>,
+<a href = "proj4Fa15/Memory.java">Memory</a>,
+<a href = "proj4Fa15/Company.java">Company</a>.
+<a href = "proj4Fa15/Utility.java">Utility</a> has generic functions to print collections
+and to extract the element from a singleton collection;
+this class will be compiled with the above five but will not be
+transformed into a persistent class.
+</p>
+
+<p>
+For each of the following functions,
+you are to provide code of its body correctly implementing
+the specification given in the comment:
+<ol>
+<li>
+Processor.installedOn
+<li>
+Memory.installedOn
+<li>
+Company.memoryProcessor
+<li>
+Company.differentCompanyProcessor
+<li>
+Laptop.find
+<li>
+Laptop.HDandHardDrive
+<li>
+Laptop.speedPrice
+<li>
+Laptop.hasProcessor
+<li>
+Laptop.laptopProcessorMadeBySameCompany
+<li>
+Laptop.sameProcessor
+<li>
+Laptop.groupByCompany
+</ol>
+All these functions are to use JDOQL queries.
+It may be advantageous to start with relevant JDOQL queries in set form.
+For visualization, it may be helpful to draw a UML diagram of the database.
+<b>Do not change anything in the given class definitions and
+the function headers.</b>
+Place all the classes in one folder, the default package.
+</p>
+ 
+<p>
+<a href="proj4Fa15/Test1.java">Test1</a> and <a href="proj4Fa15/Test2.java">Test2</a>
+are programmed to do some testing with
+example <a href = "proj4Fa15/laptop1.odb">laptop1.odb</a> and <a href = "proj4Fa15/laptop2.odb">laptop2.odb</a> database files, respectively.
+To test your function code by these, download them to the same folder
+that has your laptop class files, and run the main functions.
+The correct output should be identical to
+<a href = "proj4Fa15/proj4Fa15out1.txt">Test1 output</a> and
+<a href = "proj4Fa15/proj4Fa15out2.txt">Test2 output</a>.
+The contents of these databases can be inspected by Explorer.
+You might do your own testing by adding test code to the main function.
+</p>
+
+<p>
+<b>Submission</b>
+
+<br><br>
+
+The due date is 12/20/15, Sunday, 11 PM. No late submission will be accepted.
+Finishing the project before the final exam will greatly help your preparations for it.
+
+<br><br>
+
+<b>Email</b> to yukawa.qc@optimum.net all five .java files with your function code inserted, 
+using the subject header:
+<br><br>
+<em>CS 332, Project 4, Your Full Name</em>.
+</p>
+
+</font>
+
+</body>
+</html>
+

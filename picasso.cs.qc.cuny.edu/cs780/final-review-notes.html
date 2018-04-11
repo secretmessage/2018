@@ -1,0 +1,151 @@
+<html>
+<body>
+
+<title>
+Final Exam Review Notes
+</title>
+
+This page lists the most important materials likely to be involved in final exam questions, along with some tips.
+They should help your preparations, but only studying from these notes does not guarantee you will pass the exam.
+A calculator will not be needed in the exam.
+
+<ul>
+<li>
+Multiple Inheritance (Course Notes #6)
+  <br><br>
+  <ul>
+  <li>
+  Problems of the single inheritance model of college persons and the way multiple inheritance eliminates
+  them by capturing objects inheriting characteristics of multiple superclasses.
+  <li>
+  Emergent properties: What are they and how are they useful?
+  <li>
+  Potential combinatorial explosion in the # of subclasses.
+  <li>
+  What are relative advantages/disadvantages of true inheritance and composite-structure method?
+  <li>
+  Given a simple inheritance hierarchy, you should be able to remodel it in composite-structure method and
+  provide necessary delegation functions, with and without abstract role classes, and implement your model in Java.
+  </ul>
+  <br>
+
+<li>
+Temporal Information and History (Course Notes #7)
+  <br><br>
+  <ul>
+  <li>
+  Meaning of valid and transaction times.
+  <li>
+  Meaning of logical deletion.
+  <li>
+  Bitemporal space and bitemporal cells.
+  UML model of bitemporal cells.
+  <li>
+  Modeling bitemporal histories of attributes, objects, and relations.
+  <li>
+  Given a simple scenario about temporal development of a fact/relation/event,
+  you should be able to give a diagram of bitemporal cells modeling the development.
+  </ul>
+  <br>
+
+<li>
+JDO (Course Notes #8 and #9)
+  <br><br>
+  <ul>
+  <li>
+  Collection hierarchy and its built-in functions.
+  <li>
+  JDOQL queries, in set form and in actual JDOQL syntax.
+  <li>
+  Given English specifications of queries, you should be able to give JDOQL queries both in
+  set form and in JDOQL syntax.
+  Queries in exam questions will be no more complex than the examples in Course Notes and
+  the movie queries in Project 4.
+  </ul>
+  <br>
+
+<li>
+Hash Tables (Course Notes #10)
+  <br><br>
+  <ul>
+  <li>
+  How a hash function is used to determine the array position of an index value.
+  <li>
+  Definition and significance of uniform hashing property.
+  <li>
+  Search, insertion, deletion algorithms, and their &Theta;(M/(N&times;n)) efficiency.
+  You should be able to explain how &Theta;(M/(N&times;n)) efficiency is derived under
+  the assumption of uniform hashing property.
+  <li>
+  In general, why are hash tables inefficient for range queries?
+  </ul>
+  <br>
+
+<li>
+B<sup>+</sup> Trees (Course Notes #11)
+  <br><br>
+  <ul>
+  <li>
+  Definition of B<sup>+</sup> trees.
+  <li>
+  Understand how the lower and upper bounds are derived in the two Theorems.
+  <li>
+  Search, insertion, deletion algorithms, and their &Theta;(log(M)) efficiency.
+  How rotations, splitting, merging are used to handle overflowing/underflowing nodes. 
+  <li>
+  Given a dozen or so index values,
+  you should be able to show B<sup>+</sup> trees of order 3 or 4 containing them.
+  <li>
+  Given a small B<sup>+</sup> tree of order 3 or 4,
+  you should be able to insert/delete a few index values and show the resulting B<sup>+</sup> trees.
+  </ul>
+  <br>
+
+<li>
+R trees and R<sup>+</sup> Trees (Course Notes #12)
+  <br><br>
+  <ul>
+  <li>
+  Definitions of R trees and R<sup>+</sup> trees.
+  <li>
+  Four types of search algorithms.
+  <li>
+  Given a few 2D rectangles and small values of N<sub>1</sub> and N<sub>2</sub>,
+  you should be able to show an R tree and R<sup>+</sup> tree covering the rectangles.
+  <li>
+  Given an R tree and R<sup>+</sup> tree covering a few rectangles and a box B,
+  you should be able to trace the four search algorithms and show the search path(s) for B. 
+  </ul>
+  <br>
+
+<li>
+Transaction Management (Course Notes #13)
+  <br><br>
+  <ul>
+  <li>
+  ACID properties &ndash; what are they?
+  <li>
+  Definitions and significance of serial and serializable schedules.
+  <li>
+  Serializability-test graphs.
+  Given a simple schedule, you should be able to give its serializability-test graph and
+  decide if it is serializable.
+  <li>
+  2-phase protocol.
+  <li>
+  Binary locking, ternary locking with and without read-to-write upgrade.
+  The advantage of ternary locking over binary locking.
+  Understand how lock(A), r-lock(A), w-lock(A), unlock(A) algorithms work,
+  but you do not have to memorize them.
+  <li>
+  Given a simple transaction code segment,
+  you should be able to find optimal applications of lock, r-lock, w-lock, unlock using 
+  the 2-phase protocol, in binary locking and ternary locking with/without read-to-write upgrade.
+  </ul>
+  <br>
+
+</ul>
+
+</body>
+</html>
+

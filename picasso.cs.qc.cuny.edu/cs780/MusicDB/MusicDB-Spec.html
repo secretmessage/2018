@@ -1,0 +1,229 @@
+<html>
+
+<title>
+Specification of Music DB
+</title>
+
+<body>
+
+<font size="+1">
+Specification of Example Digital Library of Music
+</font>
+
+<br><br>
+
+<hr>
+<font size="+1">
+classes
+</font>
+-- The key attributes are <u>underlined</u>.
+<hr>
+
+<pre>
+<b>class</b> ImageContent
+
+/* The class of digitally encoded images. */
+
+{
+}
+
+<b>class</b> AudioContent
+
+/* The class of digitally encoded audio files. */
+
+{
+}
+
+<b>class</b> Record
+
+{  <b>attributes</b>
+     title,
+     releaseDate,
+     totalLength,  /* in minutes and seconds */
+     price
+}
+
+<b>class</b> PopRecord: Record
+
+{
+}
+
+<b>class</b> ClassicalRecord: Record
+
+{
+}
+
+<b>class</b> Track
+
+/* The class of individual tracks contained in records. */
+
+{  <b>attributes</b>
+     title,
+     length  /* in minutes and seconds */
+}
+
+<b>class</b> PopTrack: Track
+
+{
+}
+
+<b>class</b> ClassicalTrack: Track
+
+{
+}
+
+<b>class</b> Organization
+
+{  <b>attributes</b>
+     name,
+     address,
+     phoneNum,
+     <u>URL</u>   /* Web site address */
+}
+
+<b>class</b> Label: Organization
+
+/* The class of record labels. */
+
+{
+}
+
+<b>class</b> Studio: Organization
+
+{
+}
+
+<b>class</b> Ensemble: Organization
+
+{
+}
+
+<b>class</b> Person
+
+{  <b>attributes</b>
+     firstName,
+     lastName,
+     midInitial
+}
+
+<b>class</b> Producer: Person
+
+{
+}
+
+<b>class</b> Engineer: Person
+
+{
+}
+
+<b>class</b> Performer: Person
+
+{
+}
+
+<b>class</b> Composer: Person
+
+{
+}
+
+<b>class</b> Conductor: Person
+
+{
+}
+</pre>
+
+<hr>
+<font size="+1">
+Relations
+</font>
+<pre>
+-->       denotes an association relation;
+<>--->    denotes an aggregation (weak composition) relation;
+<<>>--->  denotes a composition (strong composition) relation.
+</pre>
+<hr>
+
+<ul>
+
+<li>
+<b>Source Class: Record</b>
+<pre>
+coverPhoto: Record <>---> ImageContent   0..1 : 0..1
+coverPhoto(r, i) means record r has cover photo i.
+
+label: Record --> Label   1..* : 0..1
+label(r, l) means record r is issued by record label l.
+
+studio: Record --> Studio   * : *
+studio(r, s) means record r contains tracks recorded at studio s.
+
+producer: Record --> Producer   * : *
+producer(r, p) means record r contains tracks produced by producer p.
+
+engineer: Record --> Engineer   * : *
+engineer(r, e) means record r contains tracks engineered by engineer e.
+</pre>
+
+<li>
+<b>Source Class: PopRecord</b>
+<pre>
+track: PopRecord <>---> PopTrack   0..* : 1..*
+track(pr, pt) means pop record pr has pop track pt.
+
+mainPerformer: PopRecord --> Performer   * : *
+mainPerformer(pr, pf) means performer pf is one of the main performers
+of pop record pr.
+</pre>
+
+<li>
+<b>Source Class: ClassicalRecord</b>
+<pre>
+track: ClassicalRecord <>---> ClassicalTrack   0..* : 1..*
+track(cr, ct) means classical record cr has classical track ct.
+
+mainComposer: ClassicalRecord --> Composer   * : *
+mainComposer(cr, c) means composer c is one of the main composers of
+classical record cr.
+
+mainConductor: ClassicalRecord --> Conductor   * : *
+mainConductor(cr, c) means conductor c is one of the main conductors
+of classical record cr.
+
+mainEnsemble: ClassicalRecord --> Ensemble   * : *
+mainEnsemble(cr, e) means ensemble e is one of the main ensembles of
+classical record cr.
+</pre>
+
+<li>
+<b>Source Class: Track</b>
+<pre>
+audioContent: Track <<>>---> AudioContent   1 : 1
+track(t, a) means track t has digital audio content a.
+
+composer: Track --> Composer   1..* : *
+composer(t, c) means composer c is one of the composers of 
+track t.
+</pre>
+
+<li>
+<b>Source Class: PopTrack</b>
+<pre>
+performer: PopTrack --> Performer   1..* : 1..*
+performer(pt, pf) means performer pf performs on pop track pt.
+</pre>
+
+<li>
+<b>Source Class: ClassicalTrack</b>
+<pre>
+conductor: ClassicalTrack --> Conductor   1..* : 0..1
+conductor(ct, c) means conductor c is the conductor of
+classical track ct.
+
+ensemble: ClassicalTrack --> Ensemble   1..* : 1
+ensemble(ct, e) means classical track ct is played by the ensemble e.
+</pre>
+</ul>
+
+</body>
+
+</html>

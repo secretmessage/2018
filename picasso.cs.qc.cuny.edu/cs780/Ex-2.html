@@ -1,0 +1,202 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #2
+<br><br>
+
+
+<b>1.</b> Concisely explain the difference between <em>abstract</em> and <em>concrete</em> classes.
+
+<br><br>
+
+<b>2.</b> Consider the following simplified model of an "airline company database". 
+
+<pre>
+
+  class Flight               class Airplane          class CrewMember       class Airport
+  { attributes               { attributes            { attributes           { attributes
+      flight #                   ID #                    ID #                   name
+      departure time             model name              name                   code
+      arrival time               capacity                age                }
+  }                              max flight time     }
+                             }
+                                                        
+  class Pilot extends CrewMember       class Attendant extends CrewMember
+  { attributes                          { attributes
+      rank                                  position
+      experience in # of years          }
+  }                                                           
+
+</pre>
+
+<b>Association Relations</b>
+
+<br><br>
+
+<b>Note</b>: 
+R: C &rarr; D  &nbsp; a..b, c..d &nbsp; means R is a binary relation from class C to class D. 
+The multiplicity range a..b is for C's side and c..d is for D's side.
+
+<br><br>
+
+from: Flight &rarr; Airport &nbsp;  1..*, 1  &nbsp;&nbsp;&nbsp;
+from( f, a ): flight <i>f</i> departs from airport <i>a</i>
+<br>
+to: Flight &rarr; Airport &nbsp;  1..*, 1  &nbsp;&nbsp;&nbsp;
+to( f, a ): flight <i>f</i> arrives to airport <i>a</i>
+<br>
+assignedTo: CrewMember &rarr; Flight &nbsp;  1..10, 1..3 &nbsp;&nbsp;&nbsp;
+assignedTo( c, f ): crew member <i>c</i> is assigned to flight <i>f</i>
+<br>
+canUse: Flight &rarr; Airplane &nbsp;  1..*, 1..*  &nbsp;&nbsp;&nbsp;
+canUse( f , a ): flight <i>f</i> can use airplane <i>a</i>
+<br>
+canOperate: Pilot &rarr; Airplane &nbsp;  2..*, 1..*   &nbsp;&nbsp;&nbsp;
+canOperate( p, a ): pilot <i>p</i> can operate airplane <i>a</i>
+
+<ol>  
+<li>Give a UML diagram for this database model (you need not include attributes).
+<li>Which class could be abstract in this model?
+<li>Give Java-like class definitions for this database; choose appropriate data types for the attributes and relations.
+As discussed in class, use Set&lt;<i>C</i>&gt; type, where <i>C</i> is a suitable class,
+to implement relations with multiplicities higher than 1.   
+<li>The relation <i>assignedTo</i> has multiplicities 1..10, 1..3. Explain precisely what they mean.
+<li>Is it reasonable to change the multiplicities of <i>assignedTo</i> to 1, 1..3? Explain your answer.
+<li>Is it correct to designate { departure time, arrival time } as a <i>key</i> for the Flight class? Explain your answer.
+</ol>
+     
+<b>3.</b> Consider the following simplified model of an online book/CD store database.
+
+<pre>
+
+  class Employee         class Customer          class Item              class Order
+  { attributes           { attributes            { attributes            { attributes
+      employee ID            full name               item ID #               order date
+      full name              address                 item name,          }
+  }                          credit card #           price
+                         }                       }                                                 
+  class Book extends Item       class CD extends Item
+  { attributes                  { attributes
+      authors                       musicians
+  }                             }
+
+</pre>
+
+<b>Association Relations</b>
+
+<br><br>
+
+processed: Employee &rarr; Order  &nbsp;  *, *   &nbsp;&nbsp;&nbsp;
+processed(e, o): employee <i>e</i> processed order <i>o</i>
+<br>
+placed: Customer &rarr; Order  &nbsp;  1, *   &nbsp;&nbsp;&nbsp;
+placed(c, o): customer <i>c</i> placed order <i>o</i>
+<br>
+include: Order &rarr; Item &nbsp;   *, 1 .. *   &nbsp;&nbsp;&nbsp;
+include(o, i): order <i>o</i> includes item <i>i</i>
+
+<ol>
+<li>Give a UML diagram for this database model (you need not include attributes).
+<li>Give Java-like class definitions for this database; choose appropriate data types for
+    the attributes and relations. 
+    As discussed in class, use Set&lt;<i>C</i>&gt; type, where <i>C</i> is a suitable class, 
+    to implement relations with multiplicities higher than 1.    
+<li>Is it reasonable to change the multiplicities of <i>placed</i> to 1, 0..3? Explain your answer.
+</ol>
+  
+<b>4.</b>
+Give Java-like class definitions for each of the following example UML models 
+in Course Notes #4.
+Use Set&lt;<i>C</i>&gt; type to implement relations with multiplicities higher than 1.
+<ol>
+<li>The building model in &sect;1.
+<li>The binary tree model in &sect;1.
+<li>The text block model in &sect;1.
+<li>The directed and undirected network model in &sect;3.
+<li>The flight network model in &sect;3.
+</ol>
+
+<b>5.</b>
+<ol>
+<li>Give a definition of a <em>key</em> for a class.
+<li>Describe the difference between keys and indexes.
+</ol>
+
+<b>6.</b> Consider the 3-ary relation Contract( Author, Publisher, Book ) among the classes 
+    Author, Publisher, and Book. 
+    Contract( <i>a</i>, <i>p</i>, <i>b</i> ) means that author <i>a</i> signed a contract with
+    publisher <i>p</i> to write book <i>b</i>. 
+
+<ol>
+<li>Give a UML diagram for a <i>tuple model</i> of the Contract relation. 
+    Include all necessary relations and their multiplicities. 
+    Also, choose two or three suitable attributes in each class and then implement your UML model in Java.
+<li>Do Question (a) using an <i>aggregate model</i> of Contract instead of a tuple model.
+<li>What advantage does the aggregate model have over the tuple model?
+</ol>
+
+<b>7.</b> Consider the 4-ary relation Take(Student, Course, Program, Grade) among the four classes
+    Student, Course, Program, and Grade. 
+    Take(<i>s</i>, <i>c</i>, <i>p</i>, <i>g</i>) means student <i>s</i> took course <i>c</i> in program <i>p</i> and
+    received grade <i>g</i>. 
+    Give a UML diagram for the Take relation. 
+    Include all necessary relations and their multiplicities. 
+    Also, choose two or three suitable attributes in each class and then implement your UML
+    model in Java-like class definitions.
+
+<br><br>
+
+<b>8.</b>  
+
+<ol>
+<li>Explain the difference between single inheritance and multiple inheritance.
+<li>With a simple example, illustrate the usefulness of multiple inheritance for object-oriented databases.
+</ol>
+    
+<b>9.</b> For each of the following pairs of classes, indicate if the relation between them should be modeled as
+   inheritance or whole-part.
+
+<ol>
+<li>Automobiles &ndash;  Vans
+<li>Automobiles &ndash;  Engines
+<li>Newspapers &ndash;  Sports Sections
+<li>Newspapers &ndash;  Weekly Newspapers
+<li>Books &ndash;  Mystery Books
+<li>Books &ndash;  Paperback Books
+<li>Books &ndash;  Chapters
+<li>Computers &ndash;  Laptop Computers
+<li>Computers &ndash;  CPUs 
+<li>Highways &ndash;  Interstate Highways
+<li>Highways &ndash;  Exits
+</ol>
+
+<b>10.</b> Describe the difference between weak composition (aggregation) and strong composition.
+   
+<br><br>
+
+<b>11.</b> Consider the following binary relations pertaining to geographical objects. For each of 
+   the relations, explain whether it should be a strong composition relation, a weak composition relation,
+   or can be either.
+
+<ol>
+<li>Highways &ndash;  Interchanges
+<li>States &ndash;  Cities
+<li>States &ndash;  State Parks
+<li>Roads &ndash;  Intersections
+<li>Cities &ndash;  Airports
+</ol>
+
+<b>12.</b>.
+Consider a database of PCs to be used for an e-commerce site that specializes in selling PCs.
+Based on the fact that the marketed PCs are manufactured by various companies, 
+it has been proposed to create subclasses of PCs for different brands, 
+like IBM-PC, DELL-PC, etc.
+Is the creation of these classes justified?
+Explain.
+
+</body>
+</html>

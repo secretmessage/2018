@@ -1,0 +1,273 @@
+<html>
+<body>
+
+<title>
+Exercise Set #4 Solutions
+</title>
+
+<b>1.</b>
+
+<center><img src="CrewMember.jpg"></center>
+
+<pre>
+class CrewMember
+{
+	String IDNum;
+	String name;
+	int age;
+
+	Pilot pilot;
+	Attendant attendant;
+}
+
+class Pilot
+{
+	String rank;
+	int experienceInYears;
+
+	CrewMember crewMember; // the inverse of CrewMember.pilot
+
+	String IDNum() { return crewMember.IDNum; }
+	String name()  { return crewMember.name; }
+	int age()      { return crewMember.age; }
+}
+
+class Attendant
+{
+	String position;
+
+	CrewMember crewMember; // the inverse of CrewMember.attendant
+
+	String IDNum() { return crewMember.IDNum; }
+	String name()  { return crewMember.name; }
+	int age()      { return crewMember.age; }
+}
+</pre>
+
+<b>2.</b>
+
+<ul>
+<li>
+Advantages of the composite-structure method over true inheritance:
+ <ul>
+ <li>The effect of inheritance can be simulated in DBs that do not support inheritance.
+ <li>The effect of multiple inheritance can be simulated in OODBs that do not support multiple inheritance.
+ <li>There is no potential combinatorial explosion in the # of subclasses that
+     true multiple inheritance hierarchies could generate.
+ </ul>
+<li>
+Advantages of true inheritance over the composite-structure method:
+ <ul>
+ <li>Automatic inheritance of features; no need to implement strong-composition relations
+     and no need for delegation functions.
+ <li>Inheritance polymorphism, i.e., dynamic binding of function code.
+ </ul>
+</ul>
+
+<b>4.</b>
+
+<center><img src="gadgetComposite.jpg"></center>
+
+<pre>
+class Gadget
+{
+	String productName;
+	float weight;
+	float price;
+	Manufacturer manufacturer;
+
+	Set&lt;GadgetRole&gt; gadgetRoles;
+}
+
+abstract class GadgetRole
+{
+	Gadget gadget; // the inverse of Gadget.gadgetRoles
+
+	String productName() { return gadget.productName; }
+	float weight() { return gadget.weight; }
+	float price() { return gadget.price; }
+	Manufacturer manufacturer() { return gadget.manufacturer; }
+}
+
+class PocketPC extends GadgetRole { ... }
+class CellPhone extends GadgetRole { ... }
+class AudioPlayer extends GadgetRole { ... }
+</pre>
+
+<b>6.</b>
+The following are example answers.
+There may be other good answers depending on specific contexts, purposes, and functions
+of airline databases.
+
+<ul>
+<li>Airport
+ <ul>
+ <li>start: the time an airport opened
+ <li>end: the time an airport closed
+ </ul>
+<li>Flight
+ <ul>
+ <li>start: the time a flight was introduced into the flight schedule 
+ <li>end: the time a flight was removed from the flight schedule
+ </ul>
+<li>FlightInstance
+ <ul>
+ <li>start: the time reservations for a flight instance commenced
+ <li>end: the time post-flight servicing for a flight instance was completed by mechanics 
+ </ul>
+<li>CanceledFlightInstance: the time cancellation became official; canceled date
+<li>Airplane
+ <ul>
+ <li>start: the time an airplane was bought or rent by the airline company 
+ <li>end: the time an airplane was sold, returned to the renter, scrapped, or destroyed by an accident
+ </ul>
+<li>Mechanic: the time period(s) of a mechanic's official employment
+<li>CrewMember: the time period(s) of a crew member's official employment
+<li>Passenger
+ <ul>
+ <li>one-time passenger
+  <ul>
+  <li>start: the time a reservation was made 
+  <li>end: the arrival time of the flight instance the passenger was on, or
+           the time a reservation was canceled
+  </ul>
+ <li>account holder (such as frequent-flier account)
+  <ul>
+  <li>start: the time an account was opened 
+  <li>end: the time an account was closed
+  </ul>
+ </ul>
+</ul>
+
+<b>7.</b>
+
+<center><img src="course-temp.jpg"></center>
+
+<pre>
+class Course
+{
+	String number;
+	String title;
+	Set&lt;Credits&gt; creditsHistory;
+	Set&lt;Hours&gt; hoursHistory;
+	Set&lt;Description&gt; descriptionHistory;
+}
+
+Instead of Set, TreeSet or LinkedList may be used to maintain histories sorted in
+chronological or reverse chronological order.
+
+class Credits
+{
+	int credits;
+	Set&lt;BitemporalCell&gt; bitemporalCells;
+}
+
+Similarly for the Hours and Description classes.
+
+class BitemporalCell
+{
+	TimePeriod validTime;
+	TimePeriod transactionTime;
+}
+</pre>
+
+<!--
+<b>8.</b>
+
+<center><img src="timeContiguous.jpg"></center>
+
+Each A-object records only the start of its valid and transaction times;
+the end times are equal to the start times of the next A-object in the chronologically sorted list.
+The end times of the most recent A-object are recorded in the <i>class attributes</i>
+<tt>validTimeEndLatest</tt> and <tt>transactionTimeEndLatest</tt> as just one value of each is needed
+for the entire class.
+It is assumed that the chronological order with respect to
+the valid times is identical to that with respect to the transaction times
+(but the start times or the time periods may differ).
+-->
+
+<b>8.</b>
+
+<center><img src="chair.jpg"></center>
+
+<br>
+
+This is a 2-tuple model of chairperson using the relation class Chair:
+Each Chair-object represents a tuple &lang;<i>d</i>, <i>p</i>&rang;
+meaning professor <i>p</i> was or has been the chairperson of
+department <i>d</i>, with each tuple associated to its bitemporal history.
+
+<pre>
+class Chair
+{
+	Department department;
+	Professor professor;
+	Set&lt;BitemporalCell&gt; bitemporalCells;
+}
+</pre>
+
+Department class might have a filed of Set&lt;Chair&gt; type
+implementing the inverse relation of <i>department</i> to access the chair data efficiently.
+Professor class might also have a filed of Set&lt;Chair&gt; type, but it would not be useful for
+most purposes since most professors have never been chairs and efficient retrieval of
+a professor's chair data is not a common or frequent query.
+
+<br><br>
+
+<b>9.</b>
+
+<center><img src="contract.jpg"></center>
+
+<pre>
+class Contract
+{
+	Set&lt;Architect&gt; architects;
+	Set&lt;Company&gt; companies;
+	Set&lt;Building&gt; buildings;
+	Set&lt;BitemporalCell&gt; bitemporalCells;
+}
+</pre>
+
+Architect, Company, Building classes might have fields of Set&lt;Contract&gt; type
+implementing the inverse relations of
+<i>architects</i>, <i>companies</i>, <i>buildings</i>, respectively.
+
+<br><br>
+
+<b>10.</b>
+
+<center><img src="roster-temp.jpg"></center>
+
+Java implementation omitted.
+
+<br><br>
+
+<b>11.</b>
+<br>
+1.
+<pre>
+06/15/08   s<sub>1</sub>   b<sub>1</sub> = [06/15/08, 06/24/08] &times; [07/01/08, 08/31/08]   logically deleted
+06/25/08   s<sub>1</sub>   b<sub>2</sub> = [06/25/08, 08/09/08] &times; [07/10/08, 09/10/08]   logically deleted
+08/10/08   s<sub>1</sub>   b<sub>3</sub> = [08/10/08,      now] &times; [07/10/08, 07/31/08]   active
+08/10/08   s<sub>2</sub>   b<sub>4</sub> = [08/10/08, 08/31/08] &times; [08/01/08, 09/10/08]   logically deleted
+09/01/08   s<sub>2</sub>   b<sub>5</sub> = [09/01/08, 09/14/08] &times; [08/01/08, 10/31/08]   logically deleted
+09/15/08   s<sub>2</sub>   b<sub>6</sub> = [09/15/08,      now] &times; [08/01/08, 09/31/08]   active
+09/15/08   s<sub>1</sub>   b<sub>7</sub> = [09/15/08,      now] &times; [10/01/08, 10/31/08]   active
+</pre>
+
+<center><img src="Ex4-Q11.jpg"></center>
+
+2.
+<br>
+The following model is used in this solution.
+<br><br>
+
+<center><img src="Ex4-Q11-1.jpg"></center>
+
+<br>
+
+<center><img src="Ex4-Q11-2.jpg"></center>
+
+</body>
+</html>
+

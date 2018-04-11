@@ -1,0 +1,387 @@
+<html>
+<body>
+
+<title>
+Exercise Set #5
+</title>
+
+CS 332/780: Object-Oriented Databases 
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #5
+<br><br>
+
+<font face="verdana" size=-1>
+
+<b>Exercise 1</b>.
+
+The following query retrieves all students each of whom has at least two other students
+with the same last name:
+
+<br><br>
+
+Unbound variables: s2: Student, s3: Student
+
+</font>
+
+<pre>
+{ s1: Student | s1.name.lastName == s2.name.lastName &&
+                s2.name.lastName == s3.name.lastName &&
+                s1 != s2 && s2 != s3 && s3 != s1  }
+</pre>
+
+<font face="verdana" size=-1>
+
+<ol>
+<li>
+ What would be the result of the query if the condition "s1 != s2" were omitted?
+ What if "s2 != s3" or "s3 != s1" were omitted?
+<li>
+ What would be the result of the query if the condition "s1 != s2 && s2 != s3"
+ were omitted?
+</ol>
+
+<b>Exercise 2</b>.
+
+Consider the following JDO class definitions.
+
+</font>
+
+<pre>
+Class Book                                   Class Publisher
+{ String title;                              { String name; // key attribute 
+  HashSet&lt;Author&gt; writtenBy;                   HashSet&lt;Book&gt; published;
+  Publisher publishedBy;                     }
+    // the inverse of Publisher.published
+}
+
+Class Author
+{ String authorID; // key attribute
+  HashSet&lt;Book&gt; wrote; // the inverse of Book.writtenBy
+}
+</pre>
+
+<font face="verdana" size=-1>
+
+Note: The relation "an author wrote a book" includes cases where
+an author co-wrote a book with other authors; likewise for the inverse
+relation <i>writtenBy</i>.
+
+<br><br>
+
+For each of the following descriptions of queries pertaining to the above
+classes, give a JDOQL query in set form.
+If necessary, use suitable bound and/or unbound variables, and specify
+the bound/unbound variables used along with their types;
+also, give the logical interpretation of the query using existential quantifiers.
+
+<br><br>
+
+<b>1.</b>
+Parameter: ID: String
+<br>
+Result: the author whose authorID is equal to <i>ID</i>
+
+<br><br>
+
+<b>2.</b>
+Parameter: x: int
+<br>
+Result: all authors that wrote at least <i>x</i> books
+
+<br><br>
+
+<b>3.</b>
+Parameters: a: Author, p: Publisher
+<br>
+Result: all books written by <i>a</i> and published by <i>p</i>
+
+<br><br>
+
+<b>4.</b>
+Parameter: aa: HashSet&lt;String&gt;
+<br>
+Result: all books each of which is written by at least one
+author whose authorID is included in <i>aa</i>
+
+<br><br>
+
+<b>5.</b>
+Result: all authors that wrote at least one book published by 
+Academic Press
+
+<br><br>
+
+<b>6.</b>
+Parameter: p: Publisher
+<br>
+Result: all authors that wrote at least one book published by publisher <i>p</i>
+
+<br><br>
+
+<b>7.</b>
+Parameter: p: Publisher
+<br>
+Result: all authors that wrote only books published by publisher <i>p</i>
+
+<br><br>
+
+<b>8.</b>
+Result: all authors that wrote at least two books published by Academic Press
+
+<br><br>
+
+<b>9.</b>
+Result: all authors that wrote at least two books published by Academic Press or
+at least one book published by Computer Science Press
+
+<br><br>
+
+<b>10.</b> <b>(Relatively Difficult)</b>
+Can the following parametric query be expressed by a single JDOQL query in set form?
+If not, explain why.
+<br><br>
+Parameter: x: int
+<br>
+Result: all authors that wrote at least <i>x</i> books published by Academic Press
+
+<br><br>
+
+<b>11.</b>
+Result: all books <i>b</i> such that <i>b</i>'s authors include one who wrote
+a book titled "Database Systems"
+
+<br><br>
+
+<b>12.</b>
+Result: all authors that co-wrote at least one book with
+one or more other authors
+
+<br><br>
+
+<b>13.</b>
+Result: all authors that co-wrote at least one book with two or more other authors
+
+<br><br>
+
+<b>14.</b>
+Parameter: pname: String
+<br>
+Result: the publisher whose name is equal to <i>pname</i>
+
+<br><br>
+
+<b>15.</b>
+Parameter: x: int
+<br>
+Result: all publishers that published at least <i>x</i> books
+
+<br><br>
+
+<b>16.</b>
+Parameter: authorID: String
+<br>
+Result: all publishers that published at least one book written by <i>authorID</i>
+
+<br><br>
+
+<b>17.</b>
+Parameter: x: int
+<br>
+Result: all publishers that published only books that were each written by
+fewer than or equal to <i>x</i> authors.
+
+<br><br>
+
+<b>Exercise 3</b>.
+
+Give full Java/JDO function code for each of the following
+<em>without using JDOQL queries</em>. 
+The class to which the function belongs is shown inside [ ... ].
+In coding each function, any of the other functions may be used, and
+any library function in the Collection interface may be used.
+
+<br><br>
+
+<b>1.</b>
+HashSet&lt;Course&gt; getCourses( ) [Student]
+<br>
+Returns the set of all courses the target student took or is taking.
+
+<br><br>
+
+<b>2.</b>
+HashSet&lt;Student&gt; getStudents( ) [CourseSection]
+<br>
+Returns the set of all students that took or are taking the target course section.
+
+<br><br>
+
+<b>3.</b>
+HashSet&lt;Student&gt; getStudents( ) [Course]
+<br>
+Returns the set of all students that took or are taking the target course.
+
+<br><br>
+
+<b>4.</b>
+HashSet&lt;Student&gt; getStudents( ) [Professor]
+<br>
+Returns the set of all students that took or are taking at least one course
+section taught by the target professor.
+
+<br><br>
+
+<b>5.</b>
+HashSet&lt;Course&gt; getCourses( ) [Professor]
+<br>
+Returns the set of all courses the target professor taught or is teaching.
+
+<br><br>
+
+<b>6.</b>
+HashSet&lt;CourseSection&gt; getCourseSections( ) [Department]
+<br>
+Returns the set of all course sections the target department offered or is offering.
+
+<br><br>
+
+<b>7.</b>
+HashSet&lt;Student&gt; getStudents( ) [Department]
+<br>
+Returns the set of all students that took or are taking at least one
+course section offered by the target department.
+
+<br><br>
+
+<b>8.</b>
+HashSet&lt;CourseSection&gt; getCourseSectionsByChair( ) [Department]
+<br>
+Returns the set of all course sections offered by the target department
+and taught by its chairperson.
+Note: The chair may have taught course sections offered by departments
+other than the target department.
+
+<br><br>
+
+<b>9.</b>
+HashSet&lt;Employee&gt; getEmployees( ) [Department]
+<br>
+Returns the set of all employees that worked or are working for
+the target department.
+
+<br><br>
+
+<b>10.</b>
+void addToOffer(String number,
+                   String title,
+                   int credits,
+                   int hours,
+                   String description) [Department]
+<br>
+Creates a new Course object with the given attribute values and
+adds it to the <i>offer</i> set of the target department.
+Its <i>courseSection</i> attribute will be set to the empty set.
+
+<br><br>
+
+<b>Exercise 4</b>.
+
+Code the functions 1 through 9 in Exercise 3 using JDOQL queries.
+Each function will have an extra parameter of Query type and
+return a Collection instead of a HashSet.
+
+<br><br>
+
+<b>Exercise 5</b>.
+
+Consider the following JDO class definitions.
+
+</font>
+
+<pre>
+   class  Order                           class  Customer
+   {   String  orderID;  /* key */        {    String  customerID;  /* key */
+       HashSet&lt;Item&gt;  includes;                HashSet&lt;Order&gt;  placed;
+   }                                      }
+
+   class  Item
+   {   String  itemID;  /* key */
+       HashSet&lt;Order&gt;  includedIn;   /*  The inverse relation of Order.includes  */
+   }
+</pre>
+
+<font face="verdana" size=-1>
+
+Give JDOQL queries in set form to retrieve each of the following.
+
+<ol>
+<li>
+Get all customers that placed an order that includes the item with itemID = "123".
+<li>
+Get all customers that placed an order that includes at least five items.
+<li>
+Get all customers that have ordered at least two different items, not necessarily in one order.
+<li>
+Get all customers that have placed at least one order and have only ordered the item with itemID = "123" 
+(i.e., have never ordered any item with itemID &ne; "123").
+</ol>
+
+<b>Exercise 6</b>. 
+Consider the JDO class definitions in Exercise 5. Give full Java/JDO function code for 
+each of the following. The class to which the function belongs is shown inside [ ... ]. 
+
+<ol>
+
+<li>
+<b>int &nbsp; countOrders( ) &nbsp; [Item]</b>
+<br>
+Returns the total number of orders that include the target item.  
+
+<li>
+<b>static &nbsp; Customer &nbsp; find( String  s, PersistenceManager pm ) &nbsp; [Customer]</b>
+<br>
+Returns the customer whose customerID is equal to the parameter <i>s</i>; 
+returns null if no such customer exists. 
+The function is applied to the database held by the persistence manager <i>pm</i>.
+
+<li>
+<b>boolean &nbsp; includedInAtLeast( int  x ) &nbsp; [Item]</b>
+<br>
+Tests if the target item is included in at least <i>x</i> orders. 
+
+<li>
+<b>boolean &nbsp; addItem( Item  i ) &nbsp; [Order]</b>
+<br>
+Adds the parameter item <i>i</i> to the <i>includes</i> field of the target order, and returns true; 
+the inverse relation <i>i.includedIn</i> must also be adjusted appropriately. 
+If the item <i>i</i> already exists in the <i>includes</i> field, does nothing and returns false.
+
+<li>
+<b>Collection&lt;Order&gt; &nbsp; OrdersByCustomerItem( Item  i, Query q ) &nbsp; [Customer]</b>
+<br>
+Returns the collection of all orders placed by the target customer that include the parameter item <i>i</i>.
+
+<li>
+<b>static &nbsp; Collection&lt;Order&gt; &nbsp; includesAtLeastOne( HashSet&lt;String&gt;  ii, Query q ) &nbsp; [Item]</b>
+<br>
+Returns the collection of all orders that each include at least one item whose itemID is
+contained in the set <i>ii</i>.
+
+<li> 
+<b>Customer &nbsp; isPlacedBy( PersistenceManager pm ) &nbsp; [Order]</b>
+<br>
+Returns the customer that placed the target order; 
+this computes the inverse relation of Customer.placed.
+ 
+<li>
+<b>Collection&lt;Item&gt;  &nbsp; items( Query q ) &nbsp; [Customer]</b>
+<br>
+Returns the collection of all items that have been ordered by the target customer.
+
+</ol>
+
+</font>
+</body>
+</html>

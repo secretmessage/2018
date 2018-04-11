@@ -1,0 +1,83 @@
+----------
+Windows 10
+----------
+
+1.  Click Search box, type "Environment", select "Edit the system environment variables".
+
+2.  Click Environment Variables button.
+
+3.  Click "New" under System Variables and enter the following:
+
+    Variable Name: JAVA_HOME
+    Variable Value: the path name to the folder where your Java system is
+                    e.g. C:\Program Files\Java\jdk1.7.0_03
+
+4.  Click OK.
+
+5.  Click "New" and enter the following:
+
+    Variable Name: ObjectDB
+    Variable Value: the path name to the folder where your ObjectDB system is
+                    e.g. C:\Program Files\objectdb
+
+6.  Click OK.
+
+7.  Look for CLASSPATH under System Variables.
+
+    7.1 If it exists, click "Edit". Move to the end in the Variable Value box, and add the following:
+
+        ;%ObjectDB%\bin\objectdb.jar
+
+    7.2 If it does not exist, click "New" and enter the following:
+
+        Variable Name: CLASSPATH
+        Variable Value: .;%ObjectDB%\bin\objectdb.jar
+
+    NOTE: .; at the beginning is used to include the current path.
+
+8.  Click OK.
+
+9.  Select "PATH" under System Variables. Move to the end in the Variable Value box, and add the following:
+
+    ;%JAVA_HOME%\bin
+
+10.  Click OK.
+
+11.  Click OK, Click OK.
+
+
+When the Java or ObjectDB system is moved to a different folder, or 
+a new version of it has been installed in a different folder,
+update the value assigned to JAVA_HOME or ObjectDB variable to the new folder path name.
+
+
+
+---------
+Windows 8
+---------
+
+1. Go to Desktop | Double-Click Computer | Click Open Control Panel | Click System and Security | Click System | Click Advanced System Settings
+
+2. Follow Steps 2 - 11 for Windows 10.
+
+
+
+--------
+Mac OS X
+--------
+
+1.  Unpack the downloaded ObjectDB zip file.
+
+2.  Drag and drop the folder 'objectdb' to 'Applications' folder.
+
+3.  Create or modify the file .bash_profile to add the following CLASSPATH setting in the home directory:
+
+    export CLASSPATH=.:/Applications/objectdb/bin/objectdb.jar
+
+4.  Type the following command in the shell terminal: source .bash_profile
+
+
+You can start ObjectDB Explorer by the following command in shell terminal:
+
+java -jar /Applications/objectdb/bin/explorer.jar
+

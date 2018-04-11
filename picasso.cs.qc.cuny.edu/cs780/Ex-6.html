@@ -1,0 +1,166 @@
+<html>
+<body>
+
+<title>
+Exercise Set #6
+</title>
+
+CS 332/780: Object-Oriented Databases 
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #6
+<br><br>
+
+<b>1</b>.
+Consider B<sup>+</sup> trees of order N = 300. 
+Presume that the index field is a key. 
+
+<ol type=a>
+<li>Compute the minimum and maximum number of objects that can be covered by trees of height 1
+    (height starts from 0 at the root). 
+<li>Compute the minimum and maximum number of objects that can be covered by trees of height 2.
+<li>Compute the lower and upper bound on height of the trees that cover M = 10<sup>12</sup> index values.
+</ol>
+
+<b>2</b>.
+<ol type=a>
+<li>
+Consider a hash table containing 10<sup>7</sup> indexes, with
+each full node (page) containing 250 indexes.
+Assuming the uniform hashing property, 
+compute the approximate number of nodes per linked list for
+each of the array sizes N = 10<sup>3</sup>, 10<sup>4</sup>,
+10<sup>5</sup>, 10<sup>6</sup>.
+<li>
+Consider B<sup>+</sup> trees of order N = 250. 
+Presuming that the index field is a key,
+compute the lower and upper bound on height of the trees that cover M = 10<sup>7</sup> indexes.
+</ol>
+
+<b>3</b>.
+The standard page size for today's PCs is 4 KB = 4096 bytes. 
+Consider B<sup>+</sup> trees whose nodes each have 4096 bytes. 
+Assume that 4 bytes are used by each index and by each pointer, and 
+44 bytes are set aside in each node for bookkeeping purposes. 
+<ol type=a>
+<li>
+Compute the largest possible number of pointers in each node 
+(i.e., the largest possible order N). 
+<li>
+Compute the lower and upper bound on height of the trees that cover M = 10<sup>9</sup> index values.
+<li>
+Consider hash tables whose full nodes have the same number of pointers obtained in Q (a).
+Assuming that M = 10<sup>9</sup> index values are covered with the uniform hashing property,
+compute the approximate number of nodes per linked list for
+each of the array sizes 10<sup>4</sup>,
+10<sup>5</sup>, 10<sup>6</sup>, 10<sup>7</sup>.
+
+</ol>
+
+<b>4</b>.
+Informally but concisely describe an algorithm for the following function to process range queries
+in B<sup>+</sup> trees: 
+<blockquote>
+getObjectsInRange(p, k<sub>1</sub>, k<sub>2</sub>) 
+<br><br>
+p is a pointer to the root of a B<sup>+</sup> tree 
+
+<br>
+k<sub>1</sub> and k<sub>2</sub> are index values such that k<sub>1</sub> &le; k<sub>2</sub> 
+</blockquote>
+The function retrieves all objects with index values in the range k<sub>1</sub> through k<sub>2</sub>, inclusive. 
+
+<br><br>
+
+<b>5</b>.
+Explain why B<sup>+</sup> tree indexes are superior to hash table indexes for range queries.
+
+<br><br>
+
+<b>6</b>.
+Consider B<sup>+</sup> tree index.
+Describe algorithms for:
+<ol type=a>
+<li>finding the object(s) with the minimum index value.
+<li>finding the object(s) with the maximum index value.
+<li>processing all the objects one by one in the sorted, increasing order of their index values.
+</ol>
+
+<b>7</b>. 
+Let M be the total # of objects covered by a B<sup>+</sup> tree. Presume that the index field is a key.
+<ol type=a>
+<li>The runtime efficiency of the B<sup>+</sup> tree search operation is (choose the correct one):
+    &Theta;(1), &Theta;( log(M) ), &Theta;( M ), &Theta;( M log(M) ), &Theta;( M<sup>2</sup> )
+<li>The runtime efficiency of the B<sup>+</sup> tree insertion operation is (choose the correct one):
+    &Theta;(1), &Theta;( log(M) ), &Theta;( M ), &Theta;( M log(M) ), &Theta;( M<sup>2</sup> )
+<li>The runtime efficiency of the B<sup>+</sup> tree deletion operation is (choose the correct one):
+    &Theta;(1), &Theta;( log(M) ), &Theta;( M ), &Theta;( M log(M) ), &Theta;( M<sup>2</sup> )
+</ol>
+
+<b>8</b>.
+Indicate if each of the following is true or false.
+<ol type=a>
+<li>Hash table and B<sup>+</sup> tree indexes are created to reduce the amount of disk space used by the database.
+<li>Hash table and B<sup>+</sup> tree indexes are created to enhance time efficiency of object retrieval.
+<li>Hash table and B<sup>+</sup> tree indexes can only be created on key fields of classes.
+<li>Except the root, each node of any B<sup>+</sup> tree of order 50 must have at least 24 index values.
+<li>Each node of any B<sup>+</sup> tree of order 50 may have up to 100 index values.
+<li>Leaf nodes of B<sup>+</sup> trees may be at different levels (i.e., heights).
+<li>(optional question) B<sup>+</sup> tree rotations are used to eliminate overflowing of a node.
+<li>(optional question) B<sup>+</sup> tree rotations are used to split overflowing nodes.
+<li>Hash table retrieval is always more efficient than
+    B<sup>+</sup> tree retrieval regardless of the array size and the number of indexes covered.
+</ol>
+
+<b>9</b>.
+Consider B<sup>+</sup> trees of order N = 3 that use integers for index values.
+<ol type=a>
+<li>Display one B<sup>+</sup> tree of the maximum height that contains 
+the indexes 1 through 10 in the leaf nodes.
+<li>Display one B<sup>+</sup> tree of the minimum height that contains 
+the indexes 1 through 10 in the leaf nodes.
+<li> Do Q (a) and Q (b) with B<sup>+</sup> trees of order N = 4.
+</ol>
+
+<b>10</b>.
+Consider B<sup>+</sup> trees of order N = 3 with integer index values. 
+<ol type=a>
+<li>Starting with an empty tree, insert the integers 1 through 10 cumulatively, 
+    and show a picture illustrating the step-by-step growth of the tree. 
+<li>Starting with the tree constructed in Q (a), delete the integers 1 through 10 successively, 
+    in this order, and show a picture illustrating the step-by-step contraction of the tree. 
+<li>Do Q (a) and Q (b) with B<sup>+</sup> trees of order N = 4. 
+</ol>
+
+<b>11</b>.
+Consider the B<sup>+</sup> tree of order N = 4 on the last page of Course Notes #10.
+<ol type=a> 
+<li>Starting with this tree, insert the integers 81, 82, 83, 85, 86 cumulatively, and 
+    show a picture illustrating the step-by-step growth of the tree. 
+    Only show the changing parts of the tree. 
+<li>Starting with this tree, delete the integers 12, 17, 3, 6, 9 successively, in this order, and 
+    show a picture illustrating the step-by-step contraction of the tree. 
+    Only show the changing parts of the tree. 
+</ol>
+
+<b>12</b>.
+Consider the following 2D MBBs of 8 objects.
+
+<center><img src="R-tree-ex.jpg"></center>
+
+<ol type=a>
+<li>
+Give diagrams of two R trees with N<sub>1</sub> = 2, N<sub>2</sub> = 4 covering the 8 MBBs.
+Answers are hardly unique &ndash; many such R trees exist.
+<li>
+Give diagrams of two R<sup>+</sup> trees with N<sub>1</sub> = 2, N<sub>2</sub> = 4 covering the 8 MBBs.
+Answers are hardly unique &ndash; many such R<sup>+</sup> trees exist.
+<li>
+Choose a few sample boxes, B, and trace the search path(s) of the four search operations on B
+in your R trees and R<sup>+</sup> trees.
+</ol>
+
+</body>
+</html>
+

@@ -1,0 +1,147 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 1 Fall 2015
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Fall 2015
+</b>
+<hr align="center">
+<font face=verdana>
+<b>
+PROJECT 1: PC Database Model
+</b>
+<br>
+
+Due: 10/15/15, Thursday, 11 PM
+
+<br><br>
+
+<b>Project Plan for the Semester</b>
+
+<br><br>
+
+In the first three projects, you will analyze, design, model, and implement 
+a generic database of PC, personal computing devices, including desktops, laptops, tablets, and smartphones.
+The database will include PCs' major hardware and software components that are
+preinstalled or can be installed.
+
+<br><br>
+
+The main goal is to construct a clear, high-level, conceptual model of PCs and their components by means of effective inheritance and whole-part hierarchies together with pertinent association relations.
+Once such a model is built, specific components should be derivable by suitable inheritance.
+The projects will therefore model relatively significant hardware/software components to reasonable levels of
+the specialization (inheritance) hierarchy,
+but will not seek to include all components of actual PCs.
+
+<br><br>
+
+<b>Project 1 Description</b>
+
+<br><br>
+
+In Project 1, you are to establish a generalization-specialization (inheritance) hierarchy of
+the following objects:
+
+<ul>
+<li>
+products, both hardware and software; this will be the most general, root class of the hierarchy.
+<li>
+hardware products
+<li>
+PCs: desktops, laptops, tablets, smartphones
+<li>
+hardware components of PCs
+<li>
+processors: CPUs, GPUs
+<li>
+memories and storages: volatile, non-volatile
+<li>
+software products: operating systems, browsers, applications
+</ul>
+
+Each product object represents a product <i>model</i>,
+not an individual hardware/software item with a serial number.
+
+<br><br>
+In addition, create a separate class of companies (which make products).
+This class will be isolated in the Project 1 model.
+
+<br><br>
+
+Include appropriate attributes in classes.
+
+<br><br>
+
+Relations (association and whole-part) will be established in project 2, and should not be
+included in this project.
+
+<br><br>
+
+Your model will be graded mainly on the soundness/effectiveness of the inheritance hierarchy,
+and secondarily on the quality of class attributes.
+
+<br><br>
+
+Here is a summary of key points:
+
+<ul>
+<li>
+All the classes and inheritance hierarchies
+must be modeled in UML class diagrams. 
+<li>
+Include basic, essential attributes in classes.
+Attribute data types may be specified or omitted in this project.
+<li>
+Key attributes, if any, should be specified by appending <i>(key)</i> to the attribute names.
+For example, if the company class has a key attribute <i>companyName</i>,
+put "<i>companyName (key)</i>" in the class box.
+<li>
+The intuitive semantics of class attributes should be concisely described by
+English comments in the text documentation area,
+unless their names are self-explanatory.
+Your UML tool should provide text documentation areas for this purpose.
+<li>
+Use the following standard UML identifiers convention:
+  <ul>
+  <li>Class names should begin with uppercase letters; if a class name is a noun,
+      it should be in singular form.
+  <li>Relation names, class attributes, and function names should begin with
+      lowercase letters.
+  </ul>
+</ul>
+
+The projects must be completed by a UML tool.
+If you've never used a UML tool,
+<a href = "http://www.visual-paradigm.com/download/community.jsp">Visual Paradigm UML free community edition</a>
+is recommended.
+
+<br><br>
+
+<b>Submission</b>
+<ul>
+<li>
+If you've used Visual Paradigm,
+email to yukawa.qc@optimum.net your Visual Paradigm project file (the one with .vpp extension), using
+the subject header:
+<br><br>
+CS 332 (or CS 780), Project 1, Your Full Name(s)
+<br><br>
+<li>
+If you've used some other UML tool, please speak to me personally to discuss what to hand in.
+</ul>
+
+Groups of two students should submit only one project, but include both students' names in the email header.
+
+<br><br>
+
+<b>NOTE:</b> 
+Be reminded about the grade differentials and rules if you elect to 
+<a href="grade.html">work in a group of two students</a>. 
+In addition, a higher grading standard will be used for CS 780 students.
+
+</font>
+</body>
+</html>

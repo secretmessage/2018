@@ -1,0 +1,99 @@
+-- TEST Laptop.find --
+
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+BBN Dual Power A554; BBN PXP Dual 599 7.0 GHz; SDR 500 11 GB; harddrive: 900 GB
+
+-- TEST Laptop.HDandHardDrive --
+
+ThinkMachine MAX SX 10; Intelli Processor Ultra Pytron X44 9.0 GHz; SDR 500 11 GB; harddrive: 700 GB
+IMB SuperBusiness 30; ADM Turiaon 9.4 GHz; SDR 500 11 GB; harddrive: 720 GB
+ThinkMachine MAX SX 20; Intelli Processor Pytron X12 8.5 GHz; Hyper Channel 500 12 GB; harddrive: 750 GB
+Media Central Media 555; Intelli Processor Pytron X12 8.5 GHz; SDR 500 11 GB; harddrive: 850 GB
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+Delion Cyber Matrix UUV 24; Intelli Processor Ultra Pytron X44 9.0 GHz; Hyper Channel 500 12 GB; harddrive: 1000 GB
+
+-- TEST Laptop.speedPrice --
+
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+Media Central Media 555; Intelli Processor Pytron X12 8.5 GHz; SDR 500 11 GB; harddrive: 850 GB
+ThinkMachine MAX SX 20; Intelli Processor Pytron X12 8.5 GHz; Hyper Channel 500 12 GB; harddrive: 750 GB
+ThinkMachine MAX SX 10; Intelli Processor Ultra Pytron X44 9.0 GHz; SDR 500 11 GB; harddrive: 700 GB
+IMB SuperBusiness 30; ADM Turiaon 9.4 GHz; SDR 500 11 GB; harddrive: 720 GB
+
+-- TEST Laptop.hasProcessor --
+
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+
+BBN Dual Power A554; BBN PXP Dual 599 7.0 GHz; SDR 500 11 GB; harddrive: 900 GB
+
+-- TEST Laptop.laptopProcessorMadeBySameCompany --
+
+
+BBN Dual Power A554; BBN PXP Dual 599 7.0 GHz; SDR 500 11 GB; harddrive: 900 GB
+BBN PXP Dual 599 7.0 GHz
+BBN
+
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+Delion Anoteron M 123 8.0 GHz
+Delion
+
+-- TEST Laptop.sameProcessor --
+
+Delion Cyber Matrix UUV 24; Intelli Processor Ultra Pytron X44 9.0 GHz; Hyper Channel 500 12 GB; harddrive: 1000 GB
+IMB OfficeBusiness 123; Intelli Processor Pytron X12 8.5 GHz; SDR 300 13 GB; harddrive: 680 GB
+Media Central Media 555; Intelli Processor Pytron X12 8.5 GHz; SDR 500 11 GB; harddrive: 850 GB
+Media Central Media 876; Intelli Processor Ultra Pytron X44 9.0 GHz; Hyper Channel 500 12 GB; harddrive: 750 GB
+ThinkMachine MAX SX 10; Intelli Processor Ultra Pytron X44 9.0 GHz; SDR 500 11 GB; harddrive: 700 GB
+ThinkMachine MAX SX 20; Intelli Processor Pytron X12 8.5 GHz; Hyper Channel 500 12 GB; harddrive: 750 GB
+
+-- TEST Processor.installedOn --
+
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+
+-- TEST Memory.installedOn --
+
+BBN Dual Power A554; BBN PXP Dual 599 7.0 GHz; SDR 500 11 GB; harddrive: 900 GB
+Delion Cyber Force XMP 3009; Delion Anoteron M 123 8.0 GHz; SDR 500 11 GB; harddrive: 950 GB
+IMB SuperBusiness 30; ADM Turiaon 9.4 GHz; SDR 500 11 GB; harddrive: 720 GB
+Media Central Media 555; Intelli Processor Pytron X12 8.5 GHz; SDR 500 11 GB; harddrive: 850 GB
+ThinkMachine MAX SX 10; Intelli Processor Ultra Pytron X44 9.0 GHz; SDR 500 11 GB; harddrive: 700 GB
+
+-- TEST Company.memoryProcessor --
+
+Delion
+IMB
+Media Central
+ThinkMachine
+
+-- TEST Company.differentCompanyProcessor --
+
+Delion
+IMB
+
+-- TEST Laptop.groupByCompany --
+
+
+BBN
+1
+7.0
+11
+
+Delion
+2
+8.0
+12
+
+IMB
+2
+8.5
+13
+
+Media Central
+2
+8.5
+12
+
+ThinkMachine
+2
+8.5
+12

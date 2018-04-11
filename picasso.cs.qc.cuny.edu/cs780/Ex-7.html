@@ -1,0 +1,198 @@
+<html>
+<body>
+
+<title>
+Exercise Set #7
+</title>
+
+CS 332/780: Object-Oriented Databases
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #7
+
+<font face="verdana" size=-1>
+
+<br><br>
+
+<b>1.</b>
+
+What are the two main tasks of the transaction manager?
+
+<br><br>
+
+<b>2.</b>
+<ol type=a>
+<li>
+Describe the <i>atomicity</i> property of transactions.
+<li>
+Define: a <i>serial</i> schedule for a set of transactions.
+<li>
+Define: a <i>serializable</i> schedule for a set of transactions.
+<li>
+Explain the significance of serial schedules.
+<li>
+Explain the significance of serializable schedules.
+</ol>
+
+<b>3.</b>
+Consider the following transaction code T<sub>1</sub> and T<sub>2</sub>:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X); r(Z); Y=X+Y+Z; w(Y);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y); r(Z); Z=X+Z; w(Z);
+
+<ol type=a>
+<li>
+Find an optimal application of lock and unlock.
+<li>
+Toward the end of Section 4 of Course Notes #11, two optimal applications of read-locks, write-locks, and locks
+to T<sub>2</sub> are given (without read-to-write upgrade).
+Find two more optimal applications.
+</ol>
+
+<b>4.</b>
+
+Consider the following transaction code T<sub>1</sub>, T<sub>2</sub>:
+
+<br><br>
+
+T<sub>1</sub>:
+r(X); r(Y); r(Z); X = X+Y+Z; w(X);
+<br>
+T<sub>2</sub>:
+r(X); r(Y); r(Z); Z = X+Y+Z; w(Z);
+
+<ol type=a>
+<li>
+Find an optimal application of lock and unlock.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+without read-to-write upgrade.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+with read-to-write upgrade.
+</ol>
+
+<b>5.</b>
+Consider the following transaction code T<sub>1</sub>, T<sub>2</sub>
+using ternary locking without read-to-write upgrade.
+
+<br><br>
+
+T<sub>1</sub>:
+
+w-lock(X); r(X), r-lock(Z); r(Z), unlock(Z); X = X+Z; w(X); unlock(X);
+
+<br>
+
+T<sub>2</sub>:
+
+r-lock(X); r(X); r-lock(Y); r(Y), unlock(X); w-lock(Z); unlock(Y); r(Z); Z=X+Y+Z; w(Z); unlock(Z);
+
+<ol type=a> 
+<li>
+Beginning with the database state (X, Y, Z) = (10, 20, 30),
+show the database states resulting from two serial schedules T<sub>1</sub>; T<sub>2</sub>; and
+T<sub>2</sub>; T<sub>1</sub>;.
+<li>
+Find one non-serializable schedule of T<sub>1</sub> and T<sub>2</sub> which,
+when started with (X, Y, Z) = (10, 20, 30), produces a database state different from
+the two states obtained in (a).
+<li>
+Find the part of the code violating the two-phase protocol and fix it.
+</ol>
+
+<b>6.</b>
+Consider the following two transaction code segments to transfer $X from account A to account B.
+
+</font>
+
+<pre>
+T<sub>1</sub>:                        T<sub>2</sub>:
+r(A);                      r(A);
+if ( A >= X )              if ( A >= X )
+{    A = A - X;            {   r(B);
+     w(A);                     A = A - X;
+     r(B);                     B = B + X;
+     B = B + X;                w(A);
+     w(B);                     w(B);
+}                          }
+</pre>
+
+<font face=verdana size=-1>
+
+For each of T<sub>1</sub> and T<sub>2</sub>,
+
+<ol type=a>
+<li>
+Find an optimal application of lock and unlock.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+without read-to-write upgrade.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+with read-to-write upgrade.
+</ol>
+
+Be careful about the presence of the if conditional.
+
+<br><br>
+
+<b>7.</b>
+Consider the following code to reserve a seat:
+
+</font>
+
+<pre>
+r( seatNum );
+r( reserved[seatNum] );
+if ( reserved[seatNum] == false )
+{       reserved[seatNum] = true;
+        w( reserved[seatNum] );
+        r( totalNumReserved );
+        totalNumReserved = totalNumReserved + 1;
+        w( totalNumReserved );
+}
+</pre>
+
+<font face=verdana size=-1>
+
+<ol type=a>
+<li>
+Find an optimal application of lock and unlock.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+without read-to-write upgrade.
+<li>
+Find an optimal application of read-lock, write-lock, and unlock using ternary locking
+with read-to-write upgrade.
+</ol>
+
+Be careful about the presence of the if conditional.
+
+<br><br>
+
+<b>8.</b>
+[Preventing starvation of writers] Modify the algorithm for read-lock(A) given in Section 4 of 
+Course Notes #11 so that 
+once a writer is put on queue[A], 
+transactions attempting read-lock(A) are placed on a queue
+until after the writer is granted write access.
+
+<br><br>
+
+<b>9.</b>
+This question concerns the deadlock issue described at the end of &sect;5 of Course Notes #13.
+Modify the algorithm for unlock(A) given in &sect;4 to salvage the <i>m</i> = 1 case,
+so that the one self-deadlocked transaction is safely removed from queue[A], upgraded to have write-lock on A,
+and resumes its execution.
+
+</font>
+
+</body>
+</html>

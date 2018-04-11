@@ -1,0 +1,59 @@
+-- TEST Laptop.find --
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+
+-- TEST Laptop.HDandHardDrive --
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+
+-- TEST Laptop.speedPrice --
+
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+
+-- TEST Laptop.hasProcessor --
+
+
+
+-- TEST Laptop.laptopProcessorMadeBySameCompany --
+
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Super Electron 10.5 GHz
+Quantum Leap
+
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+Quantum Leap Super Electron 10.5 GHz
+Quantum Leap
+
+-- TEST Laptop.sameProcessor --
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+
+-- TEST Processor.installedOn --
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+
+-- TEST Memory.installedOn --
+
+Quantum Leap Cyber Force XMP 3009; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 1000 GB
+Quantum Leap Dual Power A554; Quantum Leap Super Electron 10.5 GHz; Quantum Cell 50 GB; harddrive: 2000 GB
+
+-- TEST Company.memoryProcessor --
+
+Quantum Leap
+
+-- TEST Company.differentCompanyProcessor --
+
+
+-- TEST Laptop.groupByCompany --
+
+
+Quantum Leap
+2
+10.5
+50

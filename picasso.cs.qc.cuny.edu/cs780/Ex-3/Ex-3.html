@@ -1,0 +1,165 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases 
+<br>
+Keitaro Yukawa, Department of Computer Science, Queens College, CUNY
+<br><br>
+Exercise Set #3
+<br><br>
+
+<b>1</b>.
+Find and correct the defects in the following model.
+
+<center><img src="bookWrong.jpg"></center>
+
+<b>2</b>.
+Expand the UML college model on the last page of Course Notes #4
+by incorporating the following items.
+
+<ol>
+<li>
+A prerequisite relation between courses.
+<li>
+Buildings and rooms along with assignments of rooms to course sections.
+Also replace the <i>OfficeInfo</i> class and its two relations
+by a suitable structure involving the introduced buildings and rooms.
+<li>
+A class of academic degrees along with their various relations to
+students, courses, <i>Take</i> objects, and departments.
+(There are a few possible answers to this question.)
+</ol>
+
+<b>3</b>.
+Consider the following composition relation.
+
+<center><img src="fig10.jpg"></center>
+
+This is an example of composition that models a "template" or "schema"
+(Course) and its concrete instances people actually experience
+in the real world (CourseSection).
+Establish an analogous composition relation for each of the following,
+and create a few suitable attributes for the classes.
+
+<ol>
+<li>
+Airline flights and their concrete instances.
+For example, a flight is a template with a flight number, departure and
+arrival airports, scheduled departure and arrival times, etc., while
+a flight instance has the actual crew members on board, actual departure
+and arrival times, actual airplane used, etc.
+<li>
+Theatrical plays and their concrete performances.
+For example, the Broadway show "Cats" had been scheduled for a period of time
+at a certain theater and was actually performed dozens of times. 
+</ol> 
+ 
+<b>4</b>.
+Courses and their sections can generally have two or three parts of lecture, recitation, and
+lab.
+Extend the composite model of Course and CourseSection classes above to 
+include these three possible parts.
+
+<br><br>
+
+<b>5</b>.
+Sometimes an aggregation relation can be refined to
+a strong composition relation and an association relation.
+For example, the <i>member</i> aggregation relation below can
+be refined to the <i>roster</i> strong composition relation
+and the <i>take</i>: <i>Student</i> &rarr; <i>RosterSpot</i> association relation.
+This refinement can also be regarded as a model of the binary relation
+
+<i>member</i> using a relation class, which is interpreted as the class of roster spots.  
+
+<center><img src="aggregate.jpg"></center>
+
+<ol>
+<li>
+Refine the following aggregation relations analogously.
+
+<center><img src="PCagg.jpg"></center>
+
+<li>
+What would be the benefit(s) of the refinement exemplified by these two samples?
+</ol>
+
+<b>6</b>.
+Give class schemas that implement all the whole-part and inter-part relations
+in the building model in Course Notes #5 &ndash; no need to include attributes.
+<br><br>
+
+<!--
+<b>6</b>.
+The following is an inheritance tree of "gadgets".
+
+<center><img src="gadget.jpg"></center>
+
+<ol>
+<li>
+Remodel the inheritance tree using a composite, without and with
+use of a "role" class.
+<li>
+Implement in Java the two composites obtained in 1.
+Include all the necessary delegation functions.
+</ol>
+-->
+
+<b>7</b>.
+The following is a model of PC components.
+
+<center><img src="PC.jpg"></center>
+
+Hierarchically decompose this model into a whole-part class diagram and local class
+diagrams displaying local, inter-part relations.
+You may use composite structure diagrams instead of local class diagrams.
+
+<br><br>
+
+<b>8</b>.
+Consider the following model of state highways and municipality local roads.
+
+<center><img src="state.jpg"></center>
+
+<ul>
+<li>
+<i>connectWithinState</i>(h<sub>1</sub>, h<sub>2</sub>) means that highways h<sub>1</sub>
+and h<sub>2</sub> belong to the same state and connect to each other.
+<li>
+
+<i>connectAcrossState</i>(h<sub>1</sub>, h<sub>2</sub>) means that highways h<sub>1</sub>
+and h<sub>2</sub> belong to two different states and connect to each other at a point
+on the state border.
+<li>
+<i>adjacentWithinState</i>, <i>adjacentAcrossState</i>, and <i>connectWithinMunicipality</i>
+
+have similar semantics.
+<li>
+<i>connectAcrossMunicipality</i>(r<sub>1</sub>, r<sub>2</sub>) means that local roads r<sub>1</sub>
+and r<sub>2</sub> belong to two different municipalities in the same state and connect to each other at a point
+on the municipality border.
+</ul>
+
+<ol>
+
+<li>
+Hierarchically decompose this model into a whole-part class diagram and local class
+diagrams displaying local, inter-part relations.
+You may use composite structure diagrams instead of local class diagrams.
+The relations that do not belong in any local class diagram should be
+included in the whole-part diagram.
+<li>
+Introduce the relation <i>connectAcrossState</i>(MunicipalityLocalRoad, MunicipalityLocalRoad) where
+<i>connectAcrossState</i>(r<sub>1</sub>, r<sub>2</sub>) means r<sub>1</sub> and r<sub>2</sub> belong
+to two different states and connect to each other at a point
+on the state border.
+Is this relation local to any of the classes in the diagram?
+If so, include it 
+in a suitable local class diagram (or a suitable composite structure diagram);
+otherwise include it in the whole-part diagram.
+
+</ol>
+
+</body>
+</html>
+

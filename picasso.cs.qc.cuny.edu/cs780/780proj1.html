@@ -1,0 +1,136 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 1 Spring 2018
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Spring 2018
+</b>
+
+<br>
+
+<hr align="center">
+<font face=verdana>
+<b>
+PROJECT 1: Modeling Objects in Bank Database
+</b>
+<br>
+
+Due: 03/13/18, Tuesday, 11 PM
+
+<br><br>
+
+In this semester you are to design and model
+a bank database pertaining to customers and banking transactions.
+Information internal to banks and irrelevant to customers and transactions will be omitted,
+like information about internal office structures and employees. 
+The objective of Project 1 is to model the following basic objects:
+
+<ul>
+<li>
+accounts (e.g., savings accounts, checking accounts, credit card accounts, loan accounts)
+<li>
+account holders
+<li>
+branches
+<li>
+terminals: objects used to initiate and conduct transactions
+(e.g., bank websites, ATMs, credit/debit card scanners, mobile devices, user interfaces within bank intranets)
+<li>
+paper checks and credit/debit cards issued to account holders
+</ul>
+
+These objects must be modeled by a UML class diagram.
+
+<ul>
+<li>
+Use <b>generalization-specialization (inheritance) hierarchies</b> effectively.
+For example, different types of accounts should be organized by an inheritance hierarchy,
+with the most general account class at the root.
+<li>
+Use <b>weak/strong composition whole-part hierarchies</b> effectively.
+For example, branches have terminals like ATMs, card scanners at the counter, and intranet user interfaces used by clerks.
+</ul>
+
+Additional objects and association relations, including banking transactions, will be modeled in Project 2 and 
+should not be included in this project.
+
+<br><br>
+
+In this course, there is no need to design/implement algorithms or functions. Rather, your task is to design a well-structured database model on which necessary algorithms and functions can be implemented and added.
+
+<br><br>
+
+Feel free to build a model patterned after the bank(s) you deal with.
+If you have no bank account, and even if you do,
+you are encouraged to visit a few bank websites for "field research".
+Keep in mind, however, that structures of websites do not necessarily translate into good database models.
+Certain structural aspects of websites are influenced by human user interface issues
+(e.g., ease and efficiency of the user's reading and navigation) that are largely irrelevant to
+internal database models.
+</p>
+
+Here is a summary of key points:
+
+<ul>
+<li>
+All the classes, inheritance hierarchies, whole-part hierarchies
+must be modeled in a UML class diagram. 
+The multiplicity ranges of each whole-part relation must be specified.
+<li>
+Include basic, essential attributes in classes.
+Attribute data types may be specified or omitted in this project.
+<li>
+Make classes <i>abstract</i> if you are certain they will not have any direct objects.
+<li>
+Key attributes, if any, should be specified by appending <i>(key)</i> to the attribute names.
+For example, if an account class has a key attribute <i>accountNum</i>,
+designate it by <i>accountNum (key)</i>.
+<li>
+If attribute/relation names are not self-explanatory, concisely describe their intended semantics by English comments in the text documentation area.
+Your UML tool should provide text documentation areas/boxes for this purpose.
+<li>
+Use the following identifier convention consistently:
+Class names should begin with uppercase letters; if a class name is a noun, it should be in singular form.
+Attribute and relation names should generally begin with lowercase letters.
+<li>
+Consider using different background colors of class boxes for different groups of classes.
+For example, you might use <b><font color=#ADD8E6>light blue</font></b> for the group of classes involving
+accounts,
+<b><font color=#5EFB6E>light green</font></b> for the group of classes involving branches, etc.
+Use light colors to prevent text strings from getting buried in dark colors.
+</ul>
+
+The projects must be completed by a UML tool.
+If you've never used a UML tool,
+<a href = "http://www.visual-paradigm.com/download/community.jsp">Visual Paradigm UML free community edition</a>
+is recommended.
+
+<br><br>
+
+<b>Submission</b>
+<ul>
+<li>
+If you've used Visual Paradigm,
+email to keitaro.yukawa@gmail.com your Visual Paradigm project file (the one with .vpp extension), using
+the subject header:
+<br><br>
+CS 332 (or CS 780), Project 1, Your Full Name(s)
+<br><br>
+<li>
+If you've used some other UML tool, please speak to me personally to discuss what to hand in.
+</ul>
+
+Groups of two students should submit only one project, but include both students' names in the email header.
+
+<br><br>
+
+<b>NOTE:</b> 
+Be reminded about the grade differentials and rules if you elect to 
+<a href="grade.html">work in a group of two students</a>. 
+
+</font>
+</body>
+</html>

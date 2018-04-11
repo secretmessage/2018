@@ -1,0 +1,222 @@
+<html>
+<body>
+
+<title>
+Exercise Set #6 Solutions
+</title>
+
+<b>1</b>.
+Since the index field is a key, the # of objects covered by the tree is equal to the # of
+indexes M contained in the leaf nodes.
+From the 1st Theorem of Course Notes #10, we have
+
+2&#8968;N/2&#8969;<sup>h&minus;1</sup>(&#8968;N/2&#8969;&minus;1)
+&le; M &le;
+N<sup>h</sup>(N&minus;1).
+Here we use the exact lower bound derived in the proof rather than the approximate
+&#8968;N/2&#8969;<sup>h&minus;1</sup>(N&minus;2), although they are equal if N is even.
+
+<ol type=a>
+<li>
+N = 300, h = 1.
+<br>
+2&#8968;300/2&#8969;<sup>1&minus;1</sup>(&#8968;300/2&#8969;&minus;1)
+&le; M &le;
+300<sup>1</sup>(300&minus;1). 
+<br>
+2 &times; 149 &le; M &le; 300 &times; 299.
+<br>
+298 &le; M &le; 89700.
+<li>
+N = 300, h = 2.
+<br>
+2&#8968;300/2&#8969;<sup>2&minus;1</sup>(&#8968;300/2&#8969;&minus;1)
+&le; M &le;
+300<sup>2</sup>(300&minus;1). 
+<br>
+2 &times; 150 &times; 149 &le; M &le; 300 &times; 300 &times; 299.
+<br>
+44700 &le; M &le; 26910000.
+<li>
+By the 2nd Theorem of Course Notes #10,
+
+<br><br>
+
+log<sub>300</sub>(10<sup>12</sup>/(300&minus;1)) &le;
+h &le; ( log<sub>&#8968;300/2&#8969;</sub>(10<sup>12</sup>/(300&minus;2)) ) + 1
+<br>
+3.8449 &le; h &le; 5.3775
+<br>
+4 &le; h &le; 5.
+</ol>
+
+<b>2</b>.
+<ol type=a>
+<li>
+M = 10<sup>7</sup>, n = 250.
+<pre>
+     N      M/(N &times; n)
+    10<sup>3</sup>      40
+    10<sup>4</sup>       4
+    10<sup>5</sup>       0.4
+    10<sup>6</sup>       0.04
+</pre>
+<li>
+By the 2nd Theorem of Course Notes #10,
+
+<br><br>
+
+log<sub>250</sub>(10<sup>7</sup>/(250&minus;1)) &le;
+h &le; ( log<sub>&#8968;250/2&#8969;</sub>(10<sup>7</sup>/(250&minus;2)) ) + 1
+<br>
+1.9199 &le; h &le; 3.1964
+<br>
+2 &le; h &le; 3.
+</ol>
+
+<b>3</b>.
+<ol type=a>
+<li>
+N must satisfy 4N + 4(N&minus;1) + 44 &le; 4096.
+So N &le; 507.
+<li>
+By the 2nd Theorem of Course Notes #10,
+
+<br><br>
+
+log<sub>507</sub>(10<sup>9</sup>/(507&minus;1)) &le;
+h &le; ( log<sub>&#8968;507/2&#8969;</sub>(10<sup>9</sup>/(507&minus;2)) ) + 1
+<br>
+2.33 &le; h &le; 3.62
+<br>
+h = 3.
+<li>
+M = 10<sup>9</sup>, n = 506.
+<pre>
+     N      M/(N &times; n)
+    10<sup>4</sup>      198
+    10<sup>5</sup>       19.8
+    10<sup>6</sup>       1.98
+    10<sup>7</sup>       0.198
+</pre>
+</ol>
+
+<b>4</b>.
+
+<ol>
+<li>
+Using the search algorithm,
+find the leaf node where k<sub>1</sub> is or should be.
+<li>
+In the leaf node found in step 1 or possibly its right neighbor leaf node,
+find k<sub>1</sub> or the smallest index value greater than k<sub>1</sub>.
+Starting from this value,
+traverse the linked list of leaf nodes until k<sub>2</sub> or the largest index value less than k<sub>2</sub>
+is found.
+During the traversal process, retrieve the visited objects.
+</ol>
+
+<b>5</b>.
+Range queries in hash tables require exhaustive checking of all index values in the entire table to see if 
+they fall in the range [k<sub>1</sub>, k<sub>2</sub>], therefore the runtime efficiency is in the order of
+M/n, where n is the # of index values per node, regardless of the values of k<sub>1</sub> and k<sub>2</sub>.
+(The exception is when the algorithm described at the end of Course Notes #10 is used.)
+With B<sup>+</sup> trees, the runtime efficiency of the algorithm described in Q4 is in the order of
+log(M) + (# of leaf nodes containing index values between k<sub>1</sub> and k<sub>2</sub>), 
+which is substantially more efficient, especially as the size of range [k<sub>1</sub>, k<sub>2</sub>] becomes smaller.
+
+<br><br>
+
+<b>6</b>.
+<ol type=a>
+<li>
+Finding the object(s) with the minimum index value.
+Starting from the root, follow the 1st pointer p<sub>1</sub> in each node and get to the leftmost leaf node, and
+return its 1st pointer p<sub>1</sub>.
+<pre>
+Node = root node;
+<b>while</b> ( Node is not a leaf )
+    Node = the node pointed by the 1st pointer p<sub>1</sub> in Node;
+return p<sub>1</sub> in Node;
+</pre>
+<li>
+Finding the object(s) with the maximum index value.
+Starting from the root, follow the last pointer p<sub>n</sub> in each node and get to the rightmost leaf node, and
+return p<sub>n&minus;1</sub>.
+<pre>
+Node = root node;
+<b>while</b> ( Node is not a leaf )
+    Node = the node pointed by the last pointer p<sub>n</sub> in Node;
+return p<sub>n&minus;1</sub> in Node;
+</pre>
+<li>
+Using an algorithm analogous to the one in Q(a), 
+find the minimum index value in the leftmost leaf.
+Then traverse the linked list of the leaf nodes from left to right and process the visited objects.
+</ol>
+
+<b>7</b>.
+The runtime efficiency of all of search, insertion, and deletion is &Theta;( log(M) ).
+
+<br><br>
+
+<b>8</b>.
+<ol type=a>
+<li>F
+<li>T
+<li>F
+<li>T
+<li>F
+<li>F
+<li>T
+<li>F
+<li>F
+</ol>
+
+<b>10</b>.
+<br>
+<b>a</b>.
+
+<center><img src="fig-1.jpeg" width=850 height=700></center>
+<br><br>
+<b> . . . continuing from the result of insertion of 7<b>
+<br><br>
+<center><img src="fig-2.jpeg" width=850 height=650></center>
+<br><br>
+<b>b</b>.
+<br><br>
+<center><img src="fig-3.jpeg" width=850 height=700></center>
+<br><br>
+<b> . . . continuing deletion of 4<b>
+<br><br>
+<center><img src="fig-4.jpeg" width=850 height=700></center>
+<br><br>
+<b> . . . continuing deletion of 6<b>
+<br><br>
+<center><img src="fig-5.jpeg" width=850 height=700></center>
+
+<br><br>
+
+<b>12</b>.
+
+<br>
+
+<b>a</b>.
+
+<center><img src="R-tree-ex-sol1.jpg"></center>
+
+<center><img src="R-tree-ex-sol2.jpg"></center>
+
+<center><img src="R-trees-image.jpg" width=750 height=950></center>
+
+<b>b</b>.
+
+<center><img src="R+-tree-ex-sol1.jpg"></center>
+
+<center><img src="R+-tree-ex-sol2.jpg"></center>
+
+<center><img src="R+-trees-image.jpg" width=750 height=950></center>
+
+</body>
+</html>
+

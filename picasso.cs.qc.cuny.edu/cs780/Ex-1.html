@@ -1,0 +1,314 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp;
+<br>
+Keitaro Yukawa,
+Department of Computer Science,
+Queens College, CUNY
+
+<br><br>
+
+Exercise Set #1
+
+<br><br>
+
+<font face=verdana size=-1>
+
+<b>1.</b>  Let R(A, B) be any binary relation. Prove each of the following:
+
+<ol> 
+ <li>
+ For each b &isin; B, R&darr;A(b) = R&macr;&darr;A(b).
+ <li>
+ For each a &isin; A, R&darr;B(a) = R&macr;&darr;B(a).
+</ol>
+
+<b>2.</b> For each of the following relations, describe in clear English the meaning of the given projections.
+
+<ol>
+ <li>
+   teach(Professor, CourseSection)
+   <br>
+   teach(<i>p</i>, <i>c</i>) means professor <i>p</i> taught course section <i>c</i>.
+   <ol type=a>
+   <li> teach&darr;CourseSection(<i>p</i>)
+   <li> teach&darr;Professor(<i>c</i>)
+   </ol>
+ <li>
+   child(Person, Person)
+   <br>
+   child(<i>p<sub>1</sub></i>, <i>p<sub>2</sub></i>) means person <i>p<sub>1</sub></i> is 
+   a child of person <i>p<sub>2</sub></i>.
+   <ol type=a>
+   <li> child&darr;Person<sub>1</sub>(<i>p</i>)
+   <li> child&darr;Person<sub>2</sub>(<i>p</i>)
+   <li> child&darr;Person<sub>2</sub>
+   </ol>
+ <li>
+   sibling(Person, Person)
+   <br>
+   sibling(<i>p<sub>1</sub></i>, <i>p<sub>2</sub></i>) means person <i>p<sub>1</sub></i> is 
+   a sibling of person <i>p<sub>2</sub></i>.
+   <ol type=a>
+   <li> sibling&darr;Person<sub>1</sub>(<i>p</i>)
+   <li> sibling&darr;Person<sub>2</sub>(<i>p</i>)
+   <li> sibling&darr;Person<sub>1</sub>
+   </ol>
+ <li>
+   employment(Employee, Office, JobPosition)
+   <br>
+   employment(<i>e</i>, <i>o</i>, <i>j</i>) means employee <i>e</i> works for office <i>o</i> in job position <i>j</i>.
+   <ol type=a>
+   <li> employment&darr;Employee(<i>o</i>, <i>j</i>)
+   <li> employment&darr;Office(<i>e</i>, <i>j</i>)
+   <li> employment&darr;JobPosition(<i>e</i>, <i>o</i>)
+   <li> employment&darr;Employee(<i>o</i>), where <i>o</i> is an arbitrary but fixed office
+   </ol>
+ <li>
+   contract(Author, Publisher, Book)
+   <br>
+   contract(<i>a</i>, <i>p</i>, <i>b</i>) means author <i>a</i> signed a contract with 
+   publisher <i>p</i> to write book <i>b</i>.
+   <ol type=a>
+   <li> contract&darr;Author(<i>p</i>, <i>b</i>)
+   <li> contract&darr;Publisher(<i>a</i>, <i>b</i>)
+   <li> contract&darr;Book(<i>a</i>, <i>p</i>)
+   <li> contract&darr;&lang;Author, Publisher&rang;
+   <li> contract&darr;Author(<i>p</i>), where <i>p</i> is an arbitrary but fixed publisher
+   </ol>
+</ol>
+
+<b>3.</b> Let <i>child</i> and <i>sibling</i> be the relations as defined in the previous exercise. 
+ The meaning of the composition (child child) is described by: 
+ (child child)(<i>p<sub>1</sub></i>, <i>p<sub>2</sub></i>) means person <i>p<sub>1</sub></i> is 
+ a grandchild of person <i>p<sub>2</sub></i>. 
+ Following this manner, describe the meaning of each of the following compositions.
+ <ol>
+   <li> child child child
+   <li> child sibling
+   <li> sibling child
+   <li> sibling sibling
+ </ol>
+
+<b>4.</b>  Consider the following five binary relations:
+<br><br>
+teach(Professor, CourseSection)
+<br>
+teach(<i>p</i>, <i>c</i>) means professor <i>p</i> taught course section <i>c</i>.
+<br><br>
+offerCourse(Department, CourseSection)
+<br>
+offerCourse(<i>d</i>, <i>c</i>) means department <i>d</i> offered course section <i>c</i>.
+<br><br>
+offerDegree(Department, Degree)
+<br>
+offerDegree(<i>d</i>, <i>dg</i>) means department <i>d</i> offered degree <i>dg</i>.
+<br><br>
+take(Student, CourseSection)
+<br>
+take(<i>s</i>, <i>c</i>) means student <i>s</i> completed course section <i>c</i>. 
+<br>
+(Note that this binary relation can be obtained from the 4-ary relation take(Student, CourseSection, Program, Grade) in 
+Course Notes #2 by projection: take&darr;&lang;Student, CourseSection&rang;.)
+<br><br>
+receive(Student, Degree)
+<br>
+receive(<i>s</i>, <i>d</i>) means student <i>s</i> received degree <i>d</i>.
+<br><br>
+<i>a</i>. Describe the meaning of each of the following compositions. 
+(It will be helpful to draw a "block diagram" of these relations.)
+<ol>
+ <li> take teach&macr;
+ <li> teach take&macr;
+ <li> take offerCourse&macr;
+ <li> offerCourse take&macr;
+ <li> teach offerCourse&macr;
+ <li> offerCourse teach&macr;
+ <li> receive offerDegree&macr;
+ <li> take offerCourse&macr; offerDegree
+ <li> teach take&macr; receive
+</ol>
+
+<i>b</i>.
+Define each of the following binary relations by relation composition.
+
+<ol>
+<li> { &lang;<i>d</i>, <i>c</i>&rang; : department <i>d</i> offered a degree received by a student who took course section <i>c</i> }
+<li> { &lang;<i>d</i>, <i>dg</i>&rang; : department <i>d</i> offered a course section taken by a student who received degree <i>dg</i> }
+<li> { &lang;<i>s</i>, <i>s&prime;</i>&rang; : student <i>s</i> took a course section offered by a department that offered a degree
+                                     received by student <i>s&prime;</i> }
+<li> { &lang;<i>c</i>, <i>d</i>&rang; : course section <i>c</i> was taken by a student who received degree <i>d</i> }
+<li> { &lang;<i>c</i>, <i>d</i>&rang; : course section <i>c</i> was offered by a department that offered degree <i>d</i> }
+<li> { &lang;<i>s</i>, <i>s&prime;</i>&rang; : students <i>s</i> and <i>s&prime;</i> took a common course section }
+<li> { &lang;<i>p</i>, <i>p&prime;</i>&rang; : professors <i>p</i> and <i>p&prime;</i> taught a common course section }
+<li> { &lang;<i>c</i>, <i>c&prime;</i>&rang; : course sections <i>c</i> and <i>c&prime;</i> were offered by a common department }
+<li> { &lang;<i>d</i>, <i>d&prime;</i>&rang; : degrees <i>d</i> and <i>d&prime;</i> were received by a common student }
+</ol>
+
+<b>5.</b> Consider the 4-ary relation take(Student, CourseSection, Program, Grade) in Course Notes #2. 
+Describe the meaning of each of the following.
+<ol>
+
+<li> take&darr;&lang;CourseSection, Program&rang;(<i>s</i>, <i>g</i>)
+
+<li> take&darr;&lang;CourseSection, Program&rang;
+
+<li> take&darr;Student(<i>p</i>), where <i>p</i> is an arbitrary but fixed program
+
+<li> offerCourse (take&darr;&lang;CourseSection, Program&rang;)
+
+</ol>
+
+<b>6.</b> A binary relation R(S, S) is <em>symmetric</em> if
+<blockquote>
+
+                &forall;x,y&isin;S ( R(x, y) &rArr; R(y, x) ).
+</blockquote>
+
+<ol>
+<li> Prove: For each symmetric relation R(S, S) and for each x &isin; S, R&darr;S<sub>1</sub>(x) = R&darr;S<sub>2</sub>(x).
+<li> Find three real-world examples of symmetric binary relations.
+</ol>
+
+<b>7.</b> A binary relation R(S, S) is <em>transitive</em> if
+<blockquote>
+                   &forall;x,y,z&isin;S ( R(x, y) &and; R(y, z) &rArr; R(x, z) ).
+</blockquote>
+Find three real-world examples of transitive binary relations.
+
+<br><br>
+
+<b>8.</b>
+Prove: For any R(S, S), R is symmetric iff R = R&macr;.
+
+<br><br>
+
+<b>9.</b>
+Prove: For any R(S<sub>1</sub>, S<sub>2</sub>), RR&macr; is symmetric.
+
+<br><br>
+
+<b>10.</b>
+
+Prove: For any transitive R, R&macr; is transitive.
+
+<br><br>
+
+<b>11.</b> Compare relational and object-oriented DBs and point out three relative advantages of each.
+
+<br><br>
+
+<b>12.</b> Relational DBs are said to be "value oriented" while object-oriented DBs are said to be
+"reference oriented".
+Concisely explain the meaning of these.
+
+<br><br>
+
+<b>13.</b> Concisely describe each of the following:
+<ol>
+<li>data definition language
+<li>data manipulation language
+<li>application development language
+</ol>
+
+<b>14.</b> Describe one major difference between relational and object-oriented DBs with respect to
+how the three types of languages in Q. 13 are separated or combined within the context of
+database applications development.
+
+<br><br> 
+
+<b>15.</b> Name the database component responsible for each of the following:
+<ol>
+<li>Manages low-level, physical data structures for data schemas, actual data objects, and indexes.
+<li>Controls concurrent access to the database.
+<li>Processes queries and translate/optimize them into efficient algorithmic forms.
+<li>Manages recovery from system failures.
+</ol>
+
+<b>16.</b> Which of the following correctly represent characteristics of
+(i) transparent persistent object store approach,
+(ii) object-relational mapping approach, and
+(iii) autonomous object store approach? 
+Choose all that apply.  
+
+<ol>
+<li>A real object store exists.
+<li>Only a virtual object store exists.
+<li>The view of the object store from the ADL is always transparent.
+<li>The view of the object store may or may not be transparent.
+<li>The database system provides a full object-oriented database language that supports
+    all of DDL, DML, and ADL.
+<li>Database applications development needs to commit to a single programming language.
+<li>Good fit for multi-language, heterogeneous environments.
+<li>There is potential inefficiency incurred by join operations on back-end tables that implement
+    relations between classes.
+</ol>
+
+<b>17.</b>
+Build an inheritance hierarchy
+for each of the following lists of classes with their feature sets.
+
+<ol type=a>
+<li>
+Input: Classes 1, &hellip;, 3 and the following F<sub>i</sub>:
+<br><br>
+F<sub>1</sub> = {a, b}
+<br>
+F<sub>2</sub> = {a, c}
+<br>
+F<sub>3</sub> = {a, b, c, d}
+<br><br>
+
+<li>
+Input: Classes 1, &hellip;, 5 and the following F<sub>i</sub>:
+<br><br>
+F<sub>1</sub> = {a}
+<br>
+F<sub>2</sub> = {b}
+<br>
+F<sub>3</sub> = {c}
+<br>
+F<sub>4</sub> = {a, b, d}
+<br>
+F<sub>5</sub> = {b, c, e}
+<br><br>
+
+<li>
+Input: Classes 1, &hellip;, 6 and the following F<sub>i</sub>:
+<br><br>
+F<sub>1</sub> = {a}
+<br>
+F<sub>2</sub> = {b, c}
+<br>
+F<sub>3</sub> = {d, e}
+<br>
+F<sub>4</sub> = {a, f}
+<br>
+F<sub>5</sub> = {a, b, c, f, g}
+<br>
+F<sub>6</sub> = {b, c, d, e, h, i}
+<br><br>
+
+<li>
+Input: Classes 1, &hellip;, 7 and the following F<sub>i</sub>:
+<br><br>
+F<sub>1</sub> = {a, b, d}
+<br>
+F<sub>2</sub> = {a, b, e}
+<br>
+F<sub>3</sub> = {a, c, f}
+<br>
+F<sub>4</sub> = {a, c, g}
+<br>
+F<sub>5</sub> = {a, b, d, e}
+<br>
+F<sub>6</sub> = {a, c, f, g}
+<br>
+F<sub>7</sub> = {a, b, c, d, e, f, g}
+</ol>
+
+</font>
+
+</body>
+</html>
