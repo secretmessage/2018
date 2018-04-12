@@ -1,0 +1,332 @@
+<html>
+
+<title>
+Review Exercises for Final Exam
+</title>
+
+<body>
+
+<font face=arial>
+
+<center>
+<h3>
+Review Exercises for Final Exam
+</h3>
+</center>
+
+The following exercises should help your preparations for the final exam, but
+do not necessarily guarantee you will pass it. 
+Since answers to most of them can be found 
+in your class notes or the textbook, solutions will not be posted here.
+
+</font>
+
+<br><br>
+
+<b>1.</b>
+All questions in Assignment #3 and #4.
+
+<h3>
+NP-Complete Problems and Polynomial-Time Reductions
+</h3>
+
+<b>2.</b>
+Consider the polynomial-time reduction f: &phi; &rarr; (G<sub>&phi;</sub>, k) used to prove
+3SAT &le;<sub>p</sub> VERTEX-COVER.
+Prove that &phi; is satisfiable iff G<sub>&phi;</sub> has a k-vertex cover.
+
+<br><br>
+
+<b>3.</b>
+Consider the polynomial-time reduction used to prove 3SAT &le;<sub>p</sub> HAMPATH.
+Let:
+<blockquote>
+&phi; = (&not;x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>1</sub>) 
+</blockquote>
+Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
+
+  <ol type=a>
+  <li>
+  Give (G<sub>&phi;</sub>, s, t) constructed from &phi; by the reduction.
+  </li>
+  <li>
+  Give one satisfying assignment A for &phi;, and a corresponding HAM path from s to t in G<sub>&phi;</sub>
+  produced by the proof.
+  </li>
+  <li>
+  Give one HAM path from s to t in G<sub>&phi;</sub> that is distinct from the one you gave in (b), and
+  give a corresponding assignment for &phi; produced by the proof.
+  </li>
+  </ol>
+
+<b>4.</b>
+Consider the polynomial-time reduction from HAMPATH to UHAMPATH.
+
+<ol type=a>
+<li>
+Give the undirected graph G' constructed from the following directed graph G:
+
+<br><br>
+
+<center><img src="Hampath.jpg"></center>
+
+<li>
+Give one HAM path in G, and the corresponding UHAM path in G'.
+<li>
+Give one UHAM path in G' that is distinct from the one you gave in (b), and give the corresponding HAM path in G.  
+</ol>
+
+<h3>
+Space Complexity and Its Relation to Time Complexity
+</h3>
+
+<b>5.</b>
+Give a precise definition of worst-case space complexity functions of DTMs and NTMs that halt on all input strings.
+
+<br><br>
+
+<b>6.</b>
+Let M be any DTM or NTM that halts on all input strings.
+Prove the following:
+
+<ol type=a>
+<li>
+W<sub>M</sub><sup>space</sup>(n) &le; W<sub>M</sub><sup>time</sup>(n) + 1.
+<li>
+W<sub>M</sub><sup>time</sup>(n) &le; (|&Gamma;|+|Q|)<sup>W<sub>M</sub><sup>space</sup>(n)+1</sup>,
+where &Gamma; is the tape alphabet of M and Q is the state set of M.
+Hint: Use the possible configurations of M.
+</ol>
+
+
+<b>7.</b>
+Prove SAT &isin; SPACE(n).
+
+<br><br>
+
+<b>8.</b>
+Prove { A | A is an NFA that rejects at least one string } &isin; NSPACE(n).
+
+<br><br>
+
+<b>9.</b>
+An important procedure in the proof of Savitch's Theorem is 
+Path<sub>N</sub>(C<sub>1</sub>, C<sub>2</sub>, t, n) that decides existence of a path
+from C<sub>1</sub> to C<sub>2</sub> in the configuration graph of
+an NTM, N, with space complexity W<sub>N</sub>(n) &le; d&middot;f(n).
+
+<ol type=a>
+<li>
+Give precise specifications of the input parameters C<sub>1</sub>, C<sub>2</sub>, t, n,
+and the output from the procedure.
+<li>
+Give pseudocode for the body of the procedure.
+<li>
+Show that the space requirement for running Path<sub>N</sub>(C<sub>1</sub>, C<sub>2</sub>, t, n)
+is O(f(n)) &times; log<sub>2</sub>t.
+<li>
+Show that the length of any computation branch of N &le; &alpha;<sup>d&middot;f(n)+1</sup>, where
+&alpha; = |&Gamma;|+|Q|.
+<li>
+Using the Path<sub>N</sub> procedure, give a DTM equivalent to N.
+<li>
+Show that the space complexity function of the above DTM is O(f<sup>2</sup>(n)).
+<li>
+Show how to overcome the above DTM's need to compute the value of f(n). 
+</ol>
+
+<b>10.</b>
+Prove NP &sube; PSPACE = NPSPACE.
+
+<br><br>
+
+<b>11.</b>
+<ol type=a>
+<li>
+Define PSPACE-complete problems.
+<li>
+Explain why the definition of PSPACE-complete problems uses polynomial-time reducibility
+rather than polynomial-space reducibility.
+</ol>
+
+<b>12.</b>
+Describe the TQBF problem and the Formula Game problem and show that they are effectively the same problem.
+
+<br><br>
+
+<b>13.</b>
+Describe DTMs and NTMs with a read-only input tape and how their space complexity functions are defined.
+
+<br><br>
+
+<b>14.</b>
+Define the classes of languages L and NL.
+
+<br><br>
+
+<b>15.</b>
+Show that { 0<sup>k</sup>1<sup>k</sup> | k &ge; 0 } &isin; L.
+
+<br><br>
+
+<b>16.</b>
+Show that PATH &isin; NL.
+
+<br><br>
+
+<b>17.</b>
+Describe log-space transducers.
+
+<br><br>
+
+<b>18.</b>
+Prove:
+Let M be any DTMR, NTMR, or LST using at most f(n) work-tape cells.
+Then W<sub>M</sub><sup>time</sup>(n) &le; n &alpha;<sup>f(n)+1</sup> = n 2<sup>O(f(n))</sup>, where
+&alpha; = |&Gamma;|+|Q|.
+
+<br><br>
+
+<b>19.</b>
+<ol type=a>
+<li>
+Define log-space reducibility.
+<li>
+Define NL-complete problems.
+</ol>
+
+<b>20.</b>
+Consider the proof of this theorem:
+If A &le;<sub>L</sub> B and B &isin; L, then A &isin; L.
+Let M be a log-space reduction transducer from A to B and M<sub>B</sub> a log-space DTMR deciding B.
+
+<ol type=a>
+<li>
+Explain why a sequential simulation of M and M<sub>B</sub> does not yield a log-space DTMR deciding A.
+<li>
+Describe how to construct a log-space DTMR deciding A from modified M and M<sub>B</sub>.
+</ol>
+
+<b>21.</b>
+Prove the reflexivity and transitivity of &le;<sub>L</sub>.
+
+<br><br>
+
+<b>22.</b>
+Prove:
+
+<ol type=a>
+<li>
+If A &isin; NL-Complete and A &le;<sub>L</sub> B for B &isin; NL, then B &isin; NL-Complete.
+<li>
+If &exist;B &isin; L &cap; NL-Complete, then L = NL.
+</ol>
+
+<b>23.</b>
+Prove PATH &isin; NL-Complete.
+
+<br><br>
+
+<b>24.</b>
+Prove NL &sube; P.
+
+<h3>
+Circuit Complexity and P-Completeness
+</h3>
+
+<b>25.</b>
+Define each of the following:
+
+<ol type=a>
+<li>
+a circuit family
+<li>
+what it means for a circuit family to decide a language over {0, 1}.
+<li>
+equivalence of two circuits
+<li>
+the size of a circuit
+<li>
+size minimality of a circuit and a circuit family
+<li>
+the size complexity of a circuit family
+<li>
+the depth of a circuit
+<li>
+depth minimality of a circuit and a circuit family
+<li>
+the depth complexity of a circuit family
+<li>
+the size and depth complexities of a language over {0, 1}
+</ol>
+
+<b>26.</b>
+<ol type=a>
+<li>
+Give a proof idea for Theorem:
+If A &sube; {0, 1}<sup>*</sup> is decided by a DTM with worst-case time complexity O(t(n)),
+then A has the circuit size complexity O(t<sup>2</sup>(n)).
+<li>
+Prove that if A &isin; P, then A has a polynomial circuit size complexity.
+<li>
+Prove that if A does not have a polynomial circuit size complexity, then A &notin; P.
+</ol>
+
+<b>27.</b>
+<ol type=a>
+<li>
+Define P-complete problems.
+<li>
+Give a proof idea for CIRCUIT-VALUE &isin; P-Complete.
+<li>
+Define the processor and parallel time complexities of a circuit.
+<li>
+Define the class of languages NC.
+<li>
+Describe the evidence suggesting that P-complete problems are inherently sequential.
+</ol>
+
+<h3>
+Approximation Algorithms
+</h3>
+
+<b>28.</b>
+<ol type=a>
+<li>
+Show that the approximation vertex-cover algorithm we studied in class has the ratio bound of 2.
+<li>
+Show that the approximation maximum-cut algorithm we studied in class has the ratio bound of 2.
+</ol>
+
+<!--
+<b>29.</b>
+Consider a complete, undirected graph G with four vertices and six edges laid out in a 2-dimensional
+Euclidean plane.
+Suppose that G forms a unit square in which the four side edges have length 1 and the two diagonal edges
+have length &radic;2.
+Run the approximation traveling salesperson algorithm we studied in class on G and obtain the output.
+
+<br><br>
+
+<b>30.</b>
+Consider this theorem we studied in class:
+If there is a polynomial-time approximation algorithm A with a constant ratio bound <i>a</i> &ge; 1 for
+the general traveling salesperson problem (TSP),
+then there is a polynomial-time algorithm to decide HAM-CYCLE.
+
+<ol type=a>
+<li>
+Give the polynomial-time reduction F from HAM-CYCLE to TSP used in the proof.
+<li>
+Let G = (V, E) be any input to HAM-CYCLE and G' the result of the reduction.
+Show that G has a Hamiltonian cycle iff G' has a Hamiltonian cycle of total cost |V|.
+<li>
+Show that the sequential combination of the reduction F and the approximation algorithm A
+yields a polynomial-time decider for HAM-CYCLE.
+</ol>
+-->
+
+</body>
+</html>
+

@@ -1,0 +1,223 @@
+<html>
+
+<title>
+Review Exercises for Midterm Exam
+</title>
+
+<body>
+
+<font face=arial>
+
+<center>
+<h3>
+Review Exercises for Midterm Exam
+</h3>
+</center>
+
+The following exercises should help your preparations for the midterm exam, but
+do not necessarily guarantee you will pass it. 
+Since answers to them are straightforward or can be found 
+in your class notes and/or the textbook, solutions will not be posted here.
+
+</font>
+
+<br><br>
+
+<b>1.</b>
+All questions in Assignment #1 and #2.
+
+<h3>
+Turing Machines and RAMs
+</h3>
+
+<b>2.</b>
+A DTM is specified by a 7-tuple 
+(Q, &Sigma;, &Gamma;, &delta;, q<sub>0</sub>, q<sub>accept</sub>, q<sub>reject</sub>).
+Describe each of the 7 components.
+
+<br><br>
+
+<b>3.</b>
+<ol type=a>
+<li>Exercise 3.1 in the book
+<li>Exercise 3.5  in the book
+<li>Exercise 3.8 (a) in the book
+</ol>
+
+<b>4.</b>
+Consider the DTM to decide { 0<sup>k</sup>1<sup>k</sup> | k &ge; 0 } shown in
+<a href="sp12-assign-1-sol.html">Question 2 here</a>.
+Give the transition sequence on each of the following input strings:
+
+<ol type=a>
+<li>01
+<li>010
+<li>011
+</ol>
+
+<b>5.</b>
+Define a decider DTM.
+
+<br><br>
+
+<b>6.</b>
+Illustrate the idea used for a simulation of multitape DTMs by 1-tape DTMs.
+
+<br><br>
+
+<b>7.</b>
+<ol type=a>
+<li>
+Give a precise definition of transition functions of NTMs.
+How do they differ from the transition functions of DTMs?
+<li>
+Give a precise definition of acceptance and rejection of the input string by an NTM.
+</ol>
+
+<b>8.</b>
+Illustrate the idea used for a simulation of NTMs by DTMs.
+Explain why a depth-first search of the computation tree of an NTM does not work.
+
+<br><br>
+
+<b>9.</b>
+Consider the NTM to decide { wab<sup>i</sup> : i &ge; 0 } &cup; { wac<sup>j</sup> : j &ge; 0 } shown in
+<a href="fa12-assign-1-sol.html">Question 3 here</a>.
+Give the computation tree of configurations of this NTM on each of the following input strings:
+ <ol type=a>
+ <li>a
+ <li>acacc
+ <li>bcabc
+ </ol>
+
+<b>10.</b>
+This question concerns the simulation of RAMs by 5-tape DTMs described in class.
+Describe how to simulate each of the following RAM instructions:
+<ul>
+<li>ADD &nbsp; =20
+<li>MULT &nbsp; 20
+<li>LOAD &nbsp; 20
+</ul>
+
+<b>11.</b>
+Consider a 1-tape DTM with &Gamma; = { a<sub>1</sub>,  &hellip; , a<sub>m</sub>,  _ },
+Q = { q<sub>1</sub>,  &hellip; , q<sub>n</sub> } where "_" denotes the blank symbol and q<sub>1</sub> is the start state.
+Describe how this DTM's configurations are simulated by a RAM.
+Also, illustrate the idea of how its transition function is simulated.
+
+<h3>
+Time Complexity, Verification TMs, P, NP, NP-Complete
+</h3>
+
+<b>12.</b>
+
+<ol type=a>
+<li>Exercise 7.1 in the book
+<li>Exercise 7.2 in the book
+<li>Give a precise definition of the worst-case time complexity functions of DTMs that halt on all input strings.
+<li>Give a precise definition of the worst-case time complexity functions of NTMs that halt on all input strings.
+</ol>
+
+<b>13.</b>
+Explain why any 1-tape DTM or 1-tape NTM, M, with the worst-case time complexity function W<sub>M</sub>(n) never reads 
+more than W<sub>M</sub>(n)+1 tape cells and never writes on more than W<sub>M</sub>(n) tape cells.
+
+<br><br>
+
+<b>14.</b>
+<ol type=a>
+<li>Give a definition of verification TMs.
+<li>Give a definition of: input string w is verified by a certificate c.
+<li>Explain why the length of a proposed certificate c for a verification TM, V, can be limited by
+    |c| &le; W<sub>V</sub>(n)+1 where n = |w|.
+</ol>
+
+<b>15.</b>
+Consider Theorem VtoN.
+Define an NTM that simulates a given verifier V.
+
+<br><br>
+
+<b>16.</b>
+Consider Theorem NtoV.
+
+<ol type=a>
+<li>The verifier V uses an encoding of the computation branches of a given NTM.
+Describe this encoding method.
+<li>
+Define a verifier V that simulates a given NTM.
+</ol>
+
+<b>17.</b>
+Give a precise definition of each of the following:
+<ol type=a>
+<li>the class of languages P
+<li>the class of languages NP
+<li>mapping reduction A &le;<sub>m</sub> B
+<li>polynomial-time reduction A &le;<sub>p</sub> B
+<li>the class of languages NPC
+</ol>
+
+<b>18.</b>
+Show that all of the following problems are in NP:
+
+<ol type=a>
+<li>HAMPATH
+<li>SUBSET-SUM
+<li>SAT
+<li>CLIQUE
+<li>VERTEX-COVER described on page 312 (page 284 in 2nd edition)
+<li>3COLOR described in Problem 7.29 on page 325 (Problem 7.27 on page 297 in 2nd edition)
+<li>the final exam scheduling problem described in Problem 7.31 on page 326 (Problem 7.29 on page 297 in 2nd edition)
+<li>SOLITAIRE described in Problem 7.33 on page 326 (Problem 7.31 on page 298 in 2nd edition)
+</ol>
+
+<b>19.</b>
+Determine if each of the following is true or false.
+If it is true, prove it.
+
+<ol type=a>
+<li>
+P &sube; NP.
+<li>
+NPC &sube; NP.
+<li>
+P &cap; NP = &empty;
+<li>
+Let N be any decider NTM with W<sub>N</sub>(n) &ge; n for &forall;n &isin; <b>N</b>.
+Then N can be simulated by a DTM, M, with W<sub>M</sub>(n) = 2<sup>O(W<sub>N</sub>(n))</sup>.
+<li>
+If A &le;<sub>p</sub> B and B &isin; P, then A &isin; P.
+</ol>
+
+<b>20.</b>
+<ol type=a>
+<li>
+Prove the transitivity of &le;<sub>p</sub>.
+<li>
+Prove: if A &isin; NPC, B &isin; NP, and A &le;<sub>p</sub> B, then B &isin; NPC.
+</ol>
+
+<b>21.</b>
+Consider the theorem that SAT is NP-complete and its proof we studied in class.
+
+<ol type=a>
+<li>
+Informally but concisely describe the structure and role of the n<sup>k</sup> &times; n<sup>k</sup> tableaus.
+<li>
+The Boolean formula &phi;<sub>w</sub> constructed from a string w by the reduction has four components:
+&phi;<sub>w</sub> = &phi;<sub>cell</sub> &and; &phi;<sub>start</sub> &and; &phi;<sub>move</sub> &and; &phi;<sub>accept</sub>.
+Informally but concisely describe the property that each of the four components ensures.
+<li>
+Describe an 2 &times; 3 window used in the proof.
+<li>
+Define a legal window.
+<li>
+Describe how legal windows are used in &phi;<sub>move</sub>.
+</ol>
+
+<b>22.</b>
+Informally and concisely, give two reasons for the significance of NP-complete problems.
+
+</body>
+</html>

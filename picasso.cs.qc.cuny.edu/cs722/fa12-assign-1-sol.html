@@ -1,0 +1,238 @@
+<html>
+
+<title>
+CS 722 Assignment 1 Solutions
+</title>
+
+<body>
+
+<center>
+<h3>
+CS 722 &nbsp;&nbsp; Fall 2012
+<br>
+Homework Assignment #1
+<br>
+Solutions
+</h3>
+</center>
+
+<ol>
+<li>
+Consider the DTM that decides { 0<sup>k</sup>1<sup>k</sup> | k &ge; 0 } described in
+<a href="sp12-assign-1-sol.html">Question 2 on this page</a>.
+<br><br>
+ <ol type=a>
+ <li>Give the transition sequence on the input 0011.
+
+     <br><br>
+
+     "_" denotes the blank symbol.
+
+     <br><br>
+
+q<sub>0</sub>0011 |&minus; <br>
+_q<sub>1</sub>011 |&minus; <br>
+_0q<sub>1</sub>11 |&minus; <br>
+_0xq<sub>2</sub>1 |&minus; <br>
+_0x1q<sub>2</sub>_ |&minus; <br>
+_0xq<sub>3</sub>1 |&minus; <br>
+_0q<sub>3</sub>x1 |&minus; <br>
+_q<sub>3</sub>0x1 |&minus; <br>
+q<sub>3</sub>_0x1 |&minus; <br>
+_q<sub>0</sub>0x1 |&minus; <br>
+_ _q<sub>1</sub>x1 |&minus; <br>
+_ _xq<sub>1</sub>1 |&minus; <br>
+_ _xxq<sub>2</sub>_ |&minus; <br>
+_ _xq<sub>3</sub>x |&minus; <br>
+_ _q<sub>3</sub>xx |&minus; <br>
+_ q<sub>3</sub>_xx |&minus; <br>
+_ _q<sub>0</sub>xx |&minus; <br>
+_ _xq<sub>4</sub>x |&minus; <br>
+_ _xxq<sub>4</sub>_ |&minus; <br>
+_ _xx_q<sub>accept</sub>_ |&minus; 
+
+     <br><br> 
+
+ <li>Give the transition sequence on the input 001.
+
+<br><br>
+
+q<sub>0</sub>001 |&minus; <br>
+_q<sub>1</sub>01 |&minus; <br>
+_0q<sub>1</sub>1 |&minus; <br>
+_0xq<sub>2</sub>_ |&minus; <br>
+_0q<sub>3</sub>x |&minus; <br>
+_q<sub>3</sub>0x |&minus; <br>
+q<sub>3</sub>_0x |&minus; <br>
+_q<sub>0</sub>0x |&minus; <br>
+_ _q<sub>1</sub>x |&minus; <br>
+_ _xq<sub>1</sub>_ |&minus; <br>
+_ _x_q<sub>reject</sub>_
+
+ </ol>
+<br>
+
+<li>
+The following nondeterministic TM decides
+{ wcabx } &cup; { wabcx },
+where &Sigma; = { a, b, c }, w, x &isin; &Sigma;<sup>*</sup>.
+
+<center><img src="fa12-assign-1-Q2.jpg" width=600 height=200></center>
+
+Give the computation tree of this NTM on the input string bbcacab.
+
+<center><img src="Q2-sol.jpg" width=700 height=450></center>
+
+<br><br>
+
+<li>
+Design a 1-tape nondeterministic TM to decide the following language and
+give its state-transition diagram:
+<br><br>
+{ wab<sup>i</sup> : i &ge; 0 } &cup; { wac<sup>j</sup> : j &ge; 0 }
+<br><br>
+where &Sigma; = { a, b, c }, w &isin; &Sigma;<sup>*</sup>.
+Use the following idea:
+Scan the input tape from left to right and nondeterministically choose an occurrence of <i>a</i>.
+Then choose one of the two branches. 
+In the first branch, determine if the <i>a</i> is followed by a string of <i>b</i>'s only;
+in the second branch, determine if the <i>a</i> is followed by a string of <i>c</i>'s only.
+
+<center><img src="Q3-sol.jpg" width=700 height=250></center>
+
+<br><br>
+
+<li>
+You are to code a RAM program to compute the factorial function n!, n &ge; 1. The value of n is initially given on the input tape.
+<br><br>
+ <ol type=a>
+ <li>Give your algorithm in high-level pseudocode similar to the algorithm to compute n<sup>n</sup> described in class.
+ <li>Give a RAM program implementing the algorithm.
+ </ol>
+
+<br>
+
+The following is an example solution.
+
+<br>
+
+<pre>
+r<sub>1</sub> &larr; n; // read n
+r<sub>2</sub> &larr; r<sub>1</sub>; // r<sub>2</sub> accumulates the product value n(n&minus;1)&middot;&middot;&middot;(n&minus;i).
+r<sub>3</sub> &larr; r<sub>1</sub>&minus;1; // r<sub>3</sub> is a counter for (n&minus;i), to be decremented by 1 in each iteration.
+<b>while</b> ( r<sub>3</sub> &gt; 0 )
+{
+    r<sub>2</sub> &larr; r<sub>2</sub>*r<sub>3</sub>;
+    r<sub>3</sub> &larr; r<sub>3</sub>&minus;1;
+}
+write r<sub>2</sub>;
+
+          Read 1       // r<sub>1</sub> &larr; n
+          Load 1
+          Store 2      // r<sub>2</sub> &larr; r<sub>1</sub>
+          Sub =1      
+          Store 3      // r<sub>3</sub> &larr; r<sub>1</sub>&minus;1
+while:    Load 3      
+          Jgtz continue     // if r<sub>3</sub> &gt; 0 then jump to "continue"
+          Jump endwhile
+continue: Load 2
+          Mult 3
+          Store 2      // r<sub>2</sub> &larr; r<sub>2</sub>*r<sub>3</sub>
+          Load 3
+          Sub =1
+          Store 3      // r<sub>3</sub> &larr; r<sub>3</sub>&minus;1
+          Jump while
+endwhile: Write 2      // write r<sub>2</sub>
+          Halt
+</pre>
+
+<br>
+<li>
+This question concerns the simulation of RAMs by the 5-tape DTMs described in class.
+Consider the simulation process of the following RAM instruction stream:
+<br><br>
+Load =2, Store 2, Add =1, Store 1, Mult 2, Store 3
+<br><br>
+Show the contents of tape 1 (simulating the RAM memory) and tape 2 (simulating the accumulator r<sub>0</sub>) after
+the execution of each instruction, using a format similar to
+<a href="sp12-assign-1-sol.html">Question 5 on this page</a>.
+
+<br><br>
+
+For brevity, integers in unary notation on the tape are abbreviated by decimal notation.
+
+<br><br>
+
+Load =2
+<blockquote>
+tape 1: empty
+<br>
+tape 2: 2
+</blockquote>
+
+Store 2
+<blockquote>
+tape 1: ##2#2##
+<br>
+tape 2: 2
+</blockquote>
+
+Add =1
+<blockquote>
+tape 1: ##2#2##
+<br>
+tape 2: 3
+</blockquote>
+
+Store 1
+<blockquote>
+tape 1: ##2#2##1#3##
+<br>
+tape 2: 3
+</blockquote>
+
+Mult 2
+<blockquote>
+tape 1: ##2#2##1#3##
+<br>
+tape 2: 6
+</blockquote>
+
+Store 3
+<blockquote>
+tape 1: ##2#2##1#3##3#6##
+<br>
+tape 2: 6
+</blockquote>
+
+<li>
+ <ol type=a>
+ <li>Exercise 7.1 on page 294; Do <b>a</b>, <b>b</b>, <b>e</b>, <b>f</b> only.
+     <br><br>
+
+     <b>a</b> true, <b>b</b> false, <b>e</b> true, <b>f</b> true
+     <br><br>
+
+ <li>Exercise 7.2 on page 294; Do <b>a</b>, <b>b</b>, <b>e</b>, <b>f</b> only.
+     <br><br>
+
+     <b>a</b> false, <b>b</b> true, <b>e</b> false, <b>f</b> false
+ </ol>
+<br>
+ 
+<li>
+Prove: a<sup>f(n)</sup> = 2<sup>O(f(n))</sup> for any f: <b>N</b> &rarr; <b>R</b><sup>+</sup> and any constant a &gt; 0.
+
+<br><br>
+
+<b>Proof</b>
+a<sup>f(n)</sup> = 2<sup>log<sub>2</sub>a<sup>f(n)</sup></sup> =
+2<sup>f(n)&middot;log<sub>2</sub>a</sup>.
+Since log<sub>2</sub>a is a constant,
+f(n)&middot;log<sub>2</sub>a = O(f(n)).
+Hence a<sup>f(n)</sup> = 2<sup>O(f(n))</sup>.
+
+</ol>
+
+</body>
+</html>

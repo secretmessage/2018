@@ -1,0 +1,91 @@
+<html>
+
+<title>
+CS 722 Assignment 4
+</title>
+
+<body>
+
+<center>
+<h3>
+CS 722 &nbsp;&nbsp; Fall 2017
+<br>
+Homework Assignment #4
+<br>
+Due: in class on 12/12/17, Tuesday
+</h3>
+</center>
+
+Only hard copies will be accepted.
+Late submissions and email submissions will not be accepted.
+If you have not been able to solve a problem completely,
+you may show the work you have done for partial points.
+Observe
+<a href="CoursePolicies.html">course policies</a>
+in solving assignment problems.
+
+<br>
+
+<ol>
+
+<li>
+Consider the nondeterministic algorithm to decide VERTEX-COVER in
+<a href="assign-2-sol.html">Question 2, Assignment #2</a>.
+Presume that this algorithm is implemented by an NTMR and an encoded input
+&lang;G, k&rang; is stored on the read-only input tape.
+Analyze the worst-case space complexity and express it in O(f(n)) notation where n is
+the size of &lang;G, k&rang;.
+<br><br>
+
+<li>
+Let
+<blockquote>
+&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>) =
+(x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>)
+</blockquote>
+
+<ol type=a>
+<li>
+Give an evaluation tree for &psi; by assigning x<sub>i</sub> = 0 and 1, 1 &le; i &le; 3.
+
+<li>
+Evaluate each of the following formulas and determine which player (E or A) has a winning strategy.
+Justify your answers.
+<br><br>
+  <ol type=i>
+  <li>&exist;x<sub>1</sub>&forall;x<sub>2</sub>&exist;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+  <li>&forall;x<sub>1</sub>&exist;x<sub>2</sub>&forall;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+  </ol> 
+</ol>
+<br>
+
+<li>
+Study GENERALIZED GEOGRAPHY in &sect;8.3 of the book, especially the polynomial-time reduction from
+FORMULA-GAME to GENERALIZED GEOGRAPHY.
+Recall that FORMULA-GAME is a 2-player game interpretation of TQBF.
+For each of the formulas (i) and (ii) in Question 2, (b),
+answer the following questions:
+
+<br><br>
+
+<ol type=a>
+<li>
+Give the directed graph generated from the formula by the polynomial-time reduction.
+<li>
+Give an assignment for x<sub>i</sub>, 1 &le; i &le; 3, that is an instance of a winning strategy for
+the formula, and show the corresponding path selected by players I and II in the graph.
+Mark the edges of the path by "I" or "II" according as they are selected by player I or II, respectively.
+</ol>
+<br>
+
+<li>
+Prove: If &exist;A &isin; NP &cap; PSPACE-Complete, then NPC = PSPACE-Complete.
+You may use any of the theorems proved in class.
+
+</ol>
+
+</body>
+</html>

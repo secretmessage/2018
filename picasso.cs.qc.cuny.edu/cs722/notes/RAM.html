@@ -1,0 +1,189 @@
+<html>
+<body>
+
+<h3>
+Random Access Machines (RAMs)
+</h3>
+
+The Turing machine is an example of extreme reductionism, as are Church's lambda calculus and Post's
+rewriting system.
+It captures the full capability of idealized digital, discrete computation in simplest possible mechanism and 
+allows theories of computation to be formulated concisely, although it is very difficult to program.
+But why is the Turing machine so difficult to program, even compared to assembly languages of simplest kind?
+Two main reasons are:
+
+<ul>
+<li>
+It has no concept of memory address.
+To access a desired tape cell,
+the machine needs to search for it laboriously relying on symbol patterns on the tape and control states
+that uniquely characterize it.
+Also, the tape head can only move one position in one step of transition.
+<li>
+It has no explicit concept of machine instruction.
+All data manipulation and control flow need to be encoded by the transition function &delta;
+whose value depends only on the current control state and the tape symbol read by the tape head.
+</ul>
+
+Random access machines incorporate these two concepts and are closer to the architecture of real digital computers, therefore
+relatively easier to program.
+In class, we show that Turing machines and RAMs are inter-simulatable, thus their computing powers
+are equivalent in principle.
+
+<br><br>
+
+Variants of RAMs exist.
+We describe the version in
+<i>The Design and Analysis of Computer Algorithms</i>,
+Aho, Hopcroft, Ullman,
+Addison-Wesley, 1974.
+
+<br><br>
+
+A RAM has three parts:
+
+<ul>
+<li>
+The memory consisting of infinitely many cells r<sub>i</sub>, i &ge; 0.
+The cell r<sub>0</sub> is the <i>accumulator</i> where all arithmetic and comparison operations are performed.
+<li>
+The read-only input tape consisting of infinitely many cells, together with the read-head.
+<li>
+The write-only output tape consisting of infinitely many cells, together with the write-head.
+<li>
+The read/write tape cells and the memory cells r<sub>i</sub> may contain integers only.
+<li>
+Initially the memory cells r<sub>i</sub>, i &ge; 0, contain 0. 
+</ul>
+
+An instruction operand takes one of the two forms:
+
+<ul>
+<li>
+=<i>i</i>, indicating integer literal <i>i</i>
+<li>
+<i>i</i>, indicating the contents of memory cell r<sub><i>i</i></sub>
+</ul>
+
+Define v(a), the value of operand a, by:
+
+<ul>
+<li>
+v(=<i>i</i>) = <i>i</i>
+<li>
+v(<i>i</i>) = the contents of r<sub><i>i</i></sub>
+</ul>
+
+The following is the instruction set.
+
+<br><br>
+
+<table border=1 style='border-collapse: collapse;' width=75%>
+
+<tr> 
+<th>instruction</th>
+<th>operational semantics</th>
+</tr> 
+
+<tr>
+<td>&nbsp; Load a</td>
+<td>&nbsp; r<sub>0</sub> &larr; v(a)</td>
+</tr>
+
+<tr>
+<td>&nbsp; Store i</td>
+<td>&nbsp; r<sub>i</sub> &larr; r<sub>0</sub></td>
+</tr>
+
+<tr>
+<td>&nbsp; Add a</td>
+<td>&nbsp; r<sub>0</sub> &larr; r<sub>0</sub> + v(a)</td>
+</tr>
+
+<tr>
+<td>&nbsp; Sub a</td>
+<td>&nbsp; r<sub>0</sub> &larr; r<sub>0</sub> &minus; v(a)</td>
+</tr>
+
+<tr>
+<td>&nbsp; Mult a</td>
+<td>&nbsp; r<sub>0</sub> &larr; r<sub>0</sub> * v(a)</td>
+</tr>
+
+<tr>
+<td>&nbsp; Div a</td>
+<td>&nbsp; r<sub>0</sub> &larr; &lfloor;r<sub>0</sub> / v(a)&rfloor;</td>
+</tr>
+
+<tr>
+<td>&nbsp; Jump L</td>
+<td>&nbsp; unconditionally jump to label L</td>
+</tr>
+
+<tr>
+<td>&nbsp; Jgtz L</td>
+<td>&nbsp; if r<sub>0</sub> &gt; 0, jump to label L; otherwise go to the next instruction</td>
+</tr>
+
+<tr>
+<td>&nbsp; Jzero L</td>
+<td>&nbsp; if r<sub>0</sub> = 0, jump to label L; otherwise go to the next instruction</td>
+</tr>
+
+<tr>
+<td>&nbsp; Read i</td>
+<td>&nbsp; r<sub>i</sub> &larr; value of input tape cell pointed by read-head;
+read-head moves one position to right.</td>
+</tr>
+
+<tr>
+<td>&nbsp; Write a</td>
+<td>&nbsp; v(a) is written in output tape cell pointed by write-head;
+write-head moves one position to right.</td>
+</tr>
+
+<tr>
+<td>&nbsp; Halt</td>
+<td>&nbsp; halt execution</td>
+</tr>
+
+</table>
+
+<br>
+
+The following are an algorithm to compute the factorial function n!, n &ge; 1, and
+a RAM program implementing it.
+The value of n is initially given on the input tape.
+
+<pre>
+r<sub>1</sub> &larr; n; // read n
+r<sub>2</sub> &larr; r<sub>1</sub>; // r<sub>2</sub> accumulates the product value n(n&minus;1)&middot;&middot;&middot;(n&minus;i).
+r<sub>3</sub> &larr; r<sub>1</sub>&minus;1; // r<sub>3</sub> is a counter for (n&minus;i), to be decremented by 1 in each iteration.
+<b>while</b> ( r<sub>3</sub> &gt; 0 )
+{
+    r<sub>2</sub> &larr; r<sub>2</sub>*r<sub>3</sub>;
+    r<sub>3</sub> &larr; r<sub>3</sub>&minus;1;
+}
+write r<sub>2</sub>;
+
+          Read 1       // r<sub>1</sub> &larr; n stored on the input tape
+          Load 1       // r<sub>0</sub> &larr; r<sub>1</sub>
+          Store 2      // r<sub>2</sub> &larr; r<sub>0</sub>, r<sub>2</sub> = n
+          Sub =1       // r<sub>0</sub> &larr; r<sub>0</sub>&minus;1
+          Store 3      // r<sub>3</sub> &larr; r<sub>0</sub>, r<sub>3</sub> = n&minus;1
+while:    Load 3       // r<sub>0</sub> &larr; r<sub>3</sub>
+          Jgtz continue     // if r<sub>0</sub> &gt; 0 then jump to "continue"
+          Jump endwhile     // jump to "endWhile"
+continue: Load 2       // r<sub>0</sub> &larr; r<sub>2</sub>
+          Mult 3       // r<sub>0</sub> &larr; r<sub>0</sub>*r<sub>3</sub>
+          Store 2      // r<sub>2</sub> &larr; r<sub>0</sub>
+          Load 3       // r<sub>0</sub> &larr; r<sub>3</sub>
+          Sub =1       // r<sub>0</sub> &larr; r<sub>0</sub>&minus;1
+          Store 3      // r<sub>3</sub> &larr; r<sub>0</sub>
+          Jump while   // jump to "while"
+endwhile: Write 2      // write r<sub>2</sub> on the output tape
+          Halt
+</pre>
+
+</body>
+</html>

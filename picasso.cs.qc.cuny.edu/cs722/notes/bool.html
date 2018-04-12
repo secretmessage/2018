@@ -1,0 +1,121 @@
+<html>
+<body>
+
+<h3>
+Disjunctive Normal Form and Two Facts in Boolean Logic
+</h3>
+
+The following material is used for proving 3SAT &isin; NPC.
+
+<br><br>
+
+A <i>conjunct</i> is l<sub>1</sub> &and; &middot;&middot;&middot; &and; l<sub>m</sub> where
+the l<sub>i</sub> are literals.
+A <i>disjunctive normal form</i> (<i>dnf</i>) is a disjunction of conjuncts, i.e.,
+C<sub>1</sub> &or; &middot;&middot;&middot; &or; C<sub>n</sub> where the C<sub>i</sub> are conjuncts.
+A <i>uniform</i> disjunctive normal form is a dnf where all the conjuncts C<sub>i</sub> have the same number of literals.
+So every uniform dnf is in the form
+
+<br>
+
+<font size=+3>&or;</font><sub>1&le; j &le;n</sub><font size=+3>&and;</font><sub>1&le; i &le;m</sub>
+l<sub>i</sub><sup>j</sup> =
+(l<sub>1</sub><sup>1</sup> &and; &middot;&middot;&middot; &and; l<sub>m</sub><sup>1</sup>) &or; &middot;&middot;&middot; &or;
+(l<sub>1</sub><sup>n</sup> &and; &middot;&middot;&middot; &and; l<sub>m</sub><sup>n</sup>)
+
+<br>
+
+An example with m = 2, n = 3 is
+
+<font size=+3>&or;</font><sub>1&le; j &le;3</sub><font size=+3>&and;</font><sub>1&le; i &le;2</sub>
+l<sub>i</sub><sup>j</sup> =
+(l<sub>1</sub><sup>1</sup> &and; l<sub>2</sub><sup>1</sup>) &or; 
+(l<sub>1</sub><sup>2</sup> &and; l<sub>2</sub><sup>2</sup>) &or;
+(l<sub>1</sub><sup>3</sup> &and; l<sub>2</sub><sup>3</sup>).
+
+<br><br>
+
+<b>Fact 1 (General Distributive Law):</b>
+Every uniform dnf has the following equivalent cnf:
+
+<br>
+
+<font size=+3>&or;</font><sub>1&le; j &le;n</sub><font size=+3>&and;</font><sub>1&le; i &le;m</sub>
+l<sub>i</sub><sup>j</sup>
+&nbsp; &hArr; &nbsp;
+<font size=+3>&and;</font><sub>1&le; i<sub>1</sub>,...,i<sub>n</sub> &le;m</sub>
+(l<sub>i<sub>1</sub></sub><sup>1</sup> &or; &middot;&middot;&middot; &or; l<sub>i<sub>n</sub></sub><sup>n</sup>)
+
+<br><br>
+
+For example,
+
+<br><br>
+
+(l<sub>1</sub><sup>1</sup> &and; l<sub>2</sub><sup>1</sup>) &or; 
+(l<sub>1</sub><sup>2</sup> &and; l<sub>2</sub><sup>2</sup>) &or;
+(l<sub>1</sub><sup>3</sup> &and; l<sub>2</sub><sup>3</sup>)
+&nbsp; &hArr;
+<br>
+(l<sub>1</sub><sup>1</sup> &or; l<sub>1</sub><sup>2</sup> &or; l<sub>1</sub><sup>3</sup>) &and;
+(l<sub>1</sub><sup>1</sup> &or; l<sub>1</sub><sup>2</sup> &or; l<sub>2</sub><sup>3</sup>) &and;
+(l<sub>1</sub><sup>1</sup> &or; l<sub>2</sub><sup>2</sup> &or; l<sub>1</sub><sup>3</sup>) &and;
+(l<sub>1</sub><sup>1</sup> &or; l<sub>2</sub><sup>2</sup> &or; l<sub>2</sub><sup>3</sup>) &and;
+<br>
+(l<sub>2</sub><sup>1</sup> &or; l<sub>1</sub><sup>2</sup> &or; l<sub>1</sub><sup>3</sup>) &and;
+(l<sub>2</sub><sup>1</sup> &or; l<sub>1</sub><sup>2</sup> &or; l<sub>2</sub><sup>3</sup>) &and;
+(l<sub>2</sub><sup>1</sup> &or; l<sub>2</sub><sup>2</sup> &or; l<sub>1</sub><sup>3</sup>) &and;
+(l<sub>2</sub><sup>1</sup> &or; l<sub>2</sub><sup>2</sup> &or; l<sub>2</sub><sup>3</sup>)
+
+<br><br>
+
+Note that the left side has m &times; n literals while
+the right side has m<sup>n</sup> &times; n literals.
+
+<br><br>
+
+<b>Fact 2</b>
+Every cnf &phi; can be converted to a 3-cnf &phi;' such that
+&phi; is satisfiable iff &phi;' is satisfiable (but not necessarily equivalent).
+
+<br><br>
+
+Let &phi; be C<sub>1</sub> &and; &middot;&middot;&middot; &and; C<sub>n</sub> where
+C<sub>i</sub> is l<sub>1</sub> &or; &middot;&middot;&middot; &or; l<sub>m</sub>.
+Convert each C<sub>i</sub> as follows:
+
+<br><br>
+
+If m = 1, convert to l<sub>1</sub> &or; l<sub>1</sub> &or; l<sub>1</sub>
+<br>
+If m = 2, convert to l<sub>1</sub> &or; l<sub>2</sub> &or; l<sub>1</sub>
+<br>
+If m = 3, convert to itself
+<br>
+If m &gt; 3, convert to
+(l<sub>1</sub> &or; l<sub>2</sub> &or; z<sub>1</sub>) &and;
+(&not;z<sub>1</sub> &or; l<sub>3</sub> &or; z<sub>2</sub>) &and;
+(&not;z<sub>2</sub> &or; l<sub>4</sub> &or; z<sub>3</sub>) &and; &middot;&middot;&middot; &and;
+(&not;z<sub>m&minus;3</sub> &or; l<sub>m&minus;1</sub> &or; l<sub>m</sub>) where
+the z<sub>i</sub>, 1 &le; i &le; m&minus;3, are new variables.
+
+<br><br>
+
+For example,
+l<sub>1</sub> &or; l<sub>2</sub> &or; l<sub>3</sub> &or; l<sub>4</sub> &or; l<sub>5</sub> &or; l<sub>6</sub>
+is converted to
+(l<sub>1</sub> &or; l<sub>2</sub> &or; z<sub>1</sub>) &and;
+(&not;z<sub>1</sub> &or; l<sub>3</sub> &or; z<sub>2</sub>) &and;
+(&not;z<sub>2</sub> &or; l<sub>4</sub> &or; z<sub>3</sub>) &and;
+(&not;z<sub>3</sub> &or; l<sub>5</sub> &or; l<sub>6</sub>).
+
+<br><br>
+
+If m = 1, 2, or 3, the converted C<sub>i</sub> has 3 literals.
+If m &gt; 3, the converted C<sub>i</sub> has m + 2(m&minus;3) = 3m &minus; 6 literals.
+Hence the converted C<sub>i</sub> has max(3, 3m&minus;6) literals.
+Hence &phi;' has &Sigma;<sub>1&le; i &le;n</sub>max(3, 3m<sub>i</sub>&minus;6) literals where
+m<sub>i</sub> is the # of literals in C<sub>i</sub>.
+
+</body>
+</html>

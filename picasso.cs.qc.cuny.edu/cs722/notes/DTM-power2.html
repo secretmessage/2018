@@ -1,0 +1,130 @@
+<html>
+<body>
+
+DTM to decide { 0<sup>2<sup>n</sup></sup> | n &ge; 0 }, the powers of 2 in unary notation (Example 3.7 in the book)
+
+<ul>
+<li>
+Keep dividing by 2 and it never becomes an odd integer until 1.
+<li>
+Implement division by 2 by crossing off every other 0.
+<li>
+The number of remaining 0's on the tape is an even integer until 1 is reached.
+</ul>
+
+Algorithm
+
+<br><br>
+
+"_" denotes the blank symbol.
+
+<pre>
+   start in q<sub>1</sub>
+   blank 1st 0 to mark the leftmost cell and enter q<sub>2</sub>
+L: let k = the # of 0's on the tape, including the leftmost "_"
+   scan the tape to right, alternating between q<sub>3</sub> and q<sub>4</sub> to cross of every other 0
+        if no 0 is found in the scan, <b>accept</b>
+        if k is an odd integer &gt; 1, "_" will be found on q<sub>4</sub> and <b>reject</b>
+        otherwise "_" will be found on q<sub>3</sub> and continue
+   enter q<sub>5</sub> and move the head back to the leftmost "_"
+   enter q<sub>2</sub> and goto L
+</pre>
+
+<br>
+
+<img src="DTM-power2.jpeg" width=900 height=620>
+
+<br>
+
+The following is the transition sequence on the input 00000000.
+
+<br><br>
+
+q<sub>1</sub>00000000 |&minus; <br>
+_q<sub>2</sub>0000000 |&minus; <br>
+_xq<sub>3</sub>000000 |&minus; <br>
+_x0q<sub>4</sub>00000 |&minus; <br>
+_x0xq<sub>3</sub>0000 |&minus; <br>
+_x0x0q<sub>4</sub>000 |&minus; <br>
+_x0x0xq<sub>3</sub>00 |&minus; <br>
+_x0x0x0q<sub>4</sub>0 |&minus; <br>
+_x0x0x0xq<sub>3</sub>_ |&minus; <br>
+_x0x0x0q<sub>5</sub>x |&minus; <br>
+_x0x0xq<sub>5</sub>0x |&minus; <br>
+_x0x0q<sub>5</sub>x0x |&minus; <br>
+_x0xq<sub>5</sub>0x0x |&minus; <br>
+_x0q<sub>5</sub>x0x0x |&minus; <br>
+_xq<sub>5</sub>0x0x0x |&minus; <br>
+_q<sub>5</sub>x0x0x0x |&minus; <br>
+q<sub>5</sub>_x0x0x0x |&minus; <br>
+_q<sub>2</sub>x0x0x0x |&minus; <br>
+_xq<sub>2</sub>0x0x0x |&minus; <br>
+_xxq<sub>3</sub>x0x0x |&minus; <br>
+_xxxq<sub>3</sub>0x0x |&minus; <br>
+_xxx0q<sub>4</sub>x0x |&minus; <br>
+_xxx0xq<sub>4</sub>0x |&minus; <br>
+_xxx0xxq<sub>3</sub>x |&minus; <br>
+_xxx0xxxq<sub>3</sub>_ |&minus; <br>
+_xxx0xxq<sub>5</sub>x |&minus; <br>
+_xxx0xq<sub>5</sub>xx |&minus; <br>
+_xxx0q<sub>5</sub>xxx |&minus; <br>
+_xxxq<sub>5</sub>0xxx |&minus; <br>
+_xxq<sub>5</sub>x0xxx |&minus; <br>
+_xq<sub>5</sub>xx0xxx |&minus; <br>
+_q<sub>5</sub>xxx0xxx |&minus; <br>
+q<sub>5</sub>_xxx0xxx |&minus; <br>
+_q<sub>2</sub>xxx0xxx |&minus; <br>
+_xq<sub>2</sub>xx0xxx |&minus; <br>
+_xxq<sub>2</sub>x0xxx |&minus; <br>
+_xxxq<sub>2</sub>0xxx |&minus; <br>
+_xxxxq<sub>3</sub>xxx |&minus; <br>
+_xxxxxq<sub>3</sub>xx |&minus; <br>
+_xxxxxxq<sub>3</sub>x |&minus; <br>
+_xxxxxxxq<sub>3</sub>_ |&minus; <br>
+_xxxxxxq<sub>5</sub>x |&minus; <br>
+_xxxxxq<sub>5</sub>xx |&minus; <br>
+_xxxxq<sub>5</sub>xxx |&minus; <br>
+_xxxq<sub>5</sub>xxxx |&minus; <br>
+_xxq<sub>5</sub>xxxxx |&minus; <br>
+_xq<sub>5</sub>xxxxxx |&minus; <br>
+_q<sub>5</sub>xxxxxxx |&minus; <br>
+q<sub>5</sub>_xxxxxxx |&minus; <br>
+_q<sub>2</sub>xxxxxxx |&minus; <br>
+_xq<sub>2</sub>xxxxxx |&minus; <br>
+_xxq<sub>2</sub>xxxxx |&minus; <br>
+_xxxq<sub>2</sub>xxxx |&minus; <br>
+_xxxxq<sub>2</sub>xxx |&minus; <br>
+_xxxxxq<sub>2</sub>xx |&minus; <br>
+_xxxxxxq<sub>2</sub>x |&minus; <br>
+_xxxxxxxq<sub>2</sub>_ |&minus; <br>
+_xxxxxxx_q<sub>accept</sub>_
+
+<br><br>
+
+The following is the transition sequence on the input 000000.
+
+<br><br>
+
+q<sub>1</sub>000000 |&minus; <br>
+_q<sub>2</sub>00000 |&minus; <br>
+_xq<sub>3</sub>0000 |&minus; <br>
+_x0q<sub>4</sub>000 |&minus; <br>
+_x0xq<sub>3</sub>00 |&minus; <br>
+_x0x0q<sub>4</sub>0 |&minus; <br>
+_x0x0xq<sub>3</sub>_ |&minus; <br>
+_x0x0q<sub>5</sub>x |&minus; <br>
+_x0xq<sub>5</sub>0x |&minus; <br>
+_x0q<sub>5</sub>x0x |&minus; <br>
+_xq<sub>5</sub>0x0x |&minus; <br>
+_q<sub>5</sub>x0x0x |&minus; <br>
+q<sub>5</sub>_x0x0x |&minus; <br>
+_q<sub>2</sub>x0x0x |&minus; <br>
+_xq<sub>2</sub>0x0x |&minus; <br>
+_xxq<sub>3</sub>x0x |&minus; <br>
+_xxxq<sub>3</sub>0x |&minus; <br>
+_xxx0q<sub>4</sub>x |&minus; <br>
+_xxx0xq<sub>4</sub>_ |&minus; <br>
+_xxx0x_q<sub>reject</sub>_  
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+<html>
+
+<title>
+CS 722 Assignment 1 Solutions
+</title>
+
+<body>
+
+<center>
+<h3>
+CS 722 &nbsp;&nbsp; Fall 2017
+<br>
+Homework Assignment #1
+<br>
+Solutions
+</h3>
+</center>
+
+In all questions "_" is the blank symbol.
+
+<ol>
+
+<li>
+The following is a 1-tape DTM that decides { 0<sup>m</sup>#0<sup>n</sup> | 0 &le; m &le; n },
+&Sigma; = { 0, # }, &Gamma; = { 0, #, x, _ }.
+For brevity of the diagram, q<sub>reject</sub> and all transitions leading to q<sub>reject</sub> are omitted;
+any transition &delta;(q, s) not shown in the diagram is understood to be &delta;(q, s) = (q<sub>reject</sub>, s, R).
+
+<br><br>
+
+<center><img src="assign-1-Q1.jpg" width=700 height=450></center>
+
+<br>
+
+<b>Description of the algorithm</b>
+The string to the left of "#" (originally 0<sup>m</sup>) will be called the left part,
+and the string to the right of "#" (originally 0<sup>n</sup>) will be called the right part.
+
+<br><br>
+
+The overall idea is to repeatedly cross off the leading 0 of the left part and the leading 0 of the right part.
+<br>
+If the input is 0<sup>m</sup>#0<sup>n</sup>, m &le; n, the tape string will reach the form
+x<sup>m</sup>#x<sup>m</sup>0<sup>n&minus;m</sup>, and accept.
+<br>
+If the input is 0<sup>m</sup>#0<sup>n</sup>, m &gt; n, the tape string will reach the form
+x<sup>n</sup>0<sup>m&minus;n</sup>#x<sup>n</sup>, and reject.
+
+<br><br>
+
+  <ol type=1>
+  <li>Cross off the first 0 of left part by x (q<sub>0</sub> &rarr; q<sub>1</sub>).
+  <li>Skip the following 0's (q<sub>1</sub> &rarr; q<sub>1</sub>).
+  <li>Detect # (q<sub>1</sub> &rarr; q<sub>2</sub>).
+  <li>Skip the following x's (q<sub>2</sub> &rarr; q<sub>2</sub>).
+      <br>
+      If 0 is not found in q<sub>2</sub>, 
+      then the current configuration is x<sup>n+1</sup>0<sup>m&minus;n&minus;1</sup>#x<sup>n</sup>q<sub>2</sub>_, m&minus;n &gt; 0,
+      meaning the input is 0<sup>m</sup>#0<sup>n</sup>, m &gt; n, hence reject.
+  <li>Cross off the first 0 of right part by x (q<sub>2</sub> &rarr; q<sub>3</sub>).
+  <li>Move the tape head leftward by skipping x's (q<sub>3</sub> &rarr; q<sub>3</sub>), <br>
+      then detecting # (q<sub>3</sub> &rarr; q<sub>4</sub>), <br>
+      then skipping 0's (q<sub>4</sub> &rarr; q<sub>4</sub>), <br>
+      until the rightmost x in the left part is found (q<sub>4</sub> &rarr; q<sub>0</sub>). 
+      <br><br>
+      If no 0's remain in the left part and the rightmost x is immediately followed by #, 
+      the current configuration is in the form x<sup>m</sup>q<sub>0</sub>#x<sup>m</sup>0<sup>n&minus;m</sup>, n&minus;m &ge; 0, provided
+      the input is in the form 0<sup>m</sup>#0<sup>n</sup>, m &le; n.
+      Enter q<sub>5</sub> and check the string is actually in this form without extra #'s, and accept.
+      This last checking will reject inputs like ##, 0#0#, 0#00##, etc. 
+      <br><br>
+      Otherwise, go to step 1 and repeat.
+  </ol>
+
+<br>
+
+ <ol type=a>
+ <li>Show the transition sequence on each of the following inputs:
+ <br><br>
+  <ol type=i>
+  <li>#
+      <br><br>
+      q<sub>0</sub># |&minus; <br>
+      #q<sub>5</sub>_ |&minus; <br>
+      #_q<sub>accept</sub>_
+      <br><br>
+
+  <li>#0
+      <br><br>
+      q<sub>0</sub>#0 |&minus; <br>
+      #q<sub>5</sub>0 |&minus; <br>
+      #0q<sub>5</sub>_ |&minus; <br>
+      #0_q<sub>accept</sub>_
+     <br><br>
+
+  <li>00#0
+      <br><br>
+      q<sub>0</sub>00#0 |&minus; <br>
+      xq<sub>1</sub>0#0 |&minus; <br>
+      x0q<sub>1</sub>#0 |&minus; <br>
+      x0#q<sub>2</sub>0 |&minus; <br>
+      x0q<sub>3</sub>#x |&minus; <br>
+      xq<sub>4</sub>0#x |&minus; <br>
+      q<sub>4</sub>x0#x |&minus; <br>
+      xq<sub>0</sub>0#x |&minus; <br>
+      xxq<sub>1</sub>#x |&minus; <br>
+      xx#q<sub>2</sub>x |&minus; <br>
+      xx#xq<sub>2</sub>_ |&minus; <br>
+      xx#x_q<sub>reject</sub>_
+      <br><br>
+  <li>00#00
+      <br><br>
+      q<sub>0</sub>00#00 |&minus; <br>
+      xq<sub>1</sub>0#00 |&minus; <br>
+      x0q<sub>1</sub>#00 |&minus; <br>
+      x0#q<sub>2</sub>00 |&minus; <br>
+      x0q<sub>3</sub>#x0 |&minus; <br>
+      xq<sub>4</sub>0#x0 |&minus; <br>
+      q<sub>4</sub>x0#x0 |&minus; <br>
+      xq<sub>0</sub>0#x0 |&minus; <br>
+      xxq<sub>1</sub>#x0 |&minus; <br>
+      xx#q<sub>2</sub>x0 |&minus; <br>
+      xx#xq<sub>2</sub>0 |&minus; <br>
+      xx#q<sub>3</sub>xx |&minus; <br>
+      xxq<sub>3</sub>#xx |&minus; <br>
+      xq<sub>4</sub>x#xx |&minus; <br>
+      xxq<sub>0</sub>#xx |&minus; <br>
+      xx#q<sub>5</sub>xx |&minus; <br>
+      xx#xq<sub>5</sub>x |&minus; <br>
+      xx#xxq<sub>5</sub>_ |&minus; <br>
+      xx#xx_q<sub>accept_</sub>_
+  </ol>
+
+<br>
+
+ <li>Analyze the worst-case time complexity function of the above DTM and express it in O(f(n)) asymptotic notation
+     where n is the length of the input string.
+
+ <br><br>
+
+ The runtime of each iteration is O(m), and the total number of iterations is O(min(m, n)) since
+ the loop terminates when the left or right part is all crossed off.
+ The last scan after entering q<sub>5</sub> takes O(n) time.
+ Thus the total runtime is O(m &times; min(m, n)) + O(n).
+ In terms of k = m+n, we get an upper bound O(k &times; k) + O(k) = O(k<sup>2</sup>).
+
+ </ol>
+
+<br>
+ 
+<li>
+Consider the NTM in
+<a href="sp12-assign-1-sol.html">Question 3 here</a>.
+
+<br><br>
+
+ <ol type=a>
+  <li>Give the exact number of branches of the computation tree on input string
+      0<sup>n</sup>, n &ge; 0.
+      Justify your answer.
+
+      <br><br>
+
+      The NTM scans the input 0<sup>n</sup> from left to tight, nondeterministically replacing a 0 by
+      a<sub>1</sub> or a<sub>2</sub>, or ending the replacement process by transiting to q<sub>accept</sub>.
+      Each branch therefore uniquely writes a string x &isin; {a<sub>1</sub>, a<sub>2</sub>}<sup>*</sup> with
+      0 &le; |x| &le; n.
+      Hence the number of branches is the total number of such strings x:
+      <br><br>
+      &Sigma;<sub>&thinsp;0&thinsp;&le;&thinsp;i&thinsp;&le;&thinsp;n</sub>&thinsp;(total # of strings x with |x| = i) =
+      &Sigma;<sub>&thinsp;0&thinsp;&le;&thinsp;i&thinsp;&le;&thinsp;n</sub>&thinsp;2<sup>i</sup> =
+      2<sup>n+1</sup> &minus; 1      
+
+      <br><br>
+
+  <li>Give the exact worst-case time complexity function, W<sub>M</sub>(n), of this NTM.
+      Justify your answer.
+
+      <br><br>
+
+      The worst case occurs when the NTM writes any string x with |x| = n.
+      In this case, one of the nondeterministic transitions
+      &delta;(q<sub>0</sub>, 0) = { (q<sub>0</sub>, a<sub>1</sub>, R), (q<sub>0</sub>, a<sub>2</sub>, R) }
+      is used n times, then the transition
+      &delta;(q<sub>0</sub>, _) = (q<sub>accept</sub>, _, R) leads to an accepting configuration.
+      The length of all such branches is n+1.
+      Hence, W<sub>M</sub>(n) = n+1.
+
+      <br><br>
+
+  <li>Modify this NTM to one which, given an input 0<sup>n</sup> (n &ge; 0), nondeterministically writes a string x
+      &isin; {a<sub>1</sub>, &hellip;, a<sub>k</sub>}<sup>*</sup> such that 0 &le; |x| &le; n.
+
+      <br><br>
+
+      &Sigma; = { 0 },
+      &Gamma; = { 0, a<sub>1</sub>, &hellip;, a<sub>k</sub>, _ },
+      Q = { q<sub>0</sub>, q<sub>accept</sub> }, and
+
+      <br><br>
+
+      &delta;(q<sub>0</sub>, 0) = { (q<sub>0</sub>, a<sub>1</sub>, R), &hellip;, (q<sub>0</sub>, a<sub>k</sub>, R), (q<sub>accept</sub>, 0, R) }
+      <br>
+      &delta;(q<sub>0</sub>, _) = { (q<sub>accept</sub>, _, R) }
+
+ </ol>
+
+<br>
+
+<li>
+<ol type=a>
+<li>
+In sufficient detail, concisely describe a 3-tape DTM that computes &lfloor;m&thinsp;/&thinsp;n&rfloor; where m, n are non-negative
+integers in unary notation.
+The values of m, n are initially placed on tape 1, 2 respectively, and
+the value of &lfloor;m&thinsp;/&thinsp;n&rfloor; is to be written on tape 3.
+No need to give a transition function/diagram.
+
+<br><br>
+
+The value of &lfloor;m&thinsp;/&thinsp;n&rfloor; is the number of 0<sup>n</sup> substrings contained in 0<sup>m</sup>.
+The following example algorithm counts this number.
+
+<br><br>
+
+Write "_" in the first cell of tape 2 and move head to right; this is to detect the leftmost cell of tape 2.
+<br>
+Repeat the following;
+the algorithm terminates as soon as "_" is read on tape 1 at any point.
+<br><br>
+<ol>
+<li>Move the heads of tape 1 and 2 to right in parallel until "_" is read on tape 2.
+<li>Append 0 on tape 3.
+<li>Move the head of tape 1 to right and the head of tape 2 to left in parallel until "_" is read in the leftmost cell of tape 2.
+<li>Append 0 on tape 3.
+<li>Go to step 1.
+</ol>
+<br>
+<li>
+Illustrate the operation of your DTM by examples of &lfloor;8&thinsp;/&thinsp;4&rfloor; and &lfloor;10&thinsp;/&thinsp;4&rfloor;.
+<br><br>
+The tape head positions are indicated by symbols in <b><font color=red>red</font></b>.
+<br><br>
+start configuration for &lfloor;8&thinsp;/&thinsp;4&rfloor;
+<blockquote>
+tape 1: <b><font color=red>0</font></b>0000000
+<br>
+tape 2: <b><font color=red>0</font></b>000
+<br>
+tape 3: empty
+</blockquote>
+blank the leftmost cell of tape 2
+<blockquote>
+tape 1: <b><font color=red>0</font></b>0000000
+<br>
+tape 2: _<b><font color=red>0</font></b>00
+<br>
+tape 3: empty
+</blockquote>
+step 1
+<blockquote>
+tape 1: 000<b><font color=red>0</font></b>0000
+<br>
+tape 2: _000<b><font color=red>_</font></b>
+<br>
+tape 3: empty
+</blockquote>
+step 2
+<blockquote>
+tape 1: 000<b><font color=red>0</font></b>0000
+<br>
+tape 2: _000<b><font color=red>_</font></b>
+<br>
+tape 3: 0
+</blockquote>
+step 3
+<blockquote>
+tape 1: 0000000<b><font color=red>0</font></b>
+<br>
+tape 2: <b><font color=red>_</font></b>000_
+<br>
+tape 3: 0
+</blockquote>
+step 4
+<blockquote>
+tape 1: 0000000<b><font color=red>0</font></b>
+<br>
+tape 2: <b><font color=red>_</font></b>000_
+<br>
+tape 3: 00
+</blockquote>
+step 1, algorithm terminates
+<blockquote>
+tape 1: 00000000<b><font color=red>_</font></b>
+<br>
+tape 2: _<b><font color=red>0</font></b>00_
+<br>
+tape 3: 00
+</blockquote>
+
+<br>
+start configuration for &lfloor;10&thinsp;/&thinsp;4&rfloor;
+<blockquote>
+tape 1: <b><font color=red>0</font></b>000000000
+<br>
+tape 2: <b><font color=red>0</font></b>000
+<br>
+tape 3: empty
+</blockquote>
+blank the leftmost cell of tape 2
+<blockquote>
+tape 1: <b><font color=red>0</font></b>000000000
+<br>
+tape 2: _<b><font color=red>0</font></b>00
+<br>
+tape 3: empty
+</blockquote>
+step 1
+<blockquote>
+tape 1: 000<b><font color=red>0</font></b>000000
+<br>
+tape 2: _000<b><font color=red>_</font></b>
+<br>
+tape 3: empty
+</blockquote>
+step 2
+<blockquote>
+tape 1: 000<b><font color=red>0</font></b>000000
+<br>
+tape 2: _000<b><font color=red>_</font></b>
+<br>
+tape 3: 0
+</blockquote>
+step 3
+<blockquote>
+tape 1: 0000000<b><font color=red>0</font></b>00
+<br>
+tape 2: <b><font color=red>_</font></b>000_
+<br>
+tape 3: 0
+</blockquote>
+step 4
+<blockquote>
+tape 1: 0000000<b><font color=red>0</font></b>00
+<br>
+tape 2: <b><font color=red>_</font></b>000_
+<br>
+tape 3: 00
+</blockquote>
+step 1, algorithm terminates
+<blockquote>
+tape 1: 0000000000<b><font color=red>_</font></b>
+<br>
+tape 2: _00<b><font color=red>0</font></b>_
+<br>
+tape 3: 00
+</blockquote>
+
+<li>
+Analyze the worst-case time complexity function of your DTM in terms of k = m + n and 
+express it in O(f(k)) asymptotic notation.
+<br><br>
+The algorithm scans 0<sup>m</sup> on tape 1 from left to right and terminates as soon as "_" is read;
+this takes O(m) time.
+The number of 0's appended on tape 3 is &lfloor;m&thinsp;/&thinsp;n&rfloor;, which takes time O(m/n) in total.
+The worst-case runtime is therefore O(m) + O(m/n) &le; O(m) + O(m) = O(m).
+In terms of k = m + n, we have an upper bound O(k).
+</ol>
+
+<br>
+
+<li>
+This question is about the simulation of multi-tape DTMs by 1-tape DTMs.
+Consider the following configuration of a 3-tape DTM with &Gamma; = {a, b, c, _}:
+
+<center><img src="assign-1-Q4.jpg" width=550 height=330></center>
+
+ <ol type=a>
+ <li>Give the 1-tape DTM configuration simulating the above configuration.
+ <li>Give the 1-tape DTM configuration simulating the configuration obtained by
+     the 3-tape DTM transition
+     &delta;(q<sub>i</sub>, b, c, c) = (q<sub>j</sub>, a, b, a, L, R, R) from the above configuration.
+ </ol>
+
+<img src="assign-1-Q4-sol.jpeg" width=720 height=210>
+
+<li>
+Recall the simulation of DTMs by RAMs described in class.
+
+<br><br>
+
+ <ol type=a>
+ <li>Give the RAM memory configuration simulating
+     a<sub>3</sub>a<sub>1</sub>a<sub>4</sub>q<sub>3</sub>a<sub>5</sub>a<sub>2</sub>a<sub>3</sub>.
+ <li>Give the RAM memory configuration simulating the configuration obtained by the transition
+     &delta;(q<sub>3</sub>, a<sub>5</sub>) = (q<sub>2</sub>, a<sub>2</sub>, L) from the above configuration.
+ </ol>
+
+<img src="assign-1-Q5-sol.jpeg" width=720 height=200>
+
+<br>
+
+<li>
+Recall the simulation of RAMs by multi-tape DTMs described in class.
+Show the contents of tape 1 (simulating the RAM memory) and tape 2 (simulating the accumulator r<sub>0</sub>) after
+the execution of each instruction in the following RAM program:
+
+<br><br>
+
+Load =3<br>
+Store 3<br>
+Add 3<br>
+Store 2<br>
+Sub =2<br>
+Store 1<br>
+Mult 3<br>
+Store 2
+
+<br><br>
+
+Presume that tape 1 is initially empty.
+Use a format similar to
+<a href="fa12-assign-1-sol.html">Question 5 on this page</a>, and
+abbreviate integers in unary notation to decimal notation.
+
+<br><br>
+
+Load =3
+<blockquote>
+tape 1: empty
+<br>
+tape 2: 3
+</blockquote>
+
+Store 3
+<blockquote>
+tape 1: ##3#3##
+<br>
+tape 2: 3
+</blockquote>
+
+Add 3
+<blockquote>
+tape 1: ##3#3##
+<br>
+tape 2: 6
+</blockquote>
+
+Store 2
+<blockquote>
+tape 1: ##3#3##2#6##
+<br>
+tape 2: 6
+</blockquote>
+
+Sub =2
+<blockquote>
+tape 1: ##3#3##2#6##
+<br>
+tape 2: 4
+</blockquote>
+
+Store 1
+<blockquote>
+tape 1: ##3#3##2#6##1#4##
+<br>
+tape 2: 4
+</blockquote>
+
+Mult 3
+<blockquote>
+tape 1: ##3#3##2#6##1#4##
+<br>
+tape 2: 12
+</blockquote>
+
+Store 2
+<blockquote>
+tape 1: ##3#3##2#12##1#4##
+<br>
+tape 2: 12
+</blockquote>
+
+<li>
+A DTM with a <i>bidirectionally infinite tape</i> is identical to the DTMs 
+with unidirectionally infinite tapes we defined and studied, except that
+its tape extends infinitely in both left and right directions.
+Initially, the input string is placed in a segment of the tape and the tape head is reading
+the leftmost symbol of the input.
+Informally but in sufficient detail,
+describe how to simulate such a DTM by a DTM with a unidirectionally infinite tape.
+
+<br><br>
+
+The initial tape head position of the bidirectional tape will be called the <i>split position</i>.
+The cells of the bidirectional tape on the left side of the split position will be called the <i>left part</i>,
+while those in the split position and on the right side of it will be called the <i>right part</i>.
+
+<br><br>  
+
+<b>Simulation Method 1</b>
+We sequentially number the cells of the unidirectional tape by 0, 1, 2, &hellip;, from left to right.
+These numbers are for our descriptive purpose only &ndash;
+the unidirectional DTM does not directly know these numbers.
+The cell in position 0 contains "#" to simulate the split position.
+The left part is simulated by the even-numbered cells 2, 4, 6, &hellip; in reverse order, while
+the right part is simulated by the odd-numbered cells 1, 3, 5, &hellip; in original order.
+Thus, the string on the left part appears in the cells 2, 4, 6, &hellip; in reverse order,
+while the string on the right part appears in the cells 1, 3, 5, &hellip; in original order.
+The start tape configuration with the input a<sub>1</sub> &middot;&middot;&middot; a<sub>n</sub> is therefore
+#a<sub>1</sub>_a<sub>2</sub>_ &middot;&middot;&middot; _a<sub>n</sub>.
+Each leftward (rightward, respectively) transition on the left part is simulated by two rightward (leftward) transitions on even cells.
+Each leftward (rightward, respectively) transition on the right part is simulated by two leftward (rightward ) transitions on odd cells.
+The switching between the left and right parts is simulated by detection of #.
+ 
+<br><br>
+
+<b>Simulation Method 2</b>
+We use a unidirectional 2-tape DTM to simulate a bidirectional DTM.
+Both tapes contain # in the 1st position to simulate the split position.
+The right part is simulated by tape 1 in original order, while
+the left part is simulated by tape 2 in reverse order.
+The switching between the left and right parts is simulated by detection of # and switching between tape 2 and tape 1.
+Now, we showed in class how to simulate any 2-tape DTM by a 1-tape DTM.
+
+</ol>
+
+</body>
+</html>

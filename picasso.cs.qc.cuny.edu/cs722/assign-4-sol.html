@@ -1,0 +1,170 @@
+<html>
+
+<title>
+CS 722 Assignment 4 Solutions
+</title>
+
+<body>
+
+<center>
+<h3>
+CS 722 &nbsp;&nbsp; Fall 2017
+<br>
+Homework Assignment #4
+<br>
+Solutions
+</h3>
+</center>
+
+<ol>
+
+<li>
+Consider the nondeterministic algorithm to decide VERTEX-COVER in
+<a href="assign-2-sol.html">Question 2, Assignment #2</a>.
+Presume that this algorithm is implemented by an NTMR and an encoded input
+&lang;G, k&rang; is stored on the read-only input tape.
+Analyze the worst-case space complexity and express it in O(f(n)) notation where n is
+the size of &lang;G, k&rang;.
+<br><br>
+In the following, lg&thinsp;x = log<sub>2</sub>x.
+Let e be the # of edges of G.
+We encode k and m vertices by binary numbers, and each edge by a pair of its end vertices.
+The encoding &lang;G, k&rang; then includes a list of m vertices occupying m&middot;(lg&thinsp;m) bits,
+a list of e edges occupying 2&middot;e&middot;(lg&thinsp;m) bits, and
+k occupying lg&thinsp;k bits.
+Because a suitable number of delimiter symbols are needed,
+m&middot;(lg&thinsp;m) + 2&middot;e&middot;(lg&thinsp;m) + lg&thinsp;k &le; n where n is the size of &lang;G, k&rang;.
+The amount of space required for the variables used in the algorithm is as follows.
+<br><br>
+m: O(lg&thinsp;m) (the value of m is counted from the list of vertices)
+<br>
+j: O(lg&thinsp;m), since j &le; k &le; m holds
+<br>
+V: O(m&middot;(lg&thinsp;m))
+<br>
+E (the list of edges): O(2&middot;e&middot;(lg&thinsp;m)) (The marked edges can be encoded by attaching a special symbol.)
+<br>
+v<sub>i</sub>: O(lg&thinsp;m)
+<br><br>
+The total space requirement is therefore:
+<br><br>
+O(lg&thinsp;m) + O(lg&thinsp;m) + O(m&middot;(lg&thinsp;m)) + O(2&middot;e&middot;(lg&thinsp;m)) + O(lg&thinsp;m) =
+<br>
+O(m&middot;(lg&thinsp;m)) + O(2&middot;e&middot;(lg&thinsp;m)) =
+<br>
+O(n) + O(n) =
+<br>
+O(n).
+<br><br>
+
+<li>
+Let
+<blockquote>
+&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>) =
+(x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>)
+</blockquote>
+
+<ol type=a>
+<li>
+Give an evaluation tree for &psi; by assigning x<sub>i</sub> = 0 and 1, 1 &le; i &le; 3.
+
+<br><br>
+Formula simplification is applied in each step and evaluation is terminated as soon as the value is determined.
+<br>
+<img src="assign-4-sol-Q2.jpeg" height=480 width=830>
+
+<li>
+Evaluate each of the following formulas and determine which player (E or A) has a winning strategy.
+Justify your answers.
+<br><br>
+  <ol type=i>
+  <li>&exist;x<sub>1</sub>&forall;x<sub>2</sub>&exist;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+      <br><br>
+      E has a winning strategy.
+      <br>
+      E selects x<sub>1</sub>=0.
+      <br>
+      If A selects x<sub>2</sub>=0, E selects x<sub>3</sub>=1 and &psi; evaluates to 1.
+      <br>
+      If A selects x<sub>2</sub>=1, E selects x<sub>3</sub>=0 and &psi; evaluates to 1.
+      <br>
+      Hence &exist;x<sub>1</sub>&forall;x<sub>2</sub>&exist;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+      is true.
+      <br><br>
+  <li>&forall;x<sub>1</sub>&exist;x<sub>2</sub>&forall;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+      <br><br>
+      A has a winning strategy.
+      <br>
+      A selects x<sub>1</sub>=0.
+      <br>
+      If E selects x<sub>2</sub>=0, A selects x<sub>3</sub>=0 and &psi; evaluates to 0.
+      <br>
+      If E selects x<sub>2</sub>=1, A selects x<sub>3</sub>=1 and &psi; evaluates to 0.
+      <br>
+      Hence &forall;x<sub>1</sub>&exist;x<sub>2</sub>&forall;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+      is false.
+  </ol> 
+</ol>
+<br>
+
+<li>
+Study GENERALIZED GEOGRAPHY in &sect;8.3 of the book, especially the polynomial-time reduction from
+FORMULA-GAME to GENERALIZED GEOGRAPHY.
+Recall that FORMULA-GAME is a 2-player game interpretation of TQBF.
+For each of the formulas (i) and (ii) in Question 2, (b),
+answer the following questions:
+
+<br><br>
+
+<ol type=a>
+<li>
+Give the directed graph generated from the formula by the polynomial-time reduction.
+<br><br>
+The directed graphs are shown below.
+<br><br>
+<li>
+Give an assignment for x<sub>i</sub>, 1 &le; i &le; 3, that is an instance of a winning strategy for
+the formula, and show the corresponding path selected by players I and II in the graph.
+Mark the edges of the path by "I" or "II" according as they are selected by player I or II, respectively.
+<br><br>
+(i) &exist;x<sub>1</sub>&forall;x<sub>2</sub>&exist;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+<br><br>
+An instance of E's (I's) winning strategy is x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=1.
+Endgame:
+No matter which clause-node c<sub>1</sub>, c<sub>2</sub>, c<sub>3</sub>, or c<sub>4</sub> II goes to from node c,
+I can go to a true literal in that clause to force a win.
+<br><br>
+<img src="assign-4-sol-Q3-1.svg" width=795>
+<br><br>
+(ii) &forall;x<sub>1</sub>&exist;x<sub>2</sub>&forall;x<sub>3</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+is expanded to
+&exist;x<sub>0</sub>&forall;x<sub>1</sub>&exist;x<sub>2</sub>&forall;x<sub>3</sub>&exist;x<sub>4</sub>&psi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>)
+by adding dummy quantifiers &exist;x<sub>0</sub> and &exist;x<sub>4</sub>.
+<br><br>
+An instance of A's (II's) winning strategy is x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0.
+The values of x<sub>0</sub> and x<sub>4</sub> are immaterial as they are dummy variables.
+Endgame: II goes to the false clause node c<sub>1</sub> from c.
+No matter which literal x<sub>1</sub>, x<sub>2</sub>, or x<sub>3</sub> I goes to from c<sub>1</sub>,
+II can go to an unvisited node to force a win.
+<br><br>
+<img src="assign-4-sol-Q3-2.svg" width=830>
+</ol>
+<br>
+
+<li>
+Prove: If &exist;A &isin; NP &cap; PSPACE-Complete, then NPC = PSPACE-Complete.
+You may use any of the theorems proved in class.
+<br><br>
+Suppose &exist;A &isin; NP &cap; PSPACE-Complete.
+By Theorem 6 proved in class, NP = PSPACE.
+NPC and PSPACE-Complete are the subclasses of NP and PSPACE, respectively, to which all
+NP and PSPACE languages reduce in polynomial time.
+Since NP = PSPACE, then, NPC = PSPACE-Complete.
+
+</ol>
+
+</body>
+</html>

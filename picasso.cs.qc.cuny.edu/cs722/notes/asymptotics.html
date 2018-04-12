@@ -1,0 +1,94 @@
+<html>
+<body>
+
+<b>R</b><sup>+</sup> = the set of nonnegative real numbers
+<br>
+<b>N</b> = { 0, 1, 2, 3, &hellip; }
+
+<br><br>
+
+Let f, g, h: <b>N</b> &rarr; <b>R</b><sup>+</sup>.
+
+<ul>
+<li>
+f(n) = O(g(n)) if &exist;c, n<sub>0</sub> &isin; <b>N</b> s.t. &forall;n &ge; n<sub>0</sub>, f(n) &le; c g(n).
+The growth rate of f(n) is less than or equal to that of g(n).
+<li>
+f(n) = o(g(n)) if lim<sub>n&rarr;&infin;</sub>[f(n)/g(n)] = 0.
+The growth rate of f(n) is less than that of g(n).
+<li>
+f(n) = &Theta;(g(n)) if &exist;c, c', n<sub>0</sub> &isin; <b>N</b> s.t. 
+&forall;n &ge; n<sub>0</sub>, c g(n) &le; f(n) &le; c' g(n).
+The growth rate of f(n) is equal to that of g(n).
+<li>
+f(n) = g(&thinsp;O(h(n))&thinsp;) if &exist;&thinsp;h': <b>N</b> &rarr; <b>R</b><sup>+</sup> s.t. 
+f(n) = g(h'(n)) and h'(n) = O(h(n)).
+</ul>
+
+<b>Fact 1</b>
+If lim<sub>n&rarr;&infin;</sub>[f(n)/g(n)] = c &ge; 0, f(n) = O(g(n)).
+
+<br><br>
+
+<b>Fact 2</b>
+If lim<sub>n&rarr;&infin;</sub>[f(n)/g(n)] = c &gt; 0, f(n) = &Theta;(g(n)).
+
+<br><br>
+
+<b>Fact 3</b>
+If f(n) = o(g(n)), f(n) = O(g(n)).
+
+<br><br>
+
+<b>Fact 4</b>
+If a<sub>k</sub> &gt; 0,
+a<sub>k</sub>n<sup>k</sup>+a<sub>k&minus;1</sub>n<sup>k&minus;1</sup>+ &middot;&middot;&middot; +
+a<sub>1</sub>n + a<sub>0</sub> = &Theta;(n<sup>k</sup>).
+
+<br><br>
+
+<b>Fact 5</b>
+For all real numbers a, b &gt; 1,
+log<sub>a</sub>n = &Theta;(log<sub>b</sub>n).
+
+<br><br>
+
+<b>Fact 6</b>
+For all real numbers a, b,
+<ul>
+<li>
+n<sup>a</sup> = o(n<sup>b</sup>) iff a &lt; b
+<li>
+n<sup>a</sup> = O(n<sup>b</sup>) iff a &le; b
+<li>
+n<sup>a</sup> = &Theta;(n<sup>b</sup>) iff a = b
+</ul>
+
+<b>Fact 7</b>
+For all real numbers 0 &lt; a &lt; b,
+a<sup>n</sup> = o(b<sup>n</sup>).
+
+<br><br>
+
+<b>Fact 8</b>
+(log<sub>a</sub>n)<sup>k</sup> &lt; n &lt; n log<sub>a</sub>n &lt; n<sup>2</sup> &lt;
+n<sup>3</sup> &lt; n<sup>4</sup> &lt; &middot;&middot;&middot; &lt; 2<sup>n</sup> &lt; 3<sup>n</sup> &lt;
+4<sup>n</sup> &lt; &middot;&middot;&middot; &nbsp;
+(f(n) &lt; g(n) abbreviates f(n) = o(g(n)).)
+
+<br><br>
+
+<b>Fact 9</b>
+For all real numbers a, b &gt; 1,
+a<sup>n</sup> = b<sup>O(n)</sup>.
+
+<br><br>
+
+<b>Proof of Fact 9</b>
+a<sup>n</sup> =
+(b<sup>log<sub>b</sub>a</sup>)<sup>n</sup> =
+b<sup>(log<sub>b</sub>a)&middot;n</sup>, and
+(log<sub>b</sub>a)&middot;n = O(n).
+
+</body>
+</html>

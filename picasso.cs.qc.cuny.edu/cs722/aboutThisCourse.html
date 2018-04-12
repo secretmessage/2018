@@ -1,0 +1,55 @@
+<html>
+<body>
+
+<i>Computability theory</i> studies what problems can or cannot be solved by idealized digital computing machines in principle without regard to the amount of computational resources used.
+It also studies structures and properties of problems so solvable.
+A problem is computable in principle if an idealized digital computing machine can solve it using a finite amount of time and memory space, however extravagant the amount may be, for example 10000000<sup>10000000000</sup> years and
+10000000000000<sup>100000000000000000000000</sup> bits of memory space.
+The halting problem is a well-known example of problem that cannot be solved by algorithm even in principle.
+Although titled "Computability and Complexity", the topic of this course is complexity theory for the most part.
+<i>Computational complexity theory</i> is a branch of theoretical computer science that studies the amount of computational resources required to solve computational problems.
+As has been commented by some, "complexity theory" is a bit of a misnomer since it is not really about how "complex" computational problems are, but the term has been firmly established.
+"Computational efficiency theory" would be an apter term.
+Computability theory and complexity theory are treated, respectively, in Part 2 and 3 of
+Sipser's book.
+
+<br><br>
+
+<i>Time complexity</i> studies the amount of time required to solve problems, and
+<i>space complexity</i> studies the amount of memory space required to solve problems.
+These are the two main topics of this course.
+Toward the end,
+the course will also treat <i>circuit complexity</i> that studies the amount of logic gates
+(OR, AND, NOT gates) required to solve problems.
+In order to build rigorous computational complexity theories,
+it is necessary to start from a precisely defined computing machine and a <i>complexity measure</i>: a quantitative measure of the amount of resources used such as time, space, logic gates.
+The predominantly used computing machine for time/space complexities is the <i>Turing machine</i>, 
+which is the one used in this course.
+Time complexity is then measured by the number of state transitions the Turing machine takes,
+and space complexity is measured by the number of tape cells the Turing machine uses.
+In circuit complexity,
+the computing machine is a circuit of logic gates wired together,
+and we will study two complexity measures of <i>size complexity</i> and <i>depth complexity</i>.
+
+<br><br>
+
+One of the important topics of computational complexity theory
+is to classify problems by asymptotic analysis of a complexity measure.
+Classes of problems thus obtained are called <i>complexity classes</i>.
+For example, the time complexity class P is defined to be the class of problems that can be solved
+by deterministic Turing machines in O(n<sup>k</sup>) steps, i.e., in polynomial numbers of steps.
+Likewise, the space complexity class PSPACE is defined to be the class of problems that can be solved
+by deterministic Turing machines using O(n<sup>k</sup>) tape cells, i.e., in polynomial numbers of tape cells.
+Equally important is to study relations among complexity classes, such as:
+Is complexity class C<sub>1</sub> contained in another complexity class C<sub>2</sub>?
+Are they equal? Do they intersect?
+These will be the main focus of this course.
+
+<br><br>
+
+This course is much less concerned about practically useful algorithms and their time/space complexity analysis,
+which are topics of courses in design/analysis of algorithms and data structures
+(CS 313, CS 323, CS 700).
+
+</body>
+</html>

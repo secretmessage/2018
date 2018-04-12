@@ -1,0 +1,239 @@
+<html>
+
+<title>
+CS 722 Assignment 1 Solutions
+</title>
+
+<body>
+
+<center>
+<h3>
+CS 722 &nbsp;&nbsp; Spring 2012
+<br>
+Homework Assignment #1
+<br>
+Solutions
+</h3>
+</center>
+
+<ol>
+<li>
+Consider the DTM that decides { 0<sup>2<sup>n</sup></sup> | n &ge; 0 } we studied in class (Example 3.7 in the book).
+Give the transition sequence on the input 000000.
+
+<br><br>
+
+"_" denotes the blank symbol.
+
+<br><br>
+
+q<sub>1</sub>000000 |&minus; <br>
+_q<sub>2</sub>00000 |&minus; <br>
+_xq<sub>3</sub>0000 |&minus; <br>
+_x0q<sub>4</sub>000 |&minus; <br>
+_x0xq<sub>3</sub>00 |&minus; <br>
+_x0x0q<sub>4</sub>0 |&minus; <br>
+_x0x0xq<sub>3</sub>_ |&minus; <br>
+_x0x0q<sub>5</sub>x |&minus; <br>
+_x0xq<sub>5</sub>0x |&minus; <br>
+_x0q<sub>5</sub>x0x |&minus; <br>
+_xq<sub>5</sub>0x0x |&minus; <br>
+_q<sub>5</sub>x0x0x |&minus; <br>
+q<sub>5</sub>_x0x0x |&minus; <br>
+_q<sub>2</sub>x0x0x |&minus; <br>
+_xq<sub>2</sub>0x0x |&minus; <br>
+_xxq<sub>3</sub>x0x |&minus; <br>
+_xxxq<sub>3</sub>0x |&minus; <br>
+_xxx0q<sub>4</sub>x |&minus; <br>
+_xxx0xq<sub>4</sub>_ |&minus; <br>
+_xxx0x_q<sub>reject</sub>_  
+
+<br><br>
+
+<li>
+Consider the DTM algorithm that decides { 0<sup>k</sup>1<sup>k</sup> | k &ge; 0 } we studied in class 
+(M<sub>1</sub> in &sect;7.1 of the book). 
+Design an actual 1-tape DTM implementing this algorithm and give its state-transition diagram.
+
+<br><br>
+
+The following is one example DTM implementing the algorithm.
+
+<br><br>
+
+"_" denotes the blank symbol.
+&Sigma; = { 0, 1 }, &Gamma; = { 0, 1, x, _ }.
+The start state is q<sub>0</sub>.
+"_" is used to cross off 0 and "x" is used to cross off 1.
+For brevity of the diagram, the state q<sub>reject</sub> and all transitions leading to q<sub>reject</sub> are omitted;
+any transition &delta;(q, s) not shown in the diagram is understood to be &delta;(q, s) = (q<sub>reject</sub>, s, R).
+
+<br><br>
+
+The DTM crosses off the first 0 and enters q<sub>1</sub>, and stays in q<sub>1</sub> by reading the remaining 0s and the x's representing
+the 1's already crossed off in the previous steps.
+Then it crosses off the first 1 and enters q<sub>2</sub>, and stays in q<sub>2</sub> by reading the remaining 1's.
+The DTM enters q<sub>3</sub> upon reading "_", and moves the head back until it reads "_", upon which it reenters q<sub>0</sub> and
+repeats the process.
+If the input is 0<sup>k</sup>1<sup>k</sup>, the DTM will reach the configuration _<sup>k</sup>q<sub>0</sub>x<sup>k</sup> and enter q<sub>4</sub> leading to
+q<sub>accept</sub>.
+The checking for an occurrence of 0 after a 1 is incorporated into the first scan.
+
+<br><br>
+
+<center><img src="sp12-assign-1-Q2.svg"></center>
+
+<br>
+
+<li>
+Consider the NTM defined by &Sigma; = { 0 }, &Gamma; = { 0, a<sub>1</sub>, a<sub>2</sub>, _ } ("_" denotes the blank symbol),
+Q = { q<sub>0</sub>, q<sub>accept</sub> }, and
+
+<br><br>
+&delta;(q<sub>0</sub>, 0) = { (q<sub>0</sub>, a<sub>1</sub>, R), (q<sub>0</sub>, a<sub>2</sub>, R), (q<sub>accept</sub>, 0, R) }
+<br>
+&delta;(q<sub>0</sub>, _) = { (q<sub>accept</sub>, _, R) }
+<br><br>
+
+Given an input string 0<sup>n</sup>, n &ge; 0, this NTM nondeterministically writes a string 
+x &isin; {a<sub>1</sub>, a<sub>2</sub>}<sup>*</sup>
+such that 0 &le; |x| &le; n.
+Give the computation tree of configurations starting with q<sub>0</sub>00 at the root.
+
+<br><br>
+
+"_" denotes the blank symbol.
+
+<center><img src="sp12-assign-1-Q3.jpg" width=600 height=300></center>
+
+<br>
+
+<li>
+Give a RAM program to compute the function f(m, n) = m + (m+1) + &middot;&middot;&middot; + (n&minus;1) + n, where
+m, n are integers such that m &le; n, initially given on the input tape.
+
+<br><br>
+
+The following is one example RAM program.
+
+<br><br>
+
+<pre>
+read r<sub>1</sub>; // read m
+read r<sub>2</sub>; // read n
+r<sub>3</sub> = r<sub>1</sub>+1; // r<sub>3</sub> = m+1
+<b>while</b> ( r<sub>2</sub>&minus;r<sub>3</sub> &ge; 0 )
+{
+    r<sub>1</sub> = r<sub>1</sub>+r<sub>3</sub>;
+    r<sub>3</sub> = r<sub>3</sub>+1;
+}
+write r<sub>1</sub>;
+
+      Read 1       // r<sub>1</sub> = m
+      Read 2       // r<sub>2</sub> = n
+      Load 1
+      Add =1
+      Store 3      // r<sub>3</sub> = r<sub>1</sub>+1
+loop: Load 3
+      Sub 2
+      Jgtz out     // if r<sub>3</sub>&minus;r<sub>2</sub> &gt; 0 then jump to "out"
+      Load 1
+      Add 3
+      Store 1      // r<sub>1</sub> = r<sub>1</sub>+r<sub>3</sub>
+      Load 3
+      Add =1
+      Store 3      // r<sub>3</sub> = r<sub>3</sub>+1
+      Jump loop
+out:  Write 1      // write r<sub>1</sub>
+      Halt
+</pre>
+
+<li>
+This question concerns the simulation of RAMs by the 5-tape DTM's described in class.
+Consider the simulation process of the following RAM instruction stream:
+<br><br>
+Load =2, Store 3, Load =3, Store 2, Load =4, Store 1, Load 2, Mult 1, Add 3, Store 4
+<br><br>
+Show the contents of tape 1 (simulating the RAM memory) and tape 2 (simulating the accumulator r<sub>0</sub>) after
+the execution of each instruction.
+
+<br><br>
+
+For brevity, integers in unary notation on the tape are abbreviated by decimal notation.
+
+<br><br>
+
+Load =2
+<blockquote>
+tape 1: empty
+<br>
+tape 2: 2
+</blockquote>
+
+Store 3
+<blockquote>
+tape 1: ##3#2##
+<br>
+tape 2: 2
+</blockquote>
+
+Load =3
+<blockquote>
+tape 1: ##3#2##
+<br>
+tape 2: 3
+</blockquote>
+
+Store 2
+<blockquote>
+tape 1: ##3#2##2#3##
+<br>
+tape 2: 3
+</blockquote>
+
+Load =4
+<blockquote>
+tape 1: ##3#2##2#3##
+<br>
+tape 2: 4
+</blockquote>
+
+Store 1
+<blockquote>
+tape 1: ##3#2##2#3##1#4##
+<br>
+tape 2: 4
+</blockquote>
+
+Load 2
+<blockquote>
+tape 1: ##3#2##2#3##1#4##
+<br>
+tape 2: 3
+</blockquote>
+
+Mult 1
+<blockquote>
+tape 1: ##3#2##2#3##1#4##
+<br>
+tape 2: 12
+</blockquote>
+
+Add 3
+<blockquote>
+tape 1: ##3#2##2#3##1#4##
+<br>
+tape 2: 14
+</blockquote>
+
+Store 4
+<blockquote>
+tape 1: ##3#2##2#3##1#4##4#14##
+<br>
+tape 2: 14
+</blockquote>
+
+</ol>
+
+</body>
+</html>
