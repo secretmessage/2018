@@ -1,0 +1,132 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 3 Spring 2018
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Spring 2018
+</b>
+
+<hr align="center">
+
+<font face="verdana">
+
+<b>
+PROJECT 3: JDO Class Schemas
+</b>
+<br>
+<b>Due: 04/29/18, Sunday, 11 PM</b>
+
+<br><br>
+
+<font color=red>
+<b>
+Use <a href="http://www.objectdb.com/object/db/database/download">ObjectDB version 2.7.4</a>
+for this and next projects
+(this seems to be the most recent, stable version).
+</b>
+</font>
+
+<br><br>
+
+This project is an exercise in mapping a UML model to JDO class schemas.
+First, read
+<a href = "ODB.html">JDO/ObjectDB Tutorial</a>. 
+
+<br><br>
+
+Implement the following UML class diagram in JDO.
+This is an abridged model of ATM transactions within a single bank.
+(mainly due to the fact that the ObjectDB free version supports at most 10 persistent classes).
+
+<br><br><br>
+
+<center><img src="proj3-sp18-1.svg"></center>
+
+<ul>
+<li>
+<i>ATMTransaction</i> is an abstract class.
+<li>
+The Java classes should use the same class/attribute/relation names used in the above class diagram.
+<li>
+Except for those of <i>timeDate</i> and <i>expirationDate</i>,
+the inverse relations must be implemented by class fields of suitable names.
+<li>
+The inverse relations of <i>account</i> and <i>targetAccount</i> must be implemented by TreeSet&lt;ATMTransaction&gt; and TreeSet&lt;Transfer&gt;, respectively, sorted in reverse chronological order of
+the transactions' TimeDate.
+Break the tie of TimeDate by ATMTransaction.IDcode.
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/TreeSet.html">TreeSet&lt;E&gt;</a>
+requires class E to implement
+<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html">Comparable&lt;E&gt;</a>
+or
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html">Comparator&lt;E&gt;</a>
+interface by providing, respectively, <i>compareTo</i> or <i>compare</i> function to define a linear ordering.
+For two examples of use of TreeSet&lt;E&gt;, see CourseSection and Take classes in the
+<a href="courseMaterial.html">college example</a>.
+The other relations and inverse relations may be implemented by
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/HashSet.html">HashSet&lt;E&gt;</a>.
+</ul>
+
+Next, write a Java class named <i>CreateData</i> whose main function is to create
+the objects and the relation instances in the following object diagram.
+
+<br><br><br>
+
+<center><img src="proj3-sp18-2.svg"></center>
+
+<br><br>
+
+You might create other objects and relation instances, but this is optional.
+It will be helpful to create data by means of constructors in relevant classes.
+Running <i>CreateData.main</i> is to create the above data
+in the database file named "bank.odb".
+Recall that a function call <tt>pm.makePersistent(x)</tt> is used to store <tt>x</tt> 
+as persistent object, and this function call is unnecessary if <tt>x</tt> is reachable from
+an existing persistent object due to the persistence-by-reachability rule.
+Note also that all calls to <tt>pm.makePersistent(x)</tt> 
+and all operations modifying the database file must be enclosed by
+<tt>pm.currentTransaction().begin()</tt> and <tt>pm.currentTransaction().commit()</tt>.
+This <a href="demo/CreateData.java">sample code</a> for the college database might be helpful. 
+
+<br><br>
+
+The last phase of the project is as follows:
+
+<ol>
+<li> 
+<a href = "ODB.html">Compile and enhance</a> the Java classes.
+In this project, place all the classes in one folder,
+the default package.
+Persistent classes must include the annotation <tt>@javax.jdo.annotations.PersistenceCapable</tt>.
+The class <i>CreateData</i> will not be transformed into a persistent class and so
+should not include the annotation.
+
+<li>
+Run <i>CreateData.main</i> to create data in the file "bank.odb".
+You can view the contents of the file by ObjectDB Explorer, which
+should be in the bin folder of ObjectDB, for example C:\Program Files\objectdb\bin.
+</ol>
+
+<b>Submission</b>
+
+<br><br>
+
+The due date is 04/29/18, Sunday, 11 PM.
+Email the following material to keitaro.yukawa@gmail.com using the subject header
+<br>
+<em>CS 332 or CS 780, Project 3, Your Full Name(s)</em>:
+
+<br><br>
+the Java source classes (those with .java extension) including <i>CreateData.java</i>
+<br><br>
+
+You may email the entire material in a .zip or .rar compressed file.
+Before sending your project package, double check no classes are missing.  
+
+</font>
+
+</body>
+</html>
+
