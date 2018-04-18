@@ -669,7 +669,7 @@ Its logical meaning is:
 <br>
 Parameter: cNum: String
 <br>
-Bound variable: c: courseSection
+Bound variable: c: CourseSection
 </font>
 <pre>
 { p: Professor | p.teach.contains(c) && c.course.number == cNum }
@@ -915,7 +915,7 @@ The following parametric query retrieves the Take object in <i>takes</i> related
 the given course section <i>c</i>, i.e.,
 the Take object for student <i>s</i> and course section <i>c</i>.
 <br><br>
-Parameter: c: courseSection
+Parameter: c: CourseSection
 </font>
 <pre>
 { t: takes | t.courseSection == c }
@@ -1262,7 +1262,7 @@ The following parametric query retrieves the Take object in <i>takes</i> related
 the given course section <i>cs</i>, i.e.,
 the Take object for student <i>s</i> and course section <i>cs</i>.
 <br><br>
-Parameter: cs: courseSection
+Parameter: cs: CourseSection
 </font>
 <pre>
 { t: takes | t.courseSection == cs }
