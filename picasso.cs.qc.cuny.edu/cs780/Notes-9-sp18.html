@@ -1,0 +1,592 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp; Spring 2018
+<br>
+Course Notes #9
+<br>
+Keitaro Yukawa
+<br>
+Department of Computer Science
+<br>
+Queens College, CUNY
+
+<font face="verdana">
+<center>
+<h2>
+More JDOQL Features
+</h2>
+</center>
+</font>
+
+<font face="verdana" size=-1>
+
+<h2>
+<b>q.setOrdering</b>
+</h2>
+
+By default, result collections returned by JDOQL queries are not sorted.
+This means that if result collections are scanned by iterators or for-loops,
+the scanning orders of the collections' elements are determined
+by the system.
+Result collections can be sorted into lexicographic orderings based on
+any combinations of the target class's attributes along with functions.
+Sorting a result collection will force the scanning of its elements by iterators/for-loops
+to be done in the sorted order.
+Sorting is done by applying the <i>setOrdering</i> function
+to the query object.
+For example, a result collection of Student objects can be sorted
+by their last names in ascending order in this way:
+</font>
+<pre>
+q.setClass( Student.class );
+   ...
+q.setOrdering( "this.name.lastName ascending" );
+</pre>
+<font face="verdana" size=-1>
+If each group of students with the same last name is to be sorted locally by first names
+in descending order, use:
+</font>
+<pre>
+q.setOrdering( "this.name.lastName ascending, this.name.firstName descending" );
+</pre>
+<font face="verdana" size=-1>
+If the Student objects are to be sorted by the number of course sections they have
+taken in descending order, use:
+</font>
+<pre>
+q.setOrdering( "this.take.size() descending" );
+</pre>
+<font face="verdana" size=-1>
+
+<h2>
+<b>q.setUnique</b>
+</h2>
+
+If the query result collection is known to contain at most one object,
+q.setUnique(true) may be used to make the query return the unique object in the result collection, or
+null in case the result collection is empty.
+If the result collection contains more than one object,
+use of q.setUnique(true) throws a runtime error.
+
+<br><br>
+
+<b>Example 1</b>
+
+</font>
+<pre>
+Query q = pm.newQuery();
+q.setClass(Student.class);
+q.setUnique(true);
+q.declareParameters("String studentID");
+q.setFilter("this.IDNum == studentID");
+
+Student s = (Student) q.execute("12345");
+</pre>
+<font face="verdana" size=-1>
+
+<h2>
+<b>q.setResult</b>
+</h2>
+
+The function q.setResult is used to set the query result to be a relation, i.e., 
+a collection of tuples of values computed
+from objects rather than a collection of objects.
+Its general format is:
+
+</font>
+<pre>
+q.setClass(C.class);
+...
+q.setResult("expr<sub>1</sub>, &hellip;, expr<sub>n</sub>");
+
+Collection&lt;Object[]&gt; result = (Collection&lt;Object[]&gt;) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+The expr<sub>k</sub>, 1 &le; k &le; n, are expressions, usually involving fields/functions of class C or
+fields/functions reachable from C.
+The values of these expressions may not be of Collection type or its descendant.
+The query result is a collection of n-tuples of values of the expressions expr<sub>k</sub>
+computed from the objects/values satisfying the Boolean filter.
+Each n-tuple is implemented by an array Object[] containing n elements.
+The range variable <i>this</i> (ranging over class C) may be omitted in expr<sub>k</sub>.
+The result relation can be schematically defined in collection form:
+
+<br><br>
+
+{ &lt;expr<sub>1</sub>: T<sub>1</sub>, &hellip;, expr<sub>n</sub>: T<sub>n</sub>&gt; | B }
+
+<br><br>
+
+where B is the Boolean filter and the T<sub>i</sub> are the types of expressions expr<sub>i</sub>,
+1 &le; k &le; n.
+
+<br><br>
+
+<b>Example 2</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("this.semester, this.year");
+
+Collection&lt;Object[]&gt; result = (Collection&lt;Object[]&gt;) q.execute(&hellip;);
+
+for ( Object[] x : result )
+{
+	System.out.println();
+	for ( int i =0; i < x.length; i++ )
+		System.out.println( x[i] );
+}
+</pre>
+<font face="verdana" size=-1>
+
+The result is the collection of the 2-tuples of semester and 
+year field values computed from the CourseSection objects satisfying the Boolean filter.
+Each of these 2-tuples is contained in an Object[] array of two elements.
+If there are <i>m</i> CourseSection objects satisfying the Boolean filter 
+with equal values of semester=<i>s</i> and year=<i>y</i>,
+then <i>m</i> copies of &lt;<i>s</i>, <i>y</i>&gt; tuples are included in the result.
+The for-loop prints the values of the two fields in the result.
+Its collection form is:
+
+</font>
+<pre>
+Range variable: c: CourseSection
+
+{ &lt;c.semester: int, c.year : int&gt; | B }
+</pre>
+<font face="verdana" size=-1>
+
+Insertion of the keyword <b>distinct</b> in q.setResult(&hellip;) ensures that just one copy of each tuple
+is included in the result, that is, it ensures that the result is a set of tuples without multiple copies of
+tuples.
+
+<br><br>
+
+<b>Example 3</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("distinct this.semester, this.year");
+
+Collection&lt;Object[]&gt; result = (Collection&lt;Object[]&gt;) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+The result contains just one copy of each &lt;semester, year&gt; tuple.
+
+<br><br>
+
+<b>Example 4</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("course.title, semester, year, take.size()");
+</pre>
+<font face="verdana" size=-1>
+
+The result is a collection of &lt;course.title, semester, year, take.size()&gt; tuples computed from
+the CourseSection objects satisfying the Boolean filter.
+
+<br><br>
+
+<b>Example 5</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("course.title, semester, year, take.size() &gt;= 20");
+</pre>
+<font face="verdana" size=-1>
+
+The result is a collection of &lt;course.title, semester, year, take.size() &gt;= 20&gt; tuples.
+Note that the value of the last component "take.size() &gt;= 20" is <i>true</i> or <i>false</i>.
+
+<br><br>
+
+<b>Example 6</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Student s1");
+q.setFilter("this.name.lastName == s1.name.lastName &&"+
+            "this != s1");
+q.setResult("this, s1");
+</pre>
+<font face="verdana" size=-1>
+
+The result is the collection of the pairs of students with the same last name.
+
+<br><br>
+
+<b>Example 7</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Take t");
+q.setFilter("this.take.contains(t)");
+q.setResult("this, t.courseSection");
+</pre>
+<font face="verdana" size=-1>
+
+The result is the 2-tuples of students and course sections they have taken.
+The same result can also be computed by:
+
+</font>
+<pre>
+Query q = pm.newQuery(Take.class);
+q.setResult("this.student, this.courseSection");
+</pre>
+<font face="verdana" size=-1>
+
+<b>Example 8</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(Take.class);
+q.declareVariables("Department d; Professor p");
+q.setFilter("d.offer.contains(this.courseSection.course) && "+
+            "p.teach.contains(this.courseSection)");
+q.setResult("this.student, this.courseSection, this.grade, d, p");
+q.setOrdering("this.student.name.lastName, this.student.name.firstName, this.student.IDNum");
+</pre>
+<font face="verdana" size=-1>
+
+The result is the collection of the 5-tuples
+&lt;<i>s</i>, <i>c</i>, <i>g</i>, <i>d</i>, <i>p</i>&gt; such that
+student <i>s</i> received grade <i>g</i> in course section <i>c</i>
+offered by department <i>d</i> and taught by professor <i>p</i>.
+Its collection form is:
+
+</font>
+<pre>
+Range variable: t: Take
+Unbound variables: d: Department, p: Professor
+
+{ &lt;t.student: Student, t.courseSection: CourseSection, t.grade: Grade, d: Department, p: Professor&gt; |
+  d.offer.contains(t.courseSection.course) && p.teach.contains(t.courseSection) }
+</pre>
+<font face="verdana" size=-1>
+
+The result collection is sorted by lexicographic ordering of
+t.student.name.lastName, t.student.name.firstName, t.student.IDNum with respect to
+the first component t.student of the tuples.
+
+<br><br>
+
+The aggregate operators <i>min</i>, <i>max</i>, <i>count</i>, <i>sum</i>, <i>avg</i> may be applied to the components of tuples.
+The result is a single tuple implemented by a single Object[] array.
+
+<br><br>
+
+<b>Example 9</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("min(year), max(year), count(this), sum(take.size()), avg(take.size())");
+		
+Object[] result = (Object[]) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+The result is a single tuple of the earliest year, the latest year, the total # of CourseSection objects,
+the total sum of take.size(), the average of take.size() computed from the CourseSection objects satisfying
+the Boolean filter.
+
+<br><br>
+
+Note that aggregate operators must be applied to all tuple components.
+For example,
+
+</font>
+<pre>
+q.setResult("year, max(year), count(this), sum(take.size()), avg(take.size())");
+</pre>
+<font face="verdana" size=-1>
+
+would result in runtime error.
+
+<br><br>
+
+If the argument of q.setResult is just one expression expr<sub>1</sub>,
+the result type is required to be a Collection of the type of expr<sub>1</sub> instead of
+Collection&lt;Object[]&gt;, and the result is a collection of values of the expression expr<sub>1</sub>
+computed from the objects satisfying the Boolean filter.
+
+<br><br>
+
+<b>Example 10</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("year");
+		
+Collection&lt;Integer&gt; result = (Collection&lt;Integer&gt;) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+If the argument of q.setResult is an aggregate operator applied to just one expression expr<sub>1</sub>,
+the result type is required to be the type of the result of the aggregate operator, and
+the result itself is a single value.
+
+<br><br>
+
+<b>Example 11</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setResult("min(year)");
+		
+Integer result = (Integer) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+<h2>
+<b>q.setGrouping</b>
+</h2>
+
+The function q.setGrouping is used to partition objects into groups.
+Its general format is:
+
+</font>
+<pre>
+q.setClass(C.class);
+...
+q.setGrouping("expr<sub>1</sub>, &hellip;, expr<sub>n</sub>");
+q.setResult("&hellip;");
+</pre>
+<font face="verdana" size=-1>
+
+The expr<sub>k</sub>, 1 &le; k &le; n, are expressions involving fields/functions of class C or
+fields/functions reachable from C.
+The values of these expressions may not be of Collection type or its descendant.
+The C-objects satisfying the Boolean filter are partitioned into groups so that
+the objects in each group have equal values of all expr<sub>k</sub>, 1 &le; k &le; n.
+Every parameter expression in q.setResult("&hellip;") must be expr<sub>k</sub> or
+an aggregate operator applied to a group.
+
+<br><br>
+
+<b>Example 12</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setGrouping("semester, year");
+q.setResult("semester, year, sum(take.size()), avg(take.size())");
+		
+Collection&lt;Object[]&gt; result = (Collection&lt;Object[]&gt;) q.execute(&hellip;);
+</pre>
+<font face="verdana" size=-1>
+
+The CourseSection objects satisfying the Boolean filter are partitioned into groups by
+equal values of (semester, year) and the aggregate operators <i>sum</i> and <i>avg</i> are applied to
+the values of take.size() of the objects in each group.
+The query result is a collection of
+&lt;semester, year, sum(take.size()), avg(take.size())&gt;-tuples contained in
+Object[] arrays of four elements.
+
+<br><br>
+
+<b>Example 13</b>
+
+</font>
+<pre>
+q.setClass(CourseSection.class);
+...
+q.setGrouping("take.size()");
+q.setResult("take.size(), count(this), sum(take.size())");
+</pre>
+<font face="verdana" size=-1>
+
+This query partitions the CourseSection objects by enrollment size, i.e. take.size(), 
+and computes the total # of CourseSection objects
+and the sum of take.size() in each group.
+Thus, sum(take.size()) = take.size() &times; count(this) holds in each tuple in the result.
+
+<h2>
+<b>Select-From-Where Clause</b>
+</h2>
+
+</font>
+<pre>
+Query q = pm.newQuery(
+  "select [unique]
+          [&lt;result&gt;]
+          [from &lt;target class&gt;]
+          [where &lt;filter&gt;]
+          [variables &lt;var declarations&gt;]
+          [parameters &lt;parameter declarations&gt;]
+          [group by &lt;grouping&gt;]
+          [order by &lt;ordering&gt;]");
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery();
+q.setClass(&lt;target class&gt;.class);
+q.setUnique(&hellip;);
+q.setResult(&lt;result&gt;);
+q.declareVariables(&lt;var declarations&gt;);
+q.declareParameters(&lt;parameter declarations&gt;);
+q.setFilter(&lt;filter&gt;);
+q.setGrouping(&lt;grouping&gt;);
+q.setOrdering(&lt;ordering&gt;);
+</pre>
+<font face="verdana" size=-1>
+
+<b>Example 14</b>
+
+
+</font>
+<pre>
+Query q = pm.newQuery(
+	"select distinct course.number, course.title, semester, year "+
+	"from CourseSection "+
+	"where this.take.contains(t) && t.student.major == m "+
+	"variables Take t "+
+	"parameters String m "+
+	"order by year descending, semester descending");						
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery();
+q.setClass(CourseSection.class);
+q.setResult("distinct course.number, course.title, semester, year");
+q.declareVariables("Take t");
+q.declareParameters("String m");
+q.setFilter("this.take.contains(t) && t.student.major == m");
+q.setOrdering("year descending, semester descending");
+</pre>
+<font face="verdana" size=-1>
+
+
+<b>Example 15</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(
+	"select unique from Student " + 
+	"where this.IDNum == studentID " +
+	"parameters String studentID");
+
+Student s = (Student) q.execute("12345");			
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery();
+q.setClass(Student.class);
+q.setUnique(true);
+q.declareParameters("String studentID");
+q.setFilter("this.IDNum == studentID");
+
+Student s = (Student) q.execute("12345");
+</pre>
+<font face="verdana" size=-1>
+
+<b>Example 16</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(
+	"select course.number, semester, year, sum(take.size()), avg(take.size()) "+
+	"from CourseSection "+
+	"group by course.number, semester, year "+
+	"order by sum(take.size()) ascending");	
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery();
+	q.setClass(CourseSection.class);
+	q.setGrouping("course.number, semester, year");
+	q.setResult("course.number, semester, year, sum(take.size()), avg(take.size())");
+	q.setOrdering("sum(take.size()) ascending");
+</pre>
+<font face="verdana" size=-1>
+
+<h2>
+<b>Path Expressions</b>
+</h2>
+
+Traversing (i.e., composing) a chain of binary relations 
+R<sub>1</sub>, R<sub>2</sub>, &hellip;, R<sub>n&minus;1</sub>, R<sub>n</sub> 
+may be done by a path expression of the form 
+R<sub>1</sub>.R<sub>2</sub>. &middot;&middot;&middot; .R<sub>n&minus;1</sub>.R<sub>n</sub>
+without use of explicit bound variables.
+The path expressions starting with the same <i>this</i>, variable, parameter, or field
+use the same set of implicit bound variables.
+
+<br><br>
+
+<b>Example 17</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.setFilter("this.take.courseSection.year == 2003 && "+
+            "this.take.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Take t");
+q.setFilter("this.take.contains(t) && t.courseSection.year == 2003 && "+
+            "t.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+but is not equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Take t1, t2");
+q.setFilter("this.take.contains(t1) && t1.courseSection.year == 2003 && "+
+            "this.take.contains(t2) && t2.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+In the former, the student must have taken a course section in 2003 and
+received B in that same course section.
+In the latter, a course section taken by the student in 2003 may be different from a course section
+in which he/she received B.
+
+</body>
+</html>
+
