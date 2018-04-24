@@ -1,0 +1,417 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp; Spring 2018
+<br>
+Course Notes #10
+<br>
+Keitaro Yukawa
+<br>
+Department of Computer Science
+<br>
+Queens College, CUNY
+
+<br><br>
+
+<font face="verdana" size=-1>
+
+Let <i>c</i> be a collection of objects where each object of <i>c</i> is characterized by a certain property P.
+An <i>index</i> on P for <i>c</i> is a data structure/algorithm for
+efficiently retrieving objects of <i>c</i> having a given value of property P.
+The minimum requirement on retrieval efficiency is that it should be faster than
+the exhaustive scan of all elements of <i>c</i> searching for those with the given property value.
+Asymptotically, retrieval efficiency should be 
+O(N) where N is the number of elements in <i>c</i>.
+
+<br><br>
+
+A typical example of property is a list of attributes, including extended attributes
+reachable by chains of binary relations as described in Course Notes #5.
+Let { A<sub>1</sub>, &hellip;, A<sub>n</sub> } be a list of (extended) attributes of a class C
+and let <i>c</i> be a collection of C-objects.
+An <i>index</i> on { A<sub>1</sub>, &hellip;, A<sub>n</sub> } for <i>c</i> is a data structure/algorithm for
+efficiently retrieving objects of <i>c</i> having given values { a<sub>1</sub>, &hellip;, a<sub>n</sub> } of 
+{ A<sub>1</sub>, &hellip;, A<sub>n</sub> }.
+A list of attribute values { a<sub>1</sub>, &hellip;, a<sub>n</sub> } will be called an <i>index value</i>.
+
+<center>
+<h1>
+Hash Tables
+</h1>
+</center>
+
+A hash table is an array of pointers, each pointing to
+a linked list of blocks/pages of the secondary storage.
+The array will be denoted by T, indexed from 0 through N&minus;1. 
+The blocks/pages in the linked lists will be called <em>nodes</em>.
+Each node contains pairs (k<sub>j</sub>, p<sub>j</sub>) where k<sub>j</sub> is
+an index value and p<sub>j</sub> is a pointer to the object whose index value is
+k<sub>j</sub> or to a bucket of objects whose index values are all k<sub>j</sub>.
+The index values contained in each linked list are distinct but need not be sorted.
+All the nodes in each linked list are full possibly except the last node.
+
+<br><br>
+<img src="hash-table.jpg">
+<br><br>
+
+The linked list into which a given object is inserted is determined by
+a <em>hash function</em>.
+Let U be the set of all possible index values.
+The hash function h maps U onto { 0, ..., N&minus;1 }.
+An object with index value k is inserted into the linked list at
+T[h(k)].
+Theoretical analysis has shown that the average time for
+search, insertion, and deletion is minimized when the hash function h
+distributes index values <em>uniformly</em> over { 0, ..., N&minus;1 }
+so that all the linked lists have approximately the same number of index values.
+This property is known as the <em>uniform hashing property</em>,
+and can be formalized as follows [1].
+
+<br><br>
+
+Let M be the total number of distinct index values existing in the entire hash table.
+Let m<sub>i</sub> be a discrete random variable representing the number of index values in the linked list
+at T[i], for each 0 &le; i &le; N&minus;1,
+with the constraint that m<sub>0</sub> + &middot;&middot;&middot; + m<sub>N&minus;1</sub> = M.
+Let Pr{ m<sub>i</sub> = x } be the probability that the value of m<sub>i</sub> is equal to x.
+Clearly, 0 &le; x &le; M holds.
+Then the uniform hashing property is that the expected (i.e. mean) value of m<sub>i</sub>
+is equal to M/N, that is,
+
+<blockquote>
+E[m<sub>i</sub>] = &sum;<sub>[0&le;x&le;M]</sub>(x &middot; Pr{m<sub>i</sub> = x}) = M/N,
+&nbsp;&nbsp;&nbsp; for each 0 &le; i &le; N&minus;1 
+</blockquote>
+
+In practice it is difficult to obtain hash functions with
+the perfect uniform hashing property, and quest for such hash functions remains
+an active research topic.
+Nevertheless, quite a number of hash functions have been discovered which have the uniform hashing property
+to good approximations, 
+and some of them are described in data structures and algorithms analysis books.
+
+<br><br>
+
+Search, insertion, and deletion algorithms are given below.
+
+<br><br>
+
+<b>Search Algorithm</b>
+
+</font>
+<pre>
+Search(k) // k is the index value of the object(s) to be searched.
+{
+i = h(k);
+In the linked list pointed to by T[i], do linear search for k;
+if ( k is found )
+	return the associated pointer to the object(s);
+else
+	return null; // search failure
+}
+</pre>
+<font face="verdana" size=-1>
+
+<b>Insertion Algorithm</b>
+
+</font>
+<pre>
+Insert(entry) // entry is the object to be inserted.
+{
+k = index[entry]; // extract the index value of entry
+i = h(k);
+In the linked list pointed to by T[i], do linear search for k;
+if ( k is found )
+{
+	if ( the index attribute or attribute list is a key )
+		return( Error: the object with index value k exists );
+	else
+	{
+		insert entry into the bucket of objects with index value k;
+		return();
+	}
+}
+else
+{
+	if ( the last node in the linked list is not full )
+	{
+		insert entry into the last node;
+		return();
+	}
+	else
+	{
+		create a new node and append it to the linked list;
+		insert entry into the new node;
+		return();
+	}
+}
+}
+</pre>
+<font face=verdana size=-1>
+
+<b>Deletion Algorithm</b>
+
+</font>
+<pre>
+Delete(k) /* k is the index value of the object to be deleted.
+             The index attribute or attribute list is assumed to be a key;
+             otherwise deletion operation for an index value k is ambiguous as
+             there may be multiple objects with value k. */
+{
+i = h(k);
+In the linked list pointed to by T[i], do linear search for k;
+if ( k is found )
+{
+	delete the object with index value k;
+	if ( the deleted object is not the last one in the linked list )
+		move the last (index value, pointer) pair in the last node to the deleted position;
+	delete the last (index value, pointer) pair from the last node;
+	if ( the last node is empty )
+	 	delete the last node from the linked list;
+	return();
+}
+else
+	return( Error: there is no object with index value k );
+}
+</pre>
+<font face=verdana size=-1>
+
+Let us estimate the efficiency of the above three algorithms 
+in terms of the number of block accesses under the assumption of
+the uniform hashing property.
+By inspection of the algorithms, it is clear that their efficiency is
+proportional to the approximate number of nodes per linked list.
+Let <i>M</i> be the total number of index values in the hash table and
+<i>n</i> the maximum number of index values that can be contained in each node.
+Assuming the uniform hashing property,
+the approximate number of nodes per linked list is 
+M/(N &times; n).
+The value of n is usually constant as it is fixed by the sizes of a node (block), index value, and pointer.
+(An exception would be when index values have variable size, like variable-size strings.)
+If N and n are constant, it follows that M/(N &times; n) = &Theta;(M).
+At first this seems to show that hash tables are less efficient than
+B<sup>+</sup> trees which have the asymptotic efficiency of &Theta;(log M).
+However, the crucial point is that if N &times; n is sufficiently large,
+then up to a certain threshold value of M,
+M/(N &times; n) is smaller than the height of a B<sup>+</sup> tree covering
+the same number of index values,
+hence hash tables will be more efficient than B<sup>+</sup> trees
+within this range of M.
+Unlike B<sup>+</sup> trees, however, hash tables do not maintain
+index values in sorted order (even if a linear ordering can be defined over the indexes),
+and therefore are vastly less efficient for
+<em>range queries</em> to retrieve the objects whose index values
+are in the range [k<sub>1</sub>, k<sub>2</sub>], k<sub>1</sub> &le; k<sub>2</sub>.
+In order to process range queries, all index values in the table have to be inspected
+exhaustively (but read <b>Note</b> at the end).
+<!--
+<b>Discuss the case of ranges with relatively small # of elements in it.
+integer range, floating-point number range, string range (fixed length, variable length).
+</b>
+-->
+
+<br><br>
+
+The hash table is a good candidate for an index structure
+based on object identifiers/references to maintain collections of persistent class objects,
+because the object identifiers/references do not come with any natural linear ordering.
+
+<br><br>
+
+In the above analysis we assumed the array size N is constant.
+Since the total number M of index values usually changes over time,
+dynamic adjustment of the array size N according to the value of M permits more economical use of 
+disk space and main memory occupied by the array.
+Let us define the <em>load factor</em> <font face=roman size=+1>&alpha;</font> = M/(N &times; n),
+the approximate number of nodes per linked list.
+As the value of M changes over time, we keep the value of <font face=roman size=+1>&alpha;</font>
+within a certain range by adjusting the value of N.
+For example, let n = 250 and we wish to maintain 1 &le; <font face=roman size=+1>&alpha;</font> &le; 2.
+Then N &times; 250 &le; M &le; 2(N &times; 250) must hold.
+The values of N = 100, 200, 400 respectively permit 
+25000 &le; M &le; 50000,
+50000 &le; M &le; 100000,
+100000 &le; M &le; 200000.
+This method is called <i>dynamically extendible</i>/<i>contractible hash tables</i>.
+Since the hash function h depends on the array size N, 
+the values h(k) change when N is extended or contracted, 
+requiring re-hashing of the index values to new positions of the array.
+
+<br><br>
+
+<b>Note on Range Queries</b>
+&nbsp;
+
+If the total number of all possible index values (not just those existing in the table)
+in the range [k<sub>1</sub>, k<sub>2</sub>] is less than or
+equal to about the array size N,
+the following algorithm is more efficient than exhaustive search over the entire table.
+But this algorithm requires the following two assumptions:
+
+<ul>
+<li>U must be lineally ordered so that a "range" [k<sub>1</sub>, k<sub>2</sub>], k<sub>1</sub> &le; k<sub>2</sub>,
+    is well defined.
+<li>All possible index values (not just those existing in the table) in the range
+    [k<sub>1</sub>, k<sub>2</sub>] can be scanned by a loop.
+</ul>
+
+The algorithm is:
+
+</font>
+<pre>
+for ( each k in [k<sub>1</sub>, k<sub>2</sub>] )
+{
+	p = Search(k);
+	if ( p &ne; null ) add p to the result collection;
+}
+</pre>
+<font face=verdana size=-1>
+
+Let <i>r</i> be the number of all possible values in [k<sub>1</sub>, k<sub>2</sub>].
+In the worst case, Search(k) inspects all the nodes in a linked list, about
+M/(N&times;n) nodes.
+The efficiency of the above algorithm is therefore at most
+(r&times;M)/(N&times;n).
+The exhaustive search over the entire table inspects M/n nodes.
+Hence the above algorithm is more efficient if
+(r&times;M)/(N&times;n) &le; M/n, i.e.,
+r &le; N.
+
+<br><br>
+
+For example, suppose N = 2,000,000.
+For integer index values,
+the above algorithm is more efficient if 
+k<sub>2</sub>&minus;k<sub>1</sub> &le; 2,000,000.
+For index values of time instants
+(minute, hour, day, month, year) with the chronon of minute,
+the above algorithm is more efficient if
+k<sub>2</sub>&minus;k<sub>1</sub> &le; 2,000,000 minutes &asymp;
+1388.889 days &asymp;
+3.805 years.
+Consider the set U of the strings of the characters 'a' &ndash; 'z' of length 10,
+ordered by the usual lexicographic ordering.
+Assigning the ordinal numbers 0 &ndash; 25 to 'a' &ndash; 'z' and
+regarding these strings as numbers in 26-radix notation,
+the ordinal number of a string 
+c<sub>9</sub>c<sub>8</sub> &middot;&middot;&middot; c<sub>1</sub>c<sub>0</sub> is defined to be:
+
+<blockquote>
+c<sub>9</sub>&middot;26<sup>9</sup> + 
+c<sub>8</sub>&middot;26<sup>8</sup> +
+&middot;&middot;&middot; +
+c<sub>1</sub>&middot;26<sup>1</sup> + 
+c<sub>0</sub>&middot;26<sup>0</sup>
+</blockquote>
+
+where each c<sub>i</sub> denotes its ordinal number.
+
+The difference between two strings
+c<sub>9</sub>c<sub>8</sub> &middot;&middot;&middot; c<sub>1</sub>c<sub>0</sub> and
+d<sub>9</sub>d<sub>8</sub> &middot;&middot;&middot; d<sub>1</sub>d<sub>0</sub> is then:
+
+<blockquote>
+d<sub>9</sub>d<sub>8</sub> &middot;&middot;&middot; d<sub>1</sub>d<sub>0</sub> &minus;
+c<sub>9</sub>c<sub>8</sub> &middot;&middot;&middot; c<sub>1</sub>c<sub>0</sub> =
+(d<sub>9</sub>&minus;c<sub>9</sub>)&middot;26<sup>9</sup> + 
+(d<sub>8</sub>&minus;c<sub>8</sub>)&middot;26<sup>8</sup> +
+&middot;&middot;&middot; +
+(d<sub>1</sub>&minus;c<sub>1</sub>)&middot;26<sup>1</sup> + 
+(d<sub>0</sub>&minus;c<sub>0</sub>)&middot;26<sup>0</sup>
+</blockquote>
+
+where d<sub>i</sub>&minus;c<sub>i</sub> denotes the difference of their ordinal numbers.
+For example,
+
+<blockquote>
+"aaaaaejuaa" &minus; "aaaaaaaaaa" =
+<br>
+(e&minus;a)&middot;26<sup>4</sup> + (j&minus;a)&middot;26<sup>3</sup> + (u&minus;a)&middot;26<sup>2</sup> =
+<br>
+(4&minus;0)&middot;26<sup>4</sup> + (9&minus;0)&middot;26<sup>3</sup> + (20&minus;0)&middot;26<sup>2</sup> =
+<br>
+1,999,608
+</blockquote>
+
+which is about 2,000,000.
+This definition obviously generalizes to any fixed finite length of strings.
+
+<br><br>
+
+<!--
+The efficiency of the above algorithm is further improved by the following
+modification to Search(k).
+As Search(k) traverses a linked list and sees index value k<sub>j</sub>,
+k<sub>j</sub> is added to the set of the index values already checked.
+Also, if k<sub>j</sub> &isin; [k<sub>1</sub>, k<sub>2</sub>],
+the corresponding p<sub>j</sub> is added to the result collection.
+In the body of the for-loop,
+p = Search(k) is performed only if k is not in the set of the index values already checked.
+The algorithm is as follows:
+
+</font>
+<pre>
+Already-Checked = &emptyset;;
+for ( each k in [k<sub>1</sub>, k<sub>2</sub>] such that k &notin; Already-Checked )
+{
+	p = Range-Query-Search(k);
+	if ( p &ne; null ) add p to the result collection;
+}
+
+Range-Query-Search(k) // k is the index value of the object(s) to be searched.
+{
+i = h(k);
+In the linked list pointed to by T[i], do linear search for k:
+   for each index value k<sub>j</sub> seen in this linked-list traversal
+       add k<sub>j</sub> to Already-Checked;
+       if k<sub>j</sub> &isin; [k<sub>1</sub>, k<sub>2</sub>], add p<sub>j</sub> to the result collection;
+if ( k is found )
+	return the associated pointer to the object(s);
+else
+	return null; // search failure
+}
+</pre>
+<font face="verdana" size=-1>
+
+A potential issue with this algorithm is the size of the set Already-Checked.
+In the worst case, each traversal of a linked list may add all M/N of its index values to Already-Checked.
+Hence the size of Already-Checked may become as large as r &times; M/N where
+r = the number of all possible values in [k<sub>1</sub>, k<sub>2</sub>].
+This is the case, for example, if the table has no index value in [k<sub>1</sub>, k<sub>2</sub>].
+If r is close to the array size N, then r/N &approx; 1, so
+the size of Already-Checked is almost M, the total number of index values in the table, which may not fit in the main memory.
+Again, the effect of space-time tradeoff is rearing its head.
+
+<br><br>
+-->
+
+A linearly ordered U may not have the property that [k<sub>1</sub>, k<sub>2</sub>] has
+a finite number of values.
+A well-known example is the set of character strings of any variable finite lengths,
+linearly ordered by a lexicographic ordering.
+Between "a" and "b", for instance, there are infinitely many strings
+"aa", "aaa", "aaaa", ... and so on.
+The above algorithm does not work for such a U because 
+the values in [k<sub>1</sub>, k<sub>2</sub>] cannot be scanned by a terminating loop.
+
+</font>
+
+<br><br>
+
+<font face=verdana size=+1>
+
+<b>Reference</b>
+
+</font>
+
+<br><br>
+
+<font face=verdana size=-1>
+
+[1] T.H. Cormen, C.E. Leiserson, R.L. Rivest, and C. Stein. <i>Introduction to Algorithms</i>, 3rd edition. 
+The MIT Press, 2009. 
+
+</font>
+</body>
+</html>
+
