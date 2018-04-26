@@ -1,0 +1,625 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp; Spring 2018
+<br>
+Course Notes #11
+<br>
+Keitaro Yukawa
+<br>
+Department of Computer Science
+<br>
+Queens College, CUNY
+
+<center>
+<h2>
+B<sup>+</sup> Trees
+</h2>
+</center>
+
+Throughout Course Notes #11,
+&lceil;X&rceil; will denote the ceiling integer of X.
+
+<br><br>
+
+B<sup>+</sup> trees are multiway balanced trees whose nodes are blocks/pages of the secondary storage, defined as follows.
+
+<br><br>
+
+<b>Definition</b>
+
+Let <i>N</i> be an integer greater than or equal to 3.
+A <em>B<sup>+</sup> tree of order N</em> must satisfy the following conditions.
+
+<br><br>
+1.
+ Each node contains <i>n</i> pointers 
+ p<sub>i</sub>, 1 &le; i &le; <i>n</i>, and
+ <i>n</i>&minus;1 index values k<sub>i</sub>, 1 &le; i &le; <i>n</i>&minus;1.
+ The value of <i>n</i> must satisfy
+ &lceil;<i>N</i>/2&rceil; &le; <i>n</i> &le; <i>N</i> for all nodes except the root node
+ of the tree;
+ the root node must satisfy 2 &le; <i>n</i> &le; <i>N</i>.
+ The index values in each node must be sorted in strictly increasing order k<sub>1</sub> < &hellip; < k<sub>n&minus;1</sub>.
+ <ul>
+ <li>
+  For a leaf node: 
+  Each p<sub>i</sub>, 1 &le; i &le; <i>n</i>&minus;1,
+  points to an object whose index
+  value is k<sub>i</sub> or to a bucket of objects whose index values are all k<sub>i</sub>.
+  The last pointer p<sub>n</sub> points to the "right neighbor" leaf node.
+ <li>
+  For a non-leaf node:
+  Each p<sub>i</sub>, 1 &le; i &le; <i>n</i>, points to a child node.
+  It is required that the following sortedness conditions hold:
+  <ul>
+  <li>
+   all index values in the subtree pointed to by p<sub>1</sub> &lt; k<sub>1</sub>,
+  <li>
+   k<sub>i&minus;1</sub> &le; (all index values in the subtree pointed to by p<sub>i</sub>) &lt;
+   k<sub>i</sub>, 2 &le; i &le; <i>n</i>&minus;1,
+  <li>
+   k<sub>n&minus;1</sub> &le; all index values in the subtree pointed to by p<sub>n</sub>.
+  </ul>
+ </ul>
+2.
+ All leaf nodes must be at the same level (balanced-tree condition).
+
+<br><br>
+
+The leaf nodes form a linked list by the last pointers p<sub>n</sub>'s.
+
+<br><br>
+
+An example B<sup>+</sup> tree of order 4 is given on a
+<a href="BplusTree.jpg">separate page</a>
+(the order of 4 is unrealistically small, but it's hard to display
+example B<sup>+</sup> trees with higher orders!).
+The order N is the maximum number of
+pointers in each node.
+The storage manager determines the value of N from the sizes of a block, index value, and pointer.
+For example, consider B<sup>+</sup> trees whose nodes each have 4KB = 2<sup>12</sup> = 4096 bytes. 
+Assume that 8 bytes are used by each index and by each pointer, 
+and 96 bytes are set aside in each node for bookkeeping purposes. 
+Then this condition must hold:
+8N + 8(N&minus;1) + 96 &le; 4096.
+So N &le; 4008/16 = 250.5, and we see the maximum value of N is 250.
+
+<br><br>
+
+The following theorem follows from the definition.
+
+<br><br>
+<b>Theorem</b>
+Let <i>T</i> be any B<sup>+</sup> tree of order <i>N</i>, <i>M</i> the total number of
+index values contained in the leaf nodes, and <i>h</i> the height of <i>T</i>.
+Then:
+<br><br>
+&nbsp;&nbsp;
+&lceil;N/2&rceil;<sup>h&minus;1</sup>(N&minus;2) 
+&le; M &le;
+N<sup>h</sup>(N&minus;1)
+
+<br><br>
+<b>Proof</b>
+Let h be an arbitrary but fixed height.
+The number of leaf nodes in T is minimized when
+all non-leaf nodes have the minimum number of pointers, namely when
+the root has two pointers and all the other non-leaf nodes have
+&lceil;N/2&rceil; pointers.
+In such trees the total number of leaf nodes is
+2&lceil;N/2&rceil;<sup>h&minus;1</sup> because the leaf nodes are at height h.
+Since the minimum number of index values in each leaf node is &lceil;N/2&rceil;&minus;1,
+we conclude that 
+M &ge; 2&lceil;N/2&rceil;<sup>h&minus;1</sup>(&lceil;N/2&rceil;&minus;1).
+Now, 2(&lceil;N/2&rceil;&minus;1) = 2&lceil;N/2&rceil;&minus;2 is
+equal to N&minus;2 if N is even and is equal to N&minus;1 if N is odd.
+Hence M &ge; &lceil;N/2&rceil;<sup>h&minus;1</sup>(N&minus;2).
+The upper bound of N<sup>h</sup>(N&minus;1) is obtained similarly by considering
+the trees in which
+every node is full, i.e., has N pointers and N&minus;1 index values.
+
+<br><br>
+
+<table border=1 style='border-collapse: collapse;' width=50%>
+<tr>
+<th></th>  <th>thinnest tree</th>  <th>thickest tree</th>
+</tr>
+<tr>
+<th>level</th>  <th>min # of nodes</th>  <th>max # of nodes</th>
+</tr>
+<tr align=center>
+<td>0 (root)</td>  <td>1</td>  <td>1</td>
+</tr>
+<tr align=center>
+<td>1</td>  <td>2</td>  <td>N</td>
+</tr>
+<tr align=center>
+<td>2</td>  <td>2&lceil;N/2&rceil;</td>  <td>N<sup>2</sup></td>
+</tr>
+<tr align=center>
+<td>3</td>  <td>2&lceil;N/2&rceil;<sup>2</sup></td>  <td>N<sup>3</sup></td>
+</tr>
+<tr align=center>
+<td>&hellip;</td>  <td>&hellip;</td>  <td>&hellip;</td>
+</tr>
+<tr align=center>
+<td>h (leaves)</td>  <td>2&lceil;N/2&rceil;<sup>h&minus;1</sup></td>  <td>N<sup>h</sup></td>
+</tr>
+<tr align=center>
+<td></td>  <td>min # of index values in a leaf =  &lceil;N/2&rceil;&minus;1</td>  <td>max # of index values in a leaf =  N&minus;1</td>        
+</tr>
+</table>
+
+<br>
+
+The following theorem follows immediately from the above theorem.
+
+<br><br>
+<b>Theorem</b>
+Let <i>T</i> be any B<sup>+</sup> tree of order <i>N</i>, <i>M</i> the total number of
+index values contained in the leaf nodes, and <i>h</i> the height of <i>T</i>.
+Then:
+<br><br>
+&nbsp;&nbsp; log<sub>N</sub>(M/(N&minus;1)) &le;
+h &le; ( log<sub>&lceil;N/2&rceil;</sub>(M/(N&minus;2)) ) + 1
+
+<br><br>
+
+For example, let N = 250 and M = 10<sup>9</sup>.
+We obtain from the theorem:
+<br><br>
+&nbsp;&nbsp; log<sub>250</sub>(10<sup>9</sup>/249) &le;
+h &le; log<sub>125</sub>(10<sup>9</sup>/248) + 1.
+
+<br><br>
+
+By calculation we get:
+2.7539 &le; h &le; 4.1501,
+and conclude 3 &le; h &le; 4.
+
+<br><br>
+
+Since N is a constant and bases of logarithm functions do not affect
+their asymptotic class, we obtain h = &Theta;(log M).
+This is a significant result implying that the time efficiency of
+B<sup>+</sup> tree search, insertion, and deletion algorithms is &Theta;(log M).
+
+<br><br>
+
+The following table compares the lower/upper bounds on the height of B<sup>+</sup> trees with N = 250 and
+the load factor &alpha; = M/(10<sup>6</sup>&middot;250) of hash tables with array size 10<sup>6</sup> and
+the max number 250 of index values per node.
+
+<br><br>
+
+<table border=1 style='border-collapse: collapse;' width=90%>
+
+<tr align=center>
+<td>M</td>
+<td>10<sup>3</sup></td>
+<td>10<sup>6</sup></td>
+<td>10<sup>9</sup></td>
+<td>10<sup>12</sup></td>
+<td>10<sup>15</sup></td>
+<td>10<sup>18</sup></td>
+</tr>
+
+<tr align=center>
+<td>lower bound</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+
+<tr align=center>
+<td>upper bound</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>5</td>
+<td>7</td>
+<td>8</td>
+</tr>
+
+<tr align=center>
+<td>&alpha;</td>
+<td>0.000004</td>
+<td>0.004</td>
+<td>4</td>
+<td>4&middot;10<sup>3</sup></td>
+<td>4&middot;10<sup>6</sup></td>
+<td>4&middot;10<sup>9</sup></td>
+</tr>
+
+</table>
+
+<br>
+
+Up to a threshold value of about M = 10<sup>9</sup> hash tables are more efficient,
+whereas beyond this value B<sup>+</sup> trees are more efficient.
+Although this is one example,
+it clearly shows the superior efficiency of B<sup>+</sup> trees for large values of M.
+This is a general fact.
+The growth rate of &alpha; is measured by the derivative with respect to M,
+(M/(N&middot;n))&prime; = 1/(N&middot;n),
+which is a constant assuming array size N is a constant.
+The growth rate of log<sub>a</sub>M is (log<sub>a</sub>M)&prime; = (log<sub>a</sub>e)/M,
+which approaches 0 as M &rarr; &infin;.
+The array size N can be increased to decrease the load factor &alpha;.
+Because the efficiency of hash tables depends on random accessibility of array elements,
+the array should reside in a fast random access memory.
+If the efficiency of hash tables is to be realized fully, therefore,
+the array size is constrained by the amount of random access memory that can be allocated to it.
+
+<br><br>
+
+<b>Search Algorithm</b>
+
+<br><br>
+
+Search for an index value <i>k</i> is straightforward.
+Starting from the root, it finds the position <i>i</i> such that 
+k<sub>i&minus;1</sub> &le; k &lt; k<sub>i</sub> in each non-leaf node and
+recursively goes down to the child pointed to by p<sub>i</sub>.
+Once a leaf node is reached, it looks for <i>k</i>.
+
+<br><br>
+Parameters
+<ul>
+<li>
+p: a pointer to a node.
+<li>
+k: the index value of the object(s) to be searched.
+</ul>
+
+<pre>
+Search(p, k)
+{
+Let NODE be the node pointed by p;
+n = # of pointers contained in NODE;
+if ( NODE is a leaf )
+{
+	i = 1;
+	while ( i &le; n&minus;1 and k > k[i] ) i = i+1; // find i such that k[i&minus;1] < k &le; k[i]
+	// i == n or k &le; k[i]
+	if ( i == n or k < k[i] ) // search failure
+		return null;
+	else // k = k[i], search success
+		return p[i];
+}
+else // NODE is a non-leaf node
+{
+	i = 1;
+	while ( i &le; n&minus;1 and k &ge; k[i] ) i = i+1; // find i such that k[i&minus;1] &le; k < k[i]
+	// i == n or k < k[i]
+	search( p[i], k );
+}
+}
+</pre>
+
+The above algorithm uses linear search for position <i>i</i> in a single node, with the time efficiency of &Theta;(n).
+Since the k<sub>i</sub> are sorted,
+a more efficient alternative is binary search with the time efficiency of &Theta;(log<sub>2</sub>n),
+which is also usable for insertion and deletion algorithms.
+
+<br><br>
+
+<b>Insertion Algorithm</b>
+
+<br><br>
+
+The insertion algorithm has two phases.
+Given an object <i>entry</i> with the index value <i>k</i> to be inserted,
+the first phase uses the search algorithm for <i>k</i> to find
+the leaf node L where <i>k</i> should be, and inserts <i>entry</i> at
+the appropriate position (unless the index attribute is a key
+and the object with index <i>k</i> already exists).
+If L now has less than N index values,
+the insertion is complete.
+Otherwise, L is overflowing with N index values and N+1 pointers, and
+the second phase of overflow elimination begins.
+If L has the left or right sibling with less than N&minus;1 index values,
+the leftmost or rightmost object of L, respectively, is moved to
+the sibling by the process of rotation, and the insertion is complete.
+The diagrams describing the rotation process are given on separate pages.
+If L has no such sibling, it is split into two nodes by moving its second half contents
+to the new node.
+Then a pointer to the new node along with the associated index value
+is inserted into L's parent. 
+If the parent is not overflowing, the insertion is complete.
+Otherwise, the same overflow elimination process repeats recursively upward.
+In the worst case, the recursive overflow elimination process may
+go all the way up to the root, splitting the nodes along the way.
+
+<br><br>
+Parameters
+<ul>
+<li>
+   p: a pointer to a node.
+<li>
+   entry: the object to be inserted.
+<li>
+   newchild = (index value, pointer): The output variable containing a pair of
+   an index value and a pointer to the new node created by the recursive call.
+   Used for upward tree adjustment process caused by creation of new nodes.
+   newchild = (null, null) if the recursive call does not create a new node, 
+   signaling no more adjustment need be done.
+
+   Strictly speaking, the insertion function also needs the fourth parameter:
+   a pointer to the parent node of the node pointed to by p. This is necessary
+   for accessing left/right siblings and rotation processes. This parameter
+   is not shown in this pseudo code algorithm.
+</ul>
+N = the order of the tree.
+
+<pre>
+Insert(p, entry, newchild)
+{
+
+if ( p points to a leaf node L ) // non-recursive case
+{
+	if ( L has the index value equal to index[entry] )
+	{
+		if ( the index attribute or attribute list is a key )
+			return( Error: the object with the same index value exists );
+		else
+		{
+			insert entry into the bucket of objects with index value = index[entry];
+			return();
+		}
+	}
+	else // L has no index value equal to index[entry].
+	{
+		insert entry at appropriate position in L;
+		if ( L has N&minus;1 or less index values )
+		{
+			newchild = (null, null);
+			return(); // insertion complete
+		}
+		else // L has N index values: overflow.
+		{
+			if ( L has the left sibling with less than N&minus;1 index values )
+			{
+				do <a href="rotation2.pdf">rotation from right to left</a>;
+				newchild = (null, null); // insertion complete
+			}
+			else if ( L has the right sibling with less than N&minus;1 index values )
+			{
+				do <a href="rotation1.pdf">rotation from left to right</a>;
+				newchild = (null, null); // insertion complete
+			}
+			else // <a href="split.jpg">split</a> L into two nodes
+			{
+				create a new leaf node L';
+				make L' the right sibling of L by appropriately setting their rightmost pointers;
+				move 2nd half of the index values and associated pointers in L to L';
+				newchild = (smallest index value in L', pointer to L'); // This must be inserted into the parent of L unless L is the root.
+				if ( L is the root )
+				{
+					create the new root node R;
+					put pointer to L, smallest index value in L', pointer to L', in R;
+				}
+			}
+			return();
+		}
+	}
+} // end leaf node case
+
+else // p points to a non-leaf node. Recursive case.
+{
+	let NL be the non-leaf node pointed to by p;
+	In NL, find i such that k[i&minus;1] &le; index[entry] < k[i];
+	insert(p[i], entry, newchild); // Recursively insert entry into the subtree pointed to by p[i].
+
+	if ( newchild == (null, null) ) // No new child need be inserted into NL.
+		return();
+	else // newchild needs to be inserted into NL.
+	{
+		insert newchild to the right of p[i] in NL;
+		if ( NL has N&minus;1 or less index values )
+		{
+			newchild = (null, null);
+			return(); // insertion complete
+		}
+		else // NL has N index values: overflow.
+		{
+			if ( NL has the left sibling with less than N&minus;1 index values )
+			{
+				do <a href="rotation4.pdf">rotation from right to left</a>;
+				newchild = (null, null); // insertion complete
+			}
+			else if ( NL has the right sibling with less than N&minus;1 index values )
+			{
+				do <a href="rotation3.pdf">rotation from left to right</a>;
+				newchild = (null, null); // insertion complete
+			}
+			else // <a href="split.jpg">split</a> NL into two nodes
+			{
+				create a new non-leaf node NL'; // NL' will become the right sibling of NL.
+				let k[m] be the middle index in NL;
+				move the index values and pointers to the right of k[m] to NL';
+				remove k[m] from NL;
+				newchild = (k[m], pointer to NL'); // This must be inserted into the parent of NL unless NL is the root.
+				if ( NL is the root )
+				{
+					create the new root node R;
+					put pointer to NL, k[m], pointer to NL' in R;
+				}
+			}
+			return();
+		}
+	}
+} // end non-leaf node case
+
+} // end insert
+</pre>
+
+<b>Deletion Algorithm</b>
+
+<br><br>
+
+The index attribute or attribute list is assumed to be a key &ndash; 
+otherwise deletion operation for an index value <i>k</i> is ambiguous as
+there may be multiple objects with the value <i>k</i>.
+The deletion algorithm has two phases.
+Given an index value <i>k</i> to be deleted,
+the first phase uses the search algorithm for <i>k</i> to find
+the leaf node L where <i>k</i> should be, and deletes it along with the associated object from L.
+If L now has at least &lceil;N/2&rceil;&minus;1 index values,
+the deletion is complete.
+Otherwise, L is underflowing with &lceil;N/2&rceil;&minus;2 index values and &lceil;N/2&rceil;&minus;1 pointers, and
+the second phase of underflow elimination begins.
+If L has the left or right sibling with at least &lceil;N/2&rceil; index values,
+the rightmost or leftmost object of the sibling, respectively, is moved to
+L by the process of rotation, and the deletion is complete.
+If L has no such sibling, it is merged with one of the siblings, and
+either L or the sibling is deleted as appropriate.
+Then the pointer to the deleted node along with the associated index value
+is deleted from L's parent. 
+If the parent is not underflowing, the deletion is complete.
+Otherwise, the same underflow elimination process repeats recursively upward.
+In the worst case, the recursive underflow elimination process may
+go all the way up to the root, merging the nodes along the way.
+
+<br><br>
+Parameters
+<ul>
+<li>
+   p: a pointer to a node.
+<li>
+   k: the index value of the object to be deleted. The index attribute or attribute list is
+   assumed to be a key; otherwise deletion operation with this parameter is ambiguous as
+   there may be multiple objects with the value k.
+   (Alternatively, a variation of deletion algorithm may have as a parameter
+   a pointer to the object to be deleted instead of a key value k; in this case,
+   the index attribute need not be a key. This variation is a straightforward modification
+   of this algorithm.)
+<li>
+   oldchild: The output variable containing a pointer to the node
+   to be deleted as a result of merging of two nodes done by the recursive call.
+   Used for upward tree adjustment process caused by merging of nodes.
+   oldchild = null if the recursive call does not merge nodes, signaling no more
+   adjustment need be done.
+
+   Strictly speaking, the deletion function also needs the fourth parameter:
+   a pointer to the parent node of the node pointed to by p. This is necessary
+   for accessing left/right siblings and rotation processes. This parameter
+   is not shown in this pseudo code algorithm.
+</ul>
+N = the order of the tree.
+<br>
+&lceil;x&rceil; denotes the ceiling of x.
+
+<pre>
+delete(p, k, oldchild)
+{
+
+if ( p points to a leaf node L ) // non-recursive case
+{
+	if ( L has no index value equal to k )
+		return( Error: there is no object with index value k );
+	else // L has the index value equal to k.
+	{
+		delete the object with index value k;
+		if ( L is the root or has at least &lceil;N/2&rceil;&minus;1 index values )
+		{
+			oldchild = null;
+			return(); // deletion complete
+		}
+		else // L is not the root and has &lceil;N/2&rceil;&minus;2 index values: underflow.
+		{
+			if ( L has the left sibling L' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation1.pdf">rotation from left to right</a>;
+				oldchild = null; // deletion complete
+			}
+
+			else if ( L has the right sibling L' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation2.pdf">rotation from right to left</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( L has the left sibling L') // L' has &lceil;N/2&rceil;&minus;1 index values; <a href="merge.jpg">merge</a> L to L'.
+			{
+				move all the index values and associated pointers in L to L';
+				oldchild = pointer to L; // This must be deleted from the parent of L.
+				delete L and adjust the rightmost pointer in L';
+			}
+			else // L has the right sibling L' with &lceil;N/2&rceil;&minus;1 index values; merge L' to L.
+			{
+				move all the index values and associated pointers in L' to L;
+				oldchild = pointer to L'; // This must be deleted from the parent of L'.
+				delete L' and adjust the rightmost pointer in L;
+			}
+			return();
+
+		}
+	}
+} // end leaf node case
+
+else // p points to a non-leaf node. Recursive case.
+{
+	let NL be the non-leaf node pointed to by p;
+	In NL, find i such that k[i&minus;1] &le; k < k[i];
+	delete(p[i], k, oldchild); // Recursively delete k from the subtree pointed to by p[i].
+
+	if ( oldchild == null ) // No old child need be deleted from NL.
+		return();
+	else // oldchild needs to be deleted from NL.
+	{
+		delete oldchild pointer and the index to the left of it from NL;
+		// oldchild is p[i] if the child it points to has been merged to the left sibling;
+		// oldchild is p[i+1] if the right sibling has been merged to the child p[i] points to.
+		if ( NL is the root or has at least &lceil;N/2&rceil;&minus;1 index values )
+		{
+			oldchild = null;
+			if ( NL is the root and has one pointer )
+			{
+				make NL's child the new root;
+				delete NL;
+			}
+			return(); // deletion complete
+		}
+		else // NL is not the root and has &lceil;N/2&rceil;&minus;2 index values: underflow.
+		{
+			if ( NL has the left sibling NL' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation3.pdf">rotation from left to right</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( NL has the right sibling NL' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation4.pdf">rotation from right to left</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( NL has the left sibling NL') // NL' has &lceil;N/2&rceil;&minus;1 index values; <a href="merge.jpg">merge</a> NL to NL'.
+			{
+				let s be the index value in the parent that splits NL' and NL; 
+				put s in NL' as its rightmost index;
+				move all the index values and pointers in NL to NL';
+				oldchild = pointer to NL; // This must be deleted from the parent of NL.
+				delete NL;
+			}
+			else // NL has the right sibling NL' with &lceil;N/2&rceil;&minus;1 index values; merge NL' to NL.
+			{
+				let s be the index value in the parent that splits NL and NL';
+				put s in NL as its rightmost index;
+				move all the index values and pointers in NL' to NL;
+				oldchild = pointer to NL'; // This must be deleted from the parent of NL'.
+				delete NL';
+			}
+			return();
+		}
+	}
+} // end non-leaf node case
+
+} // end delete
+</pre>
+
+</body>
+</html>
+
