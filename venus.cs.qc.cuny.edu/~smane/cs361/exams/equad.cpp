@@ -132,7 +132,7 @@ public:
     } 
     set(a);
     const double tol = 1.0e-8;
-    const double omega = 1.5;
+    const double omega = 1.95;
     const int max_iter = 10000;
     for (int iter = 0; iter < max_iter; ++iter) {
       double norm = 0;
