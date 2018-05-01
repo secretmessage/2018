@@ -1,0 +1,189 @@
+<html>
+<body>
+
+CS 332/780: Object-Oriented Databases &nbsp;&nbsp; Spring 2018
+<br>
+Course Notes #12
+<br>
+Keitaro Yukawa
+<br>
+Department of Computer Science
+<br>
+Queens College, CUNY
+
+<center>
+<h2>
+Multidimensional Indexing by R Trees and R<sup>+</sup> Trees
+</h2>
+</center>
+
+The R/R<sup>+</sup> tree was originally designed to index geometric objects in the k-dimensional space
+<b>R</b><sup>k</sup> spanned by the real numbers.
+We generalize <b>R</b><sup>k</sup> to arbitrary Cartesian products 
+S<sub>1</sub> &times; &middot;&middot;&middot; &times; S<sub>k</sub>
+where each S<sub>i</sub> is linearly ordered.
+
+<br><br>
+
+Let S<sub>i</sub>, 1 &le; i &le; k, be sets where each S<sub>i</sub> is linearly ordered by
+&lt;<sub>i</sub>, with x &le;<sub>i</sub> y abbreviating x &lt;<sub>i</sub> y or x = y.
+A <i>k</i>-<i>dimensional box</i> in S<sub>1</sub> &times; &middot;&middot;&middot; &times; S<sub>k</sub> bounded by
+a<sub>i</sub> &le;<sub>i</sub> b<sub>i</sub>, 1 &le; i &le; k, is the k-ary relation:
+<blockquote>
+{ &lang;x<sub>1</sub>, &hellip;, x<sub>k</sub>&rang; | 
+a<sub>i</sub> &le;<sub>i</sub> x<sub>i</sub> &le;<sub>i</sub> b<sub>i</sub>, 
+x<sub>i</sub> &isin; S<sub>i</sub>, 1 &le; i &le; k }.
+</blockquote>
+For any set (i.e. relation) P &subseteq; S<sub>1</sub> &times; &middot;&middot;&middot; &times; S<sub>k</sub>,
+the <i>minimum bounding box</i> of P, denoted MBB(P), is the smallest k-dimensional box containing P.
+We consider a collection of objects where each object is associated with a set
+P &subseteq; S<sub>1</sub> &times; &middot;&middot;&middot; &times; S<sub>k</sub>
+and indexed by MBB(P).
+R/R<sup>+</sup> trees allow efficient search for objects whose MBB(P) is equal to a given box B, but also
+contains, intersects, or is contained in B.
+
+<br><br>
+
+An example of non-geometric object is a binary relation Observation(Patient, Symptom), which
+can be modeled by a relation class <i>Observation</i>.
+An <i>Observation</i> object instance for patient <i>p</i> exhibiting symptom <i>s</i> may be associated with 
+the relation:
+
+<br><br>
+
+P = { &lang;<i>b</i>, <i>h</i>, <i>d</i>, <i>a</i>&rang; | blood pressure <i>b</i>, heartbeat <i>h</i> were observed on date <i>d</i> at age <i>a</i> }
+
+<br><br>
+
+The <i>Observation</i> object can be indexed by MBB(P).
+
+<br><br>
+
+Another example is bank customers indexed by the relation:
+
+<br><br>
+
+P = { &lang;<i>b<sub>1</sub></i>, &hellip;, <i>b<sub>n</sub></i>, <i>i</i>, <i>a</i>&rang; | the customer had balances <i>b<sub>1</sub></i>, &hellip;, <i>b<sub>n</sub></i> in <i>n</i> accounts, income <i>i</i>, at age <i>a</i> }
+
+<br><br>
+
+<b>R trees</b> have the following properties:
+
+<ul>
+<li>
+Each node is a page/block of a secondary storage.
+<li>
+Each node contains <i>n</i> entries of (m<sub>i</sub>, p<sub>i</sub>), 1 &le; i &le; <i>n</i>, where m<sub>i</sub> is
+a (representation of) k-dimensional box and p<sub>i</sub> is a pointer.
+The value of <i>n</i> must satisfy N<sub>1</sub> &le; <i>n</i> &le; N<sub>2</sub> for some constants N<sub>1</sub>, N<sub>2</sub>
+such that 0 &lt; N<sub>1</sub> &le; N<sub>2</sub>/2.
+<li>
+In the non-leaf nodes, p<sub>i</sub> points to a child node and
+m<sub>i</sub> is the MBB of the union of all MBBs in that child node.
+<li>
+In the leaf nodes, p<sub>i</sub> points to an object associated with a set P such that
+MBB(P) = m<sub>i</sub>, or to a bucket of objects associated with sets whose MBBs are all m<sub>i</sub>.
+<li>
+All leaf nodes are at the same depth.
+</ul>
+
+It can be shown that any R trees of height h containing M entries in total in the leaf nodes
+satisfy:
+<blockquote>
+N<sub>1</sub><sup>h+1</sup> &le; M &le; N<sub>2</sub><sup>h+1</sup>, i.e.,
+<br>
+log<sub>N<sub>2</sub></sub>M &minus; 1 &le; h &le; log<sub>N<sub>1</sub></sub>M &minus; 1 (unless N<sub>1</sub> = 1)
+</blockquote>
+
+guaranteeing h = &Theta;(log M).
+
+<br><br>
+
+<b>Search Procedure</b>
+To search for objects related to a given box, B, start from the root and follow a path or paths determined by
+containment/intersection relation between B and index MBBs m<sub>i</sub>.
+
+<ul>
+<li>Find objects whose MBB is equal to B:
+  <br><br>
+  <ol>
+  <li>In a non-leaf node, find the m<sub>i</sub>'s with B &subseteq; m<sub>i</sub>, and
+      follow the associated pointers p<sub>i</sub>'s.
+  <li>In a leaf node, find the m<sub>i</sub> with B = m<sub>i</sub>.
+  </ol>
+  <br>
+<li>Find objects whose MBBs contain B:
+  <br><br>
+  <ol>
+  <li>In any node, find the m<sub>i</sub>'s with B &subseteq; m<sub>i</sub>, and
+      follow the associated pointers p<sub>i</sub>'s.
+  </ol>
+  <br>
+<li>Find objects whose MBBs intersect B:
+  <br><br>
+  <ol>
+  <li>In any node, find the m<sub>i</sub>'s with B &cap; m<sub>i</sub> &ne; &empty;, and
+      follow the associated pointers p<sub>i</sub>'s.
+  </ol>
+  <br>
+<li>Find objects whose MBBs are contained in B:
+  <br><br>
+  <ol>
+  <li>In a non-leaf node, find the m<sub>i</sub>'s with B &cap; m<sub>i</sub> &ne; &empty;, and
+      follow the associated pointers p<sub>i</sub>'s.
+  <li>In a leaf node, find the m<sub>i</sub>'s with m<sub>i</sub> &subseteq; B.
+  </ol>
+</ul>
+
+In general, all the four search procedures above may need to search multiple paths since
+MBBs in non-leaf nodes may overlap.
+
+<br><br>
+
+<b>R<sup>+</sup> trees</b> are similar to R trees except having the following properties:
+
+<ul>
+<li>
+The MBBs contained in the non-leaf nodes at the same level do not overlap.
+<li>
+At the next-to-last level (i.e., the parent-level of the leaf nodes),
+m<sub>i</sub>'s need not be MBBs, but
+the MBB of all the m<sub>i</sub> contains all MBBs of the subtrees.
+<li>
+Each object entry (m<sub>i</sub>, p<sub>i</sub>) is included in every leaf node pointed by
+a parent entry (m<sub>i</sub>', p<sub>i</sub>') such that m<sub>i</sub> and m<sub>i</sub>' intersect.
+</ul>
+
+<b>Search Procedure</b>
+
+<ul>
+<li>Find objects whose MBB is equal to B:
+  <br><br>
+  <ol>
+  <li>In a non-leaf node, find the first m<sub>i</sub> intersecting B, and
+      follow the associated pointer p<sub>i</sub>.
+  <li>In a leaf node, find the m<sub>i</sub> with B = m<sub>i</sub>.
+  </ol>
+  <br>
+  <b>The search path is unique</b>.
+  <br><br>
+<li>Find objects whose MBBs contain B:
+  <br><br>
+  <ol>
+  <li>In a non-leaf node, find the first m<sub>i</sub> intersecting B, and
+      follow the associated pointer p<sub>i</sub>.
+  <li>In a leaf node, find the m<sub>i</sub>'s with B &subseteq; m<sub>i</sub>.
+  </ol>
+  <br>
+  <b>The search path is unique</b>.
+  <br><br>
+<li>Find objects whose MBBs intersect B:
+    Same as R trees. Search paths may not be unique.
+    <br><br>
+<li>Find objects whose MBBs are contained in B:
+    Same as R trees. Search paths may not be unique.
+</ul>
+
+</body>
+</html>
+
