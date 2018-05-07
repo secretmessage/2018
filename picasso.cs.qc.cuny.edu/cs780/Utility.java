@@ -1,11 +1,27 @@
 import java.util.*;
 
-public abstract class Utility
+public class Utility
 {
 	public static <T> void printCollection(Collection<T> c)
 	{
-		for ( T x: c )
+		for (T x: c)
 			System.out.println( x );
+
+		/*The above is equivalent to:
+
+		  Iterator<T> it = c.iterator();
+
+		  while ( it.hasNext() )
+		    	System.out.println( it.next() );
+		*/
+	}
+
+	public static void printCollectionOfArrays(Collection<Object[]> c)
+	{
+		for (Object[] x: c)
+		{			System.out.println();
+			for ( int i =0; i < x.length; i++ )			System.out.println( x[i] );
+		}
 	}
 
 	public static <T> T extract(Collection<T> c)
@@ -16,7 +32,7 @@ public abstract class Utility
 
 	{
 		T x = null;
-		for ( T e: c )
+		for (T e: c)
 			x = e;
 		return x;
 	}

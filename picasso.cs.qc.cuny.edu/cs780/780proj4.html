@@ -1,0 +1,128 @@
+<html>
+<body>
+
+<title>
+CS 332/780 Project 4 Spring 2018
+</title>
+
+<b>
+CS 332/780: Object-Oriented Databases &nbsp; Spring 2018
+</b>
+
+<hr align="center">
+
+<font face="verdana">
+
+PROJECT 4: Functions and JDOQL Queries
+<br>
+<b>Due: 05/18/18, Friday, 11 PM 
+<br>
+No late submission will be accepted.
+<br>
+This project must be done individually &ndash; no group work permitted.
+</b>
+
+<br><br>
+
+<font color=red>
+<b>
+Use <a href="http://www.objectdb.com/object/db/database/download">ObjectDB version 2.7.4</a> for this project.
+</b>
+</font>
+
+<br><br>
+
+This project deals with the following four classes for an airline flight database:
+<a href = Time.java>Time</a>,
+<a href = City.java>City</a>,
+<a href = Airport.java>Airport</a>,
+<a href = Flight.java>Flight</a>.
+<a href = Utility.java>Utility</a>
+has generic functions to print collections and to extract the element from a singleton collection;
+this class will be compiled with the other four but will not be enhanced to a persistent class.
+
+<br><br>
+
+For each of the following functions,
+you are to provide code of its body correctly implementing the specification given in the comment:
+
+<ol>
+<li>
+Time.differenceFrom
+<li>
+Time.isInInterval
+<li>
+Airport.airportsForCompany
+<li>
+Flight.find
+<li>
+Flight.getFlights
+<li>
+Flight.getFlightsForCities
+<li>
+Flight.getFlightsDepartTime
+<li>
+Flight.getFlightsConnection
+<li>
+Flight.groupByCompany
+</ol>
+
+The functions 1 and 2 are auxiliary functions involving time computation.
+The functions 3 through 9 will use JDOQL queries.
+Assume that the lengths of all time intervals used in the functions/queries are at most 23 hours and 59 minutes, 
+whether they include midnight or not.
+It may be advantageous to start with relevant JDOQL queries in set form.
+For visualization, it may be helpful to draw a UML diagram of the database.
+<b>Do not change anything in the given class definitions and
+the function headers.</b>
+Place all the classes in one folder, the default package.
+ 
+<br><br>
+
+Recall that the function <i>q.execute(...)</i> accepts only up to three parameter values.
+For query executions with four or more parameter values, 
+<i>q.executeWithArray(...)</i> must be used.
+Suppose for example that the query takes two String parameter values s1 and s2 and
+two int parameter values x1 and x2.
+Then do as follows:
+<pre>
+....
+q.declareParameters( "String st1, String st2, int a1, int a2" );
+....
+Object[] args =	new Object[] { s1, s2, x1, x2 };
+Collection<...> result = (Collection<...>) q.executeWithArray( args );
+</pre>
+
+<a href="Test1.java">Test1</a> and <a href="Test2.java">Test2</a>
+are programmed to do some testing with example
+<a href = "flight1.odb">flight1.odb</a> and 
+<a href = "flight2.odb">flight2.odb</a> database files, respectively.
+To test your function code by these, download them to the same folder
+that has your flight class files, and run the main functions.
+The correct output should be identical to
+<a href = "test1out.txt">Test1 output</a> and
+<a href = "test2out.txt">Test2 output</a>.
+The contents of these databases can be inspected by Explorer.
+You might do your own testing by adding test code to the main function.
+
+<br><br>
+
+<b>Submission</b>
+
+<br><br>
+
+The due date is 05/18/18, Friday, 11 PM.
+No late submission will be accepted.
+
+<br><br>
+
+<b>Email</b> to keitaro.yukawa@gmail.com all four .java source code files with your function code inserted, 
+using the subject header:
+<br><br>
+<em>CS 332 or CS 780, Project 4, Your Full Name</em>.
+
+</font>
+
+</body>
+</html>
+
