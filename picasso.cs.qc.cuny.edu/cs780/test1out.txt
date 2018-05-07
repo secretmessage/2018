@@ -1,0 +1,96 @@
+-- TEST Flight.find --
+
+Delta 585 New York JFK 20:20 St. Louis Lambert 23:45
+Delta 655 St. Louis Lambert 1:8 Los Angeles LAX 3:23
+United 300A New York JFK 20:50 Washington Dulles 22:20
+American 351 Washington Dulles 0:15 Los Angeles LAX 2:15
+
+-- TEST Time.differenceFrom --
+
+83
+115
+1357
+1325
+
+-- TEST Time.isInInterval --
+
+true
+true
+false
+false
+
+-- TEST Flight.getFlights: New York La Guardia to Chicago O'Hare --
+
+American 100 New York La Guardia 8:15 Chicago O'Hare 10:20
+US Airways 700 New York La Guardia 10:50 Chicago O'Hare 12:55
+
+-- TEST Flight.getFlights: St. Louis Lambert to Los Angeles LAX --
+
+Delta 655 St. Louis Lambert 1:8 Los Angeles LAX 3:23
+United 250B St. Louis Lambert 1:15 Los Angeles LAX 3:40
+
+-- TEST Flight.getFlightsForCities: Riverside to Flushing --
+
+Delta 222 Los Angeles LAX 9:15 New York JFK 17:5
+US Airways 1208 Los Angeles LAX 21:17 New York La Guardia 5:8
+
+-- TEST Flight.getFlightsDepartTime: Chicago O'Hare to Washington Dulles --
+
+American 150 Chicago O'Hare 10:15 Washington Dulles 12:10
+
+-- TEST Flight.getFlightsDepartTime: New York JFK to Washington Dulles --
+
+United 300A New York JFK 20:50 Washington Dulles 22:20
+
+-- TEST Flight.getFlightsConnection: New York JFK to Los Angeles LAX --
+
+
+Delta 585 New York JFK 20:20 St. Louis Lambert 23:45
+Delta 655 St. Louis Lambert 1:8 Los Angeles LAX 3:23
+
+Delta 585 New York JFK 20:20 St. Louis Lambert 23:45
+United 250B St. Louis Lambert 1:15 Los Angeles LAX 3:40
+
+United 300A New York JFK 20:50 Washington Dulles 22:20
+American 351 Washington Dulles 0:15 Los Angeles LAX 2:15
+
+-- TEST Flight.getFlightsConnection: Chicago O'Hare to Los Angeles LAX --
+
+
+American 150 Chicago O'Hare 10:15 Washington Dulles 12:10
+United 280A Washington Dulles 13:40 Los Angeles LAX 15:40
+
+-- TEST Airport.airportsForCompany: American --
+
+Chicago O'Hare
+Los Angeles LAX
+New York La Guardia
+Washington Dulles
+
+-- TEST Airport.airportsForCompany: Delta --
+
+Los Angeles LAX
+New York JFK
+St. Louis Lambert
+
+-- TEST Airport.airportsForCompany: United --
+
+Los Angeles LAX
+New York JFK
+St. Louis Lambert
+Washington Dulles
+
+-- TEST Flight.groupByCompany --
+
+
+American
+3
+
+Delta
+4
+
+US Airways
+2
+
+United
+3

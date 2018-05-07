@@ -1,0 +1,73 @@
+-- TEST Flight.find --
+
+Delta 585 New York JFK 4:0 Los Angeles LAX 9:0
+Delta 655 New York JFK 5:0 Los Angeles LAX 10:0
+United 300A New York JFK 6:0 Los Angeles LAX 11:0
+American 351 New York JFK 7:0 Los Angeles LAX 12:0
+
+-- TEST Time.differenceFrom --
+
+1200
+1200
+240
+240
+
+-- TEST Time.isInInterval --
+
+false
+false
+false
+false
+
+-- TEST Flight.getFlights: New York La Guardia to Chicago O'Hare --
+
+
+-- TEST Flight.getFlights: St. Louis Lambert to Los Angeles LAX --
+
+United 110 St. Louis Lambert 0:10 Los Angeles LAX 1:10
+
+-- TEST Flight.getFlightsForCities: Riverside to Flushing --
+
+
+-- TEST Flight.getFlightsDepartTime: Chicago O'Hare to Washington Dulles --
+
+
+-- TEST Flight.getFlightsDepartTime: New York JFK to Washington Dulles --
+
+
+-- TEST Flight.getFlightsConnection: New York JFK to Los Angeles LAX --
+
+
+United 100 New York JFK 20:30 St. Louis Lambert 22:30
+United 110 St. Louis Lambert 0:10 Los Angeles LAX 1:10
+
+-- TEST Flight.getFlightsConnection: Chicago O'Hare to Los Angeles LAX --
+
+
+-- TEST Airport.airportsForCompany: American --
+
+Los Angeles LAX
+New York JFK
+
+-- TEST Airport.airportsForCompany: Delta --
+
+Los Angeles LAX
+New York JFK
+
+-- TEST Airport.airportsForCompany: United --
+
+Los Angeles LAX
+New York JFK
+St. Louis Lambert
+
+-- TEST Flight.groupByCompany --
+
+
+American
+1
+
+Delta
+2
+
+United
+3
