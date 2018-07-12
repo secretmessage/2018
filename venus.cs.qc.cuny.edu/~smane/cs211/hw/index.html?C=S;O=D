@@ -1,14 +1,22 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html>
- <head>
-  <title>Index of /~smane/cs211/hw</title>
- </head>
- <body>
-<h1>Index of /~smane/cs211/hw</h1>
-  <table>
-   <tr><th valign="top"><img src="/icons/blank.gif" alt="[ICO]"></th><th><a href="?C=N;O=A">Name</a></th><th><a href="?C=M;O=A">Last modified</a></th><th><a href="?C=S;O=A">Size</a></th><th><a href="?C=D;O=A">Description</a></th></tr>
-   <tr><th colspan="5"><hr></th></tr>
-<tr><td valign="top"><img src="/icons/back.gif" alt="[PARENTDIR]"></td><td><a href="/~smane/cs211/">Parent Directory</a>       </td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
-   <tr><th colspan="5"><hr></th></tr>
-</table>
-</body></html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd"> 
+ <html> 
+
+ <head> 
+ <title>CS211/611 Summer 2018</title> 
+ </head> 
+
+ <body> 
+ 
+ <h3> 
+ Computer Science 211/611 (Object Oriented Programming in C++) Summer 2018
+</h3>
+
+<ul>
+   <li><a href=CS211_611_hw_intro.pdf> <font color=black> 
+   Homework #1 (introduction) due July 3, 2018 at 11:59 pm </font></a>
+</ul>
+
+</body>
+</html>
+
