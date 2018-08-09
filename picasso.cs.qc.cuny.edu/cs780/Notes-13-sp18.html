@@ -1027,4 +1027,533 @@ read access and write access, as well as two types of lock operations:
 
 read-lock(A) and write-lock(A).
 
-If a trans
+If a transaction contains read(A) but no write(A), it requests read access to A
+
+by executing read-lock(A); if it contains write(A), 
+
+it requests write access to A by executing write-lock(A).
+
+Write access subsumes read access in that any transaction with
+
+write access to A may execute read(A) as well as write(A).
+
+To implement this mechanism,
+
+three values of lock[A] are used with the following semantics:
+
+<ul>
+
+<li>
+
+Whenever lock[A] = "unlocked", no transaction is currently holding read or write access to A;
+
+read or write access to A may be granted to any transaction.
+
+<li>
+
+Whenever lock[A] = "read-locked", one or more transactions are currently holding read access to A
+
+but no transaction is holding write access to A;
+
+read access to A, but no write access, may be granted to any transaction.
+
+<li>
+
+Whenever lock[A] = "write-locked", exactly one transaction is holding write access to A and no transaction
+
+is holding read access to A;
+
+neither read nor write access to A may be granted to any transaction.
+
+</ul>
+
+</font>
+
+<table border=1 style='border-collapse: collapse;' width=75%>
+
+<tr>
+<th>value of lock[A]</th> 
+<th># of transactions holding read access to A</th>
+<th># of transactions holding write access to A</th>
+<th>may be granted to transaction</th>
+</tr> 
+
+<tr>
+<td align="center">unlocked</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">read and write access</td>
+</tr>
+
+<tr>
+<td align="center">read-locked</td>
+<td align="center">n &ge; 1</td>
+<td align="center">0</td>
+<td align="center">read access</td>
+</tr>
+
+<tr>
+<td align="center">write-locked</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">nothing</td>
+</tr>
+
+</table>
+
+<font face="verdana" size=-1>
+
+<br>
+
+Since the write-lock is completely exclusive,
+we observe that if all transactions only used write-lock operations,
+their effect would be equivalent to binary locks.
+
+<br><br>
+
+The following algorithms implement read-lock(A), write-lock(A), and unlock(A) operations;
+queue[A] denotes the queue of transactions waiting to acquire read or write access
+to A, and count[A] denotes the integer variable to keep track of the number of
+transactions currently holding read access to A.
+
+</font>
+
+<pre>
+read-lock(A):
+
+if ( lock[A] == unlocked ) { lock[A] = read-locked; count[A] = 1; }
+else if ( lock[A] == read-locked ) count[A] = count[A]+1;
+else /* lock[A] == write-locked */
+    put this transaction in queue[A] and suspend it;
+
+write-lock(A):
+
+if ( lock[A] == unlocked ) lock[A] = write-locked;
+else put this transaction in queue[A] and suspend it;
+
+unlock(A):
+
+if ( lock[A] == write-locked )
+{   if ( queue[A] is empty )
+        lock[A] = unlocked;
+    else
+    {   if ( the transaction at the front of queue[A] requests write access )
+            remove it from queue[A] and resume its execution;
+        else
+        {   remove transactions requesting read access from queue[A] until
+            a transaction requesting write access is found;
+            count[A] = the # of the removed transactions;
+            lock[A] = read-locked;
+            resume the execution of the removed transactions;
+        }
+    }
+}
+else /* lock[A] == read-locked */
+{   count[A] = count[A]-1;
+    if ( count[A] == 0 )
+    {   if ( queue[A] is empty )
+            lock[A] = unlocked;
+        else /* transaction at front of queue[A] must be requesting write access */
+        {   lock[A] = write-locked;
+            remove the transaction from queue[A] and resume its execution;
+        }
+    }
+}
+</pre>
+
+<font face="verdana" size=-1>
+
+This implementation has one shortcoming:
+
+if transactions requesting read access to A keep coming one after another in such a way
+
+that count[A] stays greater than 0 for a long time or forever,
+
+transactions requesting write access to A will have to wait for a long time
+
+or forever.
+
+This problem is often called "live lock" or "starvation" of writers.
+
+One way to solve this problem is to modify the algorithm for read-lock(A) so that
+
+once a writer is put on queue[A], transactions attempting read-lock(A) are placed on a queue
+
+until after the writer is granted write access.
+
+This is left as Question 8 in Exercises.
+
+<br><br>
+
+The two-phase protocol for ternary locking consists of the following
+
+seven rules:
+
+<ol>
+
+<li>
+
+Each transaction
+
+must execute read-lock(A) or write-lock(A) before the earliest read(A).
+
+<li>
+
+Each transaction
+
+must execute write-lock(A) before the earliest write(A).
+
+<li>
+
+Each transaction
+
+must unlock(A) after the last read(A) or write(A).
+
+<li>
+
+No transaction may execute read-lock(A) if it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+No transaction may execute write-lock(A) if it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+No transaction may execute unlock(A) unless it has already executed read-lock(A) or write-lock(A).
+
+<li>
+
+Regardless of database items, all read-lock and write-lock operations must precede
+
+the very first unlock operations.
+
+</ol>
+
+Again, this protocol guarantees serializable schedules and hence correct database states.
+
+<br><br>
+
+Optimal applications of the three operations can be defined analogously to
+
+those of binary locks/unlocks.
+
+The following algorithm can be used to insert read-lock, write-lock, and unlock operations
+
+into straight line code in an optimal way.
+
+<ol>
+
+<li>
+
+For each database item A, locate the earliest occurrence of read(A) or write(A); insert
+
+read-lock(A) just before it if the transaction contains no write(A), or else insert write-lock(A) 
+
+just before it.
+
+<li>
+
+Locate the last occurrence of read-lock or write-lock regardless of database items.
+
+<li>
+
+For each database item A, locate the last occurrence of read(A) or write(A),
+
+and insert unlock(A) just after it or the last lock found in step 2, whichever comes later.
+
+</ol>
+
+Consider the transactions T<sub>1</sub> and T<sub>2</sub>
+
+executing the code segments:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X); r(Z); Y=X+Y+Z; w(Y);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y); r(Z); Z=X+Z; w(Z);
+
+<br><br>
+
+The following is the code of T<sub>1</sub> and T<sub>2</sub> with
+
+read-lock, write-lock, and unlock operations inserted in an optimal way by the above algorithm:
+
+<br><br>
+
+T<sub>1</sub>:
+
+<br>
+
+w-lock(X); r(X); w-lock(Y); r(Y); X=X+Y; w(X); r-lock(Z); unlock(X); r(Z); unlock(Z); Y=X+Y+Z; w(Y); unlock(Y);
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); w-lock(Y); r(Y); Y=X+Y; w(Y); w-lock(Z); unlock(X); unlock(Y); r(Z); Z=X+Z; w(Z); unlock(Z);
+
+<br><br>
+
+It should be noticed that an optimal application of locks/unlocks is not unique.
+
+The following is a different optimal application for T<sub>2</sub> obtained by the opposite of the above algorithm,
+
+i.e., by first inserting the unlocks as early as possible and then inserting the locks as late as possible:
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); w-lock(Y); w-lock(Z); unlock(X); r(Y); Y=X+Y; w(Y); unlock(Y); r(Z); Z=X+Z; w(Z); unlock(Z);
+
+<br><br>
+
+Here, w-lock(Z) is "pulled ahead" due to the earliest possible execution of unlock(X).
+
+In the previous T<sub>2</sub>, unlock(X) is "pushed back" due to the latest possible execution
+
+of w-lock(Z).
+
+<br><br>
+
+</font>
+
+<font face=verdana>
+
+<b>5. Ternary Locking with Read-to-Write Upgrade</b>
+
+</font>
+
+<font face=verdana size=-1>
+
+<br><br>
+
+The ternary locking method described in the previous section has two disadvantages:
+
+<ul>
+
+<li>
+
+Consider a transaction that reads data items, performs a long computation with them,
+then writes them back to the database.
+Write-locks on the data items must be executed before the readings although
+the writings are done at the end of the transaction.
+During the long computation phase, it denies the possibility of harmless concurrent readings of the data items 
+done by other transactions that only read the data items.
+
+<li>
+
+The transaction code needs to be inspected to detect if it contains
+a write operation; this is to determine whether read-lock or write-lock is to be used.
+In case the transaction code is statically compiled, the compiler could perform this task;
+it is nevertheless a significant burden on the compiler.
+The detection is impossible in interpretational mode of execution in which transaction
+statements are interpreted one by one without look-ahead analysis of the code.
+This type of interpretational execution occurs when transaction statements are
+entered from the terminal or contained in a "script" for immediate, real-time execution.  
+
+</ul>
+
+These disadvantages are removed by permitting a transaction to upgrade its read access
+
+to a data item A to write access just before the first write(A).
+
+The upgrade is granted only if no other transaction is reading A;
+
+otherwise, the transaction is placed on queue[A].
+
+<br><br>
+
+The rule 5 of the two-phase protocol given in the previous section is relaxed to:
+
+<blockquote>
+
+5. No transaction may execute write-lock(A) if it has already executed it.
+
+(But it may execute write-lock(A) if it has executed read-lock(A) only.)
+
+</blockquote>
+
+The other six rules remain the same.
+
+<br><br>
+ 
+The implementation of read-lock, write-lock, and unlock must be modified suitably.
+
+One way is to modify the algorithm for the write-lock operation as follows
+(while keeping the same algorithms for read-lock and unlock).
+
+</font>
+<pre>
+write-lock(A):
+
+if ( lock[A] == unlocked ) lock[A] = write-locked;
+else if ( this transaction is holding read access to A ) 
+{    
+     if ( count[A] == 1 ) /* only this transaction is reading A */
+     {    count[A] = 0;
+          lock[A] = write-locked;
+     }     
+     else /* count[A] > 1 */
+          put this transaction in queue[A] and suspend it;
+}
+else put this transaction in queue[A] and suspend it;
+</pre>
+<font face=verdana size=-1>
+
+Consider again the two transactions T<sub>1</sub> and T<sub>2</sub>:
+
+<br><br>
+
+T<sub>1</sub>: r(X); r(Y); X=X+Y; w(X); r(Z); Y=X+Y+Z; w(Y);
+
+<br>
+
+T<sub>2</sub>: r(X); r(Y); Y=X+Y; w(Y); r(Z); Z=X+Z; w(Z);
+
+<br><br>
+
+By applying read-lock(A) just before the first read(A), write-lock(A) just before 
+
+the first write(A), and unlock(A) as early as possible after the last 
+
+lock operation, we get:
+
+<br><br>
+
+T<sub>1</sub>:
+
+<br>
+
+r-lock(X); r(X); r-lock(Y); r(Y); X=X+Y; w-lock(X), w(X); r-lock(Z); r(Z);
+
+Y=X+Y+Z; w-lock(Y); unlock(X); unlock(Z); w(Y); unlock(Y);
+
+<br><br>
+
+T<sub>2</sub>:
+
+<br>
+
+r-lock(X); r(X); r-lock(Y); r(Y); Y=X+Y; w-lock(Y); w(Y); r-lock(Z); r(Z); 
+
+Z=X+Z; w-lock(Z); unlock(X); unlock(Y); w(Z); unlock(Z);
+
+<br><br>
+
+Ternary locking with read-to-write upgrade has its own shortcoming &ndash;
+it is comparatively prone to deadlocks.
+This method allows multiple transactions to read the same initial value of
+a certain database item A concurrently and begin computations with it.
+Suppose now that these transactions attempt to write A's values back in the database.
+Then attempts will be made to upgrade
+transactions' read-locks to write-locks just before writing is done.
+But no upgrade is permitted because the transactions are holding
+read-locks on A, with the result that they will
+be eventually placed in waiting queues, deadlocking one another,
+to prevent non-serializable schedules.
+More generally, suppose <i>n</i> transactions have executed read-lock(A) and acquired read access to A, and later
+<i>m</i> of them attempt to execute write-lock(A), <i>n</i> &ge; 2, <i>n</i> &ge; <i>m</i> &ge; 1.
+Then the above algorithm will deadlock all <i>m</i> transactions one another and place them in queue[A].
+The <i>m</i> transactions are waiting to write lock A but cannot do so as they themselves have read-lock on A.
+The deadlock manager is expected to handle these deadlocked transactions suitably.
+The algorithm for unlock(A) can be modified to salvage the <i>m</i> = 1 case only,
+so that the one self-deadlocked transaction is safely removed from queue[A], upgraded to have write-lock on A,
+and resumes its execution.
+This is left as Question 9 in exercises.
+
+<br><br>
+
+Ternary locking without read-to-write upgrade prevents deadlocks of this sort
+since requests for write-locks are made before the first read operations &ndash;
+it does not allow multiple transactions to read the same
+database item concurrently 
+if one of them has a writing operation on the data item.
+
+<br><br>
+
+In the above example, T<sub>1</sub> and T<sub>2</sub> may start by concurrently reading X and Y by
+acquiring read-locks on them.
+Then w-lock(X) in T<sub>1</sub> and w-lock(Y) in T<sub>2</sub> will deadlock them.
+
+<br><br>
+
+Consider the following transaction code to withdraw $X from bank account A:
+
+</font>
+<pre>
+r-lock(A);
+r(A);
+if ( A &ge; X )
+{
+	A = A &minus; X;
+	w-lock(A);
+	w(A);
+}
+unlock(A);
+</pre>
+<font face=verdana size=-1>
+
+Suppose the balance of A is $10,000.
+You and your spouse, who share account A, might start withdrawing $6,000 almost simultaneously.
+Then the two transactions may acquire read-locks on A and read A = 10000 concurrently.
+Because 10000 &ge; 6000 holds
+each transaction will decrease A's value to 4000 and attempt to execute w-lock(A), which will deadlock
+both transactions to prevent the incorrect value A = 4000 from being written in the database.
+
+<br><br>
+
+The following is the code without read-to-write upgrade:
+
+</font>
+<pre>
+w-lock(A);
+r(A);
+if ( A &ge; X )
+{
+	A = A &minus; X;
+	w(A);
+}
+unlock(A);
+</pre>
+<font face=verdana size=-1>
+
+Since a write-lock must be acquired at the outset,
+you and your spouse will never be allowed to start this transaction code concurrently.
+
+</font>
+
+<br><br>
+
+<font face=verdana>
+
+<b>References</b>
+
+</font>
+
+<br><br>
+
+<font face=verdana size=-1>
+
+[1] P.M. Lewis, A. Bernstein, and M. Kifer.
+<i>Databases and Transaction Processing, An Application-Oriented Approach</i>.
+Addison Wesley, 2002.
+
+<br>
+
+[2] R. Elmarsi and S.B. Navathe.
+<i>Fundamentals of Database Systems, 3rd edition</i>.
+Addison Wesley, 2000.
+
+</font>
+
+</body>
+</html>
+
