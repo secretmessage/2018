@@ -492,4 +492,38 @@ describe how to simulate such a DTM by a DTM with a unidirectionally infinite ta
 
 <br><br>
 
-The initial tape head position of the bidirectional tape
+The initial tape head position of the bidirectional tape will be called the <i>split position</i>.
+The cells of the bidirectional tape on the left side of the split position will be called the <i>left part</i>,
+while those in the split position and on the right side of it will be called the <i>right part</i>.
+
+<br><br>  
+
+<b>Simulation Method 1</b>
+We sequentially number the cells of the unidirectional tape by 0, 1, 2, &hellip;, from left to right.
+These numbers are for our descriptive purpose only &ndash;
+the unidirectional DTM does not directly know these numbers.
+The cell in position 0 contains "#" to simulate the split position.
+The left part is simulated by the even-numbered cells 2, 4, 6, &hellip; in reverse order, while
+the right part is simulated by the odd-numbered cells 1, 3, 5, &hellip; in original order.
+Thus, the string on the left part appears in the cells 2, 4, 6, &hellip; in reverse order,
+while the string on the right part appears in the cells 1, 3, 5, &hellip; in original order.
+The start tape configuration with the input a<sub>1</sub> &middot;&middot;&middot; a<sub>n</sub> is therefore
+#a<sub>1</sub>_a<sub>2</sub>_ &middot;&middot;&middot; _a<sub>n</sub>.
+Each leftward (rightward, respectively) transition on the left part is simulated by two rightward (leftward) transitions on even cells.
+Each leftward (rightward, respectively) transition on the right part is simulated by two leftward (rightward ) transitions on odd cells.
+The switching between the left and right parts is simulated by detection of #.
+ 
+<br><br>
+
+<b>Simulation Method 2</b>
+We use a unidirectional 2-tape DTM to simulate a bidirectional DTM.
+Both tapes contain # in the 1st position to simulate the split position.
+The right part is simulated by tape 1 in original order, while
+the left part is simulated by tape 2 in reverse order.
+The switching between the left and right parts is simulated by detection of # and switching between tape 2 and tape 1.
+Now, we showed in class how to simulate any 2-tape DTM by a 1-tape DTM.
+
+</ol>
+
+</body>
+</html>

@@ -530,4 +530,63 @@ is equivalent to
 <pre>
 Query q = pm.newQuery();
 	q.setClass(CourseSection.class);
-	q.setGrouping("course.n
+	q.setGrouping("course.number, semester, year");
+	q.setResult("course.number, semester, year, sum(take.size()), avg(take.size())");
+	q.setOrdering("sum(take.size()) ascending");
+</pre>
+<font face="verdana" size=-1>
+
+<h2>
+<b>Path Expressions</b>
+</h2>
+
+Traversing (i.e., composing) a chain of binary relations 
+R<sub>1</sub>, R<sub>2</sub>, &hellip;, R<sub>n&minus;1</sub>, R<sub>n</sub> 
+may be done by a path expression of the form 
+R<sub>1</sub>.R<sub>2</sub>. &middot;&middot;&middot; .R<sub>n&minus;1</sub>.R<sub>n</sub>
+without use of explicit bound variables.
+The path expressions starting with the same <i>this</i>, variable, parameter, or field
+use the same set of implicit bound variables.
+
+<br><br>
+
+<b>Example 17</b>
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.setFilter("this.take.courseSection.year == 2003 && "+
+            "this.take.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+is equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Take t");
+q.setFilter("this.take.contains(t) && t.courseSection.year == 2003 && "+
+            "t.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+but is not equivalent to
+
+</font>
+<pre>
+Query q = pm.newQuery(Student.class);
+q.declareVariables("Take t1, t2");
+q.setFilter("this.take.contains(t1) && t1.courseSection.year == 2003 && "+
+            "this.take.contains(t2) && t2.grade.getGrade() == \"B\"");
+</pre>
+<font face="verdana" size=-1>
+
+In the former, the student must have taken a course section in 2003 and
+received B in that same course section.
+In the latter, a course section taken by the student in 2003 may be different from a course section
+in which he/she received B.
+
+</body>
+</html>
+

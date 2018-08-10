@@ -192,33 +192,4 @@
       /><line y2="115" fill="none" x1="50" clip-path="url(#clipPath24)" x2="244" y1="115"
       /><line y2="143" fill="none" x1="244" clip-path="url(#clipPath24)" x2="244" y1="115"
       /><polygon points=" 50 50 44 62 50 74 56 62" clip-path="url(#clipPath24)" stroke="none"
-      /><polygon fill="none" points=" 50 50 44 62 50 74 56 62" clip-path="url(#clipPath24)"
-    /></g
-    ><g font-size="14" transform="translate(168,228)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" stroke-opacity="1"
-    ><path d="M1.5 6.5 L14.5 1.5 L14.5 11.5 Z" stroke="none" clip-path="url(#clipPath26)"
-      /><text x="28" xml:space="preserve" y="14" clip-path="url(#clipPath25)" transform="translate(-10,0)" stroke="none"
-      >refersToFormulaWithinParagraph</text
-    ></g
-    ><g font-size="14" transform="translate(710,245)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" stroke-opacity="1"
-    ><path d="M8 13 L3 0 L13 0 Z" stroke="none" clip-path="url(#clipPath28)"
-      /><text x="28" xml:space="preserve" y="14" clip-path="url(#clipPath27)" transform="translate(-10,0)" stroke="none"
-      >precedes</text
-    ></g
-    ><g font-size="10" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" image-rendering="optimizeQuality" stroke="rgb(120,120,120)" stroke-opacity="1"
-    ><text x="600" xml:space="preserve" y="313" stroke="none"
-      >Powered ByVisual Paradigm Community Edition</text
-      ><image font-size="12" x="835" y="301" fill="white" width="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABvklEQVR42o1TPUgC
-YRi+z1PSzWrSc6ho6W/xNIhEoZoCl/a2fqaGoJKwyHIp16ZyCyIolwpq6c8lIz0h
-h6ACa/KWOHGz4byezz7lkNM8eHjf7/ve53l/vu84rsWXEcVo2uOJtYrhW5A3YCKE
-48YXnE7zoSzfty3AyFHdln/R4bBA5O5fgQbyiUbIK6oY5gjxG1XCtyAngFl7qXT+
-Y7UOwR+glTSK8EZkomlJMZsNCrKs7iuKOuXzJboUJYAqemrtHEBkGwsTIy/pe0bZ
-/Rmvd6K27svnx7Q/cu08LIliiPpmlvEGJo0DL4sRSKVyBuEZledznKpeYs+u6/YF
-nKt6C+jpe14QPjCsQUpmQVYgaNK0R9hPYJLtZ5Eo5JGkVF0AmUZAvoBLM5WBXhZs
-A6YB+pi+AAudD+zOnMuVjBcKheoMbOXyG0wcWKGtAPr77gauKyYTFU8g+xrsUWex
-mKu2r79Gye3eQkAE7i4wCtQG+YTMKZwt0zOUv274DjCLJGZBoEqv9JRtyyDfgrwK
-f09PNnyJ6OuBiYSxPAbecf9UMNZIbvovUBE8FjRINrEMNJbd1t9I28Gz7YD7DHKo
-WdwvFl2vGaThOSEAAAAASUVORK5CYII=" height="16" stroke="white" preserveAspectRatio="none"
-    /></g
-  ></g
-></svg
->
+      /><polygon fill="none" points=" 50 50 44 62 50 74 56 62" clip-path="url(#
