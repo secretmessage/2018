@@ -121,4 +121,140 @@
       /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
     /></g
     ><g transform="translate(102,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
-    ><text x="19" xml:space="preserve" y="1
+    ><text x="19" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Integer</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(192,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(192,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="24" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Long</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(282,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(282,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="25" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Float</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(232,422)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(232,422)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="9" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >BigInteger</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(342,422)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(342,422)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="6" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >BigDecimal</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(372,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(372,202)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="19" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Double</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(12,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(12,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="15" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Boolean</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(112,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(112,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="11" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >Character</text
+    ></g
+    ><g stroke-linecap="butt" transform="translate(212,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke-linejoin="round" stroke="black" font-weight="bold" stroke-opacity="1" stroke-miterlimit="0"
+    ><rect fill="none" x="0" width="80" height="40" y="0" clip-path="url(#clipPath10)"
+      /><line y2="14" fill="none" x1="0" clip-path="url(#clipPath10)" x2="80" y1="14"
+    /></g
+    ><g transform="translate(212,262)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="&apos;Arial&apos;" stroke="black" font-weight="bold" stroke-opacity="1"
+    ><text x="22" xml:space="preserve" y="11" clip-path="url(#clipPath12)" stroke="none"
+      >String</text
+    ></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(42,72)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="50" fill="none" x1="149" clip-path="url(#clipPath15)" x2="50" y1="50"
+      /><polygon fill="white" clip-path="url(#clipPath15)" points=" 149 50 137 44 137 56" stroke="none"
+      /><polygon fill="none" points=" 149 50 137 44 137 56" clip-path="url(#clipPath15)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(42,92)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="50" fill="none" x1="150" clip-path="url(#clipPath16)" x2="110" y1="50"
+      /><line y2="80" fill="none" x1="110" clip-path="url(#clipPath16)" x2="110" y1="50"
+      /><line y2="80" fill="none" x1="110" clip-path="url(#clipPath16)" x2="50" y1="80"
+      /><polygon fill="white" clip-path="url(#clipPath16)" points=" 150 50 138 44 138 56" stroke="none"
+      /><polygon fill="none" points=" 150 50 138 44 138 56" clip-path="url(#clipPath16)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(102,92)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="90" fill="none" x1="100" clip-path="url(#clipPath17)" x2="100" y1="50"
+      /><line y2="90" fill="none" x1="100" clip-path="url(#clipPath17)" x2="50" y1="90"
+      /><line y2="109" fill="none" x1="50" clip-path="url(#clipPath17)" x2="50" y1="90"
+      /><polygon fill="white" clip-path="url(#clipPath17)" points=" 100 50 94 62 106 62" stroke="none"
+      /><polygon fill="none" points=" 100 50 94 62 106 62" clip-path="url(#clipPath17)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(182,92)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="109" fill="none" x1="50" clip-path="url(#clipPath18)" x2="50" y1="50"
+      /><polygon fill="white" clip-path="url(#clipPath18)" points=" 50 50 44 62 56 62" stroke="none"
+      /><polygon fill="none" points=" 50 50 44 62 56 62" clip-path="url(#clipPath18)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(242,92)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="109" fill="none" x1="50" clip-path="url(#clipPath18)" x2="50" y1="50"
+      /><polygon fill="white" clip-path="url(#clipPath18)" points=" 50 50 44 62 56 62" stroke="none"
+      /><polygon fill="none" points=" 50 50 44 62 56 62" clip-path="url(#clipPath18)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(262,92)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="90" fill="none" x1="50" clip-path="url(#clipPath19)" x2="50" y1="50"
+      /><line y2="90" fill="none" x1="50" clip-path="url(#clipPath19)" x2="150" y1="90"
+      /><line y2="109" fill="none" x1="150" clip-path="url(#clipPath19)" x2="150" y1="90"
+      /><polygon fill="white" clip-path="url(#clipPath19)" points=" 50 50 44 62 56 62" stroke="none"
+      /><polygon fill="none" points=" 50 50 44 62 56 62" clip-path="url(#clipPath19)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(222,82)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="50" fill="none" x1="101" clip-path="url(#clipPath20)" x2="250" y1="50"
+      /><line y2="260" fill="none" x1="250" clip-path="url(#clipPath20)" x2="250" y1="50"
+      /><line y2="260" fill="none" x1="250" clip-path="url(#clipPath20)" x2="50" y1="260"
+      /><line y2="339" fill="none" x1="50" clip-path="url(#clipPath20)" x2="50" y1="260"
+      /><polygon fill="white" clip-path="url(#clipPath20)" points=" 101 50 113 56 113 44" stroke="none"
+      /><polygon fill="none" points=" 101 50 113 56 113 44" clip-path="url(#clipPath20)"
+    /></g
+    ><g stroke-linecap="butt" font-size="11" transform="translate(273,62)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
+    ><line y2="50" fill="none" x1="50" clip-path="url(#clipPath21)" x2="219" y1="50"
+      /><line y2="300" fill="none" x1="219" clip-path="url(#clipPath21)" x2="219" y1="50"
+      /><line y2="300" fill="none" x1="219" clip-path="url(#clipPath21)" x2="109" y1="300"
+      /><line y2="359" fill="none" x1="109" clip-path="url(#clipPath21)" x2="109" y1="300"
+      /><polygon fill="white" clip-path="url(#clipPath21)" points=" 50 50 62 56 62 44" stroke="none"
+      /><polygon fill="none" points=" 50 50 62 56 62 44" clip-path="url(#clipPath21)"
+    /></g
+    ><g font-size="10" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" image-rendering="optimizeQuality" stroke="rgb(120,120,120)" stroke-opacity="1"
+    ><text x="521" xml:space="preserve" y="473" stroke="none"
+      >Powered ByVisual Paradigm Community Edition</text
+      ><image font-size="12" x="756" y="461" fill="white" width="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABvklEQVR42o1TPUgC
+YRi+z1PSzWrSc6ho6W/xNIhEoZoCl/a2fqaGoJKwyHIp16ZyCyIolwpq6c8lIz0h
+h6ACa/KWOHGz4byezz7lkNM8eHjf7/ve53l/vu84rsWXEcVo2uOJtYrhW5A3YCKE
+48YXnE7zoSzfty3AyFHdln/R4bBA5O5fgQbyiUbIK6oY5gjxG1XCtyAngFl7qXT+
+Y7UOwR+glTSK8EZkomlJMZsNCrKs7iuKOuXzJboUJYAqemrtHEBkGwsTIy/pe0bZ
+/Rmvd6K27svnx7Q/cu08LIliiPpmlvEGJo0DL4sRSKVyBuEZledznKpeYs+u6/YF
+nKt6C+jpe14QPjCsQUpmQVYgaNK0R9hPYJLtZ5Eo5JGkVF0AmUZAvoBLM5WBXhZs
+A6YB+pi+AAudD+zOnMuVjBcKheoMbOXyG0wcWKGtAPr77gauKyYTFU8g+xrsUWex
+mKu2r79Gye3eQkAE7i4wCtQG+YTMKZwt0zOUv274DjCLJGZBoEqv9JRtyyDfgrwK
+f09PNnyJ6OuBiYSxPAbecf9UMNZIbvovUBE8FjRINrEMNJbd1t9I28Gz7YD7DHKo
+WdwvFl2vGaThOSEAAAAASUVORK5CYII=" height="16" stroke="white" preserveAspectRatio="none"
+    /></g
+  ></g
+></svg
+>
