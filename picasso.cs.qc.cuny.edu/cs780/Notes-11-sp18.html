@@ -506,4 +506,120 @@ Parameters
    adjustment need be done.
 
    Strictly speaking, the deletion function also needs the fourth parameter:
-   a pointer to the parent node of the node po
+   a pointer to the parent node of the node pointed to by p. This is necessary
+   for accessing left/right siblings and rotation processes. This parameter
+   is not shown in this pseudo code algorithm.
+</ul>
+N = the order of the tree.
+<br>
+&lceil;x&rceil; denotes the ceiling of x.
+
+<pre>
+delete(p, k, oldchild)
+{
+
+if ( p points to a leaf node L ) // non-recursive case
+{
+	if ( L has no index value equal to k )
+		return( Error: there is no object with index value k );
+	else // L has the index value equal to k.
+	{
+		delete the object with index value k;
+		if ( L is the root or has at least &lceil;N/2&rceil;&minus;1 index values )
+		{
+			oldchild = null;
+			return(); // deletion complete
+		}
+		else // L is not the root and has &lceil;N/2&rceil;&minus;2 index values: underflow.
+		{
+			if ( L has the left sibling L' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation1.pdf">rotation from left to right</a>;
+				oldchild = null; // deletion complete
+			}
+
+			else if ( L has the right sibling L' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation2.pdf">rotation from right to left</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( L has the left sibling L') // L' has &lceil;N/2&rceil;&minus;1 index values; <a href="merge.jpg">merge</a> L to L'.
+			{
+				move all the index values and associated pointers in L to L';
+				oldchild = pointer to L; // This must be deleted from the parent of L.
+				delete L and adjust the rightmost pointer in L';
+			}
+			else // L has the right sibling L' with &lceil;N/2&rceil;&minus;1 index values; merge L' to L.
+			{
+				move all the index values and associated pointers in L' to L;
+				oldchild = pointer to L'; // This must be deleted from the parent of L'.
+				delete L' and adjust the rightmost pointer in L;
+			}
+			return();
+
+		}
+	}
+} // end leaf node case
+
+else // p points to a non-leaf node. Recursive case.
+{
+	let NL be the non-leaf node pointed to by p;
+	In NL, find i such that k[i&minus;1] &le; k < k[i];
+	delete(p[i], k, oldchild); // Recursively delete k from the subtree pointed to by p[i].
+
+	if ( oldchild == null ) // No old child need be deleted from NL.
+		return();
+	else // oldchild needs to be deleted from NL.
+	{
+		delete oldchild pointer and the index to the left of it from NL;
+		// oldchild is p[i] if the child it points to has been merged to the left sibling;
+		// oldchild is p[i+1] if the right sibling has been merged to the child p[i] points to.
+		if ( NL is the root or has at least &lceil;N/2&rceil;&minus;1 index values )
+		{
+			oldchild = null;
+			if ( NL is the root and has one pointer )
+			{
+				make NL's child the new root;
+				delete NL;
+			}
+			return(); // deletion complete
+		}
+		else // NL is not the root and has &lceil;N/2&rceil;&minus;2 index values: underflow.
+		{
+			if ( NL has the left sibling NL' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation3.pdf">rotation from left to right</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( NL has the right sibling NL' with &lceil;N/2&rceil; or more index values )
+			{
+				do <a href="rotation4.pdf">rotation from right to left</a>;
+				oldchild = null; // deletion complete
+			}
+			else if ( NL has the left sibling NL') // NL' has &lceil;N/2&rceil;&minus;1 index values; <a href="merge.jpg">merge</a> NL to NL'.
+			{
+				let s be the index value in the parent that splits NL' and NL; 
+				put s in NL' as its rightmost index;
+				move all the index values and pointers in NL to NL';
+				oldchild = pointer to NL; // This must be deleted from the parent of NL.
+				delete NL;
+			}
+			else // NL has the right sibling NL' with &lceil;N/2&rceil;&minus;1 index values; merge NL' to NL.
+			{
+				let s be the index value in the parent that splits NL and NL';
+				put s in NL as its rightmost index;
+				move all the index values and pointers in NL' to NL;
+				oldchild = pointer to NL'; // This must be deleted from the parent of NL'.
+				delete NL';
+			}
+			return();
+		}
+	}
+} // end non-leaf node case
+
+} // end delete
+</pre>
+
+</body>
+</html>
+
