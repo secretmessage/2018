@@ -733,3 +733,687 @@ at least <em>x</em> course sections.
 <b>Example 11</b>
 Let <i>totalCredits</i>() be a function in Student that computes
 the total number of credits the target student has earned.
+The following query retrieves all students that have earned
+at least <i>x</i> credits.
+<br><br>
+Parameter: x: int
+</font>
+<pre>
+{ s: Student | s.totalCredits() >= x }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 12</b>
+<br>
+Bound variable: em: Employment
+</font>
+<pre>
+{ e: Employee | e.employment.contains(em) &&
+                em.positionTitle == "Chief Registrar" &&
+                em.startDate.getYear()+1900 == 2003 }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of all employees that
+held or have been holding a position of Chief Registrar starting
+sometime in 2003.
+Note that <i>getYear()</i> is a library function in the Date class,
+which represents a year <i>y</i> by <i>y</i>&minus;1900.
+Its logical meaning is:
+</font>
+<pre>
+{ e: Employee | &exist;em:e.employment
+                  ( em.positionTitle == "Chief Registrar" && 
+                    em.startDate.getYear()+1900 == 2003 ) }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 13</b>
+<br>
+Parameters: posTitle: String, year: int
+<br>
+Bound variable: em: Employment
+</font>
+<pre>
+{ e: Employee | e.employment.contains(em) &&
+                em.positionTitle == posTitle &&
+                em.startDate.getYear()+1900 == year }
+</pre>
+<font face="verdana" size=-1>
+This query parameterizes the previous one with <em>posTitle</em>
+and <em>year</em>.
+</p>
+
+<p>
+<b>Example 14</b>
+<br>
+Bound variable: t: Take
+</font>
+<pre>
+{ s: Student | s.take.contains(t) &&
+                    ( t.grade.originalGrade == "A" && t.grade.updatedGrade == null ||
+                      t.grade.updatedGrade == "A" )    }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the students that have earned at least one A grade.
+</p>
+
+<p>
+<b>Example 15</b>
+<br>
+Bound variables: c: CourseSection, t: Take
+</font>
+<pre>
+{ p: Professor | p.teach.contains(c) && c.take.contains(t) &&
+                 ( t.student.major == "Computer Science" ||
+                   t.student.major == "Mathematics" )  }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the professors that taught or are teaching at least one
+course section taken by a student with a Computer Science or Mathematics major.
+Note the nested use of the two bound variables.
+Its logical meaning is:
+</font>
+<pre>
+{ p: Professor | &exist;c:p.teach &exist;t:c.take 
+                 ( t.student.major == "Computer Science" ||
+                   t.student.major == "Mathematics" )  }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 16</b>
+<br>
+Bound variables: c: Course, cs: CourseSection, t: Take
+</font>
+<pre>
+{ d: Department | d.offer.contains(c) && c.courseSection.contains(cs) && 
+                  cs.take.contains(t) &&
+                  ( t.student.major == "Computer Science" ||
+                    t.student.major == "Mathematics" )  }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the departments that offered or are offering at least one
+course section taken by a student with a Computer Science or Mathematics major.
+Note the nested use of the three bound variables.
+Its logical meaning is:
+</font>
+<pre>
+{ d: Department | &exist;c:d.offer &exist;cs:c.courseSection &exist;t:cs.take 
+                  ( t.student.major == "Computer Science" ||
+                    t.student.major == "Mathematics" )  }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+The above two examples illustrate the use of nested bound variables to traverse
+a chain of binary relations, effectively composing them.
+Generally, suppose we have a chain of <i>n</i> relations
+R<sub>i</sub>: C<sub>i</sub> &rarr; C<sub>i+1</sub>, 1 &le; i &le; <i>n</i>:
+
+<br>
+
+<center><img src="fig1.svg"></center>
+
+<br>
+
+Here we assume that each R<sub>i</sub> is implemented in C<sub>i</sub> by a field of 
+Set&lt;C<sub>i+1</sub>&gt; type.
+Then the following query can be used to retrieve the set of C<sub>1</sub>-objects that 
+relate to objects in C<sub>2</sub>, ..., C<sub>n+1</sub> in some manner.
+
+<br><br>
+
+<b>
+Bound variables: x<sub>2</sub>: C<sub>2</sub>, ..., x<sub>n+1</sub>: C<sub>n+1</sub>
+</b>
+
+</font>
+<pre>
+<b>{ x<sub>1</sub>: C<sub>1</sub> | x<sub>1</sub>.R<sub>1</sub>.contains(x<sub>2</sub>) && ... && x<sub>n</sub>.R<sub>n</sub>.contains(x<sub>n+1</sub>) && B(x<sub>1</sub>, ..., x<sub>n+1</sub>) }</b>
+</pre>
+<font face="verdana" size=-1>
+
+where B(x<sub>1</sub>, ..., x<sub>n+1</sub>) is a Boolean expression specifying a condition on
+x<sub>1</sub>, ..., x<sub>n+1</sub>.
+Its logical meaning is:
+
+</font>
+<pre>
+<b>{ x<sub>1</sub>: C<sub>1</sub> | &exist;x<sub>2</sub>:x<sub>1</sub>.R<sub>1</sub> &exist;x<sub>3</sub>:x<sub>2</sub>.R<sub>2</sub> ... &exist;x<sub>n+1</sub>:x<sub>n</sub>.R<sub>n</sub> B(x<sub>1</sub>, ..., x<sub>n+1</sub>) }</b>
+</pre>
+<font face="verdana" size=-1>
+
+The following adds extra conditions on <i>d</i>, <i>c</i>, <i>cs</i> in Example 16:
+
+<br><br>
+
+Bound variables: c: Course, cs: CourseSection, t: Take
+</font>
+<pre>
+{ d: Department | d.offer.contains(c) && c.courseSection.contains(cs) && 
+                  cs.take.contains(t) &&
+                  d.employment.size() >= 50 &&
+                  c.credits >= 4 &&
+                  cs.year == 2005 &&
+                  ( t.student.major == "Computer Science" ||
+                    t.student.major == "Mathematics" )  }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 17</b>
+Let <i>s</i> be a student object and let <i>takes = s.take</i>,
+the set of the Take objects associated with <i>s</i>.
+The following parametric query retrieves the Take object in <i>takes</i> related to
+the given course section <i>c</i>, i.e.,
+the Take object for student <i>s</i> and course section <i>c</i>.
+<br><br>
+Parameter: c: CourseSection
+</font>
+<pre>
+{ t: takes | t.courseSection == c }
+</pre>
+<font face="verdana" size=-1>
+This is an example where the range variable ranges over a collection (takes) rather than an entire class (Take).
+</p>
+
+<p>
+<b>Example 18</b>
+<br>
+Unbound variable: s2: Student
+</font>
+<pre>
+{ s1: Student | s1.name.lastName == s2.name.lastName && s1 != s2 }
+</pre>
+<font face="verdana" size=-1>
+Here s2 is an unbound existential variable ranging over the entire Student class.
+Retrieves all students each of whom has at least one other student
+with the same last name.
+Its logical meaning is:
+</font>
+<pre>
+{ s1: Student | &exist;s2:Student (s1.name.lastName == s2.name.lastName && s1 != s2) }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 19</b>
+<br>
+Unbound variables: s2: Student, s3: Student
+</font>
+<pre>
+{ s1: Student | s1.name.lastName == s2.name.lastName &&
+                s2.name.lastName == s3.name.lastName &&
+                s1 != s2 && s2 != s3 && s3 != s1  }
+</pre>
+<font face="verdana" size=-1>
+Retrieves all students each of whom has at least two other students 
+with the same last name.
+Its logical meaning is:
+</font>
+<pre>
+{ s1: Student | &exist;s2:Student &exist;s3:Student
+                (s1.name.lastName == s2.name.lastName &&
+                 s2.name.lastName == s3.name.lastName &&
+                 s1 != s2 && s2 != s3 && s3 != s1)  }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 20</b>
+<br>
+Unbound variable: d: Department
+</font>
+<pre>
+{ p: Professor | p == d.chairPerson }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of all professors that are currently chairpersons
+of departments.
+Its logical meaning is:
+</font>
+<pre>
+{ p: Professor | &exist;d:Department p == d.chairPerson }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<h2>
+Universal Quantifiers
+</h2>
+JDOQL does not provide universal quantifiers.
+But limited usage of universal quantifiers for (un-nested) bound variables can be
+indirectly expressed using the equivalence:
+&forall;<i>x</i>:<i>c</i>(<i>B</i>) &hArr; &not;&exist;<i>x</i>:<i>c</i>&not;(<i>B</i>).
+This technique is inapplicable to unbound variables since
+JDOQL does not allow negation operators to be placed before existential quantifiers
+for unbound variables.
+
+<p>
+<b>Example 21</b>
+Consider the query:
+</font>
+<pre>
+{ p: Professor | &forall;c:p.teach (c.course.number != "CS313") }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of professors that have only taught course sections
+which are not CS313 sections, i.e., the collection of professors that have never 
+taught a CS313 section.
+Using the equivalence-preserving quantifier transformation between
+&forall;<i>x</i>:<i>c</i> and &not;&exist;<i>x</i>:<i>c</i>&not;, we derive:
+</font>
+<pre>
+{ p: Professor | &not; &exist;c:p.teach &not; (c.course.number != "CS313") }
+</pre>
+<font face="verdana" size=-1>
+Expressing this in JDOQL syntax, we get:
+<br><br>
+Bound variable: c: CourseSection
+</font>
+<pre>
+{ p: Professor | !(p.teach.contains(c) && c.course.number == "CS313") }
+</pre>
+<font face="verdana" size=-1>
+We have seen this query in Example 6.
+</p>
+
+<p>
+<b>Example 22</b>
+The following retrieves
+the collection of professors that have only taught computer science courses:
+</font>
+<pre>
+{ p: Professor | &forall;c:p.teach c.course.number.startsWith("CS") }
+</pre>
+<font face="verdana" size=-1>
+An application of the quantifier transformation yields: 
+</font>
+<pre>
+{ p: Professor | &not; &exist;c:p.teach &not; c.course.number.startsWith("CS") }
+</pre>
+<font face="verdana" size=-1>
+In JDOQL syntax, we get:
+<br><br>
+Bound variable: c: CourseSection
+</font>
+<pre>
+{ p: Professor | !( p.teach.contains(c) && !c.course.number.startsWith("CS") ) }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 23</b>
+The following retrieves
+the collection of students that have never taken any Computer Science course section:
+</font>
+<pre>
+{ s: Student | &forall;t:s.take &not; t.courseSection.course.number.startsWith("CS") }
+</pre>
+<font face="verdana" size=-1>
+An application of the quantifier transformation yields: 
+</font>
+<pre>
+{ s: Student | &not; &exist;t:s.take &not; &not; t.courseSection.course.number.startsWith("CS") }
+</pre>
+<font face="verdana" size=-1>
+In JDOQL syntax, we get:
+<br><br>
+Bound variable: t: Take
+</font>
+<pre>
+{ s: Student | !( s.take.contains(t) && 
+                  t.courseSection.course.number.startsWith("CS") ) }
+</pre>
+<font face="verdana" size=-1>
+Analogously, we obtain the following query that retrieves the collection of
+students that have never taken any course section offered by the parameter department <i>d</i>:
+<br><br>
+Parameter: d: Department
+<br>
+Bound variable: t: Take
+</font>
+<pre>
+{ s: Student | !( s.take.contains(t) && d.offer.contains(t.courseSection.course) ) }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 24</b>
+The following retrieves the collection of employees that have worked
+only for the parameter office <i>o</i>:
+</font>
+<pre>
+{ e: Employee | &forall;em:e.employment ( em.office == o ) }
+</pre>
+<font face="verdana" size=-1>
+An application of the quantifier transformation yields: 
+</font>
+<pre>
+{ e: Employee | &not; &exist;em:e.employment &not; ( em.office == o ) }
+</pre>
+<font face="verdana" size=-1>
+In JDOQL syntax, we get:
+<br><br>
+Parameter: o: Office
+<br>
+Bound variable: em: Employment
+</font>
+<pre>
+{ e: Employee | !( e.employment.contains(em) && em.office != o ) }
+</pre>
+</p>
+
+<font face=verdana>
+<center>
+<h2>
+Coding JDOQL Queries
+</h2>
+</center>
+</font>
+
+<font face="verdana" size=-1>
+<p>
+The interface <i>Query</i> in the <i>javax.jdo</i> package is responsible
+for JDOQL query processing.
+Objects of the Query interface are constructed from objects of
+the PersistenceManager interface by calling the <i>newQuery</i>() function, as in:
+</font>
+<pre>
+Query q = pm.newQuery();
+</pre>
+<font face="verdana" size=-1>
+where <i>pm</i> is a PersistenceManager object.
+The new query object <i>q</i> is bound to the database file held by <i>pm</i>.
+The query's target class, candidate collection, parameters, existential variables (both bound and unbound
+variables), and Boolean expression are set respectively by the following
+functions of the Query interface:
+</font>
+<pre>
+q.setClass( className.class );
+q.setCandidates( c ); // c is a collection of objects of className
+q.declareParameters( "... here list parameters ..." );
+q.declareVariables( "... here list existential variables ..." );
+q.setFilter( "... here give a Boolean expression B ..." );
+</pre>
+<font face="verdana" size=-1>
+The parameters, existential variables, and the Boolean expression must be
+passed as strings.
+The list of parameters are given using the Java syntax for function formal parameters,
+and the list of existential variables are given using the Java syntax for
+function local variable declarations.
+In the Boolean expression, the keyword <i>this</i> functions as the range variable.
+A candidate collection <i>c</i> is used to limit the range variable to <i>c</i>
+rather than the entire class.
+</p>
+
+<p>
+The target class, and optionally the candidate collection,
+may be given as an argument for the <i>newQuery</i>() function.
+</font>
+<pre>
+Query q = pm.newQuery(className.class);
+</pre>
+<font face="verdana" size=-1>
+is equivalent to
+</font>
+<pre>
+Query q = pm.newQuery(); q.setClass(className.class);
+</pre>
+<font face="verdana" size=-1>
+and
+</font>
+<pre>
+Query q = pm.newQuery(className.class, c);
+</pre>
+<font face="verdana" size=-1>
+is equivalent to
+</font>
+<pre>
+Query q = pm.newQuery(); q.setClass(className.class); q.setCandidates(c);
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+In the following examples, a few JDOQL queries are given in set form along with their code.
+It is assumed that the query object <i>q</i> has been created.
+</p>
+
+<p>
+<b>Example 25</b>
+<br>
+Parameters: regCode: String, sem: int, yr: int
+</font>
+<pre>
+{ c: CourseSection | c.registrationCode == regCode &&
+                     c.semester == sem &&
+                     c.year == yr }
+
+q.setClass( CourseSection.class );
+q.declareParameters( "String regCode, int sem, int yr" );
+q.setFilter( "this.registrationCode == regCode &&"+
+             "this.semester == sem &&"+
+             "this.year == yr" );
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 26</b>
+<br>
+Parameters: posTitle: String, year: int
+<br>
+Bound variable: em: Employment
+</font>
+<pre>
+{ e: Employee | e.employment.contains(em) &&
+                em.positionTitle == posTitle &&
+                em.startDate.getYear()+1900 == year }
+
+q.setClass( Employee.class );
+q.declareParameters( "String posTitle, int year" );
+q.declareVariables( "Employment em" );
+q.setFilter( "this.employment.contains(em) &&"+
+             "em.positionTitle == posTitle &&"+
+             "em.startDate.getYear()+1900 == year" );
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 27</b>
+<br>
+Bound variables: c: CourseSection, t: Take
+</font>
+<pre>
+{ p: Professor | p.teach.contains(c) && c.take.contains(t) &&
+                 ( t.student.major == "Computer Science" ||
+                   t.student.major == "Mathematics" )  }
+
+q.setClass( Professor.class );
+q.declareVariables( "CourseSection c; Take t" );
+q.setFilter( "this.teach.contains(c) && c.take.contains(t) &&"+
+             "( t.student.major == \"Computer Science\" ||"+
+             "  t.student.major == \"Mathematics\" )" );
+</pre>
+<font face="verdana" size=-1>
+Note that the escape character '\' is needed for the double quotes
+surrounding the strings appearing in the Boolean expression.
+</p>
+
+<p>
+<b>Example 28</b>
+<br>
+Let <i>s</i> be a student object and let <i>takes = s.take</i>,
+the set of the Take objects associated with <i>s</i>.
+The following parametric query retrieves the Take object in <i>takes</i> related to
+the given course section <i>cs</i>, i.e.,
+the Take object for student <i>s</i> and course section <i>cs</i>.
+<br><br>
+Parameter: cs: CourseSection
+</font>
+<pre>
+{ t: takes | t.courseSection == cs }
+
+q.setClass( Take.class );
+q.setCandidates( takes );
+q.declareParameters( "CourseSection cs" );
+q.setFilter( "this.courseSection == cs" );
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<h2>
+Query Execution
+</h2>
+
+<p>
+Queries are executed by the <i>execute</i> function:
+</font>
+<pre>
+q.setClass( className.class );
+...
+Collection&lt;className&gt; result = 
+      (Collection&lt;className&gt;) q.execute( ...up to 3 actual parameters... );
+... process the result collection...
+q.close(result); // or q.closeAll();
+</pre>
+<font face="verdana" size=-1>
+<ul>
+<li>
+ The <i>execute</i> function returns a Collection, yet its official static return type 
+ is Object, so every call to <i>execute</i> requires the type casting
+ (Collection&lt;className&gt;).
+<li>
+ The order of the actual parameter list must match that of the parameter declaration.
+<li>
+ According to the official JDO documentation,
+ all actual parameters must be of class types;
+ primitive-type parameter values must be wrapped into class types before being passed
+ to queries.
+ For example, to pass the value of an <i>int</i> variable <i>x</i>,
+ <i>new Integer(x)</i> needs to be passed.
+ However, JDK 1.5.0 introduced the "autoboxing" feature which will automatically
+ convert primitive types to the corresponding wrapper types as necessary.
+ So JDK 1.5.0 or higher lets us pass primitive-type values to parametric queries.
+<li>
+ Queries with four or more parameters are executed with the <i>executeWithArray</i>
+ function, with the actual parameters passed by an array.
+ Here is an example:
+ </font>
+ <pre>
+ q.declareParameters("String st1, String st2, int a1, int a2");
+     ...
+ Object[] args = new Object[] { "ABC", "XYZ", new Integer(5), new Integer(8) };
+ Collection&lt;...&gt; result = (Collection&lt;...&gt;) q.executeWithArray( args );
+ </pre>
+ <font face="verdana" size=-1>
+<li>
+ The result collection must be explicitly released by the <i>close</i> or
+ <i>closeAll</i> function; <i>closeAll</i> closes all the result collections 
+ associated to the query variable <i>q</i>.
+</ul>
+</p>
+
+It is useful to write functions that compute queries in their bodies.
+Such functions need either a PersistenceManager or a Query parameter
+to know the database file to which queries are to be applied.
+The following guideline is suggested in this regard.
+
+<ul>
+<li>
+ <b>The function returns a result collection computed by a query</b>.
+ The function will have a Query parameter.
+ The caller will construct a new query object and pass it to the function.
+ After receiving the result collection, the caller will process and then release it by
+ <i>q.close(result)</i> or <i>q.closeAll()</i>. 
+ </font>
+ <pre>
+   // function definition                     // inside the caller of f
+   Collection&lt;C&gt; f( ..., Query q)             Query q = pm.newQuery();
+   {  ...                                           ...
+      q.setClass( C.class );                  Collection&lt;C&gt; result = f( ..., q);
+      ...                                     .. process result ..;
+      ...                                     q.close(result);
+      return (Collection&lt;C&gt;) q.execute(...);
+   }
+ </pre>
+ <font face="verdana" size=-1>
+<li>
+ <b>The function does not return a result collection computed by a query</b>.
+ The function will have a PersistenceManager parameter.
+ The function itself will construct a query object and close the result collection.
+ </font>
+ <pre>
+   // function definition                            // inside the caller of f
+   returnType f( ..., PersistenceManager pm)         returnType x = f(..., pm);
+   {  ...      
+      Query q = pm.newQuery();
+      ...       
+      Collection&lt;C&gt; result = (Collection&lt;C&gt;) q.execute(...);
+      .. process result ..;
+      q.close(result);
+      ...
+      return ...;
+   }
+ </pre>
+ <font face="verdana" size=-1>
+</ul>
+
+The following example functions use the above two patterns.
+
+</font>
+<pre>
+static Collection&lt;Employee&gt; getEmployees(String pTitle, int yr, Query q)
+
+// Implements the query in Example 26.
+
+{
+	q.setClass( Employee.class );
+	q.declareParameters( "String posTitle, int year" );
+	q.declareVariables( "Employment em" );
+	q.setFilter( "this.employment.contains(em) &&"+
+        	     "em.positionTitle == posTitle &&"+
+             	     "em.startDate.getYear()+1900 == year" );
+
+	return (Collection&lt;Employee&gt;) q.execute(pTitle, new Integer(yr));
+}
+
+Take getTake(CourseSection c, PersistenceManager pm)
+
+// Object-level function in Student that implements the query in Example 28.
+ 
+{
+	Collection&lt;Take&gt; takes = this.take;
+
+	Query q = pm.newQuery(Take.class, takes);
+	q.declareParameters("CourseSection cs");
+	q.setFilter("this.courseSection == cs");
+	
+	Collection&lt;Take&gt; tt = (Collection&lt;Take&gt;) q.execute(c);
+
+	Take t = null;
+	for ( Take take : tt )
+		t = take;    // extract the unique element in tt, if any
+
+	q.close(tt);
+
+	return t;
+}
+</pre>
+
+</body>
+</html>
+
