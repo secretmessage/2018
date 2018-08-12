@@ -434,4 +434,302 @@ public class Course
 	  // Sorted by (year, semester) of CourseSection in chronological order
 }
 
-public class CourseSection impl
+public class CourseSection implements Comparable&lt;CourseSection&gt;
+{
+	String sectionCode;
+	String registrationCode;
+	int semester; /* 1 = winter session, 2 = spring, 3 = summer session I,
+	                 4 = summer session II, 5 = fall */
+	int year;
+
+	Course course;
+	  // Implements the inverse of courseSection: Course &rarr; CourseSection  1, *
+ 
+	HashSet&lt;Take&gt; take = new HashSet&lt;Take&gt;(); 
+	  // Implements the inverse of courseSection: Take &rarr; CourseSection  *, 1
+
+	public int compareTo(CourseSection that)
+
+	/* Compared by (year, semester) in chronological order.
+	   In case "this" and "that" have the same (year, semester),
+	   the ordering is resolved by registrationCode to be consistent with "equals". */
+
+	{
+		if ( this.year > that.year )
+			return 1;
+		else if ( this.year < that.year )
+			return -1;
+		else if ( this.semester > that.semester )
+			return 1;
+		else if ( this.semester < that.semester )
+			return -1;
+		else
+			return this.registrationCode.compareTo(that.registrationCode);
+	}
+}
+
+public class Take implements Comparable&lt;Take&gt;
+
+/* Implements the 3-ary relation take(Student, CourseSection, Grade). */
+
+{
+	Student student;
+	CourseSection courseSection;
+	Grade grade;
+
+	public int compareTo(Take that)
+
+	/* Compared by the associated course sections in chronological order.
+	   In case "this" and "that" have the same course section,
+	   the ordering is resolved by student.IDNum to be consistent with "equals". */
+
+	{
+		int i = this.courseSection.compareTo(that.courseSection);
+		if ( i != 0 )
+			return i;
+		else
+			return this.student.IDNum.compareTo(that.student.IDNum);
+	}
+}
+
+public class Grade
+{
+	String originalGrade;
+	Date originalGradeDate;
+	String updatedGrade;
+	Date updatedGradeDate;
+}
+
+public class Office
+{
+	String officeName;
+	OfficeInfo office;
+
+	HashSet&lt;Employment&gt; employment = new HashSet&lt;Employment&gt;();
+	  // Implements the inverse of office: Employment &rarr; Office  *, 1
+}
+
+public class Department extends Office
+{
+	Professor chairPerson;
+
+	HashSet&lt;Course&gt; offer = new HashSet&lt;Course&gt;();
+	  // Implements offer: Department &rarr; Course  1..*, *
+}
+
+public class Employment
+
+/* Implements the ternary relation employment(Employee, Office, JobDescription).
+   Since the employment relation instances and the JobDescription objects
+   have 1:1 correspondence, the JobDescription class is dispensed with and 
+   its attributes are incorporated into this class. */
+
+{
+	String positionTitle;
+	Date startDate;
+	Date endDate;
+
+	Employee employee;
+	Office office;
+}
+</pre>
+
+<p>
+<b>Example 1</b>
+</font>
+<pre>
+{ s: Student | s.IDNum == "12345" }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of students with the IDNum "12345".
+Since the IDNum attribute is a key for the Student class,
+the result collection will be empty or have just one student.
+This query in set form has no parameters or existential variables.
+</p>
+
+<p>
+<b>Example 2</b>
+<br>
+Parameter: ID: String
+</font>
+<pre>
+{ s: Student | s.IDNum == ID }
+</pre>
+<font face="verdana" size=-1>
+This is a parametric query that retrieves the student
+whose IDNum is equal to the given value of <em>ID</em>.
+</p>
+ 
+<p>
+<b>Example 3</b>
+<br>
+Parameters: regCode: String, sem: int, yr: int
+</font>
+<pre>
+{ c: CourseSection | c.registrationCode == regCode &&
+                     c.semester == sem &&
+                     c.year == yr }
+</pre>
+<font face="verdana" size=-1>
+This is a parametric query 
+to retrieve the collection of course sections
+whose registrationCode, semester, and year are respectively equal to
+the given parameter values.
+</p>
+
+<p>
+<b>Example 4</b>
+<br>
+Parameter: c: CourseSection
+</font>
+<pre>
+{ p: Professor | p.teach.contains(c) }
+</pre>
+<font face="verdana" size=-1>
+This is a parametric query to
+retrieve the collection of professors that taught or are 
+teaching the given course section <em>c</em>.
+The field <i>p.teach</i> has the type HashSet&lt;CourseSection&gt; and stores teach&darr;CourseSection(<i>p</i>).
+The query computes the "inverse" of this,
+teach&darr;Professor(<i>c</i>).
+Note that <i>c</i> is used as parameter, not as bound variable.
+Whenever this query is executed,
+a specific CourseSection object will be supplied as actual parameter value.
+</p>
+
+<p>
+This is an example of a general pattern to compute inverses of binary relations.
+As described in Course Notes #5,
+a relation R: A &rarr; B can be implemented by:
+
+</font>
+<pre>
+  class A
+  { ...
+    ...
+    Set&lt;B&gt;  R;   // holds R&darr;B(a) = { b &in; B | R(a, b) }
+  }
+</pre>
+<font face="verdana" size=-1>
+
+The parametric query to retrieve R&darr;A(b) is:
+
+<br><br>
+
+Parameter: b: B
+
+</font>
+<pre>
+{ a: A | a.R.contains(b) }
+</pre>
+<font face="verdana" size=-1>
+
+</p>
+
+<p>
+<b>Example 5</b>
+<br>
+Bound variable: c: CourseSection
+</font>
+<pre>
+{ p: Professor | p.teach.contains(c) && c.course.number == "CS313" }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of professors that taught or are teaching a CS313 section.
+Note the use of the existential variable <i>c</i> ranging over the collection
+<i>p.teach</i>.
+Its logical meaning is:
+</font>
+<pre>
+{ p: Professor | &exist;c:p.teach (c.course.number == "CS313") }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 6</b>
+<br>
+Bound variable: c: CourseSection
+</font>
+<pre>
+{ p: Professor | !(p.teach.contains(c) && c.course.number == "CS313") }
+</pre>
+<font face="verdana" size=-1>
+This retrieves the collection of professors that have never taught a CS313 section.
+Its logical meaning is:
+</font>
+<pre>
+{ p: Professor | &not; &exist;c:p.teach (c.course.number == "CS313") }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 7</b>
+<br>
+Parameter: cNum: String
+<br>
+Bound variable: c: CourseSection
+</font>
+<pre>
+{ p: Professor | p.teach.contains(c) && c.course.number == cNum }
+</pre>
+<font face="verdana" size=-1>
+This parameterizes Example 5 by course number.
+It retrieves the collection of professors that taught or are teaching 
+a section of the course with the given course number <i>cNum</i>.
+Its logical meaning is:
+</font>
+<pre>
+{ p: Professor | &exist;c:p.teach (c.course.number == cNum) }
+</pre>
+<font face="verdana" size=-1>
+</p>
+
+<p>
+<b>Example 8</b>
+<br>
+Parameter: c: Course
+</font>
+<pre>
+{ d: Department | d.offer.contains(c) }
+</pre>
+<font face="verdana" size=-1>
+A parametric query to retrieve the collection of
+departments that offered or are offering the given course <em>c</em>.
+It computes the inverse of the offer relation,
+offer&darr;Department(<i>c</i>).
+</p>
+
+<p>
+<b>Example 9</b>
+<br>
+Parameter: x: int
+</font>
+<pre>
+{ c: CourseSection | c.take.size() >= x }
+</pre>
+<font face="verdana" size=-1>
+A parametric query to retrieve all course sections taken by
+at least <em>x</em> students.
+<em>Size</em> is a library function in the Collection
+interface that returns the number of elements in the collection. 
+</p>
+
+<p>
+<b>Example 10</b>
+<br>
+Parameter: x: int
+</font>
+<pre>
+{ s: Student | s.take.size() >= x }
+</pre>
+<font face="verdana" size=-1>
+A parametric query to retrieve all students that have taken
+at least <em>x</em> course sections.
+</p>
+
+<p>
+<b>Example 11</b>
+Let <i>totalCredits</i>() be a function in Student that computes
+the total number of credits the target student has earned.
