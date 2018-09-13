@@ -1,18 +1,18 @@
 <html>
 
 <title>
-CS 722 Assignment 1
+CS 381/722 Assignment 1
 </title>
 
 <body>
 
 <center>
 <h3>
-CS 722 &nbsp;&nbsp; Fall 2017
+CS 381/722 &nbsp;&nbsp; Fall 2018
 <br>
 Homework Assignment #1
 <br>
-Due: in class on 10/05/17, Thursday
+Due: in class on 09/25/18, Tuesday
 </h3>
 </center>
 
@@ -31,119 +31,34 @@ In all questions "_" is the blank symbol.
 <ol>
 
 <li>
-The following is a 1-tape DTM that decides { 0<sup>m</sup>#0<sup>n</sup> | 0 &le; m &le; n },
-&Sigma; = { 0, # }, &Gamma; = { 0, #, x, _ }.
-For brevity of the diagram, q<sub>reject</sub> and all transitions leading to q<sub>reject</sub> are omitted;
-any transition &delta;(q, s) not shown in the diagram is understood to be &delta;(q, s) = (q<sub>reject</sub>, s, R).
-
+Consider the DTM to decide { w#w | w &isin; {0, 1}<sup>*</sup> } in Example 3.9 in the book.
+Give the transition sequence on each of the following inputs:
 <br><br>
-
-<center><img src="assign-1-Q1.jpg" width=700 height=450></center>
-
-<br>
-
-<b>Description of the algorithm</b>
-The string to the left of "#" (originally 0<sup>m</sup>) will be called the left part,
-and the string to the right of "#" (originally 0<sup>n</sup>) will be called the right part.
-
-<br><br>
-
-The overall idea is to repeatedly cross off the leading 0 of the left part and the leading 0 of the right part.
-<br>
-If the input is 0<sup>m</sup>#0<sup>n</sup>, m &le; n, the tape string will reach the form
-x<sup>m</sup>#x<sup>m</sup>0<sup>n&minus;m</sup>, and accept.
-<br>
-If the input is 0<sup>m</sup>#0<sup>n</sup>, m &gt; n, the tape string will reach the form
-x<sup>n</sup>0<sup>m&minus;n</sup>#x<sup>n</sup>, and reject.
-
-<br><br>
-
-  <ol type=1>
-  <li>Cross off the first 0 of left part by x (q<sub>0</sub> &rarr; q<sub>1</sub>).
-  <li>Skip the following 0's (q<sub>1</sub> &rarr; q<sub>1</sub>).
-  <li>Detect # (q<sub>1</sub> &rarr; q<sub>2</sub>).
-  <li>Skip the following x's (q<sub>2</sub> &rarr; q<sub>2</sub>).
-      <br>
-      If 0 is not found in q<sub>2</sub>, 
-      then the current configuration is x<sup>n+1</sup>0<sup>m&minus;n&minus;1</sup>#x<sup>n</sup>q<sub>2</sub>_, m&minus;n &gt; 0,
-      meaning the input is 0<sup>m</sup>#0<sup>n</sup>, m &gt; n, hence reject.
-  <li>Cross off the first 0 of right part by x (q<sub>2</sub> &rarr; q<sub>3</sub>).
-  <li>Move the tape head leftward by skipping x's (q<sub>3</sub> &rarr; q<sub>3</sub>), <br>
-      then detecting # (q<sub>3</sub> &rarr; q<sub>4</sub>), <br>
-      then skipping 0's (q<sub>4</sub> &rarr; q<sub>4</sub>), <br>
-      until the rightmost x in the left part is found (q<sub>4</sub> &rarr; q<sub>0</sub>). 
-      <br><br>
-      If no 0's remain in the left part and the rightmost x is immediately followed by #, 
-      the current configuration is in the form x<sup>m</sup>q<sub>0</sub>#x<sup>m</sup>0<sup>n&minus;m</sup>, n&minus;m &ge; 0, provided
-      the input is in the form 0<sup>m</sup>#0<sup>n</sup>, m &le; n.
-      Enter q<sub>5</sub> and check the string is actually in this form without extra #'s, and accept.
-      This last checking will reject inputs like ##, 0#0#, 0#00##, etc. 
-      <br><br>
-      Otherwise, go to step 1 and repeat.
+  <ol type=a>
+  <li>11#11
+  <li>10#11
   </ol>
-
-<br>
-
- <ol type=a>
- <li>Show the transition sequence on each of the following inputs:
-  <ol type=i>
-  <li>#
-  <li>#0
-  <li>00#0
-  <li>00#00
-  </ol>
-
- <li>Analyze the worst-case time complexity function of the above DTM and express it in O(f(n)) asymptotic notation
-     where n is the length of the input string.
- </ol>
 
 <br>
  
 <li>
 Consider the NTM in
-<a href="sp12-assign-1-sol.html">Question 3 here</a>.
+<a href="fa12-assign-1-sol.html">Question 2 here</a>.
+Give the computation tree of this NTM on input string abcabc.
 
 <br><br>
 
- <ol type=a>
-  <li>Give the exact number of branches of the computation tree on input string
-      0<sup>n</sup>, n &ge; 0.
-      Justify your answer.
-  <li>Give the exact worst-case time complexity function, W<sub>M</sub>(n), of this NTM.
-      Justify your answer.
-  <li>Modify this NTM to one which, given an input 0<sup>n</sup> (n &ge; 0), nondeterministically writes a string x
-      &isin; {a<sub>1</sub>, &hellip;, a<sub>k</sub>}<sup>*</sup> such that 0 &le; |x| &le; n. </ol>
-
-<br>
-
-<li>
-<ol type=a>
-<li>
-In sufficient detail, concisely describe a 3-tape DTM that computes &lfloor;m&thinsp;/&thinsp;n&rfloor; where m, n are non-negative
-integers in unary notation.
-The values of m, n are initially placed on tape 1, 2 respectively, and
-the value of &lfloor;m&thinsp;/&thinsp;n&rfloor; is to be written on tape 3.
-No need to give a transition function/diagram.
-<li>
-Illustrate the operation of your DTM by examples of &lfloor;8&thinsp;/&thinsp;4&rfloor; and &lfloor;10&thinsp;/&thinsp;4&rfloor;.
-<li>
-Analyze the worst-case time complexity function of your DTM in terms of k = m + n and 
-express it in O(f(k)) asymptotic notation.
-</ol>
-
-<br>
-
 <li>
 This question is about the simulation of multi-tape DTMs by 1-tape DTMs.
-Consider the following configuration of a 3-tape DTM with &Gamma; = {a, b, c, _}:
+Consider the following configuration of a 4-tape DTM with &Gamma; = {a, b, c, _}:
 
-<center><img src="assign-1-Q4.jpg" width=550 height=330></center>
+<center><img src="assign-1-Q3.jpeg" width=500 height=350></center>
 
  <ol type=a>
  <li>Give the 1-tape DTM configuration simulating the above configuration.
  <li>Give the 1-tape DTM configuration simulating the configuration obtained by
-     the 3-tape DTM transition
-     &delta;(q<sub>i</sub>, b, c, c) = (q<sub>j</sub>, a, b, a, L, R, R) from the above configuration.
+     the 4-tape DTM transition
+     &delta;(q<sub>i</sub>, c, c, b, a) = (q<sub>j</sub>, b, a, c, b, L, R, L, R) from the above configuration.
  </ol>
  
 <br>
@@ -155,32 +70,20 @@ Recall the simulation of DTMs by RAMs described in class.
 
  <ol type=a>
  <li>Give the RAM memory configuration simulating
-     a<sub>3</sub>a<sub>1</sub>a<sub>4</sub>q<sub>3</sub>a<sub>5</sub>a<sub>2</sub>a<sub>3</sub>.
+     a<sub>5</sub>a<sub>1</sub>a<sub>2</sub>a<sub>3</sub>q<sub>4</sub>a<sub>6</sub>a<sub>4</sub>.
  <li>Give the RAM memory configuration simulating the configuration obtained by the transition
-     &delta;(q<sub>3</sub>, a<sub>5</sub>) = (q<sub>2</sub>, a<sub>2</sub>, L) from the above configuration.
+     &delta;(q<sub>4</sub>, a<sub>6</sub>) = (q<sub>2</sub>, a<sub>2</sub>, L) from the above configuration.
  </ol>
 
 <br>
 
 <li>
-Recall the simulation of RAMs by multi-tape DTMs described in class.
+
+Recall the simulation of RAMs by multi-tape DTMs described in class and
+consider the RAM program to compute n! described on
+<a href="notes/RAM.html">this page</a>.
 Show the contents of tape 1 (simulating the RAM memory) and tape 2 (simulating the accumulator r<sub>0</sub>) after
-the execution of each instruction in the following RAM program:
-
-<br><br>
-
-Load =3<br>
-Store 3<br>
-Add 3<br>
-Store 2<br>
-Sub =2<br>
-Store 1<br>
-Mult 3<br>
-Store 2
-
-<br><br>
-
-Presume that tape 1 is initially empty.
+the execution of each instruction in this RAM program up to the first execution of "Mult 3".
 Use a format similar to
 <a href="fa12-assign-1-sol.html">Question 5 on this page</a>, and
 abbreviate integers in unary notation to decimal notation.
@@ -188,13 +91,54 @@ abbreviate integers in unary notation to decimal notation.
 <br><br>
 
 <li>
-A DTM with a <i>bidirectionally infinite tape</i> is identical to the DTMs 
-with unidirectionally infinite tapes we defined and studied, except that
-its tape extends infinitely in both left and right directions.
-Initially, the input string is placed in a segment of the tape and the tape head is reading
-the leftmost symbol of the input.
-Informally but in sufficient detail,
-describe how to simulate such a DTM by a DTM with a unidirectionally infinite tape.
+A second way to simulate multi-tape DTMs by 1-tape DTMs is to create segments of 
+tape symbols with respect to tape positions separated by delimiter symbols.
+The first segment contains the string of tape symbols at the first positions of k tapes,
+the second segment contains the string of symbols at the second positions, etc.
+The symbols being read by the tape heads are simulated by dotted symbols.
+For example, the configuration of the 4-tape DTM given in Question 3 is simulated by the following configuration:
+
+<center><img src="assign-1-Q6.jpeg" width=750 height=100></center>
+
+  <ol type=a>
+  <li>
+  Give the 1-tape DTM configuration simulating the configuration obtained by
+  the 4-tape DTM transition
+  &delta;(q<sub>i</sub>, c, c, b, a) = (q<sub>j</sub>, b, a, c, b, L, R, L, R) from the above configuration.
+  <li>Informally but in sufficient detail, describe a general tape configuration of the simulating 1-tape DTM.
+  <li>Informally but in sufficient detail, describe how to simulate a one-step transition of the given multi-tape DTM
+  in this method.
+  </ol>
+
+<br>
+
+<li>
+The random access machine with increment and decrement instructions, abbreviated as RAM-Inc-Dec, replaces 
+the <a href="notes/RAM.html">four arithmetic instructions Add, Sub, Mult, Div of the RAM</a> by the following two instructions:
+
+<blockquote>
+Inc &nbsp;&nbsp;&nbsp;&nbsp; r<sub>0</sub> &larr; r<sub>0</sub> + 1
+<br>
+Dec &nbsp;&nbsp;&nbsp; r<sub>0</sub> &larr; r<sub>0</sub> &minus; 1
+</blockquote>
+
+The other instructions remain the same.
+You are to show that the computing powers of the RAM and RAM-Inc-Dec are equivalent in principle
+by following the steps below.
+
+<br><br>
+
+<ol type=a>
+<li>
+In detail, show how to simulate Add instruction by Inc, Dec instructions together with Load, Store,
+and jump instructions.
+First describe your simulation method in high-level pseudocode like the factorial example, then
+translate it into instruction streams of RAM-Inc-Dec.
+<li>
+Describe clearly how to simulate Sub, Mult, Div instructions with help of high-level pseudo code;
+no need to translate the pseudocode into instruction streams of RAM-Inc-Dec.
+You may use the RAM-Inc-Dec code simulating Add instruction as a "subroutine".
+</ol>
 
 </ol>
 
