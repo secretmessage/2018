@@ -138,7 +138,10 @@ Note that values of r<sub>i</sub> and literal operands "=i" may be negative inte
 <li>
 Describe clearly how to simulate Sub, Mult, Div instructions with help of high-level pseudo code;
 no need to translate the pseudocode into instruction streams of RAM-Inc-Dec.
-You may use the RAM-Inc-Dec code simulating Add instruction as a "subroutine".
+You may use previously simulated instructions as "subroutines" to simulate a new instruction.
+For example, you may use the RAM-Inc-Dec code simulating Add instruction as a subroutine to
+simulate Sub instruction, then use Add and/or Sub instructions as subroutines to simulate
+Mult and/or Div.
 </ol>
 
 </ol>
