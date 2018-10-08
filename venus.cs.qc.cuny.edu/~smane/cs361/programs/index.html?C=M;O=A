@@ -8,16 +8,15 @@
   <table>
    <tr><th valign="top"><img src="/icons/blank.gif" alt="[ICO]"></th><th><a href="?C=N;O=A">Name</a></th><th><a href="?C=M;O=D">Last modified</a></th><th><a href="?C=S;O=A">Size</a></th><th><a href="?C=D;O=A">Description</a></th></tr>
    <tr><th colspan="5"><hr></th></tr>
-<tr><td valign="top"><img src="/icons/back.gif" alt="[PARENTDIR]"></td><td><a href="/~smane/cs361/">Parent Directory</a></td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="freeglut.dll">freeglut.dll</a></td><td align="right">2017-12-09 21:31  </td><td align="right">222K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut.h">freeglut.h</a></td><td align="right">2017-12-09 21:32  </td><td align="right">703 </td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut_ext.h">freeglut_ext.h</a></td><td align="right">2017-12-09 21:32  </td><td align="right"> 10K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut_std.h">freeglut_std.h</a></td><td align="right">2017-12-09 21:32  </td><td align="right"> 27K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="libfreeglut.a">libfreeglut.a</a></td><td align="right">2017-12-09 21:32  </td><td align="right">123K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/binary.gif" alt="[   ]"></td><td><a href="CHull.exe">CHull.exe</a></td><td align="right">2018-09-03 15:19  </td><td align="right"> 44K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="JupiterComet.cpp">JupiterComet.cpp</a></td><td align="right">2018-09-03 15:33  </td><td align="right">8.6K</td><td>&nbsp;</td></tr>
-<tr><td valign="top"><img src="/icons/binary.gif" alt="[   ]"></td><td><a href="s_syst.exe">s_syst.exe</a></td><td align="right">2018-09-05 00:44  </td><td align="right"> 39K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/back.gif" alt="[PARENTDIR]"></td><td><a href="/~smane/cs361/">Parent Directory</a>       </td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="freeglut.dll">freeglut.dll</a>           </td><td align="right">2017-12-09 21:31  </td><td align="right">222K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut.h">freeglut.h</a>             </td><td align="right">2017-12-09 21:32  </td><td align="right">703 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut_ext.h">freeglut_ext.h</a>         </td><td align="right">2017-12-09 21:32  </td><td align="right"> 10K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="freeglut_std.h">freeglut_std.h</a>         </td><td align="right">2017-12-09 21:32  </td><td align="right"> 27K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="libfreeglut.a">libfreeglut.a</a>          </td><td align="right">2017-12-09 21:32  </td><td align="right">123K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/binary.gif" alt="[   ]"></td><td><a href="CHull.exe">CHull.exe</a>              </td><td align="right">2018-09-03 15:19  </td><td align="right"> 44K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/text.gif" alt="[TXT]"></td><td><a href="JupiterComet.cpp">JupiterComet.cpp</a>       </td><td align="right">2018-09-03 15:33  </td><td align="right">8.6K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/binary.gif" alt="[   ]"></td><td><a href="s_syst.exe">s_syst.exe</a>             </td><td align="right">2018-09-05 00:44  </td><td align="right"> 39K</td><td>&nbsp;</td></tr>
    <tr><th colspan="5"><hr></th></tr>
 </table>
-<address>Apache/2.4.18 (Ubuntu) Server at venus.cs.qc.cuny.edu Port 443</address>
 </body></html>
