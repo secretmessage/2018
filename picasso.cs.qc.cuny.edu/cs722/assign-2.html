@@ -1,18 +1,18 @@
 <html>
 
 <title>
-CS 722 Assignment 2
+CS 381/722 Assignment 2
 </title>
 
 <body>
 
 <center>
 <h3>
-CS 722 &nbsp;&nbsp; Fall 2017
+CS 381/722 &nbsp;&nbsp; Fall 2018
 <br>
 Homework Assignment #2
 <br>
-Due: in class on 10/24/17, Tuesday
+Due: in class on 10/23/18, Tuesday
 </h3>
 </center>
 
@@ -24,114 +24,133 @@ Observe
 <a href="CoursePolicies.html">course policies</a>
 in solving assignment problems.
 
-<br>
-
 <ol>
-
 <li>
-Let &Sigma; = { a, b }.
-For each w = w<sub>1</sub> &middot;&middot;&middot; w<sub>n</sub> &isin; &Sigma;<sup>*</sup>,
-define w<sup>R</sup>, the <i>reverse</i> of w, to be w<sub>n</sub> &middot;&middot;&middot; w<sub>1</sub>,
-with the special case &epsilon;<sup>R</sup> = &epsilon;.
-For example, (abaab)<sup>R</sup> = baaba.
-Consider the language { #ww<sup>R</sup> | w &isin; &Sigma;<sup>*</sup> }.
-To facilitate the detection of the leftmost tape cell, every input is presumed to begin with "#".
-This language can be decided by an NTM implementing the following algorithm:
-<br><br>
-<ol type=i>
-<li>Scan the input string from left to right and nondeterministically select ("guess") the rightmost symbol of w.
-<li>Starting from the rightmost symbol of w selected in step (i),
-    cross off a matching pair of a's or of b's in inside-out manner by moving the head back and forth.
-    For example, #abaabbaaba would lead to #abaaxxaaba, #abaxxxxaba, #abxxxxxxba, so on.
-</ol>
-<br>
-In sufficient detail, concisely describe a verification TM that is essentially equivalent to this NTM.
-Describe the nature of a proposed certificate and how it is used.
-
-<br><br>
-
-<li>
-In sufficient detail, describe a polynomial-time nondeterministic algorithm to decide each of the following problems:
-<br><br>
-<ul>
-<li>VERTEX-COVER
-<li>SUBSET-SUM
-</ul>
-<br>
-Your algorithm should explicitly use nondeterministic choices at branching points, not one that generates
-a proposed certificate nondeterministically.
-Show that the worst-case runtime of your algorithm is polynomially bounded.
-You may illustrate the algorithms with help of small examples.
-
-<br><br>
-
-<li>
-Show that the following problems are in NP.
-You don't have to show they are NP-complete.
+Consider the NTM in
+<a href="fa12-assign-1-sol.html">Question 2 here</a>.
 <br><br>
  <ol type=a>
- <li>PUZZLE in Problem 7.28 on page 325 (Problem 7.26 in the 2nd edition).
- <li>3COLOR in Problem 7.29 on page 325 (Problem 7.27 in the 2nd edition).
- <li>The final exam scheduling problem in Problem 7.31 on page 326 (Problem 7.29 in the 2nd edition).
- <li>The KNAPSACK problem defined as follows.
-
-     <br><br>
-
-     Input: an integer C &gt; 0 (the capacity of the knapsack),
-     integers s<sub>i</sub> &gt; 0, 1 &le; i &le; n, (the sizes of n objects),
-     integers p<sub>i</sub> &gt; 0, 1 &le; i &le; n, (the profits of n objects), and
-     an integer B &gt; 0 (a total profit boundary)
-
-     <br><br>
-
-     Output: decide if there is a subset { k<sub>1</sub>, &hellip;, k<sub>m</sub> } &sube; { 1, &hellip;, n }
-     such that s<sub>k<sub>1</sub></sub> + &hellip; + s<sub>k<sub>m</sub></sub> &le; C and
-     p<sub>k<sub>1</sub></sub> + &hellip; + p<sub>k<sub>m</sub></sub> &ge; B.
-
-
- <li>A version of traveling salesperson problem, DIRECTED-TSP, defined as follows.
-
-     <br><br>
-
-     A directed graph with <i>edge cost</i> is one where each edge <i>e</i> is associated with
-     a nonnegative real number c(<i>e</i>) called the cost of <i>e</i>.
-     The cost of a path p = (e<sub>1</sub>, ..., e<sub>n</sub>) of n edges is defined to be
-     the sum of the costs of the edges c(p) = c(e<sub>1</sub>) + &middot;&middot;&middot; + c(e<sub>n</sub>).
-
-     <br><br>
-
-     Input: (G, s, t, B) where G is a directed graph with edge cost, s, t are two nodes in G,
-     B is a nonnegative real number (a total cost boundary)
-
-     <br><br>
-
-     Output: decide if G has a Hamiltonian path p from s to t such that c(p) &le; B.
-
+ <li>
+ Find the <i>exact</i> formula of the worst-case time complexity function, W<sub>M</sub>(n), of this NTM.
+ Justify your answer.
+ <li>
+ This question concerns two examples of the access-path encoding of computation-tree branches used in Theorem NtoV.
+ The following are computation trees of the NTM on the input strings "abcab" and "ccc":
+ <br>
+ <img src="assign-2-Q1.jpeg" width=550 height=670>
+ <br>
+ In this NTM,
+ &delta;(q<sub>0</sub>, c) = {(q<sub>0</sub>, c, R), (q<sub>1</sub>, c, R), (q<sub>3</sub>, c, L)}.
+ Sequentially number these three nondeterministic transitions by 1, 2, 3.
+ <br><br>
+  <ol type=i>
+  <li>
+  Give the access-path strings that encode the branches of the above computation trees.
+  <li>
+  Which of these access-path strings are the certificates for "abcab", if any?
+  <li>
+  Which of these access-path strings are the certificates for "ccc", if any?
+  </ol>
  </ol>
 
 <br>
 
 <li>
-Find a polynomial-time reduction f: SUBSET-SUM &le;<sub>p</sub> KNAPSACK.
-You need to define a reduction function f from SUBSET-SUM to KNAPSACK,
-show that its worst-case runtime is polynomial, and
-prove the equivalence condition.
-Presume that in all inputs to SUBSET-SUM,
-the elements of the given multiset and the value of t are positive integers.
+Consider the following verifier V for the language
+L = { wcabx } &cup; { wabcx },
+where &Sigma; = { a, b, c }, w, x &isin; &Sigma;<sup>*</sup>,
+which is the language decided by the NTM in Question 1.
+A proposed certificate encodes a pair &lang;n<sub>1</sub>, n<sub>2</sub>&rang; where
+n<sub>1</sub> is a non-negative integer in unary notation and n<sub>2</sub> = 0 or 1.
+
+<pre>
+step 1: By consulting n<sub>1</sub>, scan the initial n<sub>1</sub> symbols on tape (skip w).
+step 2: Read n<sub>2</sub>.
+        If n<sub>2</sub> = 0, check if the next three tape symbols are "cab";
+        if so, accept, o.w., reject.
+        If n<sub>2</sub> = 1, check if the previous three tape symbols are "cba" backward;
+        if so, accept, o.w., reject.
+</pre>
+
+ <ol type =a>
+ <li>Prove that V verifies L.
+ <br>
+ <li>By the method used in the proof of Theorem VtoN, define an NTM equivalent to V.
+ </ol>
+
+<br>
+
+<li>
+Show that the following problems are in NP.
+You don't have to show they are NP-complete.
 
 <br><br>
 
+ <ol type=a>
+ <li>LPATH in Problem 7.21 on page 324 (Problem 7.20 in the 2nd edition).
+ <li>DOUBLE-SAT in Problem 7.22 on page 324 (Problem 7.21 in the 2nd edition).
+ <li>&ne;SAT in Problem 7.26 on page 324 (Problem 7.24 in the 2nd edition).
+ <li>MAX-CUT in Problem 7.27 on page 325 (Problem 7.25 in the 2nd edition).
+ <li>SET-SPLITTING in Problem 7.30 on page 326 (Problem 7.28 in the 2nd edition).
+ </ol>
+
+<br>
+
 <li>
-Find a polynomial-time reduction f: HAMPATH &le;<sub>p</sub> DIRECTED-TSP.
-You need to define a reduction function f from HAMPATH to DIRECTED-TSP,
-show that its worst-case runtime is polynomial, and
-prove the equivalence condition.
+Prove each of the following:
+<br><br>
+<ol type=a>
+<li>
+If A, B &isin; NP, then A &cup; B &isin; NP.
+<li>
+If A, B &isin; NP, then A &cap; B &isin; NP.
+<li>
+If A, B &isin; NP, then A &middot; B &isin; NP, where 
+A &middot; B = { xy | x &isin; A and y &isin; B }.
+</ol>
+
+<br>
+
+<li>
+Prove each of the following.
+You may use any theorems proved in class.
+<br><br>
+<ol type=a>
+<li>
+If P &ne; NP, then P &cap; NPC = &empty;.
+<li>
+If A &isin; NPC, B &isin; NP, and B &notin; NPC, then A &le;<sub>p</sub> B is false.
+</ol>
+<br>
+
+<li>
+Consider the polynomial-time reduction used to prove 3SAT &le;<sub>p</sub> CLIQUE.
+Let:
+
+<blockquote>
+&phi;(x<sub>1</sub>, x<sub>2</sub>) =
+(x<sub>1</sub> &or; x<sub>1</sub> &or; x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>2</sub>) &and;
+(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>2</sub>)
+</blockquote>
+
+Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
 
 <br><br>
 
-<li>
-Languages A and B are said to be <em>polynomially equivalent</em> if A &le;<sub>p</sub> B and B &le;<sub>p</sub> A.
-Prove that any two NP-complete languages are polynomially equivalent.
+  <ol type=a>
+  <li>
+  Give (G<sub>&phi;</sub>, k) constructed from &phi; by the reduction.
+  </li>
+  <li>
+  Give one satisfying assignment A for &phi;, and a corresponding k-clique in G<sub>&phi;</sub>
+  produced by the proof.
+  </li>
+  <li>
+  Give one k-clique in G<sub>&phi;</sub> that is distinct from the one you gave in (b), and
+  give a corresponding assignment for &phi; produced by the proof.
+  </li>
+  </ol>
 
 </ol>
 
