@@ -64,7 +64,8 @@ A proposed certificate encodes a pair &lang;n<sub>1</sub>, n<sub>2</sub>&rang; w
 n<sub>1</sub> is a non-negative integer in unary notation and n<sub>2</sub> = 0 or 1.
 
 <pre>
-step 1: By consulting n<sub>1</sub>, scan the initial n<sub>1</sub> symbols on tape (skip w).
+step 1: By consulting n<sub>1</sub>, scan the initial n<sub>1</sub> symbols on tape.
+        If the tape head reaches "#" in the scan because n<sub>1</sub> &gt; the input-string length, reject.
 step 2: Read n<sub>2</sub>.
         If n<sub>2</sub> = 0, check if the next three tape symbols are "cab";
         if so, accept, o.w., reject.
