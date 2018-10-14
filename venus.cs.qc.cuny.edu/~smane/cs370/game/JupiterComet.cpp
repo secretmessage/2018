@@ -4,9 +4,10 @@
 // Sateesh R. Mane, copyright 2018
 //
 
+#include <string>
 #include <vector>
 #include <cmath>
-#include <time.h>
+#include <ctime>
 
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -304,8 +305,10 @@ static void Motion()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   if (!launchComet) {
-    const char *str = "click and release mouse to launch the comet";
-    const int len = strlen(str);
+    //const char *str = "click and release mouse to launch the comet";
+    //const int len = strlen(str);
+    std::string str = "click and release mouse to launch the comet";
+    const int len = str.length();
     glColor3d( 0.0, 1.0, 0.0 );
     glRasterPos2d(-3.0, 2.0);
     void *font = GLUT_BITMAP_TIMES_ROMAN_24;
