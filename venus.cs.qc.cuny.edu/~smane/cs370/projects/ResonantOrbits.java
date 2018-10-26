@@ -1,3 +1,9 @@
+//
+// Resonant orbits: animation and tracking
+//
+// Sateesh R. Mane, copyright 2018
+//
+
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
