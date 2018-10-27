@@ -1,14 +1,14 @@
 <html>
 
 <title>
-CS 722 Assignment 2
+CS 381/722 Assignment 2 Solutions
 </title>
 
 <body>
 
 <center>
 <h3>
-CS 722 &nbsp;&nbsp; Fall 2017
+CS 381/722 &nbsp;&nbsp; Fall 2018
 <br>
 Homework Assignment #2
 <br>
@@ -17,393 +17,544 @@ Solutions
 </center>
 
 <ol>
-
 <li>
-Let &Sigma; = { a, b }.
-For each w = w<sub>1</sub> &middot;&middot;&middot; w<sub>n</sub> &isin; &Sigma;<sup>*</sup>,
-define w<sup>R</sup>, the <i>reverse</i> of w, to be w<sub>n</sub> &middot;&middot;&middot; w<sub>1</sub>,
-with the special case &epsilon;<sup>R</sup> = &epsilon;.
-For example, (abaab)<sup>R</sup> = baaba.
-Consider the language { #ww<sup>R</sup> | w &isin; &Sigma;<sup>*</sup> }.
-To facilitate the detection of the leftmost tape cell, every input is presumed to begin with "#".
-This language can be decided by an NTM implementing the following algorithm:
-<br><br>
-<ol type=i>
-<li>Scan the input string from left to right and nondeterministically select ("guess") the rightmost symbol of w.
-<li>Starting from the rightmost symbol of w selected in step (i),
-    cross off a matching pair of a's or of b's in inside-out manner by moving the head back and forth.
-    For example, #abaabbaaba would lead to #abaaxxaaba, #abaxxxxaba, #abxxxxxxba, so on.
-</ol>
-<br>
-In sufficient detail, concisely describe a verification TM that is essentially equivalent to this NTM.
-Describe the nature of a proposed certificate and how it is used.
-
-<br><br>
-
-The proposed certificate encodes an integer k, k &ge; 0, the position of the rightmost symbol of w
-selected by the NTM in step (i).
-The following is the verification machine V essentially equivalent to the NTM.
-<br><br>
-Given input &lang;#x, c&rang;:
-<br><br>
-step 1:
-Move the tape head to the k-th symbol of x where k is the integer encoded by c;
-if k &gt; |x|, reject &lang;#x, c&rang;.
-In the special case k = 0, the tape head remains at "#".
-<br>
-step 2:
-Deterministically simulate step (ii) of the NTM on the input #x.
-<br>
-step 3:
-If the NTM accepts #x, V accepts &lang;#x, c&rang;.
-If the NTM rejects #x, V rejects &lang;#x, c&rang;.
-
-<br><br>
-
-<li>
-In sufficient detail, describe a polynomial-time nondeterministic algorithm to decide each of the following problems:
-<br><br>
-<ul>
-<li>VERTEX-COVER
-<li>SUBSET-SUM
-</ul>
-<br>
-Your algorithm should explicitly use nondeterministic choices at branching points, not one that generates
-a proposed certificate nondeterministically.
-Show that the worst-case runtime of your algorithm is polynomially bounded.
-You may illustrate the algorithms with help of small examples.
-
-<br><br>
-
-<ul>
-<li>SUBSET-SUM
-<br><br>
-Let S = { x<sub>1</sub>, &hellip;, x<sub>k</sub> } and t be an input.
-<br><br>
-<b>Algorithm 1</b>
-This algorithm makes binary nondeterministic choices for including or not including x<sub>i</sub> in the subset.
-<pre>
-i = 1; sum = 0;
-while ( i &le; k )
-{
-	nondeterministically decide whether to include x<sub>i</sub> in the subset;
-	if ( the decision is to include x<sub>i</sub> in the subset )
-	{
-		sum = sum + x<sub>i</sub>;
-		if ( sum = t ) accept and terminate the algorithm;
-	}
-	i = i + 1;
-}
-</pre>
-If the algorithm terminates without accepting,
-it has computed a dead-end branch.
-<br><br>
-Let n be the size of &lang;x<sub>1</sub>, &hellip;, x<sub>k</sub>, t&rang;.
-One iteration of the while-loop body can be computed in polynomial time O(n<sup>p</sup>).
-The number of iterations is at most k, which is the number of integers in S, and so k &le; n.
-Hence the worst-case runtime is O(k &times; n<sup>p</sup>) &le; O(n &times; n<sup>p</sup>) = O(n<sup>p+1</sup>).
-<br><br>
-The following is the computation tree on S = { x<sub>1</sub>=2, x<sub>2</sub>=5, x<sub>3</sub>=6 } and t = 8.
-The edges are labeled by 1 or 0 according as x<sub>i</sub> is included or not included in the subset.
-<br>
-
-<center><img src="assign-2-Q2-1-a.jpeg" width=800 height=500></center>
-
-<br>
-<b>Algorithm 2</b>
-Rather than making binary choices,
-this algorithm nondeterministically selects one x<sub>i</sub> from the remaining candidate x<sub>j</sub>'s.
-<pre>
-sum = 0; S = { x<sub>1</sub>, &hellip;, x<sub>k</sub> };
-while ( S &ne; &emptyset; )
-{
-	nondeterministically select one x<sub>i</sub> &isin; S;
-	sum = sum + x<sub>i</sub>;
-	if ( sum = t ) accept and terminate the algorithm;
-	remove all x<sub>j</sub> s.t. j &le; i from S;
-}
-</pre>
-If the algorithm terminates without accepting,
-it has computed a dead-end branch.
-By analysis analogous to that of Algorithm 1,
-the worst-case runtime is polynomially bounded.
-<br><br>
-The following is the computation tree on S = { x<sub>1</sub>=2, x<sub>2</sub>=5, x<sub>3</sub>=6 } and t = 8.
-<br>
-
-<center><img src="assign-2-Q2-1-b.jpeg" width=600 height=400></center>
-
-<br>
-<li>VERTEX-COVER
-<br><br>
-We can design an algorithm that makes binary choices for including or not including a vertex in the vertex cover,
-similarly to Algorithm 1 for SUBSET-SUM.
-Here we only present an algorithm similar to Algorithm 2, which nondeterministically selects 
-a vertex from the remaining candidate vertices.
- <br><br>
-Let a graph G and an integer k &ge; 1 be an input to VERTEX-COVER.
-Let v<sub>1</sub>, &hellip;, v<sub>m</sub> be the vertices of G.
-<pre>
-if ( k &gt; m ) reject and terminate the algorithm;
-j = 1; V = { v<sub>1</sub>, &hellip;, v<sub>m</sub> };
-while ( j &le; k and V &ne; &emptyset; )
-{
-	nondeterministically select one v<sub>i</sub> &isin; V;
-	mark the unmarked edges incident to v<sub>i</sub>;
-	if ( all the edges in G are marked ) accept and terminate the algorithm;
-	remove all v<sub>h</sub> s.t. h &le; i from V;
-	j = j + 1;
-}
-</pre>
-If G has a k'-vertex cover, k' &lt; k, then it has a k-vertex cover since
-any k &minus; k' redundant vertices can be added to the k'-vertex cover.
-The algorithm therefore terminates if it finds a k'-vertex cover, k' &lt; k.
-If the algorithm terminates without accepting, it has computed a dead-end branch.
-<br><br>
-Let n be the size of &lang;G, k&rang;.
-One iteration of the while-loop body can be computed in polynomial time O(n<sup>p</sup>).
-The number of iterations is at most k &le; m, which is the number of vertices in G, and so k &le; n.
-Hence the worst-case runtime is O(k &times; n<sup>p</sup>) &le; O(n &times; n<sup>p</sup>) = O(n<sup>p+1</sup>).
-
-<br><br>
-
-The following are an example graph with vertices { 1, 2, 3, 4, 5 }, k = 3, and traces of
-an accepting branch and a dead-end branch.
-The selected vertices and the marked edges are shown in green.
-
-<br><br>
-
-<img src="assign-2-Q2-2.svg">
-
-</ul>
-
-<br><br>
-
-<b>Remark</b>
-Let us recall what we studied in class in the context of this question.
-The polynomial-time nondeterministic algorithms above can be simulated by deterministic search algorithms utilizing
-depth-first search, breadth-first search, or their variants incorporating pruning/heuristics/learning techniques.
-To date, however, no polynomial-time deterministic algorithm for SUBSET-SUM, VERTEX-COVER, or any NP-complete problem
-has been found.
-If a deterministic polynomial-time algorithm exists for SUBSET-SUM, VERTEX-COVER, or any NP-complete problem,
-then by Theorem 6 (2), P = NP, hence all NP problems have deterministic polynomial-time algorithms.
-If no deterministic polynomial-time algorithm exists for SUBSET-SUM, VERTEX-COVER, or any NP problem,
-then by Theorem 6 (3), no NP-complete problem has a deterministic polynomial-time algorithm.
-Which is the case?
-This is a big open question as of today, although the latter is widely believed to be the case.
-
-<br><br>
-
-<li>
-Show that the following problems are in NP.
-You don't have to show they are NP-complete.
+Consider the NTM in
+<a href="fa12-assign-1-sol.html">Question 2 here</a>.
 <br><br>
  <ol type=a>
- <li>PUZZLE in Problem 7.28 on page 325 (Problem 7.26 in the 2nd edition).
+ <li>
+ Find the <i>exact</i> formula of the worst-case time complexity function, W<sub>M</sub>(n), of this NTM.
+ Justify your answer.
 
-     <br><br>
-     Let n be the number of all possible positions of card holes in either column.  
-     Let a<sub>1</sub>, ..., a<sub>n</sub> denote the n hole positions in left column and
-     let b<sub>1</sub>, ..., b<sub>n</sub> denote the n hole positions in right column,
-     left or right relative to the box.
-     We use an assignment A of 0 or 1 to each card C<sub>i</sub> so that
-     A(C<sub>i</sub>) = 0 means C<sub>i</sub> is placed in one way while 
-     A(C<sub>i</sub>) = 1 means C<sub>i</sub> is placed the other way.
+ <br><br>
 
-     <br><br>
+ First, we note that M never changes the input string, so we can derive W<sub>M</sub>(n) based solely on
+ the input string.
 
-     A proposed certificate is an assignment A of 0 or 1 to each card C<sub>i</sub>, 1 &le; i &le; k.
-     The following example algorithm checks if all hole positions are blocked:
+ <br><br>
 
-     <pre>
-     for each card C<sub>i</sub> do
-         cross out the positions of a<sub>1</sub>, ..., a<sub>n</sub> and b<sub>1</sub>, ..., b<sub>n</sub>
-         blocked by C<sub>i</sub> according to its placement determined by A(C<sub>i</sub>) = 0 or 1;
-     if all positions of a<sub>1</sub>, ..., a<sub>n</sub> and b<sub>1</sub>, ..., b<sub>n</sub> are crossed out, 
-     accept, else reject;      
-     </pre>
+ Once M enters q<sub>3</sub>, M can never move the tape head to right as q<sub>3</sub> and q<sub>4</sub> have
+ no transitions with the head moving to right, and in this case, M can do at most three transitions
+ q<sub>0</sub> &rarr; q<sub>3</sub> &rarr; q<sub>4</sub> &rarr; q<sub>accept</sub>.
+ All the other transitions move the head to right,
+ so M can do at most n R-transitions ending at the blank symbol.
+ But if M reads the blank symbol,
+ there are no further transitions.
+ Hence the worst case would occur when the head moves to right all the way to the last symbol of the input string,
+ then entering q<sub>3</sub> and reading "cba" backward,
+ performing (n&minus;1)+3 = n+2 transitions.
+ This occurs for all and only strings of the form wabc, where w &isin; &Sigma;<sup>*</sup>,
+ for which W<sub>M</sub>(n) = n+2, n &ge; 3.
+ For n = 0, 1, 2, exhaustive inspection of the strings of these lengths shows that
+ W<sub>M</sub>(n) = n if n = 0, 1 and W<sub>M</sub>(n) = n+1 if n = 2.
 
-    Crossing out one position a<sub>i</sub> or b<sub>i</sub> can be done by
-    sequential scan of the n positions in a column of C<sub>i</sub>, and hence takes time O(n).
-    Hence the runtime for one iteration of the for-loop body is O( 2n &times; n ).
-    The for-loop iterates k times, thus the total runtime is O( 2n<sup>2</sup> &times k ).
+ <br><br>
 
-    <br><br>
-
-    In the above analysis, we assumed n is a variable implicitly given as part of the input.
-    The description of PUZZLE as given in Problem 7.28 might suggest that n is a constant and the input size is measured only by
-    the number of cards k. In this case, the runtime reduces to O(k).
-
-    <br><br>
-
- <li>3COLOR in Problem 7.29 on page 325 (Problem 7.27 in the 2nd edition).
-
-     <br><br>
-     A proposed certificate is an assignment of three colors to the nodes of an input graph.
-     The verifier checks if no two adjacent nodes are assigned the same color.
-     This can be done in O(E) time where E is the # of edges in the input graph.
-     <br><br>
-
- <li>The final exam scheduling problem in Problem 7.31 on page 326 (Problem 7.29 in the 2nd edition).
-
-     <br><br>
-     We number h slots by the integers 1, 2, ..., h, and use the notation
-     slot-number(F<sub>i</sub>) to denote the integer assigned to final exam F<sub>i</sub>.
-
-     <br><br>
-     A proposed certificate is an assignment of an integer j, 1 &le; j &le; h, to each final exam.
-     The verifier checks if any student is taking two exams in the same slot.
-     This can be done, for example, by the following algorithm:
-
-     <pre>
-     for each student S<sub>m</sub> do
-         for each pair of distinct exams (F<sub>i</sub>, F<sub>j</sub>) to be taken by S<sub>m</sub> do
-             check if slot-number(F<sub>i</sub>) = slot-number(F<sub>j</sub>)
-     </pre>
-
-     The # of iterations = O(l &times; k<sup>2</sup>), which is a polynomial of l = # of students and k = # of final exams.
-     <br><br>
-
-
- <li>The KNAPSACK problem defined as follows.
-
-     <br><br>
-
-     Input: an integer C &gt; 0 (the capacity of the knapsack),
-     integers s<sub>i</sub> &gt; 0, 1 &le; i &le; n, (the sizes of n objects),
-     integers p<sub>i</sub> &gt; 0, 1 &le; i &le; n, (the profits of n objects), and
-     an integer B &gt; 0 (a total profit boundary)
-
-     <br><br>
-
-     Output: decide if there is a subset { k<sub>1</sub>, &hellip;, k<sub>m</sub> } &sube; { 1, &hellip;, n }
-     such that s<sub>k<sub>1</sub></sub> + &hellip; + s<sub>k<sub>m</sub></sub> &le; C and
-     p<sub>k<sub>1</sub></sub> + &hellip; + p<sub>k<sub>m</sub></sub> &ge; B.
-
-     <br><br>
-
-     A proposed certificate is a subset { k<sub>1</sub>, &hellip;, k<sub>m</sub> } &sube; { 1, &hellip;, n }.
-     The verifier checks if s<sub>k<sub>1</sub></sub> + &hellip; + s<sub>k<sub>m</sub></sub> &le; C and
-     p<sub>k<sub>1</sub></sub> + &hellip; + p<sub>k<sub>m</sub></sub> &ge; B.
-     This can be done in polynomial time of n.
-
-     <br><br>
-
- <li>A version of traveling salesperson problem, DIRECTED-TSP, defined as follows.
-
-     <br><br>
-
-     A directed graph with <i>edge cost</i> is one where each edge <i>e</i> is associated with
-     a nonnegative real number c(<i>e</i>) called the cost of <i>e</i>.
-     The cost of a path p = (e<sub>1</sub>, ..., e<sub>n</sub>) of n edges is defined to be
-     the sum of the costs of the edges c(p) = c(e<sub>1</sub>) + &middot;&middot;&middot; + c(e<sub>n</sub>).
-
-     <br><br>
-
-     Input: (G, s, t, B) where G is a directed graph with edge cost, s, t are two nodes in G,
-     B is a nonnegative real number (a total cost boundary)
-
-     <br><br>
-
-     Output: decide if G has a Hamiltonian path p from s to t such that c(p) &le; B.
-
-     <br><br>
-
-     Let n be the # of nodes in G.
-     A proposed certificate is a path p in G.
-     The verifier checks if p has exactly n nodes, starts from s and ends in t, visits each node exactly once, and c(p) &le; B.
-     This can be done in polynomial time of n.
-
+ <li>
+ This question concerns two examples of the access-path encoding of computation-tree branches used in Theorem NtoV.
+ The following are computation trees of the NTM on the input strings "abcab" and "ccc":
+ <br>
+ <img src="assign-2-Q1.jpeg" width=550 height=670>
+ <br>
+ In this NTM,
+ &delta;(q<sub>0</sub>, c) = {(q<sub>0</sub>, c, R), (q<sub>1</sub>, c, R), (q<sub>3</sub>, c, L)}.
+ Sequentially number these three nondeterministic transitions by 1, 2, 3.
+ <br><br>
+  <ol type=i>
+  <li>
+  Give the access-path strings that encode the branches of the above computation trees.
+  <br>
+  <img src="assign-2-Q1b-sol.jpeg" width=550 height=670>
+  <br>
+  <li>
+  Which of these access-path strings are the certificates for "abcab", if any?
+  <br><br>
+  11211 and 11311 are the certificates as they encode accepting branches.
+  <br><br>
+  <li>
+  Which of these access-path strings are the certificates for "ccc", if any?
+  <br><br>
+  None of them is a certificate as they do not encode accepting branches.
+  </ol>
  </ol>
 
 <br>
 
 <li>
-Find a polynomial-time reduction f: SUBSET-SUM &le;<sub>p</sub> KNAPSACK.
-You need to define a reduction function f from SUBSET-SUM to KNAPSACK,
-show that its worst-case runtime is polynomial, and
-prove the equivalence condition.
-Presume that in all inputs to SUBSET-SUM,
-the elements of the given multiset and the value of t are positive integers.
+Consider the following verifier V for the language
+L = { wcabx } &cup; { wabcx },
+where &Sigma; = { a, b, c }, w, x &isin; &Sigma;<sup>*</sup>,
+which is the language decided by the NTM in Question 1.
+A proposed certificate encodes a pair &lang;n<sub>1</sub>, n<sub>2</sub>&rang; where
+n<sub>1</sub> is a non-negative integer in unary notation and n<sub>2</sub> = 0 or 1.
+
+<pre>
+step 1: By consulting n<sub>1</sub>, scan the initial n<sub>1</sub> symbols on tape.
+        If the tape head reaches "#" in the scan because n<sub>1</sub> &gt; the input-string length, reject.
+step 2: Read n<sub>2</sub>.
+        If n<sub>2</sub> = 0, check if the next three tape symbols are "cab";
+        if so, accept, o.w., reject.
+        If n<sub>2</sub> = 1, check if the previous three tape symbols are "cba" backward;
+        if so, accept, o.w., reject.
+</pre>
+
+ <ol type =a>
+ <li>Prove that V verifies L.
+
+ <br><br>
+
+ We have to prove L = L(V).
+
+ <br><br>
+
+ Suppose v &isin; L.
+ Then v = wcabx or wabcx, where w, x &isin; &Sigma;<sup>*</sup>.
+ <br>
+ Case 1: v = wcabx. Let n<sub>1</sub> = |w|, n<sub>2</sub> = 0.
+ When V runs on &lang;v, &lang;n<sub>1</sub>, n<sub>2</sub>&rang;&rang;,
+ it scans w in step 1 then detects the next three tape symbols cab in step 2, and accepts, so v &isin; L(V).
+ <br>
+ Case 2: v = wabcx. Let n<sub>1</sub> = |wabc|, n<sub>2</sub> = 1.
+ When V runs on &lang;v, &lang;n<sub>1</sub>, n<sub>2</sub>&rang;&rang;,
+ it scans wabc in step 1 then detects the previous three tape symbols cba backward in step 2, and accepts, so v &isin; L(V). 
+ <br><br>
+ Conversely, suppose v &isin; L(V).
+ Then &exist;c s.t. V accepts &lang;v, c&rang;.
+ <br>
+ Case 1: c = &lang;n<sub>1</sub>, 0&rang;.
+ V scans the initial n<sub>1</sub> tape symbols then detects the next three symbols cab.
+ So v must be of the form wcabx where |w| = n<sub>1</sub>, hence v &isin; L.
+ <br>
+ Case 2: c = &lang;n<sub>1</sub>, 1&rang;.
+ V scans the initial n<sub>1</sub> tape symbols then detects the previous three symbols cba backward.
+ So v must be of the form wabcx where |wabc| = n<sub>1</sub>, hence v &isin; L.
+
+ <br><br>
+
+ <li>By the method used in the proof of Theorem VtoN, define an NTM equivalent to V.
+
+ <br><br>
+
+ Let f(n) be a function as described in Theorem VtoN.
+ The equivalent NTM, M, is defined as follows.
+ <br><br>
+ Given input string w:
+ <br><br>
+ <ol>
+ <li>
+ Compute n = |w| and the value of f(n) in unary notation.
+ Nondeterministically write a string c s.t. |c| &le; f(n) after w# using
+ the string generation NTM module.
+ <li>
+ Run V on &lang;w, c&rang;.
+ Here V also performs format check to ensure that c properly encodes
+ &lang;n<sub>1</sub>, n<sub>2</sub>&rang; as part of operation;
+ if c is ill formed, V rejects &lang;w, c&rang;.
+ <li>
+ M accepts w if V accepts &lang;w, c&rang;.
+ <br>
+ M halts by dead end if V rejects &lang;w, c&rang;.
+ </ol>
+ </ol>
+
+<br>
+
+<li>
+Show that the following problems are in NP.
+You don't have to show they are NP-complete.
 
 <br><br>
 
-Given a SUBSET-SUM input S = { x<sub>1</sub>, &hellip;, x<sub>n</sub> } and t,
-the reduction produces the KNAPSACK input:
-s<sub>i</sub> = p<sub>i</sub> = x<sub>i</sub>, 1 &le; i &le; n,
-and C = B = t.
-This KNAPSACK input has 2n+2 integers and can be produced in polynomial time of the size of &lt; S, t &gt;.
+ <ol type=a>
+ <li>LPATH in Problem 7.21 on page 324 (Problem 7.20 in the 2nd edition).
+
+ <br><br>
+ A proposed certificate is a path of G.
+ The verifier determines if this path stars at <i>a</i> and ends at <i>b</i>, is simple (i.e. does not repeat any nodes),
+ and has the length at least <i>k</i>.
+ This checking can be done in polynomial time in the number of vertices and edges of G.
+ <br><br>
+
+ <li>DOUBLE-SAT in Problem 7.22 on page 324 (Problem 7.21 in the 2nd edition).
+
+ <br><br>
+ A proposed certificate is a pair of two distinct assignments for &phi;.
+ The verifier determines if both assignments satisfy &phi;.
+ If so, it accepts &phi;; o.w., it rejects &phi;.
+ This checking can be done in polynomial time in the size of &phi;.
+ <br><br>
+
+ <li>&ne;SAT in Problem 7.26 on page 324 (Problem 7.24 in the 2nd edition).
+
+ <br><br>
+ A proposed certificate is an assignment for &phi;.
+ The verifier determines if it satisfies &phi; without making the three literals true in any clause.
+ This checking can be done in polynomial time in the size of &phi;.
+ <br><br>
+
+ <li>MAX-CUT in Problem 7.27 on page 325 (Problem 7.25 in the 2nd edition).
+
+ <br><br>
+ Let V be the set of all vertices of the given graph G.
+ A proposed certificate is a set of vertices S &sube; V.
+ The verifier checks all edges in G to determine if they have one endpoint in S and
+ the other in V&minus;S, and counts the total number of such edges.
+ If the total number is &ge; <i>k</i>, the verifier accepts S; o.w., the verifier rejects S.
+ This checking can be done in polynomial time in the number of vertices and edges of G.
+ <br><br>
+
+ <li>SET-SPLITTING in Problem 7.30 on page 326 (Problem 7.28 in the 2nd edition).
+
+ <br><br>
+ A proposed certificate is an assignment of red or blue to the elements of S.
+ The verifier determines if every C<sub>i</sub> has an element colored with red and an element colored with
+ blue.
+ If this is the case, the verifier accepts the color assignment; o.w., the verifier rejects it.
+ This checking can be done in polynomial time in 
+ |S|+|C<sub>1</sub>|+ &middot;&middot;&middot;+|C<sub>k</sub>|.
+ </ol>
+
+<br>
+
+<li>
+Prove each of the following.
 
 <br><br>
 
-<b>Proof of Equivalence Condition</b>
-Suppose that there is a subset { k<sub>1</sub>, &hellip;, k<sub>m</sub> } &sube; { 1, &hellip;, n } s.t.
-x<sub>k<sub>1</sub></sub> + &hellip; + x<sub>k<sub>m</sub></sub> = t.
-Since s<sub>i</sub> = p<sub>i</sub> = x<sub>i</sub>, 1 &le; i &le; n, and C = B = t,
-s<sub>k<sub>1</sub></sub> + &hellip; + s<sub>k<sub>m</sub></sub> = C and
-p<sub>k<sub>1</sub></sub> + &hellip; + p<sub>k<sub>m</sub></sub> = B.
-Hence, { k<sub>1</sub>, &hellip;, k<sub>m</sub> } satisfies the conditions of the KNAPSACK problem.
+<font color=red>
+These can be proved by NTMs or verifiers due to their essential equivalence.
+The following uses verifiers.
+</font>
+
+<br><br>
+<ol type=a>
+<li>
+If A, B &isin; NP, then A &cup; B &isin; NP.
 
 <br><br>
 
-Conversely, suppose that 
-there is a subset { k<sub>1</sub>, &hellip;, k<sub>m</sub> } &sube; { 1, &hellip;, n }
-such that s<sub>k<sub>1</sub></sub> + &hellip; + s<sub>k<sub>m</sub></sub> &le; C and
-p<sub>k<sub>1</sub></sub> + &hellip; + p<sub>k<sub>m</sub></sub> &ge; B.
-Then x<sub>k<sub>1</sub></sub> + &hellip; + x<sub>k<sub>m</sub></sub> &le; t and
-x<sub>k<sub>1</sub></sub> + &hellip; + x<sub>k<sub>m</sub></sub> &ge; t, meaning
-x<sub>k<sub>1</sub></sub> + &hellip; + x<sub>k<sub>m</sub></sub> = t.
-Hence, { k<sub>1</sub>, &hellip;, k<sub>m</sub> } satisfies the condition of the SUBSET-SUM problem.
+Let V<sub>A</sub>, V<sub>B</sub> be polynomial-time verifiers for A and B with
+W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>).
+We will define a polynomial-time verifier V<sub>A &cup; B</sub> for
+A &cup; B using V<sub>A</sub> and V<sub>B</sub>.
+
+<br><br>
+
+Definition of V<sub>A &cup; B</sub>
+<br><br>
+  Given &lang;w, c&rang;:
+  <ol>
+  <li>  Create a 2nd copy of &lang;w, c&rang; and append it to the original &lang;w, c&rang;.
+        The original &lang;w, c&rang; and the 2nd copy can be separated by a special tape symbol like "$".
+  <li>  Run V<sub>A</sub> on the 2nd copy of &lang;w, c&rang;;
+        the original &lang;w, c&rang; is kept intact.
+  <li>  Erase all work V<sub>A</sub> did on tape by writing blank symbols and 
+        move the tape head back to the leftmost position.
+  <li>  Run V<sub>B</sub> on the original &lang;w, c&rang;.
+  <li>  <b>if</b> V<sub>A</sub> or V<sub>B</sub> accepts &lang;w, c&rang; <b>then</b> accept <b>else</b> reject
+  </ol>
+
+<br>
+
+Since V<sub>A &cup; B</sub> runs V<sub>A</sub> and V<sub>B</sub> on &lang;w, c&rang;,
+we assume without loss of generality that |c| &le; max(W<sub>V<sub>A</sub></sub>(n), W<sub>V<sub>B</sub></sub>(n)).
+
+<br><br>
+
+We now prove V<sub>A &cup; B</sub> verifies A &cup; B, that is,
+
+<blockquote>
+A &cup; B = L(V<sub>A &cup; B</sub>) = { w | &exist;c s.t. V<sub>A &cup; B</sub> accepts &lang;w, c&rang; }.
+</blockquote>
+
+Suppose w &isin; A &cup; B.
+Then w &isin; A or w &isin; B, so
+&exist;c<sub>A</sub> s.t. V<sub>A</sub> accepts &lang;w, c<sub>A</sub>&rang; or
+&exist;c<sub>B</sub> s.t. V<sub>B</sub> accepts &lang;w, c<sub>B</sub>&rang;.
+Note that c<sub>A</sub> and c<sub>B</sub> may be distinct.
+In the former case, V<sub>A &cup; B</sub> accepts &lang;w, c<sub>A</sub>&rang;, hence
+w &isin; L(V<sub>A &cup; B</sub>).
+In the latter case,
+V<sub>A &cup; B</sub> accepts &lang;w, c<sub>B</sub>&rang;, hence
+w &isin; L(V<sub>A &cup; B</sub>).
+In either case, w &isin; L(V<sub>A &cup; B</sub>).
+
+<br><br>
+
+Conversely, suppose w &isin; L(V<sub>A &cup; B</sub>).
+Then &exist;c s.t. V<sub>A &cup; B</sub> accepts &lang;w, c&rang;.
+This means, by definition of V<sub>A &cup; B</sub>,  V<sub>A</sub> or V<sub>B</sub> accepts &lang;w, c&rang;.
+Hence w &isin; A or w &isin; B and so w &isin; A &cup; B.
+
+<br><br>
+
+Now the runtime analysis of V<sub>A &cup; B</sub>.
+
+<br><br>
+
+<ul>
+<li>
+Step 1 can be done in O(|w|+|c|) = O(n+max(W<sub>V<sub>A</sub></sub>(n), W<sub>V<sub>B</sub></sub>(n))).
+<li>
+Step 2 takes W<sub>V<sub>A</sub></sub>(n).
+<li>
+Step 3 can be done in O(W<sub>V<sub>A</sub></sub>(n))+O(|w|+|c|) as no DTM can write more than
+the worst-case runtime number of symbols on tape.
+<li>
+Step 4 takes W<sub>V<sub>B</sub></sub>(n).
+</ul>
+
+<br>
+
+Since W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>),
+the total runtime of Step 1 through Step 4 is polynomially bounded.
+
+<br><br>
+
+<font color=red>
+In this question we provided low-level, nuts-and-bolts operations like copying &lang;w, c&rang; and
+erasing tape symbols.
+Although this kind of operation is also necessary for (b) and (c),
+we will omit it as the essential idea of definitions and runtime analysis is not affected.
+</font>
 
 <br><br>
 
 <li>
-Find a polynomial-time reduction f: HAMPATH &le;<sub>p</sub> DIRECTED-TSP.
-You need to define a reduction function f from HAMPATH to DIRECTED-TSP,
-show that its worst-case runtime is polynomial, and
-prove the equivalence condition.
+If A, B &isin; NP, then A &cap; B &isin; NP.
 
 <br><br>
 
-There are correct reductions assigning different edge costs and B's value.
-The following is an example reduction. 
+Let V<sub>A</sub>, V<sub>B</sub> be polynomial-time verifiers for A and B with
+W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>).
+We will define a polynomial-time verifier V<sub>A &cap; B</sub> for
+A &cap; B using V<sub>A</sub> and V<sub>B</sub>.
 
 <br><br>
 
-Given a HAMPATH input (G, s, t),
-the reduction produces the DIRECTED-TSP input
-(G', s, t, B) where
-G' is obtained from G by assigning c(e) = 1 for each edge e in G,
-B = n&minus;1 where
-n = the # of nodes in G.
-
-This DIRECTED-TSP input assigns 1 to each edge of G and has one integer B, and can be produced in polynomial time of the size of &lt; G, s, t &gt;.
+V<sub>A &cap; B</sub> uses a 2-component certificate
+c = &lang;c<sub>A</sub>, c<sub>B</sub>&rang;.
 
 <br><br>
 
-<b>Proof of Equivalence Condition</b>
-Suppose that (G, s, t) has a HAM path p from s to t.
-Then p has exactly n nodes and n&minus;1 edges.
-Since every edge of G' has the cost of 1,
-c(p) = n&minus;1 = B.
-Hence, p is a HAM path from s to t in G' s.t. c(p) &le; B.
+Definition of V<sub>A &cap; B</sub>
+<br><br>
+  Given &lang;w, c = &lang;c<sub>A</sub>, c<sub>B</sub>&rang;&rang;:
+  <ol>  
+  <li>  Run V<sub>A</sub> on &lang;w, c<sub>A</sub>&rang;.
+  <li>  Run V<sub>B</sub> on &lang;w, c<sub>B</sub>&rang;.
+  <li>  <b>if</b> V<sub>A</sub> accepts &lang;w, c<sub>A</sub>&rang; and
+        V<sub>B</sub> accepts &lang;w, c<sub>B</sub>&rang;
+       <b>then</b> accept <b>else</b> reject
+  </ol>
+
+<br>
+
+Since V<sub>A &cap; B</sub> runs V<sub>A</sub> on &lang;w, c<sub>A</sub>&rang; and
+V<sub>B</sub> on &lang;w, c<sub>B</sub>&rang;,
+we assume without loss of generality that
+|c<sub>A</sub>| &le; W<sub>V<sub>A</sub></sub>(n) and
+|c<sub>B</sub>| &le; W<sub>V<sub>B</sub></sub>(n).
 
 <br><br>
 
-Conversely, suppose that G' has a HAM path p from s to t such that c(p) &le; B.
-Obviously, p is a HAM path from s to t in G.
+We need to show:
+<blockquote>
+A &cap; B = L(V<sub>A &cap; B</sub>) = { w | &exist;c s.t. V<sub>A &cap; B</sub> accepts &lang;w, c&rang; }.
+</blockquote>
+
+Suppose w &isin; A &cap; B.
+Then w &isin; A and w &isin; B, so
+&exist;c<sub>A</sub> s.t. V<sub>A</sub> accepts &lang;w, c<sub>A</sub>&rang; and
+&exist;c<sub>B</sub> s.t. V<sub>B</sub> accepts &lang;w, c<sub>B</sub>&rang;.
+Let c = &lang;c<sub>A</sub>, c<sub>B</sub>&rang;.
+Then V<sub>A &cap; B</sub> will accept &lang;w, c = &lang;c<sub>A</sub>, c<sub>B</sub>&rang;&rang;.
+
+<br><br>
+
+Conversely, suppose V<sub>A &cap; B</sub> accepts
+&lang;w, c = &lang;c<sub>A</sub>, c<sub>B</sub>&rang;&rang;.
+By definition of V<sub>A &cap; B</sub>, this means that
+V<sub>A</sub> accepts &lang;w, c<sub>A</sub>&rang; and
+V<sub>B</sub> accepts &lang;w, c<sub>B</sub>&rang;.
+Hence, w &isin; A and w &isin; B, and thus w &isin; A &cap; B.
+
+<br><br>
+
+Since |c<sub>A</sub>| &le; W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+|c<sub>B</sub>| &le; W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>),
+|c| = |&lang;c<sub>A</sub>, c<sub>B</sub>&rang;| = O(n<sup>k<sub>1</sub></sup>) + O(n<sup>k<sub>2</sub></sup>)), which is polynomially bounded.
+Thus, consulting/extracting the two components of c can be done in polynomial time.
+Step 1 takes W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+Step 2 takes W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>).
+Thus, the total runtime is polynomially bounded.
 
 <br><br>
 
 <li>
-Languages A and B are said to be <em>polynomially equivalent</em> if A &le;<sub>p</sub> B and B &le;<sub>p</sub> A.
-Prove that any two NP-complete languages are polynomially equivalent.
+If A, B &isin; NP, then A &middot; B &isin; NP, where 
+A &middot; B = { xy | x &isin; A and y &isin; B }.
 
 <br><br>
 
-Suppose A, B &isin; NPC.
-By definition of NP-completeness, A, B &isin; NP and for all languages L &isin; NP, L &le;<sub>p</sub>A and L &le;<sub>p</sub>B.
-In particular, by letting L = B and L = A, we have B &le;<sub>p</sub>A and A &le;<sub>p</sub>B.
+Let V<sub>A</sub>, V<sub>B</sub> be polynomial-time verifiers for A and B with
+W<sub>V<sub>A</sub></sub>(n) = O(n<sup>k<sub>1</sub></sup>) and
+W<sub>V<sub>B</sub></sub>(n) = O(n<sup>k<sub>2</sub></sup>).
+We will define a polynomial-time verifier V<sub>A&middot;B</sub> for
+A &middot; B using V<sub>A</sub> and V<sub>B</sub>.
+
+<br><br>
+
+V<sub>A&middot;B</sub> uses a 3-component certificate
+c = &lang;c<sub>sp</sub>, c<sub>A</sub>, c<sub>B</sub>&rang;.
+The string c<sub>sp</sub> encodes a split position of the input w.
+If c<sub>sp</sub> = i, 0 &le; i &le; n,
+w = w<sub>1</sub> &middot;&middot;&middot; w<sub>n</sub> will be split into
+x = w<sub>1</sub> &middot;&middot;&middot; w<sub>i</sub> and
+y = w<sub>i+1</sub> &middot;&middot;&middot; w<sub>n</sub>.
+
+<br><br>
+
+Definition of V<sub>A&middot;B</sub>
+<br><br>
+  Given &lang;w, c = &lang;c<sub>sp</sub>, c<sub>A</sub>, c<sub>B</sub>&rang;&rang;:
+  <ol>  
+  <li>  Split w into xy by consulting the split point encoded in c<sub>sp</sub>.
+  <li>  Run V<sub>A</sub> on &lang;x, c<sub>A</sub>&rang;.
+  <li>  Run V<sub>B</sub> on &lang;y, c<sub>B</sub>&rang;.
+  <li>  <b>if</b> V<sub>A</sub> accepts &lang;x, c<sub>A</sub>&rang; and
+        V<sub>B</sub> accepts &lang;y, c<sub>B</sub>&rang;
+       <b>then</b> accept <b>else</b> reject
+  </ol>
+
+<br>
+
+Since V<sub>A&middot;B</sub> runs V<sub>A</sub> on &lang;x, c<sub>A</sub>&rang;,
+runs V<sub>B</sub> on &lang;y, c<sub>B</sub>&rang;,
+and |x| &le; n, |y| &le; n,
+we assume without loss of generality that
+|c<sub>A</sub>| = O(n<sup>k<sub>1</sub></sup>) and
+|c<sub>B</sub>| = O(n<sup>k<sub>2</sub></sup>).
+
+<br><br>
+
+We need to show:
+<blockquote>
+A &middot; B = L(V<sub>A&middot;B</sub>) = { w | &exist;c s.t. V<sub>A&middot;B</sub> accepts &lang;w, c&rang; }.
+</blockquote>
+
+Suppose w &isin; A &middot; B.
+By definition of A &middot; B, w = xy, x &isin; A, and y &isin; B.
+So
+&exist;c<sub>A</sub> s.t. V<sub>A</sub> accepts &lang;x, c<sub>A</sub>&rang; and
+&exist;c<sub>B</sub> s.t. V<sub>B</sub> accepts &lang;y, c<sub>B</sub>&rang;.
+Let c<sub>sp</sub> encode the split position of w = xy,
+and let c = &lang;c<sub>sp</sub>, c<sub>A</sub>, c<sub>B</sub>&rang;&rang;.
+Then V<sub>A&middot;B</sub> will accept &lang;w, c = &lang;c<sub>sp</sub>, c<sub>A</sub>, c<sub>B</sub>&rang;&rang;.
+
+<br><br>
+
+Conversely, suppose V<sub>A&middot;B</sub> accepts
+&lang;w, c = &lang;c<sub>sp</sub>, c<sub>A</sub>, c<sub>B</sub>&rang;&rang;.
+By definition of V<sub>A&middot;B</sub>, this means that
+w is split into xy using the split position encoded in c<sub>sp</sub>,
+V<sub>A</sub> accepts &lang;x, c<sub>A</sub>&rang;, and
+V<sub>B</sub> accepts &lang;y, c<sub>B</sub>&rang;.
+Hence, x &isin; A and y &isin; B, and thus w = xy &isin; A &middot; B.
+
+<br><br>
+
+A split point ranges from 0 to n and can be encoded by a string of length at most n, so
+|c<sub>sp</sub>| &le; n.
+Also,
+|c<sub>A</sub>| = O(n<sup>k<sub>1</sub></sup>) and
+|c<sub>B</sub>| = O(n<sup>k<sub>2</sub></sup>).
+Hence |c| = O(n + O(n<sup>k<sub>1</sub></sup>) + O(n<sup>k<sub>2</sub></sup>)), which is polynomially bounded.
+Thus, consulting/extracting the three components of c can be done in polynomial time.
+Step 1 can be done in polynomial time of n = |w|.
+Since |x| &le; n and |y| &le; n,
+Step 2 takes at most O(n<sup>k<sub>1</sub></sup>) and
+Step 3 takes at most O(n<sup>k<sub>2</sub></sup>).
+Thus, the total runtime is polynomially bounded.
+
+</ol>
+
+<br>
+
+<li>
+Prove each of the following.
+You may use any theorems proved in class.
+<br><br>
+<ol type=a>
+<li>
+If P &ne; NP, then P &cap; NPC = &empty;.
+
+<br><br>
+
+Suppose P &ne; NP.
+By the contrapositive of Theorem 6 (2), there exists no B &isin; P &cap; NPC, so
+P &cap; NPC = &empty;.
+
+<br><br>
+
+<li>
+If A &isin; NPC, B &isin; NP, and B &notin; NPC, then A &le;<sub>p</sub> B is false.
+
+<br><br>
+
+Suppose A &isin; NPC, B &isin; NP, and B &notin; NPC,
+and suppose also that A &le;<sub>p</sub> B is true.
+By Theorem 6 (1), A &isin; NPC, B &isin; NP, and A &le;<sub>p</sub> B imply
+B &isin; NPC, a contradiction to B &notin; NPC.
+
+</ol>
+<br>
+
+<li>
+Consider the polynomial-time reduction used to prove 3SAT &le;<sub>p</sub> CLIQUE.
+Let:
+
+<blockquote>
+&phi;(x<sub>1</sub>, x<sub>2</sub>) =
+(x<sub>1</sub> &or; x<sub>1</sub> &or; x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>2</sub>) &and;
+(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>2</sub>)
+</blockquote>
+
+Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
+
+<br><br>
+
+  <ol type=a>
+  <li>
+  Give (G<sub>&phi;</sub>, k) constructed from &phi; by the reduction.
+
+  <br><br>
+
+  <b><font size=+2>k = 3</font></b>
+
+  <br>
+
+  <img src="assign-2-sol-Q6-a.svg">
+
+  <li>
+  Give one satisfying assignment A for &phi;, and a corresponding k-clique in G<sub>&phi;</sub>
+  produced by the proof.
+
+  <img src="assign-2-sol-Q6-b.svg">
+
+  <br><br>
+
+  <li>
+  Give one k-clique in G<sub>&phi;</sub> that is distinct from the one you gave in (b), and
+  give a corresponding assignment for &phi; produced by the proof.
+
+  <img src="assign-2-sol-Q6-c.svg">
+
+  </ol>
 
 </ol>
 
