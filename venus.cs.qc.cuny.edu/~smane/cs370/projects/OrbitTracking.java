@@ -76,15 +76,14 @@ final class Screen extends JPanel implements Runnable {
     
     private void update_xp() {
     	if (num > COUNT) return;
+	int i = num - 1;
     	for (int iorb = 0; iorb < ORBITS; ++iorb) {    	
-            for (int i = 1; i < num; i++) {
-            	double xx = x[iorb][i-1]*cc + p[iorb][i-1]*ss;
-            	double pp = p[iorb][i-1]*cc - x[iorb][i-1]*ss;
-            	pp -= ks*xx*xx;
-            	x[iorb][i] = xx*cc + pp*ss;
-            	p[iorb][i] = pp*cc - xx*ss;
-            	if (Math.abs(x[iorb][i]) > xmax) break;
-            }
+	    double xx = x[iorb][i-1]*cc + p[iorb][i-1]*ss;
+	    double pp = p[iorb][i-1]*cc - x[iorb][i-1]*ss;
+	    pp -= ks*xx*xx;
+	    x[iorb][i] = xx*cc + pp*ss;
+	    p[iorb][i] = pp*cc - xx*ss;
+	    if (Math.abs(x[iorb][i]) > xmax) break;
     	}            		        	
     }
     
