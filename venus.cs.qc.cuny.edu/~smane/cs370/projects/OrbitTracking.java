@@ -10,7 +10,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class OrbitTracking extends JFrame {
@@ -30,20 +36,27 @@ public class OrbitTracking extends JFrame {
         EventQueue.invokeLater(() -> {
 		JFrame ex = new OrbitTracking();
 		ex.setVisible(true);
+		
+		//terminate the program when the top right "cross" of the frame is clicked
+		ex.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {	
+			    System.exit(0);			        
+			}
+		    });
 	    });
     }
 }
 
 
-final class Screen extends JPanel 
-implements Runnable {
+final class Screen extends JPanel implements Runnable {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private Thread animator;
     
-    private static final int COUNT = 100000;
-    private static final int ORBITS = 200;
+    private static final int COUNT = 10000;
+    private static final int ORBITS = 500;
     
     private final double[][] x = new double[ORBITS][COUNT];
     private final double[][] p = new double[ORBITS][COUNT];
@@ -66,24 +79,28 @@ implements Runnable {
     enum Multipole { SEXTUPOLE, OCTUPOLE, COMBINED }
     private Multipole multipole = Multipole.SEXTUPOLE;
 
-    // callback for mouse event
     /*
-    public void mouse_Released(MouseEvent evt) {
+    // callback for mouse event
+    
+    @Override
+    public void mouseReleased(MouseEvent evt) {
     	if (evt.getButton() == MouseEvent.BUTTON1)
 	    scale *= 1.05;
     	else if (evt.getButton() == MouseEvent.BUTTON3)
 	    scale /= 1.05;
     }    
-    */
+    
 
     // callback for keypad event
-    /*
+    
+    @Override
     public void keyReleased(KeyEvent evt) {
     	int keyCode = evt.getKeyCode();
     	switch (keyCode) {
     	default:
 	    break;
     	case KeyEvent.VK_ESCAPE:
+	    animator.interrupt();
 	    SwingUtilities.getWindowAncestor(this).dispose();
 	    break;
     	case KeyEvent.VK_0: 
@@ -120,23 +137,21 @@ implements Runnable {
 	    break;
     	}
     }
-    */
     
-    /*
     private void save() {
     	BufferedImage paintImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	Graphics g = paintImage.createGraphics();
 	g.drawImage(paintImage, 0, 0, null);
 	updateDisplay(g);
 	try {
-	    ImageIO.write(paintImage, "PNG", new File("c:/sateesh/orbits.png"));
+	    ImageIO.write(paintImage, "PNG", new File(System.getProperty("user.dir")+"/orbits.jpg"));
 	    //ImageIO.write(paintImage, "JPG", new File("c:/sateesh/orbits.jpg"));
 	}
 	catch (IOException e) {
 	    e.printStackTrace();
 	}
     }
-    */
+    */    
 
     private void setColors() { 	
     	co[0]= Color.WHITE;
@@ -289,10 +304,10 @@ implements Runnable {
     	}		
         Toolkit.getDefaultToolkit().sync();
     }
-    
+
     @Override
     public void run() {
-        while (true) {
+        while (animator.interrupted() == false) {
             repaint();
         }
     }
