@@ -1,18 +1,18 @@
 <html>
 
 <title>
-CS 722 Assignment 3
+CS 381/722 Assignment 3
 </title>
 
 <body>
 
 <center>
 <h3>
-CS 722 &nbsp;&nbsp; Fall 2017
+CS 381/722 &nbsp;&nbsp; Fall 2018
 <br>
 Homework Assignment #3
 <br>
-Due: in class on 11/30/17, Thursday
+Due: in class on 11/27/18, Tuesday
 </h3>
 </center>
 
@@ -24,21 +24,17 @@ Observe
 <a href="CoursePolicies.html">course policies</a>
 in solving assignment problems.
 
-<br>
-
 <ol>
-
 <li>
 Consider the polynomial-time reduction 3SAT &le;<sub>p</sub> VERTEX-COVER we studied in class
 and the following &phi;:
 
 <blockquote>
-&phi; =
-(x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
-(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>)
+&phi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>) = 
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; x<sub>1</sub> &or; &not;x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(x<sub>2</sub> &or; &not;x<sub>3</sub> &or; &not;x<sub>3</sub>)
 </blockquote>
 
 Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
@@ -82,68 +78,54 @@ and the same &phi; in Question (1).
 <br>
 
 <li>
-Consider the polynomial-time reduction 3SAT &le;<sub>p</sub> HAMPATH we studied in class
-and the following &phi;:
+&ne;SAT in Problem 7.26 on page 324 (Problem 7.24 in the 2nd edition).
+In addition, solve the following:
+<br><br>
 
-<blockquote>
-&phi; =
-(x<sub>1</sub> &or; x<sub>1</sub> &or; x<sub>2</sub>) &and;
-(x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>2</sub>) &and;
-(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>2</sub>)
-</blockquote>
-
-  <ol type=a>
+  <ol type=i>
   <li>
-  Give (G<sub>&phi;</sub>, s, t) constructed from &phi; by the reduction.
-  </li>
+  Give the Boolean formula, call it &ne;&phi;, the reduction constructs from the formula &phi; in Question 1.
   <li>
-  Give one satisfying assignment for &phi;, and a corresponding Ham path from s to t in G<sub>&phi;</sub>
-  produced by the equivalence proof.
-  </li>
-  <li>
-  Give one Ham path from s to t that is distinct from the one you gave in (b), and
-  give a corresponding assignment for &phi; produced by the equivalence proof.
-  </li>
+  Give one &ne;-assignment for &ne;&phi;, and
+  a corresponding assignment for &phi; produced by the equivalence proof.
   </ol>
 
 <br>
 
 <li>
-Problem 7.17 on page 323 (Problem 7.16 in the 2nd edition).
-
+MAX-CUT in Problem 7.27 on page 325 (Problem 7.25 in the 2nd edition).
+In addition, solve the following:
 <br><br>
+
+  <ol type=i>
+  <li>
+  Give the instance of MAX-CUT, (G, k), the reduction constructs from the formula &phi; in Question 1.
+  <li>
+  Give one cut of size at least k of G, and
+  a corresponding &ne;-assignment for &phi; produced by the equivalence proof.
+  </ol>
+
+<br>
 
 <li>
-Problem 7.41 on page 327 (Problem 7.39 in the 2nd edition).
+Many graph problems can be reduced to SAT by encoding adjacency lists.
+For example consider the following directed graph:
+
 
 <br><br>
-
-<li>
-Consider the following polynomial-time reduction from CLIQUE to SAT.
-
-<br><br>
-
-We begin by a description of the reduction of the following example graph G, then generalize.
-
-<br><br>
-<img src="assign-3-Q6-1.svg">
+<img src="assign-3-Q5.svg">
 <br><br>
 
 The four nodes are encoded by 2-bit numbers 00, 01, 10, 11.
-The following is an adjacency list of G listing all adjacent nodes 
+The following is an adjacency list of all adjacent nodes 
 (a<sub>1</sub>a<sub>2</sub>, b<sub>1</sub>b<sub>2</sub>):
 
 <pre>
 (00, 01)
 (00, 10)
-(01, 00)
 (01, 10)
-(01, 11)
-(10, 00)
-(10, 01)
 (10, 11)
 (11, 01)
-(11, 10)
 </pre>
 
 This adjacency list is encoded by the formula:
@@ -152,9 +134,9 @@ This adjacency list is encoded by the formula:
 adjacent(a<sub>1</sub>, a<sub>2</sub>, b<sub>1</sub>, b<sub>2</sub>) =
 (a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1) &or;
 (a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0) &or;
-...
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1) &or;
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0)
+(a<sub>1</sub>=0 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0) &or;
+(a<sub>1</sub>=1 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=1) &or;
+(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1)
 </pre>
 
 a<sub>i</sub> = 0 is expressed by &not;a<sub>i</sub> and
@@ -164,62 +146,43 @@ adjacent(a<sub>1</sub>, a<sub>2</sub>, b<sub>1</sub>, b<sub>2</sub>) is true.
 
 <br><br>
 
-The existence of a 3-clique is encoded by &phi; with three 2-bit node variables
-x<sub>1</sub>y<sub>1</sub>, x<sub>2</sub>y<sub>2</sub>, x<sub>3</sub>y<sub>3</sub>:
-
-<pre>
-&phi;(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>) =
-adjacent(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>) &and; 
-adjacent(x<sub>1</sub>, y<sub>1</sub>, x<sub>3</sub>, y<sub>3</sub>) &and; 
-adjacent(x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>)
-</pre>
-
-Then &phi;(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>)
-is satisfiable iff there is a 3-clique of 
-nodes x<sub>1</sub>y<sub>1</sub>, x<sub>2</sub>y<sub>2</sub>, x<sub>3</sub>y<sub>3</sub>.
-
-<br><br>
-
-Now the generalization.
-Let n be the # of nodes of the input graph G.
-If k &gt; n, G cannot have a k-clique, so the reduction immediately generates
-a trivial unsatisfiable Boolean formula like x &and; &not;x.
-Otherwise, the nodes 0, &hellip;, n&minus;1 are encoded by p = &lceil;log<sub>2</sub>n&rceil; bits.
-The adjacency list of n nodes is then encoded by the formula 
+The above example generalizes as follows.
+Let n be the # of nodes and e the # of edges of directed graph G.
+The nodes 0, &hellip;, n&minus;1 are encoded by p = &lceil;log<sub>2</sub>n&rceil; bits.
+The adjacency list for n nodes is encoded by the formula 
 adjacent(a<sub>1</sub>, &hellip;, a<sub>p</sub>, b<sub>1</sub>, &hellip;, b<sub>p</sub>) which is
-a disjunction of 2&middot;e conjunctions, each of which containing 2p literals, where e is the # of edges of G.
-Each conjunction encodes a pair of adjacent nodes in the manner illustrated in the above example.
+a disjunction of e conjunctions, each of which containing 2p literals.
+Each conjunction encodes an ordered pair of adjacent nodes in the manner illustrated in the above example.
 
 <br><br>
 
-The existence of a k-clique is encoded by
-&phi; with k p-bit node variables
+By means of the encoding of adjacency lists described above,
+<b>give a direct polynomial-time reduction from HAMPATH to SAT</b>.
+Hint: For a directed graph with n nodes,
+a Hamiltonian path is a list of n distinct nodes
+(v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub>) such that
+adjacent(v<sub>i</sub>, v<sub>i+1</sub>) holds for 0 &le; i &le; n&minus;2.
+You must prove the equivalence condition and that your reduction runs in polynomial time.
 
-<pre>
-&phi;(x<sub>1</sub><sup>1</sup>, ..., x<sub>1</sub><sup>p</sup>, ..., x<sub>k</sub><sup>1</sup>, ..., x<sub>k</sub><sup>p</sup>) =
-<font size=+3>&and;</font>adjacent(x<sub>i</sub><sup>1</sup>, ..., x<sub>i</sub><sup>p</sup>, x<sub>j</sub><sup>1</sup>, ..., x<sub>j</sub><sup>p</sup>)
-</pre>
-
-where the conjunction is formed for all i, j such that
-1 &le; i &lt; j &le; k.
-
-<br><br>
-
-<ol type=a>
-<li>
-Give the exact number of literals in the above &phi; for the example graph G and k =3.
-<li>
-Give the Boolean formula generated from the following instance of CLIQUE by the reduction.
-Exactly how many literals does your formula have?
-
-<br><br>
-<img src="assign-3-Q6-2.svg">
 <br><br>
 
 <li>
-Give the exact number of literals in &phi; generated from any graph with n nodes and e edges, and
-show that it is bounded by a polynomial of n.
-</ol>
+By modifying the proof of Cook-Levin Theorem: SAT &isin; NPC,
+we can prove that all decidable languages are mapping reducible to SAT,
+although not always in polynomial time.
+Let L be a decidable language and M a DTM that decides L.
+
+<br><br>
+
+ <ol type=a>
+ <li>
+ Show that the worst-case time complexity function W<sub>M</sub>(n) is computable by
+ describing an algorithm to compute it.
+ <li>
+ Describe how to modify the proof of Cook-Levin Theorem to prove L &le;<sub>m</sub> SAT, that is,
+ L is mapping reducible to SAT;
+ use the computability of W<sub>M</sub>(n).
+ </ol>
 
 </ol>
 
