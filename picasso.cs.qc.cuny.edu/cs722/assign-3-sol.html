@@ -1,14 +1,14 @@
 <html>
 
 <title>
-CS 722 Assignment 3 Solutions
+CS 381/722 Assignment 3 Solutions
 </title>
 
 <body>
 
 <center>
 <h3>
-CS 722 &nbsp;&nbsp; Fall 2017
+CS 381/722 &nbsp;&nbsp; Fall 2018
 <br>
 Homework Assignment #3
 <br>
@@ -17,18 +17,16 @@ Solutions
 </center>
 
 <ol>
-
 <li>
 Consider the polynomial-time reduction 3SAT &le;<sub>p</sub> VERTEX-COVER we studied in class
 and the following &phi;:
 
 <blockquote>
-&phi; =
-(x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
-(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>) &and;
-(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>3</sub>)
+&phi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>) = 
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; x<sub>1</sub> &or; &not;x<sub>2</sub>) &and;
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; x<sub>3</sub>) &and;
+(x<sub>2</sub> &or; &not;x<sub>3</sub> &or; &not;x<sub>3</sub>)
 </blockquote>
 
 Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
@@ -45,18 +43,18 @@ Here, &not;x<sub>i</sub> is the negation of x<sub>i</sub>.
   Give one satisfying assignment for &phi;, and a corresponding k-vertex cover for G<sub>&phi;</sub>
   produced by the equivalence proof.
   <br><br>
-  The 13-vertex cover is shown in green.
+  The 11-vertex cover is shown in green.
   <br><br>
-  <img src="assign-3-sol-Q1-1.svg" width=800>
+  <img src="assign-3-sol-Q1-1.svg" width=760>
   <br><br>
   </li>
   <li>
   Give one k-vertex cover for G<sub>&phi;</sub> that is distinct from the one you gave in (b), and
   give a corresponding assignment for &phi; produced by the equivalence proof.
   <br><br>
-  The 13-vertex cover is shown in green.
+  The 11-vertex cover is shown in green.
   <br><br>
-  <img src="assign-3-sol-Q1-2.svg" width=800>
+  <img src="assign-3-sol-Q1-2.svg" width=760>
   <br><br>
   </li>
   </ol>
@@ -79,196 +77,236 @@ and the same &phi; in Question (1).
   Give one satisfying assignment for &phi;, and a corresponding subset
   produced by the equivalence proof.
   <pre>
-            1   2   3    C<sub>1</sub>    C<sub>2</sub>    C<sub>3</sub>    C<sub>4</sub>    C<sub>5</sub>
+            1   2   3    C<sub>1</sub>    C<sub>2</sub>    C<sub>3</sub>    C<sub>4</sub>
 
-     X<sub>1</sub>     1   0   0    1     0     0     1     0
-    <font color=red>&not;X<sub>1</sub>     1   0   0    0     1     1     0     1</font>
-     X<sub>2</sub>         1   0    1     1     1     0     0
-    <font color=red>&not;X<sub>2</sub>         1   0    0     0     0     1     1</font>
-     <font color=red>X<sub>3</sub>             1    1     1     0     0     0</font>
-    &not;X<sub>3</sub>             1    0     0     1     1     1
+     X<sub>1</sub>     1   0   0    0     1     1     0
+    <font color=red>&not;X<sub>1</sub>     1   0   0    1     0     0     0</font>
+     X<sub>2</sub>         1   0    1     0     0     1
+    <font color=red>&not;X<sub>2</sub>         1   0    0     1     1     0</font>
+     X<sub>3</sub>             1    0     0     1     0
+    <font color=red>&not;X<sub>3</sub>             1    0     0     0     1</font>
 
-     <font color=red>g<sub>1</sub>                  1     0     0     0     0</font>
-     <font color=red>h<sub>1</sub>                  1     0     0     0     0</font>
-     <font color=red>g<sub>2</sub>                        1     0     0     0</font>
-     h<sub>2</sub>                        1     0     0     0
-     <font color=red>g<sub>3</sub>                              1     0     0</font>
-     <font color=red>h<sub>3</sub>                              1     0     0</font>
-     <font color=red>g<sub>4</sub>                                    1     0</font>
-     <font color=red>h<sub>4</sub>                                    1     0</font>
-     <font color=red>g<sub>5</sub>                                          1</font>
-     h<sub>5</sub>                                          1
+     <font color=red>g<sub>1</sub>                  1     0     0     0</font>
+     <font color=red>h<sub>1</sub>                  1     0     0     0</font>
+     <font color=red>g<sub>2</sub>                        1     0     0</font>
+     <font color=red>h<sub>2</sub>                        1     0     0</font>
+     <font color=red>g<sub>3</sub>                              1     0</font>
+     <font color=red>h<sub>3</sub>                              1     0</font>
+     <font color=red>g<sub>4</sub>                                    1</font>
+     <font color=red>h<sub>4</sub>                                    1</font>
 
-     t      1   1   1    3     3     3     3     3
+     t      1   1   1    3     3     3     3
   </pre>
-  A = { x<sub>1</sub> = 0, x<sub>2</sub> = 0, x<sub>3</sub> = 1 },
-  S' = { &not;X<sub>1</sub>, &not;X<sub>2</sub>, X<sub>3</sub>, g<sub>1</sub>, h<sub>1</sub>, g<sub>2</sub>,
-         g<sub>3</sub>, h<sub>3</sub>, g<sub>4</sub>, h<sub>4</sub>, g<sub>5</sub> }.
+  A = { x<sub>1</sub> = 0, x<sub>2</sub> = 0, x<sub>3</sub> = 0 },
+  S' = { &not;X<sub>1</sub>, &not;X<sub>2</sub>, &not;X<sub>3</sub>, g<sub>1</sub>, h<sub>1</sub>, g<sub>2</sub>,
+         h<sub>2</sub>, g<sub>3</sub>, h<sub>3</sub>, g<sub>4</sub>, h<sub>4</sub> }.
   <br><br>
   </li>
   <li>
   Give one subset that sums to t and is distinct from the one you gave in (b), and
   give a corresponding assignment for &phi; produced by the equivalence proof.
   <pre>
-            1   2   3    C<sub>1</sub>    C<sub>2</sub>    C<sub>3</sub>    C<sub>4</sub>    C<sub>5</sub>
+            1   2   3    C<sub>1</sub>    C<sub>2</sub>    C<sub>3</sub>    C<sub>4</sub>
 
-     X<sub>1</sub>     1   0   0    1     0     0     1     0
-    <font color=red>&not;X<sub>1</sub>     1   0   0    0     1     1     0     1</font>
-     <font color=red>X<sub>2</sub>         1   0    1     1     1     0     0</font>
-    &not;X<sub>2</sub>         1   0    0     0     0     1     1
-     X<sub>3</sub>             1    1     1     0     0     0
-    <font color=red>&not;X<sub>3</sub>             1    0     0     1     1     1</font>
+     <font color=red>X<sub>1</sub>     1   0   0    0     1     1     0</font>
+    &not;X<sub>1</sub>     1   0   0    1     0     0     0
+     <font color=red>X<sub>2</sub>         1   0    1     0     0     1</font>
+    &not;X<sub>2</sub>         1   0    0     1     1     0
+     <font color=red>X<sub>3</sub>             1    0     0     1     0</font>
+    &not;X<sub>3</sub>             1    0     0     0     1
 
-     <font color=red>g<sub>1</sub>                  1     0     0     0     0</font>
-     <font color=red>h<sub>1</sub>                  1     0     0     0     0</font>
-     <font color=red>g<sub>2</sub>                        1     0     0     0</font>
-     h<sub>2</sub>                        1     0     0     0
-     g<sub>3</sub>                              1     0     0
-     h<sub>3</sub>                              1     0     0
-     <font color=red>g<sub>4</sub>                                    1     0</font>
-     <font color=red>h<sub>4</sub>                                    1     0</font>
-     <font color=red>g<sub>5</sub>                                          1</font>
-     h<sub>5</sub>                                          1
+     <font color=red>g<sub>1</sub>                  1     0     0     0</font>
+     <font color=red>h<sub>1</sub>                  1     0     0     0</font>
+     <font color=red>g<sub>2</sub>                        1     0     0</font>
+     <font color=red>h<sub>2</sub>                        1     0     0</font>
+     <font color=red>g<sub>3</sub>                              1     0</font>
+     h<sub>3</sub>                              1     0
+     <font color=red>g<sub>4</sub>                                    1</font>
+     <font color=red>h<sub>4</sub>                                    1</font>
 
-     t      1   1   1    3     3     3     3     3
+     t      1   1   1    3     3     3     3
   </pre>
-  S' = { &not;X<sub>1</sub>, X<sub>2</sub>, &not;X<sub>3</sub>, g<sub>1</sub>, h<sub>1</sub>, g<sub>2</sub>,
-         g<sub>4</sub>, h<sub>4</sub>, g<sub>5</sub> },
-  A = { x<sub>1</sub> = 0, x<sub>2</sub> = 1, x<sub>3</sub> = 0 }.
+  A = { x<sub>1</sub> = 1, x<sub>2</sub> = 1, x<sub>3</sub> = 1 },
+  S' = { X<sub>1</sub>, X<sub>2</sub>, X<sub>3</sub>, g<sub>1</sub>, h<sub>1</sub>, g<sub>2</sub>,
+         h<sub>2</sub>, g<sub>3</sub>, g<sub>4</sub>, h<sub>4</sub> }.
+  <br><br>
   </li>
   </ol>
 
 <br>
 
 <li>
-Consider the polynomial-time reduction 3SAT &le;<sub>p</sub> HAMPATH we studied in class
-and the following &phi;:
+&ne;SAT in Problem 7.26 on page 324 (Problem 7.24 in the 2nd edition).
+In addition, solve the following:
+<br><br>
+
+  <ol type=i>
+  <li>
+  Give the Boolean formula, call it &ne;&phi;, the reduction constructs from the formula &phi; in Question 1.
+  <li>
+  Give one &ne;-assignment for &ne;&phi;, and
+  a corresponding assignment for &phi; produced by the equivalence proof.
+  </ol>
+
+<br>
+
+<b>a.</b>
+Let A be a &ne;-assignment for &phi;.
+Then each clause of &phi; has a true literal L and a false literal L' under A.
+Literal L' is true under the negation of A, so each clause is true under the negation of A.
+<br>
+<b>b.</b>
+Since each clause is replaced with two clauses, the size of the formula doubles, so
+the reduction clearly runes in polynomial times.
+Suppose each clause c<sub>i</sub> is satisfied by an assignment A.
+Then one of y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is true under A.
+If y<sub>1</sub> = y<sub>2</sub> = 0, assign z<sub>i</sub> = 1.
+If y<sub>1</sub> = y<sub>2</sub> = 1, assign z<sub>i</sub> = 0.
+If y<sub>1</sub> = 0 and y<sub>2</sub> = 1 or
+y<sub>1</sub> = 1 and y<sub>2</sub> = 0,
+assign z<sub>i</sub> = y<sub>3</sub>.
+In each case,
+the extended assignment is a &ne;-assignment satisfying the two clauses replacing c<sub>i</sub>.
+Conversely suppose the generated formula has a satisfying &ne;-assignment A.
+If b = 0 under A,
+it cannot be the case that y<sub>1</sub> = y<sub>2</sub> = y<sub>3</sub> = 0 because this assignment
+makes one of the two clauses replacing c<sub>i</sub> false, hence at least one of
+y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is assigned to 1.
+Thus c<sub>i</sub> is true under A limited to the variables of the original formula.
+If b = 1 under A, negate A to make b = 0.
+By <b>a</b> the negated A too is a &ne;-assignment, and the same argument as above
+ensures at least one of
+y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is assigned to 1.
+<br>
+<b>c.</b>
+It is clear &ne;SAT &isin; NP.
+3SAT is NP-Complete and 3SAT &le;<sub>p</sub> &ne;SAT is proved in <b>b</b>.
+Hence &ne;SAT is NP-Complete.
+
+<br><br>
+
+The following is &ne;&phi; generated from &phi; in Question 1.
 
 <blockquote>
-&phi; =
-(x<sub>1</sub> &or; x<sub>1</sub> &or; x<sub>2</sub>) &and;
-(x<sub>1</sub> &or; x<sub>2</sub> &or; &not;x<sub>2</sub>) &and;
-(&not;x<sub>1</sub> &or; &not;x<sub>2</sub> &or; &not;x<sub>2</sub>)
+&ne;&phi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, z<sub>1</sub>, z<sub>2</sub>, z<sub>3</sub>, z<sub>4</sub>, b) =
+<br>
+(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; z<sub>1</sub>) &and;
+(&not;z<sub>1</sub> &or; x<sub>2</sub> &or; b) &and;
+<br>
+(x<sub>1</sub> &or; x<sub>1</sub> &or; z<sub>2</sub>) &and;
+(&not;z<sub>2</sub> &or; &not;x<sub>2</sub> &or; b) &and;
+<br>
+(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; z<sub>3</sub>) &and;
+(&not;z<sub>3</sub> &or; x<sub>3</sub> &or; b) &and;
+<br>
+(x<sub>2</sub> &or; &not;x<sub>3</sub> &or; z<sub>4</sub>) &and;
+(&not;z<sub>4</sub> &or; &not;x<sub>3</sub> &or; b)
 </blockquote>
 
-  <ol type=a>
+One &ne;-assignment is
+{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0, 
+  z<sub>1</sub>=0, z<sub>2</sub>=1, z<sub>3</sub>=0, z<sub>4</sub>=1, b=0 }.
+The corresponding assignment for &phi; is
+{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0 }.
+
+<br><br>
+
+<li>
+MAX-CUT in Problem 7.27 on page 325 (Problem 7.25 in the 2nd edition).
+In addition, solve the following:
+<br><br>
+
+  <ol type=i>
   <li>
-  Give (G<sub>&phi;</sub>, s, t) constructed from &phi; by the reduction.
-  <br><br>
-  (G<sub>&phi;</sub>, s, t) is given in (b) and (c).
-  <br><br>
-  </li>
+  Give the instance of MAX-CUT, (G, k), the reduction constructs from the formula &phi; in Question 1.
   <li>
-  Give one satisfying assignment for &phi;, and a corresponding Ham path from s to t in G<sub>&phi;</sub>
-  produced by the equivalence proof.
-  <br><br>
-  The Hamiltonian path is shown in red.
-  <br><br>
-  <img src="assign-3-sol-Q3-1.svg" width=800>
-  <br><br>
-  </li>
-  <li>
-  Give one Ham path from s to t that is distinct from the one you gave in (b), and
-  give a corresponding assignment for &phi; produced by the equivalence proof.
-  <br><br>
-  The Hamiltonian path is shown in red.
-  <br><br>
-  <img src="assign-3-sol-Q3-2.svg" width=800>
-  </li>
+  Give one cut of size at least k of G, and
+  a corresponding &ne;-assignment for &phi; produced by the equivalence proof.
   </ol>
 
 <br>
 
-<li>
-Problem 7.17 on page 323 (Problem 7.16 in the 2nd edition).
+The reduction generates graph G as described and k = 9c<sup>2</sup>m + 2c, where
+c is the # of clauses and
+m is the # of variables of the given 3cnf-formula &phi;.
+The # of nodes of G is 6cm &le; 6c&middot;3c = 2(3c)<sup>2</sup>, which is in the asymptotic order of
+the square of the # of literals 3c in &phi;, so G can be constructed in polynomial time.
 
 <br><br>
-If all numbers are represented in unary,
-the size of the sum table is exponential in the number of literals in the given 3-cnf-formula,
-so the runtime of the reduction is not bounded by a polynomial.
-<br><br>
-Let &lang;x<sub>1</sub>, &hellip;, x<sub>k</sub>, t&rang; be an input where the x<sub>i</sub> and t are given in unary.
-Let n = size of  &lang;x<sub>1</sub>, &hellip;, x<sub>k</sub>, t&rang;.
-<br><br>
-Let S(i, j), 0 &le; i &le; k, 0 &le; j &le; t, be the Boolean function defined by:
-<br><br>
-S(i, j) = true iff there is a subset of { x<sub>1</sub>, &hellip;, x<sub>i</sub> } that sums to j.
-<br><br>
-Then the following recurrence holds:
-<br><br>
-S(i, 0) = true, 0 &le; i &le; k
-<br>
-S(0, j) = false, 1 &le; j &le; t
-<br>
-S(i, j) =
-<br>
-(there is a subset of { x<sub>1</sub>, &hellip;, x<sub>i&minus;1</sub> } that sums to j) &or;
-(there is a subset of { x<sub>1</sub>, &hellip;, x<sub>i</sub> } using x<sub>i</sub> that sums to j) =
-<br>
-(there is a subset of { x<sub>1</sub>, &hellip;, x<sub>i&minus;1</sub> } that sums to j) &or;
-(there is a subset of { x<sub>1</sub>, &hellip;, x<sub>i&minus;1</sub> } that sums to j&minus;x<sub>i</sub>) =
-<br>
-S(i&minus;1, j) &or; S(i&minus;1, j&minus;x<sub>i</sub>)
-<br><br>
-A dynamic programming algorithm can be used to compute S(k, t) by calculating the entries of
-(k+1) &times; (t+1) 2-dimensional table in row-major order using the above recurrence.
-It holds that k &le; n.
-Since t is in unary, the value of t is the length of t, hence t &le; n.
-The runtime is thus O(k&times;t) = O(n&times;n) = O(n<sup>2</sup>).
-If the x<sub>i</sub> and t are encoded by a p-radix notation, p &ge; 2,
-size(t) &approx; log<sub>p</sub>t.
-Hence t = p<sup>log<sub>p</sub>t</sup> &approx; p<sup>size(t)</sup>, and
-the value of t
-cannot be bounded by a polynomial of the size of &lang;x<sub>1</sub>, &hellip;, x<sub>k</sub>, t&rang;.
-<br><br>
 
-<li>
-Problem 7.41 on page 327 (Problem 7.39 in the 2nd edition).
+Note that if a clause has x<sub>i</sub> &or; &not;x<sub>i</sub>,
+the variable gadget for x<sub>i</sub> has a pair of nodes labeled with x<sub>i</sub> and &not;x<sub>i</sub>
+connected by <i>two</i> edges, one given by the definition of variable gadgets,
+the other given by the definition of clause triangles.
+Inclusion of double edges is this case is necessary for the reduction to work correctly. 
 
 <br><br>
-If 2 &times; 2 windows are used, Claim 2 breaks down: Even if the i-th row is a valid configuration and
-every 2 &times; 2 window over the i-th and (i+1)-th rows is legal,
-the (i+1)-th row may not be a valid configuration.
-For example, let &delta;(q, b) = { (q', a, L), (q', a, R) }.
-The following i-th and (i+1)-th rows are allowed:
-<pre>
-     &middot;&middot;&middot; a q b  &middot;&middot;&middot;
-     &middot;&middot;&middot; q'a q' &middot;&middot;&middot;
-</pre>
-Every 2 &times; 2 window over these rows is legal, but the (i+1)-th row is not a valid configuration.
+
+Proof of the equivalence condition.
+First, we note that G has 9c<sup>2</sup>m + 3c edges,
+9c<sup>2</sup>m edges in the variable gadgets and 3c edges in the clause triangles.
+
 <br><br>
-Another example is:
-<pre>
-     &middot;&middot;&middot; b b b &middot;&middot;&middot; q b b &middot;&middot;&middot;
-     &middot;&middot;&middot; b q'b &middot;&middot;&middot; a q'b &middot;&middot;&middot;
-</pre>
+
+Suppose &phi; has a &ne;-assignment A that satisfies it.
+Define a cut by S = the set of true literals, T = the set of false literals.
+Then all the 9c<sup>2</sup>m edges in the variable gadgets are cut edges.
+Since A is a &ne;-assignment,
+each clause has two literals with the same value and a literal with the opposite value under A.
+Hence each clause triangle has exactly two cut edges.
+Hence G has 9c<sup>2</sup>m + 2c cur edges.
+
+<br><br>
+
+Conversely suppose G has at least 9c<sup>2</sup>m + 2c cut edges.
+If an edge in any variable gadget is not included in the cut,
+the total number of edges in the cut is &le; 9c<sup>2</sup>m&minus;1 + 2c &lt;
+9c<sup>2</sup>m + 2c, since each clause triangle can contribute at most two cut edges.
+Thus all the 9c<sup>2</sup>m edges in the variable gadgets must be cut edges and
+2c cut edges must come from each clause triangle contributing 2 cut edges.
+Therefore S includes all 3c x<sub>i</sub>-nodes or else &not;x<sub>i</sub>-nodes, and
+T includes all 3c &not;x<sub>i</sub>-nodes or else x<sub>i</sub>-nodes, respectively,
+for 1 &le; i &le; m.
+We can then consistently choose an assignment A s.t. all literals in S are true and
+all literals in T are false, or vice versa.
+Since each clause triangle has a cut edge, then,
+that clause has a true literal and a false literal under A, hence
+A is a &ne;-assignment.
+
+<br><br>
+
+The following is (G, k) generated from the &phi; in Question 1.
+For brevity only 12 edges in the clause triangles are shown &ndash; 432 edges in the variable gadgets are not shown.
+A cut of size 440 is also shown where S is the set of white nodes and T is the set of green nodes.
+A corresponding &ne;-assignment is
+{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0 } or
+{ x<sub>1</sub>=1, x<sub>2</sub>=1, x<sub>3</sub>=1 }.
+
+<br><br>
+
+<img src="assign-3-sol-Q4.svg" width=680>
+
+<br>
 
 <li>
-Consider the following polynomial-time reduction from CLIQUE to SAT.
+Many graph problems can be reduced to SAT by encoding adjacency lists.
+For example consider the following directed graph:
+
 
 <br><br>
-
-We begin by a description of the reduction of the following example graph G, then generalize.
-
-<br><br>
-<img src="assign-3-Q6-1.svg">
+<img src="assign-3-Q5.svg">
 <br><br>
 
 The four nodes are encoded by 2-bit numbers 00, 01, 10, 11.
-The following is an adjacency list of G listing all adjacent nodes 
+The following is an adjacency list of all adjacent nodes 
 (a<sub>1</sub>a<sub>2</sub>, b<sub>1</sub>b<sub>2</sub>):
 
 <pre>
 (00, 01)
 (00, 10)
-(01, 00)
 (01, 10)
-(01, 11)
-(10, 00)
-(10, 01)
 (10, 11)
 (11, 01)
-(11, 10)
 </pre>
 
 This adjacency list is encoded by the formula:
@@ -277,9 +315,9 @@ This adjacency list is encoded by the formula:
 adjacent(a<sub>1</sub>, a<sub>2</sub>, b<sub>1</sub>, b<sub>2</sub>) =
 (a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1) &or;
 (a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0) &or;
-...
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1) &or;
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0)
+(a<sub>1</sub>=0 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0) &or;
+(a<sub>1</sub>=1 &and; a<sub>2</sub>=0 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=1) &or;
+(a<sub>1</sub>=1 &and; a<sub>2</sub>=1 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1)
 </pre>
 
 a<sub>i</sub> = 0 is expressed by &not;a<sub>i</sub> and
@@ -289,140 +327,141 @@ adjacent(a<sub>1</sub>, a<sub>2</sub>, b<sub>1</sub>, b<sub>2</sub>) is true.
 
 <br><br>
 
-The existence of a 3-clique is encoded by &phi; with three 2-bit node variables
-x<sub>1</sub>y<sub>1</sub>, x<sub>2</sub>y<sub>2</sub>, x<sub>3</sub>y<sub>3</sub>:
-
-<pre>
-&phi;(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>) =
-adjacent(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>) &and; 
-adjacent(x<sub>1</sub>, y<sub>1</sub>, x<sub>3</sub>, y<sub>3</sub>) &and; 
-adjacent(x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>)
-</pre>
-
-Then &phi;(x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>)
-is satisfiable iff there is a 3-clique of 
-nodes x<sub>1</sub>y<sub>1</sub>, x<sub>2</sub>y<sub>2</sub>, x<sub>3</sub>y<sub>3</sub>.
-
-<br><br>
-
-Now the generalization.
-Let n be the # of nodes of the input graph G.
-If k &gt; n, G cannot have a k-clique, so the reduction immediately generates
-a trivial unsatisfiable Boolean formula like x &and; &not;x.
-Otherwise, the nodes 0, &hellip;, n&minus;1 are encoded by p = &lceil;log<sub>2</sub>n&rceil; bits.
-The adjacency list of n nodes is then encoded by the formula 
+The above example generalizes as follows.
+Let n be the # of nodes and e the # of edges of directed graph G.
+The nodes 0, &hellip;, n&minus;1 are encoded by p = &lceil;log<sub>2</sub>n&rceil; bits.
+The adjacency list for n nodes is encoded by the formula 
 adjacent(a<sub>1</sub>, &hellip;, a<sub>p</sub>, b<sub>1</sub>, &hellip;, b<sub>p</sub>) which is
-a disjunction of 2&middot;e conjunctions, each of which containing 2p literals, where e is the # of edges of G.
-Each conjunction encodes a pair of adjacent nodes in the manner illustrated in the above example.
+a disjunction of e conjunctions, each of which containing 2p literals.
+Each conjunction encodes an ordered pair of adjacent nodes in the manner illustrated in the above example.
 
 <br><br>
 
-The existence of a k-clique is encoded by
-&phi; with k p-bit node variables
+By means of the encoding of adjacency lists described above,
+<b>give a direct polynomial-time reduction from HAMPATH to SAT</b>.
+Hint: For a directed graph with n nodes,
+a Hamiltonian path is a list of n distinct nodes
+(v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub>) such that
+adjacent(v<sub>i</sub>, v<sub>i+1</sub>) holds for 0 &le; i &le; n&minus;2.
+You must prove the equivalence condition and that your reduction runs in polynomial time.
+
+<br><br>
+
+Let the formula HAMPATH(v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub>),
+where v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub> are node variables, be defined as follows:
 
 <pre>
-&phi;(x<sub>1</sub><sup>1</sup>, ..., x<sub>1</sub><sup>p</sup>, ..., x<sub>k</sub><sup>1</sup>, ..., x<sub>k</sub><sup>p</sup>) =
-<font size=+3>&and;</font>adjacent(x<sub>i</sub><sup>1</sup>, ..., x<sub>i</sub><sup>p</sup>, x<sub>j</sub><sup>1</sup>, ..., x<sub>j</sub><sup>p</sup>)
+HAMPATH(v<sub>0</sub>, ..., v<sub>n&minus;1</sub>) &equiv;
+s = v<sub>0</sub> &and; t = v<sub>n&minus;1</sub> &and;
+adjacent(v<sub>0</sub>, v<sub>1</sub>) &and; adjacent(v<sub>1</sub>, v<sub>2</sub>) &and; &middot;&middot;&middot; &and; adjacent(v<sub>n&minus;2</sub>, v<sub>n&minus;1</sub>) &and;
+<font size=+3>&and;</font><sub>0&le;i&lt;j&le;n&minus;1</sub>(v<sub>i</sub> &ne; v<sub>j</sub>) // v<sub>0</sub>, ..., v<sub>n&minus;1</sub> are mutually distinct
 </pre>
 
-where the conjunction is formed for all i, j such that
-1 &le; i &lt; j &le; k.
+Then there is a Hamiltonian path from s to t iff there exist nodes a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub>
+satisfying HAMPATH(v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub>), i.e.,
+HAMPATH(a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub>) is true.
+The rest is a matter of translating node variables into Boolean variables.
 
 <br><br>
 
-<ol type=a>
-<li>
-Give the exact number of literals in the above &phi; for the example graph G and k =3.
-
-<br><br>
-&phi; has (2e)&middot;(2p)&middot;3 = 2&middot;5&middot;2&middot;2&middot;3 = 120 literals.
-<br><br>
-
-<li>
-Give the Boolean formula generated from the following instance of CLIQUE by the reduction.
-Exactly how many literals does your formula have?
-
-<br><br>
-<img src="assign-3-Q6-2.svg">
-<br><br>
-<img src="assign-3-sol-Q6-2.svg">
-<br><br>
-The six nodes are encoded by 3-bit numbers 000, 001, 010, 011, 100, 101.
-The following is an adjacency list of G listing all adjacent nodes 
-(a<sub>1</sub>a<sub>2</sub>a<sub>3</sub>, b<sub>1</sub>b<sub>2</sub>b<sub>3</sub>):
-
-<pre>
-(000, 001)
-(000, 010)
-(000, 011)
-(000, 100)
-(001, 000)
-(001, 010)
-(001, 100)
-(010, 000)
-(010, 001)
-(010, 100)
-(010, 101)
-(011, 000)
-(011, 100)
-(100, 000)
-(100, 001)
-(100, 010)
-(100, 011)
-(100, 101)
-(101, 010)
-(101, 100)
-</pre>
-
-This adjacency list is encoded by the formula:
-
-<pre>
-adjacent(a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>, b<sub>1</sub>, b<sub>2</sub>, b<sub>3</sub>) =
-(a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; a<sub>3</sub>=0 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=0 &and; b<sub>3</sub>=1) &or;
-(a<sub>1</sub>=0 &and; a<sub>2</sub>=0 &and; a<sub>3</sub>=0 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1 &and; b<sub>3</sub>=0) &or;
-...
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=0 &and; a<sub>3</sub>=1 &and; b<sub>1</sub>=0 &and; b<sub>2</sub>=1 &and; b<sub>3</sub>=0) &or;
-(a<sub>1</sub>=1 &and; a<sub>2</sub>=0 &and; a<sub>3</sub>=1 &and; b<sub>1</sub>=1 &and; b<sub>2</sub>=0 &and; b<sub>3</sub>=0)
-</pre>
-
-a<sub>i</sub> = 0 is expressed by &not;a<sub>i</sub> and
-a<sub>i</sub> = 1 is expressed by a<sub>i</sub>.
-Nodes a<sub>1</sub>a<sub>2</sub>a<sub>3</sub> and b<sub>1</sub>b<sub>2</sub>b<sub>3</sub> are adjacent iff
-adjacent(a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>, b<sub>1</sub>, b<sub>2</sub>, b<sub>3</sub>) is true.
+Each node variable v<sub>i</sub>, 0 &le; i &le; n&minus;1, is translated into
+p Boolean variables
+x<sub>i</sub><sup>1</sup>, &hellip;, x<sub>i</sub><sup>p</sup>
+where p = &lceil;log<sub>2</sub>n&rceil;.
+Each adjacent(v<sub>i</sub>, v<sub>i+1</sub>) formula, 0 &le; i &le; n&minus;2, is translated into
+adjacent(x<sub>i</sub><sup>1</sup>, &hellip;, x<sub>i</sub><sup>p</sup>, x<sub>i+1</sub><sup>1</sup>, &hellip;, x<sub>i+1</sub><sup>p</sup>)
+as described in the above generalization.
+Inequality v<sub>i</sub> &ne; v<sub>j</sub> is translated into
+<br>
+x<sub>i</sub><sup>1</sup> &ne; x<sub>j</sub><sup>1</sup> &or; &middot;&middot;&middot; &or; x<sub>i</sub><sup>p</sup> &ne; x<sub>j</sub><sup>p</sup>.
+Every 1-bit inequality x &ne; y is translated into (&not;x &and; y) &or; (x &and; &not;y).
+The two equalities s = v<sub>0</sub> and t = v<sub>n&minus;1</sub>, where s and t are p-bit constants, are translated similarly.
+Let &phi;<sub>HAMPATH</sub>(x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
+x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>)
+be the Boolean formula obtained by the translation.
 
 <br><br>
 
-The existence of a 4-clique is encoded by &phi; with four 3-bit node variables
-x<sub>1</sub>y<sub>1</sub>z<sub>1</sub>, x<sub>2</sub>y<sub>2</sub>z<sub>2</sub>, x<sub>3</sub>y<sub>3</sub>z<sub>3</sub>, 
-x<sub>4</sub>y<sub>4</sub>z<sub>4</sub>:
+The validity of the equivalence condition is rather straightforward:
 
-<pre>
-&phi;(x<sub>1</sub>, y<sub>1</sub>, z<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, z<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>, z<sub>3</sub>, x<sub>4</sub>, y<sub>4</sub>, z<sub>4</sub>) =
-adjacent(x<sub>1</sub>, y<sub>1</sub>, z<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, z<sub>2</sub>) &and; 
-adjacent(x<sub>1</sub>, y<sub>1</sub>, z<sub>1</sub>, x<sub>3</sub>, y<sub>3</sub>, z<sub>3</sub>) &and; 
-adjacent(x<sub>1</sub>, y<sub>1</sub>, z<sub>1</sub>, x<sub>4</sub>, y<sub>4</sub>, z<sub>4</sub>) &and;
-adjacent(x<sub>2</sub>, y<sub>2</sub>, z<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub>, z<sub>3</sub>) &and; 
-adjacent(x<sub>2</sub>, y<sub>2</sub>, z<sub>2</sub>, x<sub>4</sub>, y<sub>4</sub>, z<sub>4</sub>) &and;
-adjacent(x<sub>3</sub>, y<sub>3</sub>, z<sub>3</sub>, x<sub>4</sub>, y<sub>4</sub>, z<sub>4</sub>)
-</pre>
+<blockquote>
+There is a Hamiltonian path (a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub>) from s to t. &hArr;
+<br>
+s = a<sub>0</sub>, t = a<sub>n&minus;1</sub>, a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub> are distinct nodes, and
+adjacent(a<sub>i</sub>, a<sub>i+1</sub>) holds for 0 &le; i &le; n&minus;2. &hArr;
+<br>
+HAMPATH(a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub>) is true. &hArr;
+<br>
+&phi;<sub>HAMPATH</sub>(x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
+x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>) is satisfied by
+the Boolean assignment that assigns the bits encoding a<sub>0</sub> to
+x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
+the bits encoding a<sub>n&minus;1</sub> to
+x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>.
+</blockquote>
 
-&phi; has (2e)&middot;(2p)&middot;6 = 2&middot;10&middot;2&middot;3&middot;6 = 720 literals.
+Each adjacent formula in &phi;<sub>HAMPATH</sub> has e&middot;2p literals, so
+the n&minus;2 adjacent formulas has e&middot;2p&middot;(n&minus;2) literals.
+The translation of each inequality v<sub>i</sub> &ne; v<sub>j</sub> has 4p literals, so
+the total number of literals in the translation of all inequalities is
+4p&middot;n(n&minus;1)/2.
+Hence the total # of literals in &phi;<sub>HAMPATH</sub>,
+except for those in the translations of s = v<sub>0</sub>, t = v<sub>n&minus;1</sub> which can be omitted in asymptotic analysis,
+is e&middot;2p&middot;(n&minus;2) + 4p&middot;n(n&minus;1)/2 =
+e&middot;2&lceil;log<sub>2</sub>n&rceil;&middot;(n&minus;2) + 4&lceil;log<sub>2</sub>n&rceil;&middot;n(n&minus;1)/2,
+which is bounded by a polynomial of n and e.
+Thus the runtime of the reduction is polynomial.
+
 <br><br>
 
 <li>
-Give the exact number of literals in &phi; generated from any graph with n nodes and e edges, and
-show that it is bounded by a polynomial of n.
+By modifying the proof of Cook-Levin Theorem: SAT &isin; NPC,
+we can prove that all decidable languages are mapping reducible to SAT,
+although not always in polynomial time.
+Let L be a decidable language and M a DTM that decides L.
 
 <br><br>
-The formula adjacent(a<sub>1</sub>, &hellip;, a<sub>p</sub>, b<sub>1</sub>, &hellip;, b<sub>p</sub>) has
-(2e)&middot;(2p) =
-4&middot;e&middot;p = 4&middot;e&middot;&lceil;log<sub>2</sub>n&rceil; literals.
-Since &phi; is a conjunction of k(k&minus;1)/2 "adjacent" formulas,
-it has (4&middot;e&middot;&lceil;log<sub>2</sub>n&rceil;) &times; k(k&minus;1)/2 literals.
-Since k &le; n,
-this is &le; (4&middot;e&middot;&lceil;log<sub>2</sub>n&rceil;) &times; n(n&minus;1)/2.
-Since e &le; n(n&minus;1)/2, it is O(n<sup>4</sup>&middot;log<sub>2</sub>n), bounded by a polynomial of n.
-</ol>
+
+ <ol type=a>
+ <li>
+ Show that the worst-case time complexity function W<sub>M</sub>(n) is computable by
+ describing an algorithm to compute it.
+
+ <br><br>
+
+ Let &Sigma; be the set of the input symbols of M and
+ define D<sub>n</sub> = { w &isin; &Sigma;<sup>*</sup> : |w| = n }.
+ The following is an algorithm to compute W<sub>M</sub>(n).
+ <pre>
+ k = 0;
+ for ( each w &isin; D<sub>n</sub> ) // one by one generate all input strings of length n, e.g., in lexicographic order
+ {
+	run M on w and count the number, &alpha;, of transitions performed;
+	if ( &alpha; &gt; k )
+		k = &alpha;;
+ }
+ return k;
+ </pre>
+
+ <li>
+ Describe how to modify the proof of Cook-Levin Theorem to prove L &le;<sub>m</sub> SAT, that is,
+ L is mapping reducible to SAT;
+ use the computability of W<sub>M</sub>(n).
+
+ <br><br>
+
+ We only need to change the size of the tableau and the Boolean formulas encoding it.
+ Let f(n) = max(n, W<sub>M</sub>(n))+3, which is computable.
+ Note that W<sub>M</sub>(n) &lt; n is possible.
+ Then tableaus of size f(n) &times; f(n) can represent the transition sequences of M.
+ So we simply modify the sizes of
+ the variable set,
+ &phi;<sub>cell</sub>,
+ &phi;<sub>start</sub>,
+ &phi;<sub>move</sub>,
+ &phi;<sub>accept</sub>
+ by replacing n<sup>k</sup> with f(n).
+ </ol>
 
 </ol>
 
