@@ -129,6 +129,9 @@ Then successively eliminate the universal quantifiers from left to right by conv
 &Phi;(&hellip;, 0, &hellip;) &and;
 &Phi;(&hellip;, 1, &hellip;),
 that is, by substituting 0 and 1 for x<sub>i</sub> and forming the conjunction of the resulting two formulas.
+The existentially quantified variable or variables that immediately follow x<sub>i</sub> in 
+the original &Phi;
+are renamed to fresh variables in one of the two conjunctions.
 Let &Phi;&prime; be the final formula obtained.
 It holds that &Phi; is true iff &Phi;&prime; is satisfiable since
 &exist;x<sub>i</sub>&Phi;(&hellip;, x<sub>i</sub>, &hellip;) is true iff
