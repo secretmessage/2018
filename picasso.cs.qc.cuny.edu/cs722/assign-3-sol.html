@@ -403,14 +403,14 @@ x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>.
 </blockquote>
 
 Each adjacent formula in &phi;<sub>HAMPATH</sub> has e&middot;2p literals, so
-the n&minus;2 adjacent formulas has e&middot;2p&middot;(n&minus;2) literals.
+the n&minus;1 adjacent formulas has e&middot;2p&middot;(n&minus;1) literals.
 The translation of each inequality v<sub>i</sub> &ne; v<sub>j</sub> has 4p literals, so
 the total number of literals in the translation of all inequalities is
 4p&middot;n(n&minus;1)/2.
 Hence the total # of literals in &phi;<sub>HAMPATH</sub>,
 except for those in the translations of s = v<sub>0</sub>, t = v<sub>n&minus;1</sub> which can be omitted in asymptotic analysis,
-is e&middot;2p&middot;(n&minus;2) + 4p&middot;n(n&minus;1)/2 =
-e&middot;2&lceil;log<sub>2</sub>n&rceil;&middot;(n&minus;2) + 4&lceil;log<sub>2</sub>n&rceil;&middot;n(n&minus;1)/2,
+is e&middot;2p&middot;(n&minus;1) + 4p&middot;n(n&minus;1)/2 =
+e&middot;2&lceil;log<sub>2</sub>n&rceil;&middot;(n&minus;1) + 4&lceil;log<sub>2</sub>n&rceil;&middot;n(n&minus;1)/2,
 which is bounded by a polynomial of n and e.
 Thus the runtime of the reduction is polynomial.
 
