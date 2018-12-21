@@ -129,8 +129,10 @@ Then successively eliminate the universal quantifiers from left to right by conv
 &Phi;(&hellip;, 0, &hellip;) &and;
 &Phi;(&hellip;, 1, &hellip;),
 that is, by substituting 0 and 1 for x<sub>i</sub> and forming the conjunction of the resulting two formulas.
-The existentially quantified variable or variables that immediately follow x<sub>i</sub> in 
-the original &Phi;
+The existentially quantified variables following &forall;x<sub>i</sub> in
+the list of quantifiers in
+the original &Phi;,
+along with the variables that renamed them previously,
 are renamed to fresh variables in one of the two conjunctions.
 Let &Phi;&prime; be the final formula obtained.
 It holds that &Phi; is true iff &Phi;&prime; is satisfiable since
@@ -138,6 +140,10 @@ It holds that &Phi; is true iff &Phi;&prime; is satisfiable since
 there is an assignment to x<sub>i</sub> that makes &Phi;(&hellip;, x<sub>i</sub>, &hellip;) true,
 and &forall;x<sub>i</sub>&Phi;(&hellip;, x<sub>i</sub>, &hellip;) is true iff
 &Phi;(&hellip;, x<sub>i</sub>, &hellip;) is true for both x<sub>i</sub>=0 and x<sub>i</sub>=1.
+Renaming of the existentially quantified variables following &forall;x<sub>i</sub> is necessary because
+they become independent of each other in 
+&Phi;(&hellip;, 0, &hellip;) and
+&Phi;(&hellip;, 1, &hellip;).
 <br><br>
 Let n be the size of the given QBF &Phi; and m be the # of universal quantifiers in it.
 The size of &Phi; is doubled each time a universal quantifier is eliminated.
@@ -172,8 +178,10 @@ Justify your answer.
 It is not a valid reduction.
 There may be an edge between C<sub>1</sub> and C<sub>2</sub> even if
 C<sub>1</sub> |&minus;<sub>M</sub> C<sub>2</sub> does not hold,
-so the if-part of the equivalence condition C<sub>start</sub> |&minus;<sup>*</sup> C<sub>accept</sub> iff
-there is a path from C<sub>start</sub> to C<sub>accept</sub> breaks down.
+so the if-part of the equivalence condition,
+C<sub>start</sub> |&minus;<sup>*</sup> C<sub>accept</sub> iff
+there is a path from C<sub>start</sub> to C<sub>accept</sub>,
+breaks down.
 For example consider the following transitions:
 <pre>
 	C<sub>1</sub> &rarr; C<sub>2</sub> &rarr; C<sub>3</sub> &rarr; C<sub>accept</sub>
