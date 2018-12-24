@@ -348,8 +348,7 @@ You must prove the equivalence condition and that your reduction runs in polynom
 <br><br>
 
 Let the formula HAMPATH(v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub>),
-where 
-n is the # of nodes in the graph and
+where n is the # of nodes in the graph and
 v<sub>0</sub>, &hellip;, v<sub>n&minus;1</sub> are node variables, be defined as follows:
 
 <pre>
@@ -374,10 +373,10 @@ Each adjacent(v<sub>i</sub>, v<sub>i+1</sub>) formula, 0 &le; i &le; n&minus;2, 
 adjacent(x<sub>i</sub><sup>1</sup>, &hellip;, x<sub>i</sub><sup>p</sup>, x<sub>i+1</sub><sup>1</sup>, &hellip;, x<sub>i+1</sub><sup>p</sup>)
 as described in the above generalization.
 Inequality v<sub>i</sub> &ne; v<sub>j</sub> is translated into
-<br>
 x<sub>i</sub><sup>1</sup> &ne; x<sub>j</sub><sup>1</sup> &or; &middot;&middot;&middot; &or; x<sub>i</sub><sup>p</sup> &ne; x<sub>j</sub><sup>p</sup>.
 Every 1-bit inequality x &ne; y is translated into (&not;x &and; y) &or; (x &and; &not;y).
-The two equalities s = v<sub>0</sub> and t = v<sub>n&minus;1</sub>, where s and t are p-bit constants, are translated similarly.
+The two equalities s = v<sub>0</sub> and t = v<sub>n&minus;1</sub>,
+where s and t are represented by p-bit constants, are translated similarly.
 Let &phi;<sub>HAMPATH</sub>(x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
 x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>)
 be the Boolean formula obtained by the translation.
@@ -394,12 +393,20 @@ adjacent(a<sub>i</sub>, a<sub>i+1</sub>) holds for 0 &le; i &le; n&minus;2. &hAr
 <br>
 HAMPATH(a<sub>0</sub>, &hellip;, a<sub>n&minus;1</sub>) is true. &hArr;
 <br>
+&phi;<sub>HAMPATH</sub>(b<sub>0</sub><sup>1</sup>, &hellip;, b<sub>0</sub><sup>p</sup>, &hellip;,
+b<sub>n&minus;1</sub><sup>1</sup>, &hellip;, b<sub>n&minus;1</sub><sup>p</sup>)
+is true where
+b<sub>0</sub><sup>1</sup>, &hellip;, b<sub>0</sub><sup>p</sup> encode node a<sub>0</sub>, &hellip;,
+b<sub>n&minus;1</sub><sup>1</sup>, &hellip;, b<sub>n&minus;1</sub><sup>p</sup> encode node a<sub>n&minus;1</sub>. &hArr;
+<br>
 &phi;<sub>HAMPATH</sub>(x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
-x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>) is satisfied by
-the Boolean assignment that assigns the bits encoding a<sub>0</sub> to
-x<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>, &hellip;,
-the bits encoding a<sub>n&minus;1</sub> to
-x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>.
+x<sub>n&minus;1</sub><sup>1</sup>, &hellip;, x<sub>n&minus;1</sub><sup>p</sup>)
+is satisfied by an assignment
+{ 
+x<sub>0</sub><sup>1</sup>=b<sub>0</sub><sup>1</sup>, &hellip;, x<sub>0</sub><sup>p</sup>=b<sub>0</sub><sup>p</sup>, &hellip;,
+x<sub>n&minus;1</sub><sup>1</sup>=b<sub>n&minus;1</sub><sup>1</sup>, &hellip;,
+x<sub>n&minus;1</sub><sup>p</sup>=b<sub>n&minus;1</sub><sup>p</sup>
+}.
 </blockquote>
 
 Each adjacent formula in &phi;<sub>HAMPATH</sub> has e&middot;2p literals, so
