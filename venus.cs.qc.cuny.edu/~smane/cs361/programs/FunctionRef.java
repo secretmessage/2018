@@ -1,76 +1,29 @@
-//
-// Java "function reference" use trapezoid rule as example
-//
-// Sateesh R. Mane, copyright 2018
-//
+<html><head><style type="text/css">
+body { background-color: #E2E2E2; padding: 30px; font-family:verdana; }
+table { background-color:#ffffff; height:100%; width:600px; }
+td { padding:20px; text-align:center; font-size:9pt; }
+iframe { height: 216px; margin: 0 14px; width: 384px; }
+@media screen and (max-width:568px) { 
+	iframe { height: 168px; margin: 10px auto 0 auto; width: 300px; }
+ }
+</style></head>
+<body><center><table height="100%" width="600">
+<tr><td height="30%" valign="top"><img src="QClogo_H.jpg"><p><hr></p></td></tr><tr><td height="40%" valign="middle">
 
-package func_ref;
+<!-- ---------------------------- -->
+<!-- ---------------------------- -->
+<!-- DO NOT DELETE OR MODIFY THIS -->
+<!-- DO NOT DELETE OR MODIFY THIS -->
+<!-- --> 
 
+<h3><center><h1>We are sorry!</h1><p>The website you are trying to reach is currently unavailable.</p><p>Please try again later.</p></center></h3>
 
-// "Math Library"
-
-abstract interface MathLibraryFunc {
-    public double f(double x);
-}
-
-final class MathLibrary {
-    public static double Trapezoid(MathLibraryFunc func, double a, double b, int n) {
-	if (n <= 0) return 0;
-	double h = (b-a)/n;
-	double fa = func.f(a);
-	double fb = func.f(b);
-	double sum = (fa+fb)*0.5;
-	for (int i = 1; i < n; ++i) {
-	    double x = a + i*h;
-	    sum += func.f(x);
-	}
-	return h*sum;
-    }
-
-    public static double Midpoint(MathLibraryFunc func, double a, double b, int n) {
-	if (n <= 0) return 0;
-	double h = (b-a)/n;
-	double sum = 0;
-	double x = a + 0.5*h;
-	for (int i = 0; i < n; ++i) {
-	    sum += func.f(x);
-	    x += h;
-	}
-	return h*sum;
-    }
-}
-
-//-------------------------------------
-// "user code" to use math library
-
-final class Linear implements MathLibraryFunc {
-    @Override
-    public double f(double x) { return x; }
-}
-
-final class Square implements MathLibraryFunc {
-    @Override
-    public double f(double x) { return x*x; }
-}
-
-public class FunctionRef {
-    public static void main(String[] args) {
-	Linear lin = new Linear();
-	Square sq = new Square();
-	double a = 0;
-	double b = 1;	
-	System.out.println("Linear funtion:");
-	for (int n = 1; n < 10; ++n) {
-	    double tz = MathLibrary.Trapezoid(lin, a, b, n); 
-	    double md = MathLibrary.Midpoint(lin, a, b, n); 
-	    System.out.println("n, linear = " + n + "   " + tz + "   " + md);
-	}
-	System.out.println("");
-	System.out.println("Quadratic funtion:");
-	for (int n = 1; n < 10; ++n) {
-	    double tz = MathLibrary.Trapezoid(sq, a, b, n); 
-	    double md = MathLibrary.Midpoint(sq, a, b, n); 
-	    System.out.println("n, quadratic = " + n + "   " + tz + "   " + md);
-	}
-    }
-}
+ <!-- -->
+<!-- DO NOT DELETE OR MODIFY THIS -->
+<!-- DO NOT DELETE OR MODIFY THIS -->
+<!-- ---------------------------- -->
+<!-- ---------------------------- -->
+		 
+</td></tr><tr><td height="30%" valign="bottom"><p><hr></p>
+Queens College, CUNY | 65-30 Kissena Blvd. | Queens, NY 11367-1597<br/>Phone: (718) 997-5000 | Copyright &copy; 2004-2017
+</td></tr></table></center></body></html>
