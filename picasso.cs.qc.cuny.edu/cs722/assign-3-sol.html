@@ -150,67 +150,6 @@ In addition, solve the following:
 
 <br>
 
-<b>a.</b>
-Let A be a &ne;-assignment for &phi;.
-Then each clause of &phi; has a true literal L and a false literal L' under A.
-Literal L' is true under the negation of A, so each clause is true under the negation of A.
-<br>
-<b>b.</b>
-Since each clause is replaced with two clauses, the size of the formula doubles, so
-the reduction clearly runes in polynomial times.
-Suppose each clause c<sub>i</sub> is satisfied by an assignment A.
-Then one of y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is true under A.
-If y<sub>1</sub> = y<sub>2</sub> = 0, assign z<sub>i</sub> = 1.
-If y<sub>1</sub> = y<sub>2</sub> = 1, assign z<sub>i</sub> = 0.
-If y<sub>1</sub> = 0 and y<sub>2</sub> = 1 or
-y<sub>1</sub> = 1 and y<sub>2</sub> = 0,
-assign z<sub>i</sub> = y<sub>3</sub>.
-In each case,
-the extended assignment is a &ne;-assignment satisfying the two clauses replacing c<sub>i</sub>.
-Conversely suppose the generated formula has a satisfying &ne;-assignment A.
-If b = 0 under A,
-it cannot be the case that y<sub>1</sub> = y<sub>2</sub> = y<sub>3</sub> = 0 because this assignment
-makes one of the two clauses replacing c<sub>i</sub> false, hence at least one of
-y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is assigned to 1.
-Thus c<sub>i</sub> is true under A limited to the variables of the original formula.
-If b = 1 under A, negate A to make b = 0.
-By <b>a</b> the negated A too is a &ne;-assignment, and the same argument as above
-ensures at least one of
-y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub> is assigned to 1.
-<br>
-<b>c.</b>
-It is clear &ne;SAT &isin; NP.
-3SAT is NP-Complete and 3SAT &le;<sub>p</sub> &ne;SAT is proved in <b>b</b>.
-Hence &ne;SAT is NP-Complete.
-
-<br><br>
-
-The following is &ne;&phi; generated from &phi; in Question 1.
-
-<blockquote>
-&ne;&phi;(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, z<sub>1</sub>, z<sub>2</sub>, z<sub>3</sub>, z<sub>4</sub>, b) =
-<br>
-(&not;x<sub>1</sub> &or; x<sub>2</sub> &or; z<sub>1</sub>) &and;
-(&not;z<sub>1</sub> &or; x<sub>2</sub> &or; b) &and;
-<br>
-(x<sub>1</sub> &or; x<sub>1</sub> &or; z<sub>2</sub>) &and;
-(&not;z<sub>2</sub> &or; &not;x<sub>2</sub> &or; b) &and;
-<br>
-(x<sub>1</sub> &or; &not;x<sub>2</sub> &or; z<sub>3</sub>) &and;
-(&not;z<sub>3</sub> &or; x<sub>3</sub> &or; b) &and;
-<br>
-(x<sub>2</sub> &or; &not;x<sub>3</sub> &or; z<sub>4</sub>) &and;
-(&not;z<sub>4</sub> &or; &not;x<sub>3</sub> &or; b)
-</blockquote>
-
-One &ne;-assignment is
-{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0, 
-  z<sub>1</sub>=0, z<sub>2</sub>=1, z<sub>3</sub>=0, z<sub>4</sub>=1, b=0 }.
-The corresponding assignment for &phi; is
-{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0 }.
-
-<br><br>
-
 <li>
 MAX-CUT in Problem 7.27 on page 325 (Problem 7.25 in the 2nd edition).
 In addition, solve the following:
@@ -223,68 +162,6 @@ In addition, solve the following:
   Give one cut of size at least k of G, and
   a corresponding &ne;-assignment for &phi; produced by the equivalence proof.
   </ol>
-
-<br>
-
-The reduction generates graph G as described and k = 9c<sup>2</sup>m + 2c, where
-c is the # of clauses and
-m is the # of variables of the given 3cnf-formula &phi;.
-The # of nodes of G is 6cm &le; 6c&middot;3c = 2(3c)<sup>2</sup>, which is in the asymptotic order of
-the square of the # of literals 3c in &phi;, so G can be constructed in polynomial time.
-
-<br><br>
-
-Note that if a clause has x<sub>i</sub> &or; &not;x<sub>i</sub>,
-the variable gadget for x<sub>i</sub> has a pair of nodes labeled with x<sub>i</sub> and &not;x<sub>i</sub>
-connected by <i>two</i> edges, one given by the definition of variable gadgets,
-the other given by the definition of clause triangles.
-Inclusion of double edges in this case is necessary for the reduction to work correctly. 
-
-<br><br>
-
-Proof of the equivalence condition.
-First, we note that G has 9c<sup>2</sup>m + 3c edges,
-9c<sup>2</sup>m edges in the variable gadgets and 3c edges in the clause triangles.
-
-<br><br>
-
-Suppose &phi; has a &ne;-assignment A that satisfies it.
-Define a cut by S = the set of true literals, T = the set of false literals.
-Then all the 9c<sup>2</sup>m edges in the variable gadgets are cut edges.
-Since A is a &ne;-assignment,
-each clause has two literals with the same value and a literal with the opposite value under A.
-Hence each clause triangle has exactly two cut edges.
-Hence G has 9c<sup>2</sup>m + 2c cut edges.
-
-<br><br>
-
-Conversely suppose G has at least 9c<sup>2</sup>m + 2c cut edges.
-If an edge in any variable gadget is not included in the cut,
-the total number of edges in the cut is &le; 9c<sup>2</sup>m&minus;1 + 2c &lt;
-9c<sup>2</sup>m + 2c, since each clause triangle can contribute at most two cut edges.
-Thus all the 9c<sup>2</sup>m edges in the variable gadgets must be cut edges and
-2c cut edges must come from each clause triangle contributing 2 cut edges.
-Therefore S includes all 3c x<sub>i</sub>-nodes or else &not;x<sub>i</sub>-nodes, and
-T includes all 3c &not;x<sub>i</sub>-nodes or else x<sub>i</sub>-nodes, respectively,
-for 1 &le; i &le; m.
-We can then consistently choose an assignment A s.t. all literals in S are true and
-all literals in T are false, or vice versa.
-Since each clause triangle has a cut edge, then,
-that clause has a true literal and a false literal under A, hence
-A is a &ne;-assignment.
-
-<br><br>
-
-The following is (G, k) generated from the &phi; in Question 1.
-For brevity only 12 edges in the clause triangles are shown &ndash; 432 edges in the variable gadgets are not shown.
-A cut of size 440 is also shown where S is the set of white nodes and T is the set of green nodes.
-A corresponding &ne;-assignment is
-{ x<sub>1</sub>=0, x<sub>2</sub>=0, x<sub>3</sub>=0 } or
-{ x<sub>1</sub>=1, x<sub>2</sub>=1, x<sub>3</sub>=1 }.
-
-<br><br>
-
-<img src="assign-3-sol-Q4.svg" width=680>
 
 <br>
 
